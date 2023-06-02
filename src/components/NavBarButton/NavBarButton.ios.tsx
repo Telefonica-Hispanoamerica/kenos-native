@@ -7,7 +7,7 @@ type NavBarButtonProps = {
 
 function NavBarButton({onPress, children}: NavBarButtonProps) {
   return (
-    <View style={{height: 28, width: 28, borderRadius: 50, overflow: 'hidden'}}>
+    <View style={{height: 24, width: 24, borderRadius: 50, overflow: 'hidden'}}>
       <Pressable
         onPress={onPress}
         style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}

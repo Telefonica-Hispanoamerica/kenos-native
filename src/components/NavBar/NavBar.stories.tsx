@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import NavBar from './NavBar';
-import NavBarButton from '../NavBarButton/NavBarButton.android';
+import NavBarButton from '../NavBarButton/NavBarButton';
 import NavBarIcon from '../icons/NavBarIcon';
 import Avatar from '../Avatar/Avatar';
 import {
@@ -55,6 +55,14 @@ Basic.args = {
   ),
   rightButtons: (
     <>
+      <NavBarButton
+        onPress={() => alert('Cart button pressed')}
+        children={<NavBarIcon icon="cart" />}
+      />
+      <NavBarButton
+        onPress={() => alert('Adjust button pressed')}
+        children={<NavBarIcon icon="adjust" />}
+      />
       <NavBarButton
         onPress={() => alert('Reload button pressed')}
         children={<NavBarIcon icon="reload" />}

@@ -23,7 +23,7 @@ const NavBar = ({
   const scrollY = useRef(new Animated.Value(0)).current;
   const translateY = scrollY.interpolate({
     inputRange: [0, 100],
-    outputRange: [0, -56],
+    outputRange: [0, -62],
     extrapolate: 'clamp',
   });
 
@@ -41,11 +41,12 @@ const NavBar = ({
 
   const styles = StyleSheet.create({
     bigHeader: {
-      height: displayMinimal ? 0 : 98,
+      height: displayMinimal ? 0 : 62,
       backgroundColor: navigationBarBackground,
+      justifyContent: 'flex-end',
     },
     smallHeader: {
-      height: 44,
+      height: 37,
       backgroundColor: navigationBarBackground,
       justifyContent: 'center',
       zIndex: 1,
@@ -54,13 +55,14 @@ const NavBar = ({
       elevation: -1,
     },
     textBig: {
+      marginTop: 'auto',
       color: 'white',
       marginLeft: 16,
       marginRight: 16,
+      marginBottom: 4,
       fontWeight: '300',
-      marginTop: 8,
-      marginBottom: 8,
-      fontSize: 24,
+      fontSize: 28,
+      lineHeight: 32,
       opacity: displayMinimal ? 0 : opacity,
     },
     textSmall: {
@@ -70,15 +72,17 @@ const NavBar = ({
       fontWeight: '500',
       fontSize: 18,
       lineHeight: 24,
+      textAlign: 'center',
       opacity: displayMinimal ? 100 : opacitySmall,
+      width: 215,
     },
     leftButtonContainer: {
-      marginLeft: 4,
+      marginLeft: 10,
     },
     rightButtonContainer: {
       flexDirection: 'row',
-      marginRight: 4,
-      gap: 4,
+      marginRight: 10,
+      gap: 8,
     },
   });
 

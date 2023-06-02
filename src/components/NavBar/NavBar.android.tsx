@@ -43,6 +43,7 @@ const NavBar = ({
     bigHeader: {
       height: displayMinimal ? 0 : 53,
       backgroundColor: navigationBarBackground,
+      justifyContent: 'flex-end',
     },
     smallHeader: {
       height: 56,
