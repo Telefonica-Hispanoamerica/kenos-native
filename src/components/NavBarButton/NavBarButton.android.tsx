@@ -11,7 +11,7 @@ function NavBarButton({onPress, children}: NavBarButtonProps) {
       <Pressable
         onPress={onPress}
         style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
-        android_ripple={{color: 'white', foreground: true}}>
+        android_ripple={{color: 'rgba(255,255,255,0.4)', foreground: true}}>
         {children}
       </Pressable>
     </View>
