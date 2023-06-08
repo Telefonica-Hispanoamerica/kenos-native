@@ -1,10 +1,8 @@
-import * as React from 'react';
 import {
   BLAU_SKIN,
   TELEFONICA_SKIN,
   VIVO_SKIN,
   O2_SKIN,
-  O2_CLASSIC_SKIN,
   MOVISTAR_SKIN,
   MOVISTAR_AR_SKIN,
 } from './constants';
@@ -12,7 +10,6 @@ import {getBlauSkin} from './blau';
 import {getTelefonicaSkin} from './telefonica';
 import {getVivoSkin} from './vivo';
 import {getO2Skin} from './o2';
-import {getO2ClassicSkin} from './o2-classic';
 import {getMovistarSkin} from './movistar';
 import {getMovistarARSkin} from './movistar-ar';
 import type {SkinVariant, KnownSkin, KnownSkinName} from './types';
@@ -30,8 +27,6 @@ export const getSkinByName = (
       return getVivoSkin(variant);
     case O2_SKIN:
       return getO2Skin(variant);
-    case O2_CLASSIC_SKIN:
-      return getO2ClassicSkin(variant);
     case MOVISTAR_SKIN:
       return getMovistarSkin(variant);
     case MOVISTAR_AR_SKIN:

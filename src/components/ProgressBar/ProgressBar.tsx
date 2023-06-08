@@ -12,19 +12,21 @@ const ProgressBar = ({progressPercent, color}: Props) => {
   const [progress, setProgress] = useState(new Animated.Value(progressPercent));
   const {skin} = useTheme();
   const {control, controlActivated} = skin.colors;
+  const bar = skin.borderRadii?.bar || '0px';
+  const barRN = parseFloat(bar.replace(/px/g, ''));
 
   const styles = StyleSheet.create({
     barBackground: {
       width: '100%',
       height: 4,
       backgroundColor: control,
-      borderRadius: 8,
+      borderRadius: barRN,
       overflow: 'hidden',
     },
     progressBar: {
       height: '100%',
       backgroundColor: color ? color : controlActivated,
-      borderRadius: 8,
+      borderRadius: barRN,
     },
   });
 
