@@ -1,7 +1,5 @@
-// stories/MyButton.stories.tsx
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-
 import ProgressBar from './ProgressBar';
 
 export default {
@@ -16,3 +14,5 @@ export const Basic: ComponentStory<typeof ProgressBar> = args => (
 Basic.args = {
   progressPercent: 30,
 };
+
+Basic.storyName = 'Progress bar';

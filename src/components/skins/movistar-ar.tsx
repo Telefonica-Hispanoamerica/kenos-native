@@ -81,7 +81,7 @@ export const getMovistarARSkin: GetKnownSkin = (variant?: SkinVariant) => {
       buttonDangerBackgroundHover: palette.pepper55,
       buttonLinkBackgroundSelected: palette.movistarBlue10,
       buttonLinkBackgroundInverseSelected: applyAlpha(palette.white, 0.2),
-      buttonPrimaryBackground: palette.movistarBlue,
+      buttonPrimaryBackground: palette.movistarGreen,
       buttonPrimaryBackgroundInverse: palette.white,
       buttonPrimaryBackgroundSelected: palette.movistarBlue55,
       buttonPrimaryBackgroundHover: palette.movistarBlue55,

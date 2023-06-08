@@ -54,6 +54,7 @@ const getStories = () => {
     "./src/components/Button/Button.stories.tsx": require("../src/components/Button/Button.stories.tsx"),
     "./src/components/Circle/Circle.stories.tsx": require("../src/components/Circle/Circle.stories.tsx"),
     "./src/components/Divider/Divider.stories.tsx": require("../src/components/Divider/Divider.stories.tsx"),
+    "./src/components/LoadingBar/LoadingBar.stories.tsx": require("../src/components/LoadingBar/LoadingBar.stories.tsx"),
     "./src/components/Logo/Logo.stories.tsx": require("../src/components/Logo/Logo.stories.tsx"),
     "./src/components/NavBar/NavBar.stories.tsx": require("../src/components/NavBar/NavBar.stories.tsx"),
     "./src/components/ProgressBar/ProgressBar.stories.tsx": require("../src/components/ProgressBar/ProgressBar.stories.tsx"),
