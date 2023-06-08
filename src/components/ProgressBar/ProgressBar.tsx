@@ -1,0 +1,56 @@
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
+import {useTheme} from '../../hooks/ThemeContextProvider';
+
+type Props = {
+  progressPercent: number;
+  color?: string;
+  reverse?: boolean;
+};
+
+const ProgressBar = ({progressPercent, color}: Props) => {
+  const [progress, setProgress] = useState(new Animated.Value(progressPercent));
+  const {skin} = useTheme();
+  const {control, controlActivated} = skin.colors;
+
+  const styles = StyleSheet.create({
+    barBackground: {
+      width: '100%',
+      height: 4,
+      backgroundColor: control,
+      borderRadius: 8,
+      overflow: 'hidden',
+    },
+    progressBar: {
+      height: '100%',
+      backgroundColor: color ? color : controlActivated,
+      borderRadius: 8,
+    },
+  });
+
+  useEffect(() => {
+    Animated.timing(progress, {
+      toValue: progressPercent,
+      duration: 500,
+      useNativeDriver: false,
+    }).start();
+  }, [progressPercent]);
+
+  return (
+    <View style={styles.barBackground}>
+      <Animated.View
+        style={[
+          styles.progressBar,
+          {
+            width: progress.interpolate({
+              inputRange: [0, 100],
+              outputRange: ['0%', '100%'],
+            }),
+          },
+        ]}
+      />
+    </View>
+  );
+};
+
+export default ProgressBar;
