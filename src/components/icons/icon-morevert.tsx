@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-function MoreVert() {
+function IconMoreVert() {
   return (
     <Svg width={4} height={16} viewBox="0 0 4 16" fill="none">
       <Path
@@ -14,4 +14,4 @@ function MoreVert() {
   );
 }
 
-export default MoreVert;
+export default IconMoreVert;

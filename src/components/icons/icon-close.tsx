@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-function CloseIcon() {
+function IconClose() {
   return (
     <Svg
       width={32}
@@ -17,4 +17,4 @@ function CloseIcon() {
   );
 }
 
-export default CloseIcon;
+export default IconClose;

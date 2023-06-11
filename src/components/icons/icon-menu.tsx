@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-function Menu() {
+function IconMenu() {
   return (
     <Svg width={20} height={16} viewBox="0 0 20 16" fill="none">
       <Path
@@ -14,4 +14,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default IconMenu;

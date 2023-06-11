@@ -1,25 +1,25 @@
-import CloseIcon from './Close';
-import Cart from './Cart';
-import LeftArrowIcon from './LeftArrow';
-import MoreVert from './MoreVert';
-import ReloadIcon from './Reload';
-import Adjust from './Adjust';
+import IconClose from './icon-close';
+import IconCart from './icon-cart';
+import IconBack from './icon-back';
+import IconMoreVert from './icon-morevert';
+import IconReload from './icon-reload';
+import IconAdjust from './icon-adjust';
 
 type NavBarIconProps = {
   icon: keyof typeof IconsOrchester;
 };
 
 const IconsOrchester = {
-  left: <LeftArrowIcon />,
-  reload: <ReloadIcon />,
-  close: <CloseIcon />,
-  more: <MoreVert />,
-  cart: <Cart />,
-  adjust: <Adjust />,
+  back: <IconBack />,
+  reload: <IconReload />,
+  close: <IconClose />,
+  more: <IconMoreVert />,
+  cart: <IconCart />,
+  adjust: <IconAdjust />,
 };
 
 function NavBarIcon(props: NavBarIconProps) {
-  return IconsOrchester[props.icon] || <LeftArrowIcon />;
+  return IconsOrchester[props.icon] || <IconBack />;
 }
 
 export default NavBarIcon;

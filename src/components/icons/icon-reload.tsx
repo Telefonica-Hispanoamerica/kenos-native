@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-function ReloadIcon() {
+function IconReload() {
   return (
     <Svg width={20} height={21} viewBox="0 0 20 21" fill="none">
       <Path
@@ -12,4 +12,4 @@ function ReloadIcon() {
   );
 }
 
-export default ReloadIcon;
+export default IconReload;

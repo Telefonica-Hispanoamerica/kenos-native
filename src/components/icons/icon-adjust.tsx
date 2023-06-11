@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-function Adjust() {
+function IconAdjust() {
   return (
     <Svg width={20} height={19} viewBox="0 0 20 19" fill="none">
       <Path
@@ -14,4 +14,4 @@ function Adjust() {
   );
 }
 
-export default Adjust;
+export default IconAdjust;

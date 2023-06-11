@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-function Cart() {
+function IconCart() {
   return (
     <Svg width={20} height={20} viewBox="0 0 20 20" fill="none">
       <Path
@@ -14,4 +14,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default IconCart;
