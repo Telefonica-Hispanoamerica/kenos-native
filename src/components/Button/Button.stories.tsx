@@ -16,8 +16,8 @@ export const Basic: ComponentStory<typeof Button> = args => {
   return (
     <ScrollView >
       <View style={{ gap: 16, margin: 16 }}>
-        <Button {...args}>Send</Button>
-        {buttonTypes.map(aButtonType => <>
+        {buttonTypes.map((aButtonType, index) => 
+        <React.Fragment key={`button-${aButtonType}-${index}`}>
           <Button loadingText='' type={aButtonType}>Send</Button>
           <Button loadingText='' type={aButtonType} leftIcon={IconCamera}>Send</Button>
           <Button loadingText='' type={aButtonType} rightIcon={IconCamera}>Send</Button>
@@ -32,10 +32,9 @@ export const Basic: ComponentStory<typeof Button> = args => {
           <Button loadingText='Sending file' type={aButtonType} small disabled showSpinner>Send</Button>
           <Button loadingText='' type={aButtonType} small disabled showSpinner>Send</Button>
           <Button loadingText='' type={aButtonType} showSpinner small>Send</Button>
-        </>)}
+        </React.Fragment>)}
       </View>
     </ScrollView>
-
   );
 }
 
