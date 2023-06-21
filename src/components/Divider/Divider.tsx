@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import { StyleSheet, View } from 'react-native';
+import { useTheme } from '../../hooks/ThemeContextProvider';
 
 const Divider = () => {
-  const {skin} = useTheme();
-  const {divider, dividerInverse} = skin.colors;
+  const { skin } = useTheme();
+  const { divider, dividerInverse } = skin.colors;
   const isInverse = false; //TODO: Add an isInverse implementation in the future.
 
   const styles = StyleSheet.create({
