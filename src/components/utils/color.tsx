@@ -4,7 +4,7 @@ const fromHexToRgb = (hexColor: string) => {
     const red = parseInt(sanitizedHexColor.substring(0, 2), 16);
     const green = parseInt(sanitizedHexColor.substring(2, 4), 16);
     const blue = parseInt(sanitizedHexColor.substring(4, 6), 16);
-    return `rgb(${red}, ${green}, ${blue})`;
+    return `${red}, ${green}, ${blue}`;
   }
   throw new Error('Bad color');
 };
