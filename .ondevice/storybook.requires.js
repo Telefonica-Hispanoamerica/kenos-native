@@ -64,7 +64,9 @@ const getStories = () => {
     "./src/components/Skeletons/SkeletonRow.stories.tsx": require("../src/components/Skeletons/SkeletonRow.stories.tsx"),
     "./src/components/Skeletons/Skeletons.stories.tsx": require("../src/components/Skeletons/Skeletons.stories.tsx"),
     "./src/components/Skeletons/SkeletonText.stories.tsx": require("../src/components/Skeletons/SkeletonText.stories.tsx"),
+    "./src/components/Stepper/Stepper.stories.tsx": require("../src/components/Stepper/Stepper.stories.tsx"),
     "./src/components/Text/Text.stories.tsx": require("../src/components/Text/Text.stories.tsx"),
+    "./src/components/Welcome/Welcome.stories.tsx": require("../src/components/Welcome/Welcome.stories.tsx"),
   };
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text as RNText} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import { Text as RNText } from 'react-native';
+import { useTheme } from '../../hooks/ThemeContextProvider';
 
 type FontWeight = 'light' | 'regular' | 'medium' | 'bold';
 
@@ -32,20 +32,20 @@ type TextProps = TextPresetProps & {
 
 interface LightProps extends TextPresetProps {
   light?: boolean;
-  regular?: never;
-  medium?: never;
+  regular?: boolean;
+  medium?: boolean;
 }
 
 interface MediumProps extends TextPresetProps {
-  light?: never;
-  regular?: never;
+  light?: boolean;
+  regular?: boolean;
   medium?: boolean;
 }
 
 interface RegularProps extends TextPresetProps {
-  light?: never;
+  light?: boolean;
   regular?: boolean;
-  medium?: never;
+  medium?: boolean;
 }
 
 type RegularMediumProps = RegularProps | MediumProps;
@@ -99,10 +99,8 @@ export const Text = ({
   children,
   size,
   mobileSize = size,
-  desktopSize = size,
   lineHeight,
   mobileLineHeight = lineHeight,
-  desktopLineHeight = lineHeight,
   letterSpacing,
   textAlign,
   id,
@@ -181,7 +179,7 @@ export const Text10: React.FC<TextPresetProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const {textPresets} = theme.skin;
+  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -202,7 +200,7 @@ export const Text9: React.FC<TextPresetProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const {textPresets} = theme.skin;
+  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -223,7 +221,7 @@ export const Text8: React.FC<TextPresetProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const {textPresets} = theme.skin;
+  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -244,7 +242,7 @@ export const Text7: React.FC<TextPresetProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const {textPresets} = theme.skin;
+  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -265,7 +263,7 @@ export const Text6: React.FC<TextPresetProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const {textPresets} = theme.skin;
+  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -286,7 +284,7 @@ export const Text5: React.FC<TextPresetProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const {textPresets} = theme.skin;
+  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
