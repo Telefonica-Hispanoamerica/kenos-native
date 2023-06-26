@@ -19,45 +19,15 @@ interface CommonProps {
   rightIcon?: React.ComponentType<IconProps>;
 }
 
-export interface ToButtonProps extends CommonProps {
-  to: string;
-  submit?: undefined;
-  fake?: undefined;
-  onPress?: undefined;
-}
+
 export interface OnPressButtonProps extends CommonProps {
-  onPress: (event: React.MouseEvent<HTMLElement>) => void | undefined | Promise<void>;
+  onPress?: Function;
   submit?: undefined;
   fake?: undefined;
   to?: undefined;
-}
-export interface HrefButtonProps extends CommonProps {
-  newTab?: boolean;
-  loadOnTop?: boolean;
-  submit?: undefined;
-  fake?: undefined;
-  onPress?: undefined;
-  to?: undefined;
-}
-export interface FakeButtonProps extends CommonProps {
-  fake: true;
-  submit?: undefined;
-  onPress?: undefined;
-  to?: undefined;
-}
-export interface SubmitButtonProps extends CommonProps {
-  submit: true;
-  to?: undefined;
-  fake?: undefined;
-  onPress?: undefined;
 }
 
-export type ButtonProps =
-  | FakeButtonProps
-  | SubmitButtonProps
-  | ToButtonProps
-  | OnPressButtonProps
-  | HrefButtonProps;
+export type ButtonProps =  OnPressButtonProps
 
 
 export const Button = (props: ButtonProps & { type: ButtonType }) => {
@@ -118,7 +88,6 @@ export const Button = (props: ButtonProps & { type: ButtonType }) => {
       fontSize: props.small ? 14 : 16,
       fontWeight: '700', textAlign: 'center',
       verticalAlign: 'middle',
-      fontFamily: 'Roboto',
     }
   })
 
