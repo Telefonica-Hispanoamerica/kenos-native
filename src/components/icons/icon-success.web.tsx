@@ -35,21 +35,19 @@ const IconSuccessO2 = ({ size, color }: IconSucessProps) => {
 }
 
 const IconSuccessGlobal = ({ size, color }: IconSucessProps) => {
-    return <Svg
-        width={size}
-        height={size}
-        fill="none"
-        viewBox="0 0 24 24"
-    >
-        <Path
-            fill={color || "#0B2739"}
-            d="M9.947 16.64c.11.138.276.217.451.217h.013a.572.572 0 00.451-.232l6.452-8.639a.575.575 0 10-.922-.69l-6.01 8.044-2.489-3.128a.577.577 0 00-.9.718l2.954 3.71z"
-        />
-        <Path
-            fill={color || "#0B2739"}
-            d="M11.997 23c-3.495 0-6.213-.912-8.079-2.711C1.981 18.424 1 15.637 1 12.005c0-3.633.981-6.423 2.918-8.29C5.784 1.914 8.505 1 11.998 1c3.495 0 6.213.912 8.081 2.711C22.018 5.58 23 8.37 23 12.001c0 3.633-.984 6.42-2.922 8.288C18.21 22.088 15.492 23 11.997 23zm0-20.78c-6.49 0-9.78 3.29-9.78 9.785 0 6.488 3.29 9.779 9.78 9.779 6.492 0 9.787-3.291 9.787-9.78 0-6.49-3.295-9.785-9.787-9.785z"
-        />
-    </Svg>
+    return <svg role="presentation" width={size} height={size} viewBox="0 0 64 64">
+    <g stroke={color} strokeWidth={2} >
+        <path vectorEffect="non-scaling-stroke" fill="none" strokeWidth="2" strokeMiterlimit="10" d="M61.4,32c0,19.5-10,29.4-29.4,29.4C12.5,61.4,2.6,51.5,2.6,32S12.5,2.6,32,2.6S61.4,12.5,61.4,32z" transform="rotate(90 32 32)" strokeDasharray="202" strokeDashoffset="202">
+            <animate attributeName="stroke-dashoffset" from="202" to="0" dur="0.7" repeatCount="1" begin="0.2s" fill="freeze" keyTimes="0;1" calcMode="spline" keySplines="0.75 0 0.25 1"></animate>
+        </path>
+        <polyline vectorEffect="non-scaling-stroke" fill="none" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" points="20,34.9 27.4,44.3 45.6,21" strokeDasharray="44" strokeDashoffset="44">
+            <animate attributeName="stroke-dashoffset" from="44" to="0" dur="0.7" repeatCount="1" begin="0.6s" fill="freeze" keyTimes="0;1" calcMode="spline" keySplines="0.75 0 0.25 1">
+            </animate>
+            <animate from="2.5" to="2" dur="0.7s" begin="0.6s" keyTimes="0;1" calcMode="spline" fill="freeze" keySplines="0.75 0 0.25 1"></animate>
+            <animateTransform attributeName="transform" type="translate" from="-0.5 1" to="0 0" dur="0.7s" begin="0.6s" keyTimes="0;1" calcMode="spline" fill="freeze" keySplines="0.75 0 0.25 1"></animateTransform>
+        </polyline>
+    </g>
+</svg>
 }
 
 function IconSuccess({ size, color, skipAnimation }: IconSucessProps) {
