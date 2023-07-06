@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useTheme} from '../../hooks/ThemeContextProvider';
-import { Text1 } from '../Text/Text';
+import {Text1} from '../Text/Text';
 
 type Props = {
   children?: React.ReactNode;
@@ -13,7 +13,7 @@ type Props = {
 const Badge: React.FC<Props> = ({children, value, right, top}: Props) => {
   const {skin} = useTheme();
   const {colors} = skin;
-
+  const isBigNumber = value && value > 9;
   const styles = StyleSheet.create({
     container: {
       position: 'relative',
@@ -53,12 +53,19 @@ const Badge: React.FC<Props> = ({children, value, right, top}: Props) => {
       alignItems: 'center',
       justifyContent: 'center',
       color: colors.textPrimaryInverse,
-
       fontSize: 12,
       fontWeight: '500',
     },
     badgeWithChildren: {
-      position: 'absolute',
+      width: isBigNumber ? 24 : !value ? 8 : 18,
+      height: !value ? 8 : 18,
+      backgroundColor: colors.badge,
+      borderRadius: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: colors.textPrimaryInverse,
+      zIndex: 1,
+      elevation: 1,
     },
     badgeBigNumber: {
       width: 24,
@@ -74,7 +81,7 @@ const Badge: React.FC<Props> = ({children, value, right, top}: Props) => {
       elevation: 2,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',      
+      justifyContent: 'center',
       top: -8,
       right: -14,
       height: 18,
@@ -90,8 +97,6 @@ const Badge: React.FC<Props> = ({children, value, right, top}: Props) => {
   if (!!value) {
     <View style={styles.badge} />;
   }
-
-  const isBigNumber = value && value > 9;
 
   const style = children
     ? styles.badgeWithChildren
@@ -109,8 +114,9 @@ const Badge: React.FC<Props> = ({children, value, right, top}: Props) => {
           role="presentation"
           accessibilityElementsHidden={true} // Hides the number from accessibility
           style={styleWithRightTop}>
-            <Text1 color={colors.textPrimaryInverse}
-            >{isBigNumber ? '+9' : value}</Text1>
+          <Text1 color={colors.textPrimaryInverse}>
+            {isBigNumber ? '+9' : value}
+          </Text1>
         </View>
       ) : (
         <View style={styleWithRightTop} />
