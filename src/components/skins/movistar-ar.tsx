@@ -277,13 +277,13 @@ export const getMovistarARSkin: GetKnownSkin = (variant?: SkinVariant) => {
       sheet: '8px',
     },
     textPresets: {
-      cardTitle: {weight: 'bold'},
-      text5: {weight: 'bold'},
-      text6: {weight: 'bold'},
-      text7: {weight: 'bold'},
-      text8: {weight: 'bold'},
-      text9: {weight: 'bold'},
-      text10: {weight: 'bold'},
+      cardTitle: {weight: 'regular'},
+      text5: {weight: 'light'},
+      text6: {weight: 'light'},
+      text7: {weight: 'light'},
+      text8: {weight: 'light'},
+      text9: {weight: 'light'},
+      text10: {weight: 'light'},
     },
   };
   return skin;

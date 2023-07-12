@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
 import {useTheme} from '../../hooks/ThemeContextProvider';
+import {Text4, Text6} from '../Text/Text';
 
 type NavBarProps = {
   headerTitle: string;
@@ -18,7 +19,7 @@ const NavBar = ({
   rightButtons,
 }: NavBarProps) => {
   const {skin} = useTheme();
-  const {navigationBarBackground} = skin.colors;
+  const {navigationBarBackground, textPrimaryInverse} = skin.colors;
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const translateY = scrollY.interpolate({
@@ -55,21 +56,15 @@ const NavBar = ({
       elevation: -1,
     },
     textBig: {
-      color: 'white',
       marginLeft: 16,
       marginRight: 16,
-      fontWeight: '300',
       marginTop: 8,
       marginBottom: 8,
-      fontSize: 24,
       opacity: displayMinimal ? 0 : opacity,
     },
     textSmall: {
       flex: 1,
-      color: 'white',
       marginLeft: 12,
-      fontWeight: '500',
-      fontSize: 18,
       lineHeight: 24,
       opacity: displayMinimal ? 100 : opacitySmall,
     },
@@ -88,16 +83,18 @@ const NavBar = ({
       <View style={styles.smallHeader}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={styles.leftButtonContainer}>{leftButton}</View>
-          <Animated.Text numberOfLines={1} style={styles.textSmall}>
-            {headerTitle}
-          </Animated.Text>
+          <Animated.View style={styles.textSmall}>
+            <Text4 medium color={textPrimaryInverse}>
+              {headerTitle}
+            </Text4>
+          </Animated.View>
           <View style={styles.rightButtonContainer}>{rightButtons}</View>
         </View>
       </View>
       <Animated.View style={[styles.bigHeader, {transform: [{translateY}]}]}>
-        <Animated.Text numberOfLines={1} style={styles.textBig}>
-          {headerTitle}
-        </Animated.Text>
+        <Animated.View style={styles.textBig}>
+          <Text6 color={textPrimaryInverse}>{headerTitle}</Text6>
+        </Animated.View>
       </Animated.View>
       <Animated.ScrollView
         contentContainerStyle={{
