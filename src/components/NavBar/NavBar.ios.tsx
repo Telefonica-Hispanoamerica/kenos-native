@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
 import {useTheme} from '../../hooks/ThemeContextProvider';
+import {Text4, Text7} from '../Text/Text';
 
 type NavBarProps = {
   headerTitle: string;
@@ -18,7 +19,7 @@ const NavBar = ({
   rightButtons,
 }: NavBarProps) => {
   const {skin} = useTheme();
-  const {navigationBarBackground} = skin.colors;
+  const {navigationBarBackground, textPrimaryInverse} = skin.colors;
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const translateY = scrollY.interpolate({
@@ -61,20 +62,14 @@ const NavBar = ({
       marginRight: 16,
       marginBottom: 4,
       fontWeight: '300',
-      fontSize: 28,
       lineHeight: 32,
       opacity: displayMinimal ? 0 : opacity,
     },
     textSmall: {
       flex: 1,
-      color: 'white',
-      marginLeft: 12,
-      fontWeight: '500',
-      fontSize: 18,
-      lineHeight: 24,
-      textAlign: 'center',
+      alignItems: 'center',
       opacity: displayMinimal ? 100 : opacitySmall,
-      width: 215,
+      width: '100%',
     },
     leftButtonContainer: {
       marginLeft: 10,
@@ -91,16 +86,18 @@ const NavBar = ({
       <View style={styles.smallHeader}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={styles.leftButtonContainer}>{leftButton}</View>
-          <Animated.Text numberOfLines={1} style={styles.textSmall}>
-            {headerTitle}
-          </Animated.Text>
+          <Animated.View style={styles.textSmall}>
+            <Text4 medium color={textPrimaryInverse}>
+              {headerTitle}
+            </Text4>
+          </Animated.View>
           <View style={styles.rightButtonContainer}>{rightButtons}</View>
         </View>
       </View>
       <Animated.View style={[styles.bigHeader, {transform: [{translateY}]}]}>
-        <Animated.Text numberOfLines={1} style={styles.textBig}>
-          {headerTitle}
-        </Animated.Text>
+        <Animated.View style={styles.textBig}>
+          <Text7 color={textPrimaryInverse}>{headerTitle}</Text7>
+        </Animated.View>
       </Animated.View>
       <Animated.ScrollView
         contentContainerStyle={{

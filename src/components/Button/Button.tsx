@@ -36,6 +36,7 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
     buttonDangerBackground,
     textButtonSecondary,
     buttonSecondaryBorder,
+    textPrimaryInverse,
   } = skin.colors;
 
   const buttonBR = skin.borderRadii?.button || '0px';
@@ -45,7 +46,7 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
     switch (props.type) {
       case 'secondary':
         return {
-          backgroundColor: 'transparent',
+          backgroundColor: textPrimaryInverse,
           borderColor: `${applyAlpha(
             buttonSecondaryBorder,
             props.disabled ? disabledStyle.opacity : 1,
@@ -117,7 +118,12 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
   });
 
   return (
-    <View style={{overflow: 'hidden', borderRadius: buttonBRRN, width: 143}}>
+    <View
+      style={{
+        overflow: 'hidden',
+        borderRadius: buttonBRRN,
+        flex: 1,
+      }}>
       <Pressable
         disabled={props.disabled || props.showSpinner}
         android_ripple={{color: textColor, borderless: false}}
