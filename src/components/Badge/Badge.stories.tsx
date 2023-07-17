@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Badge from './Badge';
 import IconBell from '../icons/icon-bell';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 export default {
   title: 'components/Badge',
@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Badge>;
 
 export const Basic: ComponentStory<typeof Badge> = args => (
-  <View style={{gap: 16, margin: 16}}>
+  <View style={{ gap: 16, margin: 16 }}>
     <Badge right={-18} top={3}>
       <IconBell color="black" size={20} />
     </Badge>
@@ -32,3 +32,5 @@ Basic.args = {
   right: 0,
   top: 0,
 };
+
+Basic.storyName = 'Badge'

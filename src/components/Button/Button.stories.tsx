@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {Button, ButtonType} from './Button';
-import {Alert, ScrollView, View} from 'react-native';
+import { Button, ButtonType } from './Button';
+import { Alert, ScrollView, View } from 'react-native';
 import IconCamera from '../icons/icon-camera';
 
 export default {
@@ -15,7 +15,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
   const onPress = () => Alert.alert('Clicked!', 'Clicked successfully!');
   return (
     <ScrollView>
-      <View style={{gap: 16, margin: 16, width: 143}}>
+      <View style={{ gap: 16, margin: 16, width: 143 }}>
         {buttonTypes.map((aButtonType, index) => (
           <React.Fragment key={`button-${aButtonType}-${index}`}>
             <Button loadingText="" type={aButtonType} onPress={onPress}>
@@ -106,3 +106,5 @@ Basic.args = {
   loadingText: 'Sending file',
   type: 'primary',
 };
+
+Basic.storyName = 'Buttons'

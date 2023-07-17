@@ -1,5 +1,5 @@
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import ProgressBar from './ProgressBar';
 
 export default {
@@ -15,4 +15,4 @@ Basic.args = {
   progressPercent: 30,
 };
 
-Basic.storyName = 'Progress bar';
+Basic.storyName = 'ProgressBar';

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import LoadingBar from './LoadingBar';
 
 export default {
@@ -9,4 +9,4 @@ export default {
 
 export const Basic: ComponentStory<typeof LoadingBar> = () => <LoadingBar />;
 
-Basic.storyName = 'Loading bar';
+Basic.storyName = 'LoadingBar';

@@ -44,4 +44,4 @@ export const Basic: ComponentStory<typeof Text> = args => (
   </ScrollView>
 );
 
-Basic.storyName = 'Text components';
+Basic.storyName = 'Text';

@@ -1,7 +1,7 @@
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {Circle} from './Circle';
+import { Circle } from './Circle';
 
 export default {
   title: 'components/Circle',
@@ -18,3 +18,5 @@ Basic.args = {
   backgroundColor: 'rgb(1, 157, 244)',
   size: 96,
 };
+
+Basic.storyName = 'Circle'
