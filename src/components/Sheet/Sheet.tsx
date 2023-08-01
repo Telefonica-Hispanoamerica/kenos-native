@@ -29,6 +29,8 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
       ...StyleSheet.absoluteFillObject,
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
       justifyContent: 'flex-end',
+      elevation: 1,
+      zIndex: 1,
     },
     bottomSheet: {
       backgroundColor: background,
