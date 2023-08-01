@@ -1,15 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 import NavBar from './NavBar';
 import NavBarButton from '../NavBarButton/NavBarButton';
 import NavBarIcon from '../icons/NavBarIcon';
 import Avatar from '../Avatar/Avatar';
-import {
-  QuantityListSkeleton,
-  SkeletonCircle,
-  SkeletonLine,
-} from '../Skeletons/Skeletons';
-import { View } from 'react-native';
 
 export default {
   title: 'components/NavBar',
@@ -18,31 +12,7 @@ export default {
 
 export const Basic: ComponentStory<typeof NavBar> = args => (
   <>
-    <NavBar {...args}>
-      <View style={{ alignItems: 'center', marginTop: 16 }}>
-        <View style={{ flexDirection: 'row', gap: 128 }}>
-          <SkeletonCircle size={150} />
-          <View style={{ alignItems: 'center' }}>
-            <SkeletonCircle size={150} />
-            <View
-              style={{
-                alignItems: 'center',
-                gap: 16,
-                marginTop: 32,
-                width: '100%',
-              }}>
-              <SkeletonLine width={120} />
-              <SkeletonLine width={150} />
-            </View>
-          </View>
-          <SkeletonCircle size={150} />
-        </View>
-
-        <View style={{ width: '90%', marginTop: 32 }}>
-          <QuantityListSkeleton count={8} />
-        </View>
-      </View>
-    </NavBar>
+    <NavBar {...args}></NavBar>
   </>
 );
 
@@ -80,4 +50,4 @@ Basic.args = {
   ),
 };
 
-Basic.storyName = 'NavBar'
+Basic.storyName = 'NavBar';
