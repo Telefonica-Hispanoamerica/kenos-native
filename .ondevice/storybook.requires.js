@@ -58,6 +58,7 @@ const getStories = () => {
     "./src/components/LoadingBar/LoadingBar.stories.tsx": require("../src/components/LoadingBar/LoadingBar.stories.tsx"),
     "./src/components/Logo/Logo.stories.tsx": require("../src/components/Logo/Logo.stories.tsx"),
     "./src/components/NavBar/NavBar.stories.tsx": require("../src/components/NavBar/NavBar.stories.tsx"),
+    "./src/components/Placerholder/Placeholder.stories.tsx": require("../src/components/Placerholder/Placeholder.stories.tsx"),
     "./src/components/ProgressBar/ProgressBar.stories.tsx": require("../src/components/ProgressBar/ProgressBar.stories.tsx"),
     "./src/components/Sheet/Sheet.stories.tsx": require("../src/components/Sheet/Sheet.stories.tsx"),
     "./src/components/Skeletons/SkeletonCircle.stories.tsx": require("../src/components/Skeletons/SkeletonCircle.stories.tsx"),

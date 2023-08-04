@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 
-import { Circle } from './Circle';
+import {Circle} from './Circle';
 
 export default {
-  title: 'components/Circle',
+  title: 'components/Primitives/Circle',
   component: Circle,
 } as ComponentMeta<typeof Circle>;
 
@@ -19,4 +19,4 @@ Basic.args = {
   size: 96,
 };
 
-Basic.storyName = 'Circle'
+Basic.storyName = 'Circle';
