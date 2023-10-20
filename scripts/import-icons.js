@@ -38,6 +38,10 @@ function handleImportedVectors (currentPath) {
 
     fs.readdirSync(path).forEach(element => {
         if (fs.lstatSync(`${path}/${element}`)?.isDirectory()) {
+            if (element === '.github') {
+                return;
+            }
+            
             handleImportedVectors(`${currentPath}/${element}`);
             return;
         }
