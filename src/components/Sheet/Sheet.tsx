@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from "react";
 import {
   View,
   Animated,
@@ -9,8 +9,9 @@ import {
   ScrollView,
   GestureResponderEvent,
   PanResponderGestureState,
-} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+} from "react-native";
+import { useTheme } from "../../hooks/ThemeContextProvider";
+
 
 interface BottomSheetProps {
   isOpen: boolean;
@@ -18,17 +19,19 @@ interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
-  const {height} = Dimensions.get('window');
+
+const BottomSheet = ({ isOpen, onClose, children }: BottomSheetProps) => {
+  const { height } = Dimensions.get("window");
   const translateY = useRef(new Animated.Value(isOpen ? 0 : height)).current;
-  const {skin} = useTheme();
-  const {background, control} = skin.colors;
+  const { skin } = useTheme();
+  const { background, control, coverBackgroundPressed } = skin.colors;
+
 
   const styles = StyleSheet.create({
     overlay: {
       ...StyleSheet.absoluteFillObject,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      justifyContent: 'flex-end',
+      backgroundColor: coverBackgroundPressed,
+      justifyContent: "flex-end",
       elevation: 1,
       zIndex: 1,
     },
@@ -37,20 +40,30 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
       borderTopLeftRadius: 10,
       borderTopRightRadius: 10,
       minHeight: 200, // Altura mínima del Sheet.
-      maxHeight: Dimensions.get('window').height * 0.7, //La altura máxima no puede superar el 70% de la pantalla.
+      maxHeight: Dimensions.get("window").height * 0.7, //La altura máxima no puede superar el 70% de la pantalla.
+      zIndex: 2,
+      elevation: 2,
     },
     draggableHandle: {
       height: 5,
       width: 40,
       backgroundColor: control,
-      alignSelf: 'center',
+      alignSelf: "center",
       marginVertical: 10,
       borderRadius: 5,
     },
+    draggableHandleContainer: {
+      height: 20,
+      width: '100%',
+      alignSelf: "center",
+    },
     scrollContainer: {
       flexGrow: 1,
+      zIndex: 2,
+      elevation: 2,
     },
   });
+
 
   useEffect(() => {
     if (isOpen) {
@@ -60,6 +73,7 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
     }
   }, [isOpen]);
 
+
   const handleOpen = () => {
     Animated.timing(translateY, {
       toValue: 0,
@@ -67,6 +81,7 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
       useNativeDriver: true,
     }).start();
   };
+
 
   const handleClose = () => {
     Animated.timing(translateY, {
@@ -76,16 +91,18 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
     }).start(onClose);
   };
 
+
   const handlePanResponderMove = (
     _: GestureResponderEvent,
-    gestureState: PanResponderGestureState,
+    gestureState: PanResponderGestureState
   ) => {
     translateY.setValue(Math.min(Math.max(gestureState.dy, 0), height - 100));
   };
 
+
   const handlePanResponderRelease = (
     _: GestureResponderEvent,
-    gestureState: PanResponderGestureState,
+    gestureState: PanResponderGestureState
   ) => {
     if (gestureState.dy > height * 0.2) {
       // Si arrastramos más del 20% de la pantalla hacia abajo, ocultamos el Sheet.
@@ -95,18 +112,21 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
     }
   };
 
+
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: handlePanResponderMove,
       onPanResponderRelease: handlePanResponderRelease,
-    }),
+    })
   ).current;
 
+
   const bottomSheetStyle = {
-    transform: [{translateY}],
+    transform: [{ translateY }],
   };
+
 
   return (
     <>
@@ -114,12 +134,17 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
         <TouchableOpacity
           activeOpacity={1}
           style={styles.overlay}
-          onPress={handleClose}>
+          onPress={handleClose}
+        >
           <Animated.View style={[styles.bottomSheet, bottomSheetStyle]}>
             <View
-              style={styles.draggableHandle}
+              style={styles.draggableHandleContainer}
               {...panResponder.panHandlers}
-            />
+            >
+              <View
+                style={styles.draggableHandle}
+              />
+            </View>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
               {children}
             </ScrollView>
@@ -129,5 +154,6 @@ const BottomSheet = ({isOpen, onClose, children}: BottomSheetProps) => {
     </>
   );
 };
+
 
 export default BottomSheet;
