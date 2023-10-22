@@ -18,7 +18,7 @@ const PATH_KENOS_ICONS_REPO = join(PATH_CACHE, 'kenos-icons');
 const PATH_OUTPUT = join(PATH_REPO_ROOT, 'src', 'generated/kenos-icons');
 const PATH_OUTPUT_INDEX_FILENAME = join(PATH_OUTPUT, 'index.tsx');
 const GIT_KENOS_ICONS_BRANCH = 'master';
-const GIT_KENOS_ICONS = 'https://user:pass@github.com/Telefonica-Hispanoamerica/kenos-icons.git';
+const GIT_KENOS_ICONS = 'git@github.com:Telefonica-Hispanoamerica/kenos-icons.git';
 
 const SKIN_BLACKLIST = [];
 
@@ -191,8 +191,7 @@ const createIconComponentSource = async (name, componentName, svgIconsInfo) => {
 };
 
 const main = async () => {
-    //checkoutKenosIconsRepo(); TODO: Ver como podemos acceder al repo.
-
+    checkoutKenosIconsRepo();
     const svgIconsInfo = getSvgIconsInfo();
     const allIconNames = getAllIconNames(svgIconsInfo);
 
