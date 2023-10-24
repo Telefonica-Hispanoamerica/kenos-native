@@ -21,15 +21,18 @@ function sliceXml (xml) {
 }
 
 function convertTags (tag) {
+
     if (tag.includes('svg')) {
         return tag
             .replace('svg', 'Svg')
             .replace('xmlns="http://www.w3.org/2000/svg"', '')
-            .replace(/width=".*"/, 'width={props.width} height={props.height}');
+            .replace(/width=".*"/, 'width={props.size} height={props.size}');
     }
 
     if (tag.includes('path')) {
-        return tag.replace('path', 'Path');
+        return tag
+            .replace(/fill="#[0-9a-fA-F]{3,6}"/, 'fill={props.color}')
+            .replace('path', 'Path');
     }
 
     return tag;
@@ -39,7 +42,7 @@ function outputFileContents (generatedCode) {
     return ` // File generated automatically with 'npm run import-icons'.
     import Svg, { Path } from 'react-native-svg'
 
-    type Props = { height: string, width: string };
+    type Props = { size: string, color: string };
 
     export default function Icon (props: Props) {
         return (
