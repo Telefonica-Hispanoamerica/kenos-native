@@ -1,5 +1,6 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
+const createIcons = require('./utils/generate-react-icons');
 
 const PATH_TEMP_ICONS = '.icons';
 const PATH_OUTPUT = 'src/kenos-icons';
@@ -14,23 +15,10 @@ execSync(
 );
 
 function saveIcon (path, filename, xml) {
-    const iconFile = `
-        // Icon generated automatically from kenos-icons
-         import { SvgXml } from 'react-native-svg';
-
-         export default function Icon ({ width, height }) {
-            return (
-                <SvgXml
-                    width={width}
-                    height={height}
-                    xml={\`${xml}\`}
-                />
-            );
-         }
-    `;
+    const iconFile = createIcons(xml.toString());
 
     execSync(`mkdir -p ${PATH_OUTPUT}${path}`);
-    fs.writeFileSync(`${PATH_OUTPUT}${path}/${filename}.jsx`, iconFile);
+    fs.writeFileSync(`${PATH_OUTPUT}${path}/${filename}.tsx`, iconFile);
 }
 
 function handleImportedVectors (currentPath) {
