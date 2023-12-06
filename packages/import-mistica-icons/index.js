@@ -1,0 +1,230 @@
+// @ts-check
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const rimraf = require('rimraf');
+const { join, basename } = require('path');
+const { execSync } = require('child_process');
+const svgr = require('@svgr/core').default;
+const prettier = require('prettier');
+const { camelCase, kebabCase, upperFirst, uniq } = require('lodash');
+const { yellow, green } = require('colors/safe');
+const glob = require('glob');
+
+const pascalCase = (s) => upperFirst(camelCase(s));
+
+const PATH_REPO_ROOT = join(__dirname, '..', '..');
+const PATH_CACHE = join(__dirname, 'node_modules', '.cache');
+const PATH_KENOS_ICONS_REPO = join(PATH_CACHE, 'kenos-icons');
+const PATH_OUTPUT = join(PATH_REPO_ROOT, 'src', 'generated/kenos-icons');
+const PATH_OUTPUT_INDEX_FILENAME = join(PATH_OUTPUT, 'index.tsx');
+const GIT_KENOS_ICONS_BRANCH = 'master';
+const GIT_KENOS_ICONS = 'git@github.com:Telefonica-Hispanoamerica/kenos-icons.git';
+
+const SKIN_BLACKLIST = [];
+
+const checkoutKenosIconsRepo = () => {
+    mkdirp.sync(PATH_CACHE);
+
+    if (!fs.existsSync(PATH_KENOS_ICONS_REPO)) {
+        execSync(`git clone ${GIT_KENOS_ICONS} ${PATH_KENOS_ICONS_REPO}`, {
+            cwd: PATH_CACHE,
+            stdio: 'inherit',
+        });
+    }
+
+    execSync(`git fetch`, {
+        cwd: PATH_KENOS_ICONS_REPO,
+        stdio: 'inherit',
+    });
+
+    execSync(`git checkout ${GIT_KENOS_ICONS_BRANCH}`, {
+        cwd: PATH_KENOS_ICONS_REPO,
+        stdio: 'inherit',
+    });
+
+    execSync(`git pull`, {
+        cwd: PATH_KENOS_ICONS_REPO,
+        stdio: 'inherit',
+    });
+};
+
+/**
+ * @typedef {string} name
+ * @typedef {string} filename
+ * @typedef {{[skin: string]: Map<name, filename>}} svgIconsInfo
+ *
+ * @returns {svgIconsInfo}
+ */
+const getSvgIconsInfo = () => {
+    const basePath = join(PATH_KENOS_ICONS_REPO, 'icons');
+    const skins = fs.readdirSync(basePath);
+
+    /** @type {svgIconsInfo} */
+    const result = {};
+
+    for (const skin of skins) {
+        if (SKIN_BLACKLIST.includes(skin)) {
+            continue;
+        }
+
+        const filenames = glob.sync(join(basePath, skin, '**/*.svg'));
+
+        /** @type {Map<name, filename>} */
+        const icons = new Map();
+        filenames.forEach((filename) => {
+            icons.set('icon-' + basename(filename, '.svg'), filename);
+        });
+
+        result[skin] = icons;
+    }
+    return result;
+};
+
+/**
+ * @param {svgIconsInfo} svgIconsInfo
+ */
+const getAllIconNames = (svgIconsInfo) => {
+    const allIconNames = [];
+    Object.entries(svgIconsInfo).forEach(([, icons]) => {
+        for (const [name] of icons) {
+            allIconNames.push(name);
+        }
+    });
+    return uniq(allIconNames).sort();
+};
+
+const format = async (src) =>
+    prettier.format(src, { ...(await prettier.resolveConfig('.')), parser: 'babel-ts' });
+
+/**
+ * @param {string} svgFilename
+ * @returns {string}
+ */
+const getIconJsx = (svgFilename) => {
+    const svgSource = fs.readFileSync(svgFilename, 'utf8');
+    const jsx = svgr.sync(svgSource, {
+        ref: false,
+        titleProp: false,
+        typescript: true,
+        plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+    });
+    // this generates a complete component, but we only need the JSX
+    const matches = jsx.match(/<svg(.*)<\/svg>/);
+    const svg = '<svg' + matches[1] + '</svg>';
+    const svgSize = svg.match(/(width|height)={(\d+)}/)[2];
+    return svg
+        .replace(
+            /<svg .*?>/,
+            `<svg width={size} height={size} viewBox="0 0 ${svgSize} ${svgSize}" role="presentation">`
+        )
+        .replace(/fill="#?\w+"/g, 'fill="currentColor"');
+};
+
+/** lower number means higher priority (more generic) */
+const SKIN_PRIORITY = {
+    telefonica: 1,
+};
+
+/**
+ * @param {string} name
+ * @param {string} componentName
+ * @param {svgIconsInfo} svgIconsInfo
+ */
+const createIconComponentSource = async (name, componentName, svgIconsInfo) => {
+    // sort skins by priority, lower priority (more specific) first
+    const skins = Object.keys(svgIconsInfo).sort(
+        (a, b) => (SKIN_PRIORITY[b] ?? 100) - (SKIN_PRIORITY[a] ?? 100)
+    );
+
+    const availableIcons = [];
+    for (const skin of skins) {
+        if (svgIconsInfo[skin].has(name)) {
+            availableIcons.push([skin, svgIconsInfo[skin].get(name)]);
+        }
+    }
+
+    console.log(
+        yellow(basename(name)),
+        `[${availableIcons.map(([skin]) => skin).join(', ')}] =>`,
+        green(componentName)
+    );
+
+    const hasVariants = availableIcons.length > 1;
+
+    const getVariants = () => {
+        // if (!hasVariants) {
+        //     return `return  <SvgXml xml=\{\'${getIconJsx(availableIcons[0][1])}\'\} width={size} height={size} color={color ? color : skin.colors.neutralHigh} />`;
+        // }
+        // let result = '';
+        // for (let i = 0; i < availableIcons.length; i++) {
+        //     const [skin, filename] = availableIcons[i];
+        //     // using a match because we want "o2" to match with "O2" and "O2-classic"
+        //     const ifStr = i < availableIcons.length - 1 ? `if (skinName.match(/^${skin}/i))` : '';
+        //     const elseStr = i > 0 ? 'else' : '';
+        //     result += `${elseStr} ${ifStr} {return ${getIconJsx(filename)}}`;
+        // }
+        // return result;
+        return `return  <SvgXml xml=\{\'${getIconJsx(availableIcons[0][1])}\'\} width={size} height={size} color={color ? color : skin.colors.neutralHigh} />`;
+    };
+
+    const source = `/*
+     * This file was autogenerated. Don't edit this file!
+     *
+     * To update, execute "yarn start" inside "import-kenos-icons"
+     */
+
+    import * as React from 'react';
+    import { SvgXml } from "react-native-svg";
+    import { IconProps } from '../../components/icons/type';
+    import { useTheme } from "../../hooks/ThemeContextProvider";
+
+    const ${componentName} = ({color, size = 24 }: IconProps): JSX.Element => {
+        const { skin } = useTheme();
+        //const fillColor = color ?? (isInverse ? vars.colors.inverse : vars.colors.neutralHigh);
+        //${hasVariants ? 'const {skinName} = useTheme();' : ''}
+        ${getVariants()}
+    };
+
+    export default ${componentName};
+    `;
+
+    return format(source);
+};
+
+const main = async () => {
+    checkoutKenosIconsRepo();
+    const svgIconsInfo = getSvgIconsInfo();
+    const allIconNames = getAllIconNames(svgIconsInfo);
+
+    rimraf.sync(PATH_OUTPUT);
+    mkdirp.sync(PATH_OUTPUT);
+
+    /** @type Array<[string, string]> */
+    const components = [];
+
+    for (const name of allIconNames) {
+        const componentName = pascalCase(name);
+        const importName = kebabCase(componentName);
+        const source = await createIconComponentSource(name, componentName, svgIconsInfo);
+        const filename = `${importName}.tsx`;
+        components.push([componentName, importName]);
+        fs.writeFileSync(join(PATH_OUTPUT, filename), source);
+    }
+
+    const index = components
+        .sort((a, b) => (a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1))
+        .map(
+            ([componentName, importName]) =>
+                `export {default as ${componentName}} from './${importName}';`
+        )
+        .join('\n');
+
+    fs.writeFileSync(PATH_OUTPUT_INDEX_FILENAME, index, 'utf8');
+
+    console.log();
+    console.log(`Done! (${allIconNames.length} components).`);
+    console.log(`Copy exports in `, yellow(PATH_OUTPUT_INDEX_FILENAME), ' to src/index.tsx');
+    console.log();
+};
+
+main();
