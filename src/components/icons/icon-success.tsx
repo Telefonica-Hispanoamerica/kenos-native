@@ -10,7 +10,7 @@ type IconSucessProps = {
 };
 
 type SuccessLogoMap = {
-  [key: SkinName]: Element;
+  [key: SkinName]: JSX.Element;
 };
 
 const IconSuccessGlobal = ({size, color, skipAnimation}: IconSucessProps) => {

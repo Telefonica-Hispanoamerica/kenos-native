@@ -8,7 +8,7 @@ export type LogoProps = {
 };
 
 type LogoMap = {
-  [key: SkinName]: Element;
+  [key: SkinName]: JSX.Element;
 };
 
 export const Logo = ({ size }: LogoProps): JSX.Element => {

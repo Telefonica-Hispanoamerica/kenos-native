@@ -22,7 +22,7 @@ Basic.args = {
   leftButton: (
     <NavBarButton
       onPress={() => alert('Left button pressed')}
-      children={<NavBarIcon icon="left" />}
+      children={<NavBarIcon icon="back" />}
     />
   ),
   rightButtons: (

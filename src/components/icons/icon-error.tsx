@@ -10,7 +10,7 @@ type IconErrorProps = {
 };
 
 type ErrorLogoMap = {
-  [key: SkinName]: Element;
+  [key: SkinName]: JSX.Element;
 };
 
 const IconErrorGlobal = ({size, color, skipAnimation}: IconErrorProps) => {

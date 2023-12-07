@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Pressable, Text, View} from 'react-native';
+import {ActivityIndicator, GestureResponderEvent, Pressable, Text, View} from 'react-native';
 import {useTheme} from '../../hooks/ThemeContextProvider';
 import {applyAlpha} from '../utils/color';
 import {StyleSheet} from 'react-native';
@@ -20,7 +20,7 @@ interface CommonProps {
 }
 
 export interface OnPressButtonProps extends CommonProps {
-  onPress?: Function;
+  onPress?: (event: GestureResponderEvent) => void | null | undefined;
   submit?: undefined;
   fake?: undefined;
   to?: undefined;

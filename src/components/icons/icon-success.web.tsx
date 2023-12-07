@@ -11,7 +11,7 @@ type IconSucessProps = {
 };
 
 type SuccessLogoMap = {
-  [key: SkinName]: Element;
+  [key: SkinName]: JSX.Element;
 };
 
 const IconSuccessO2 = ({size, color}: IconSucessProps) => {

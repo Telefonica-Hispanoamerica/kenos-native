@@ -1,7 +1,7 @@
-import {Pressable, View} from 'react-native';
+import {GestureResponderEvent, Pressable, View} from 'react-native';
 
 type NavBarButtonProps = {
-  onPress: Function;
+  onPress: (event: GestureResponderEvent) => void;
   children: JSX.Element;
 };
 
