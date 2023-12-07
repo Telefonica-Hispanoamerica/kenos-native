@@ -60,12 +60,12 @@ const NavBar = ({
       marginRight: 16,
       marginTop: 8,
       marginBottom: 8,
-      opacity: displayMinimal ? 0 : opacity,
+      opacity: displayMinimal ? 0 : opacity as unknown as number,
     },
     textSmall: {
       flex: 1,
       marginLeft: 12,
-      opacity: displayMinimal ? 100 : opacitySmall,
+      opacity: displayMinimal ? 100 : opacitySmall as unknown as number,
     },
     leftButtonContainer: {
       marginLeft: 8,
