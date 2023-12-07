@@ -1,7 +1,14 @@
 {
   "name": "KenosNative",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist/*",
+    "types/*"
+  ],
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -12,7 +19,8 @@
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build": "rm -rf dist && mkdir dist && tsc && tsc -m es6 --outDir lib-esm && npm pack && mv *.tgz dist/"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.3",
