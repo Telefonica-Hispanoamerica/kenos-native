@@ -2,7 +2,34 @@ import React from 'react';
 import { Text as RNText } from 'react-native';
 import { useTheme } from '../../hooks/ThemeContextProvider';
 
-type FontWeight = 'light' | 'regular' | 'medium' | 'bold';
+type Weight = 'light' | 'regular' | 'medium' | 'bold';
+
+type FontWeight =
+  | 'normal'
+  | 'bold'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | undefined;
+
+type TextTransform =
+ | 'uppercase'
+ | 'capitalize'
+ | 'lowercase'
+ | 'none'
+ | undefined;
+
+type TextDecoration = 
+ | 'underline' 
+ | 'line-through'  
+ | 'none' 
+ | undefined;
 
 type TextPresetProps = {
   color?: string;
@@ -20,7 +47,7 @@ type TextPresetProps = {
 };
 
 type TextProps = TextPresetProps & {
-  weight?: FontWeight;
+  weight?: Weight;
   size?: number;
   mobileSize?: number;
   desktopSize?: number;
@@ -142,17 +169,30 @@ export const Text = ({
     }
   };
 
+  // ******* Original Styles *******
+  // const style = {
+  //   fontSize: mobileSize ? mobileSize : size,
+  //   lineHeight: mobileLineHeight ? mobileLineHeight : lineHeight,
+  //   fontWeight: weight ? mapToWeight[weight] : '400',
+  //   textTransform: transform || 'none',
+  //   textDecorationLine: decoration ?? 'none',
+  //   color: color || textPrimary,
+  //   letterSpacing,
+  //   textAlign,
+  //   flexShrink: wordBreak ? 1 : 0,
+  // };
+
   const style = {
     fontSize: mobileSize ? mobileSize : size,
-    lineHeight: mobileLineHeight ? mobileLineHeight : lineHeight,
-    fontWeight: weight ? mapToWeight[weight] : '400',
-    textTransform: transform || 'none',
-    textDecorationLine: decoration ?? 'none',
+    lineHeight: mobileLineHeight ? Number(mobileLineHeight) : Number(lineHeight),
+    fontWeight: weight ? mapToWeight[weight] as FontWeight : '400',
+    textTransform: transform as TextTransform || 'none',
+    textDecorationLine: decoration as TextDecoration ?? 'none',
     color: color || textPrimary,
     letterSpacing,
     textAlign,
     flexShrink: wordBreak ? 1 : 0,
-  };
+  }
 
   return (
     <RNText numberOfLines={getNumberofLines()} style={style} id={id}>
