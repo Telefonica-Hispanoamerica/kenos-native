@@ -5,10 +5,10 @@ import Sheet from './Sheet';
 import {Button} from '../Button/Button';
 import {Text2, Text3, Text5} from '../Text/Text';
 
-export default {
-  title: 'components/Sheet',
-  component: Sheet,
-} as ComponentMeta<typeof Sheet>;
+// export default {
+//   title: 'components/Sheet',
+//   component: Sheet,
+// } as ComponentMeta<typeof Sheet>;
 
 export const Basic: ComponentStory<typeof Sheet> = args => {
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
