@@ -13,7 +13,7 @@ import {
 import { useTheme } from "../../hooks/ThemeContextProvider";
 
 
-interface BottomSheetProps {
+type BottomSheetProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
