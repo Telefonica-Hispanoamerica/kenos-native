@@ -1,6 +1,6 @@
 {
   "name": "KenosNative",
-  "version": "0.0.7",
+  "version": "0.0.1",
   "private": false,
   "main": "dist/index.js",
   "types": "types/index.d.ts",
