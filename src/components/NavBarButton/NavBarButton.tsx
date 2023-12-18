@@ -1,3 +1,4 @@
+import React from 'react';
 import {GestureResponderEvent, Pressable, View, StyleSheet} from 'react-native';
 import { isIos } from '../../utils';
 

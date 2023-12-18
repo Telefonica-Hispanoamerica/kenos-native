@@ -1,3 +1,4 @@
+import React from 'react';
 import IconClose from './icon-close';
 import IconCart from './icon-cart';
 import IconBackAndroid from './icon-back.android';
