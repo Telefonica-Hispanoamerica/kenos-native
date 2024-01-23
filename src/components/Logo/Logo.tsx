@@ -1,7 +1,7 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
-import { useTheme } from '../../hooks/ThemeContextProvider';
-import { SkinName } from '../skins/types';
+import { useTheme } from '../../utils/ThemeContextProvider';
+import { SkinName } from '../../skins/types';
 
 export type LogoProps = {
   size?: number;

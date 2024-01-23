@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, ImageBackground} from 'react-native';
 import Badge from '../Badge/Badge';
 import IconUserAccountRegular from '../../assets/icons/IconUserAccountRegular';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 
 const getBadgeDistance = (
   size: number,

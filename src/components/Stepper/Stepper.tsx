@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import IconSuccess from '../icons/icon-success';
-import { useTheme } from '../../hooks/ThemeContextProvider';
+import IconSuccess from '../../icons/icon-success';
+import { useTheme } from '../../utils/ThemeContextProvider';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 type StepperProps = {

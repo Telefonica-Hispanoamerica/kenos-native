@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text as RNText } from 'react-native';
-import { useTheme } from '../../hooks/ThemeContextProvider';
+import { useTheme } from '../../utils/ThemeContextProvider';
 
 type FontWeight = 'light' | 'regular' | 'medium' | 'bold';
 

@@ -175,8 +175,8 @@ const createIconComponentSource = async (name, componentName, svgIconsInfo) => {
 
     import * as React from 'react';
     import { SvgXml } from "react-native-svg";
-    import { IconProps } from '../../components/icons/type';
-    import { useTheme } from "../../hooks/ThemeContextProvider";
+    import { IconProps } from '../../utils/types';
+    import { useTheme } from "../../utils/ThemeContextProvider";
 
     const ${componentName} = ({color, size = 24 }: IconProps): JSX.Element => {
         const { skin } = useTheme();

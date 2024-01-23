@@ -1,17 +1,9 @@
 import {
-  BLAU_SKIN,
-  TELEFONICA_SKIN,
-  VIVO_SKIN,
-  O2_SKIN,
   MOVISTAR_SKIN,
-  MOVISTAR_AR_SKIN,
+  MOVISTAR_ARGENTINA_SKIN,
 } from './constants';
-import {getBlauSkin} from './blau';
-import {getTelefonicaSkin} from './telefonica';
-import {getVivoSkin} from './vivo';
-import {getO2Skin} from './o2';
 import {getMovistarSkin} from './movistar';
-import {getMovistarARSkin} from './movistar-ar';
+import {getMovistarArgentina} from './movistar-argentina';
 import type {SkinVariant, KnownSkin, KnownSkinName} from './types';
 
 export const getSkinByName = (
@@ -19,18 +11,10 @@ export const getSkinByName = (
   variant?: SkinVariant,
 ): KnownSkin => {
   switch (name) {
-    case BLAU_SKIN:
-      return getBlauSkin(variant);
-    case TELEFONICA_SKIN:
-      return getTelefonicaSkin(variant);
-    case VIVO_SKIN:
-      return getVivoSkin(variant);
-    case O2_SKIN:
-      return getO2Skin(variant);
     case MOVISTAR_SKIN:
       return getMovistarSkin(variant);
-    case MOVISTAR_AR_SKIN:
-      return getMovistarARSkin(variant);
+    case MOVISTAR_ARGENTINA_SKIN:
+      return getMovistarArgentina(variant);
     default: {
       return getMovistarSkin(variant);
     }

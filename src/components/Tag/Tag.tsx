@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '../Box/Box';
+import Box from '../../layout/Box/Box';
 import { Text } from '../Text/Text';
-import { useTheme } from '../../hooks/ThemeContextProvider';
-import { IconProps } from '../icons/type';
+import { useTheme } from '../../utils/ThemeContextProvider';
+import { IconProps } from '../../utils/types';
 import { StyleSheet, View } from 'react-native';
 
 export type TagType = 'promo' | 'active' | 'inactive' | 'success' | 'warning' | 'error';

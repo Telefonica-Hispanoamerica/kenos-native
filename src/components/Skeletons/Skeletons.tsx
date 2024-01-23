@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Animated} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 
 const Skeleton = () => {
   const {skin} = useTheme();

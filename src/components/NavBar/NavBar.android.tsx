@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 import {Text4, Text6} from '../Text/Text';
 
 type NavBarProps = {

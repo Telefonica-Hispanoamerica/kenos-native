@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Button, ButtonType } from './Button';
 import { Alert, ScrollView, View } from 'react-native';
-import IconCamera from '../icons/icon-camera';
+import IconCamera from '../../icons/icon-camera';
 
 export default {
   title: 'components/Buttons',

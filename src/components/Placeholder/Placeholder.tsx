@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import Svg, {Line, Path} from 'react-native-svg';
-import {applyAlpha} from '../utils/color';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {applyAlpha} from '../../utils/color';
+import {useTheme} from '../../utils/ThemeContextProvider';
 
 type PlaceholderProps = {
   width?: string | number;

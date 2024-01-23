@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Badge from './Badge';
-import IconBell from '../icons/icon-bell';
+import IconBell from '../../icons/icon-bell';
 import { View } from 'react-native';
 
 export default {

@@ -2,7 +2,7 @@ import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import NavBar from './NavBar';
 import NavBarButton from '../NavBarButton/NavBarButton';
-import NavBarIcon from '../icons/NavBarIcon';
+import NavBarIcon from '../../icons/NavBarIcon';
 import Avatar from '../Avatar/Avatar';
 
 export default {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../utils/ThemeContextProvider';
 import {StyleProp, ViewStyle} from 'react-native';
 
 type IcnChevronRightSvgProps = {

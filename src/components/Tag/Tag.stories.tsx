@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Tag from './Tag';
-import IconCamera from '../icons/icon-camera';
+import IconCamera from '../../icons/icon-camera';
 import { View } from 'react-native';
 import { Text4 } from '../Text/Text';
 

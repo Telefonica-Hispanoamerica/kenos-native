@@ -1,5 +1,5 @@
 import {applyAlpha} from '../utils/color';
-import {MOVISTAR_AR_SKIN} from './constants';
+import {MOVISTAR_ARGENTINA_SKIN} from './constants';
 
 import type {GetKnownSkin, KnownSkin, SkinVariant} from './types';
 
@@ -47,9 +47,9 @@ export const palette = {
   darkModeGrey6: '#3C5261',
 };
 
-export const getMovistarARSkin: GetKnownSkin = (variant?: SkinVariant) => {
+export const getMovistarArgentina: GetKnownSkin = (variant?: SkinVariant) => {
   const skin: KnownSkin = {
-    name: MOVISTAR_AR_SKIN,
+    name: MOVISTAR_ARGENTINA_SKIN,
     colors: {
       background: palette.white,
       backgroundAlternative: palette.grey1,

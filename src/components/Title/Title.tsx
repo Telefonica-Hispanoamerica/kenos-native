@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Text1, Text2, Text5 } from '../Text/Text';
-import Box from '../Box/Box';
-import { useTheme } from '../../hooks/ThemeContextProvider';
-import Inline from '../Inline/Inline';
+import Box from '../../layout/Box/Box';
+import { useTheme } from '../../utils/ThemeContextProvider';
+import Inline from '../../layout/Inline/Inline';
 
 type TitleLayoutProps = {
     title: React.ReactElement;

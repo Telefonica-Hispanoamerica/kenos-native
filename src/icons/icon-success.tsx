@@ -1,6 +1,6 @@
 import LottieView from 'lottie-react-native';
 import React from 'react';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../utils/ThemeContextProvider';
 import {SkinName} from '../skins/types';
 
 type IconSucessProps = {

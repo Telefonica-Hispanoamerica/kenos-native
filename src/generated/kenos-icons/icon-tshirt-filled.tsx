@@ -7,7 +7,7 @@
 import * as React from 'react';
 import {SvgXml} from 'react-native-svg';
 import {IconProps} from '../../components/icons/type';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 
 const IconTshirtFilled = ({color, size = 24}: IconProps): JSX.Element => {
   const {skin} = useTheme();

@@ -3,7 +3,7 @@ import {Colors} from './colors';
 export type {Colors} from './colors';
 export type KnownSkinName =
   | 'Movistar'
-  | 'Movistar-AR'
+  | 'MovistarArgentina'
   | 'O2'
   | 'O2-classic'
   | 'Vivo'

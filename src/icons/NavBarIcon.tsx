@@ -1,6 +1,6 @@
 import IconClose from './icon-close';
 import IconCart from './icon-cart';
-import IconBack from './icon-back';
+import IconBack from './icon-back.web';
 import IconMoreVert from './icon-morevert';
 import IconReload from './icon-reload';
 import IconAdjust from './icon-adjust';

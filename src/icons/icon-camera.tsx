@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-import { IconProps } from "./type"
+import { IconProps } from "../utils/types"
 
 function IconCamera({ color = 'white', size = 24 }: IconProps) {
     return (

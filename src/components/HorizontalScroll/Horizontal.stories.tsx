@@ -2,8 +2,8 @@ import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {View} from 'react-native';
 import HorizontalScroll from './Horizontal-scroll';
-import Placeholder from '../Placerholder/Placeholder';
-import Inline from '../Inline/Inline';
+import Placeholder from '../Placeholder/Placeholder';
+import Inline from '../../layout/Inline/Inline';
 
 export default {
   title: 'layout/Horizontal',

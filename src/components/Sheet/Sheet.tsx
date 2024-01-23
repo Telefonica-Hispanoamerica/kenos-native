@@ -10,7 +10,7 @@ import {
   GestureResponderEvent,
   PanResponderGestureState,
 } from "react-native";
-import { useTheme } from "../../hooks/ThemeContextProvider";
+import { useTheme } from "../../utils/ThemeContextProvider";
 
 
 interface BottomSheetProps {
