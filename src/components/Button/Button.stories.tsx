@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Button, ButtonType } from './Button';
 import { Alert, ScrollView, View } from 'react-native';
-import IconCamera from '../../icons/icon-camera';
+import { IconPhotoCameraFilled } from '../../';
 
 export default {
   title: 'components/Buttons',
@@ -24,14 +24,14 @@ export const Basic: ComponentStory<typeof Button> = args => {
             <Button
               loadingText=""
               type={aButtonType}
-              leftIcon={IconCamera}
+              leftIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
             </Button>
             <Button
               loadingText=""
               type={aButtonType}
-              rightIcon={IconCamera}
+              rightIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
             </Button>
@@ -51,7 +51,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
               loadingText=""
               type={aButtonType}
               small
-              leftIcon={IconCamera}
+              leftIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
             </Button>
@@ -59,7 +59,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
               loadingText=""
               type={aButtonType}
               small
-              rightIcon={IconCamera}
+              rightIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
             </Button>

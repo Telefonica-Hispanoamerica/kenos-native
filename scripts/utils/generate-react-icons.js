@@ -38,28 +38,30 @@ function convertTags (tag) {
     return tag;
 }
 
-function outputFileContents (generatedCode) {
-    return ` // File generated automatically with 'npm run import-icons'.
-    import Svg, { Path } from 'react-native-svg'
+function outputFileContents (generatedCode, iconName) {
+    return `// File generated automatically with 'npm run import-icons'.
+import Svg, { Path } from 'react-native-svg'
+import { IconProps } from '../utils/types'
 
-    type Props = { size: string, color: string };
 
-    export default function Icon (props: Props) {
-        return (
-            ${generatedCode}
-        )
-    }
-    `;
+const ${iconName}: React.ComponentType<IconProps> = (props) =>{
+    return (
+        ${generatedCode}
+    )
+}
+    
+export default ${iconName};`;
 }
 
-module.exports = function createIcons (xml) {
+module.exports = function createIcons (xml, iconName) {
     const outputJsx = sliceXml(xml)
         .map((tag) => convertTags(tag))
 
     const finalCode = outputFileContents(
         outputJsx
         .join('\n')
-        .slice(0, -1)
+        .slice(0, -1),
+        iconName
     );
 
     return finalCode;
