@@ -110,3 +110,5 @@ const colors = {
   errorHigh: '',
   promoHigh: '',
 };
+
+export {};

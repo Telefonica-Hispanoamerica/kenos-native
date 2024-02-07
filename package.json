@@ -1,19 +1,18 @@
 {
-  "name": "@uxhispam/kenosnative",
+  "name": "@uxhispam/kenos-native",
+  "displayName": "Kénos Design System for React Native",
   "version": "1.0.0",
+  "author": "Telefónica Hispanoamérica",
   "license": "MIT",
+  "private": "false",
   "repository": {
     "type": "git",
     "url": "https://github.com/Telefonica-Hispanoamerica/kenos-native"
   },
   "homepage": "https://github.com/Telefonica-Hispanoamerica/kenos-native",
   "main": "dist/index.js",
-  "module": "dist-es/index.js",
   "files": [
-    "dist/**/*",
-    "dist-es/**",
-    "src/**/*",
-    "css/**"
+    "dist/**"
   ],
   "scripts": {
     "android": "react-native run-android",
@@ -25,8 +24,12 @@
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6006",
+    "prepack": "yarn build",
     "build-storybook": "build-storybook",
-    "import-icons": "node scripts/import-icons.js"
+    "import-icons": "node scripts/import-icons.js",
+    "build": "yarn clean-build && node scripts/build.js",
+    "clean-build": "rimraf dist && rimraf dist-ts && rimraf node_modules/.cache",
+    "gen-ts-defs": "rimraf dist-ts && tsc --project tsconfig.production.json && mkdir -p dist && cp -r dist-ts/* dist && rimraf dist-ts"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.3",

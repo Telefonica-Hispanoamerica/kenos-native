@@ -20,7 +20,7 @@ interface CommonProps {
 }
 
 export interface OnPressButtonProps extends CommonProps {
-  onPress?: Function;
+  onPress?: Function | null | undefined | any;
   submit?: undefined;
   fake?: undefined;
   to?: undefined;

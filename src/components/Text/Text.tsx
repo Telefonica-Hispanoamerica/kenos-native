@@ -155,7 +155,7 @@ export const Text = ({
   };
 
   return (
-    <RNText numberOfLines={getNumberofLines()} style={style} id={id}>
+    <RNText numberOfLines={getNumberofLines()} id={id}>
       {children}
     </RNText>
   );

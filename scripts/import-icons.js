@@ -53,7 +53,7 @@ function handleImportedVectors(currentPath) {
 
             // Recursivamente procesar subcarpetas
             handleImportedVectors(`${currentPath}/${element}`);
-        } else if (element.slice(-4).toLocaleLowerCase() === '.svg') {
+        } else if (element.slice(-4).toLocaleLowerCase() === '.svg' && path.includes('/icons/')) {
             // Solo procesar archivos SVG
 
             // Obtener la última parte del path (nombre del archivo) sin la extensión
