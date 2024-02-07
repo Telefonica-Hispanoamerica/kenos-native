@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import IconSuccess from '../icons/icon-success';
-import { useTheme } from '../../hooks/ThemeContextProvider';
+import { IconAutenticationSuccessFilled } from '../../kenos-icons';
+import { useTheme } from '../../utils/ThemeContextProvider';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 type StepperProps = {
@@ -70,7 +70,7 @@ const Stepper: React.FC<StepperProps> = ({ steps, currentIndex }: StepperProps) 
                                     </View>
                                 ) : (
                                     <View style={{ marginLeft: 8, marginRight: 8 }}>
-                                        <IconSuccess color={brand} size={24} />
+                                        <IconAutenticationSuccessFilled color={brand} size={24} />
                                     </View>
                                 )
                             ) : (

@@ -1,0 +1,12 @@
+# .npmignore
+
+# Carpeta de construcción
+dist/
+
+# Carpetas específicas de plataformas
+android/
+ios/
+
+# Archivos y carpetas específicos
+node_modules/
+.vscode/

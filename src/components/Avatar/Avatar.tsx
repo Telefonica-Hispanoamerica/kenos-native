@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, ImageBackground} from 'react-native';
 import Badge from '../Badge/Badge';
-import IconUserAccountRegular from '../../assets/icons/IconUserAccountRegular';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import { IconUserAccountRegular } from '../../kenos-icons';
+import {useTheme} from '../../utils/ThemeContextProvider';
+import { IconProps } from '../../utils';
 
 const getBadgeDistance = (
   size: number,
@@ -22,7 +23,7 @@ type AvatarProps = {
   initials?: string;
   textColor?: string;
   backgroundColor?: string;
-  Icon?: React.FC<any>;
+  Icon?: React.ComponentType<IconProps>;
   badge?: boolean | number;
   border?: boolean;
 };

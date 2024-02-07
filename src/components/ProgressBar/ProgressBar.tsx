@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 
 type Props = {
   progressPercent: number;

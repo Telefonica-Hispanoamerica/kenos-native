@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 import {Text1} from '../Text/Text';
 
 type Props = {

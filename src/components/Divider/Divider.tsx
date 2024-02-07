@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useTheme } from '../../hooks/ThemeContextProvider';
+import { useTheme } from '../../utils/ThemeContextProvider';
 
 const Divider = () => {
   const { skin } = useTheme();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text as RNText } from 'react-native';
-import { useTheme } from '../../hooks/ThemeContextProvider';
+import { useTheme } from '../../utils/ThemeContextProvider';
 
 type FontWeight = 'light' | 'regular' | 'medium' | 'bold';
 
@@ -155,7 +155,7 @@ export const Text = ({
   };
 
   return (
-    <RNText numberOfLines={getNumberofLines()} style={style} id={id}>
+    <RNText numberOfLines={getNumberofLines()} id={id}>
       {children}
     </RNText>
   );

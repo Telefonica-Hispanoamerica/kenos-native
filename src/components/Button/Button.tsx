@@ -1,10 +1,10 @@
 import React from 'react';
 import {ActivityIndicator, Pressable, Text, View} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
-import {applyAlpha} from '../utils/color';
+import {useTheme} from '../../utils/ThemeContextProvider';
+import {applyAlpha} from '../../utils/color';
 import {StyleSheet} from 'react-native';
 import {BUTTON_MIN_WIDTH, disabledStyle} from './Button.utils';
-import {IconProps} from '../icons/type';
+import {IconProps} from '../../utils/types';
 
 export type ButtonType = 'primary' | 'secondary' | 'danger';
 
@@ -20,7 +20,7 @@ interface CommonProps {
 }
 
 export interface OnPressButtonProps extends CommonProps {
-  onPress?: Function;
+  onPress?: Function | null | undefined | any;
   submit?: undefined;
   fake?: undefined;
   to?: undefined;

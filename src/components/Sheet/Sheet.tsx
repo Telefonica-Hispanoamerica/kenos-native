@@ -10,10 +10,10 @@ import {
   GestureResponderEvent,
   PanResponderGestureState,
 } from "react-native";
-import { useTheme } from "../../hooks/ThemeContextProvider";
+import { useTheme } from "../../utils/ThemeContextProvider";
 
 
-interface BottomSheetProps {
+export interface BottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;

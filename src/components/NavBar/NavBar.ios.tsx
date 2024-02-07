@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
-import {useTheme} from '../../hooks/ThemeContextProvider';
+import {useTheme} from '../../utils/ThemeContextProvider';
 import {Text4, Text7} from '../Text/Text';
 
 type NavBarProps = {
@@ -63,12 +63,12 @@ const NavBar = ({
       marginBottom: 4,
       fontWeight: '300',
       lineHeight: 32,
-      opacity: displayMinimal ? 0 : opacity,
+      // opacity: displayMinimal ? 0 : opacity,
     },
     textSmall: {
       flex: 1,
       alignItems: 'center',
-      opacity: displayMinimal ? 100 : opacitySmall,
+      // opacity: displayMinimal ? 100 : opacitySmall,
       width: '100%',
     },
     leftButtonContainer: {

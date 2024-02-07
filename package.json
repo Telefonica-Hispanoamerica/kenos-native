@@ -1,7 +1,19 @@
 {
-  "name": "KenosNative",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@uxhispam/kenos-native",
+  "displayName": "Kénos Design System for React Native",
+  "version": "1.0.0",
+  "author": "Telefónica Hispanoamérica",
+  "license": "MIT",
+  "private": "false",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Telefonica-Hispanoamerica/kenos-native"
+  },
+  "homepage": "https://github.com/Telefonica-Hispanoamerica/kenos-native",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -12,12 +24,18 @@
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "prepack": "yarn build",
+    "build-storybook": "build-storybook",
+    "import-icons": "node scripts/import-icons.js",
+    "build": "yarn clean-build && node scripts/build.js",
+    "clean-build": "rimraf dist && rimraf dist-ts && rimraf node_modules/.cache",
+    "gen-ts-defs": "rimraf dist-ts && tsc --project tsconfig.production.json && mkdir -p dist && cp -r dist-ts/* dist && rimraf dist-ts"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.3",
     "@react-native-community/datetimepicker": "^6.7.1",
     "@react-native-community/slider": "^4.3.3",
+    "lodash": "^4.17.21",
     "lottie-react-native": "^5.1.6",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
