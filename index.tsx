@@ -10,7 +10,7 @@ import { ThemeContextProvider } from './src/utils/ThemeContextProvider';
 import StatusBar from './src/components/StatusBar/StatusBar';
     
 const AppContext = () => {
-    return <ThemeContextProvider skinName='Movistar-AR'>
+    return <ThemeContextProvider skinName='Movistar'>
         <StatusBar/>
         <App />
     </ThemeContextProvider>
