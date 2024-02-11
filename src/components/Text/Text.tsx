@@ -1,13 +1,13 @@
 import React from 'react';
-import { Text as RNText } from 'react-native';
+import { Text as RNText, TextStyle } from 'react-native';
 import { useTheme } from '../../utils/ThemeContextProvider';
 
 type FontWeight = 'light' | 'regular' | 'medium' | 'bold';
 
 type TextPresetProps = {
   color?: string;
-  decoration?: 'underline' | 'line-through' | 'inherit' | 'none';
-  transform?: 'uppercase' | 'capitalize' | 'lowercase' | 'inherit' | 'none';
+  decoration?: 'underline' | 'line-through' | 'none';
+  transform?: 'uppercase' | 'capitalize' | 'lowercase' | 'none';
   children?: React.ReactNode;
   truncate?: boolean | number;
   wordBreak?: boolean;
@@ -32,24 +32,35 @@ type TextProps = TextPresetProps & {
 
 interface LightProps extends TextPresetProps {
   light?: boolean;
+  regular?: undefined;
+  medium?: undefined;
+  bold?: undefined;
+}
+interface RegularProps extends TextPresetProps {
+  light?: undefined;
   regular?: boolean;
-  medium?: boolean;
+  medium?: undefined;
+  bold?: undefined;
 }
 
 interface MediumProps extends TextPresetProps {
-  light?: boolean;
-  regular?: boolean;
+  light?: undefined;
+  regular?: undefined;
   medium?: boolean;
+  bold?: undefined;
 }
 
-interface RegularProps extends TextPresetProps {
-  light?: boolean;
-  regular?: boolean;
-  medium?: boolean;
+interface BoldProps extends TextPresetProps {
+  light?: undefined;
+  regular?: undefined;
+  medium?: undefined;
+  bold?: boolean;
 }
 
+type BoldRegularProps = RegularProps | BoldProps;
 type RegularMediumProps = RegularProps | MediumProps;
-type LightRegularMediumProps = LightProps | RegularProps | MediumProps;
+type LightRegularMediumProps =  LightProps | RegularProps | MediumProps;
+type LightRegularMediumBoldProps = LightProps | RegularProps | MediumProps | BoldProps;
 
 const lineClamp = (truncate?: boolean | number) => {
   if (truncate === true) {
@@ -127,7 +138,7 @@ export const Text = ({
     return null;
   }
 
-  const mapToWeight = {
+  const mapToWeight : Record<FontWeight, TextStyle['fontWeight']> = {
     light: '300',
     regular: '400',
     medium: '500',
@@ -142,10 +153,12 @@ export const Text = ({
     }
   };
 
-  const style = {
+  const style: TextStyle = {
     fontSize: mobileSize ? mobileSize : size,
-    lineHeight: mobileLineHeight ? mobileLineHeight : lineHeight,
-    fontWeight: weight ? mapToWeight[weight] : '400',
+    lineHeight: typeof mobileLineHeight === 'number' || typeof mobileLineHeight === 'undefined'
+    ? mobileLineHeight
+    : parseFloat(mobileLineHeight),
+    fontWeight: weight ? mapToWeight[weight] : '400' as TextStyle['fontWeight'],
     textTransform: transform || 'none',
     textDecorationLine: decoration ?? 'none',
     color: color || textPrimary,
@@ -155,13 +168,13 @@ export const Text = ({
   };
 
   return (
-    <RNText numberOfLines={getNumberofLines()} id={id}>
+    <RNText numberOfLines={getNumberofLines()} id={id} style={style}>
       {children}
     </RNText>
   );
 };
 
-const getWeight = (props: LightRegularMediumProps) => {
+const getWeight = (props: LightRegularMediumBoldProps) => {
   if (props.light) {
     return 'light';
   }
@@ -171,10 +184,13 @@ const getWeight = (props: LightRegularMediumProps) => {
   if (props.medium) {
     return 'medium';
   }
+  if (props.bold) {
+    return 'bold';
+  }
   return undefined;
 };
 
-export const Text10: React.FC<TextPresetProps> = ({
+export const Text10: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
@@ -189,13 +205,13 @@ export const Text10: React.FC<TextPresetProps> = ({
         desktopSize: 64,
         desktopLineHeight: 72,
       })}
-      weight={textPresets?.text10?.weight}
+      weight={getWeight(props)}
       {...props}
     />
   );
 };
 
-export const Text9: React.FC<TextPresetProps> = ({
+export const Text9: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
@@ -210,13 +226,13 @@ export const Text9: React.FC<TextPresetProps> = ({
         desktopSize: 56,
         desktopLineHeight: 64,
       })}
-      weight={textPresets?.text9?.weight}
+      weight={getWeight(props)}
       {...props}
     />
   );
 };
 
-export const Text8: React.FC<TextPresetProps> = ({
+export const Text8: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
@@ -231,13 +247,13 @@ export const Text8: React.FC<TextPresetProps> = ({
         desktopSize: 48,
         desktopLineHeight: 56,
       })}
-      weight={textPresets?.text8?.weight}
+      weight={getWeight(props)}
       {...props}
     />
   );
 };
 
-export const Text7: React.FC<TextPresetProps> = ({
+export const Text7: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
@@ -252,13 +268,13 @@ export const Text7: React.FC<TextPresetProps> = ({
         desktopSize: 40,
         desktopLineHeight: 48,
       })}
-      weight={textPresets?.text7?.weight}
+      weight={getWeight(props)}
       {...props}
     />
   );
 };
 
-export const Text6: React.FC<TextPresetProps> = ({
+export const Text6: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
@@ -273,13 +289,13 @@ export const Text6: React.FC<TextPresetProps> = ({
         desktopSize: 32,
         desktopLineHeight: 40,
       })}
-      weight={textPresets?.text6?.weight}
+      weight={getWeight(props)}
       {...props}
     />
   );
 };
 
-export const Text5: React.FC<TextPresetProps> = ({
+export const Text5: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
@@ -289,12 +305,12 @@ export const Text5: React.FC<TextPresetProps> = ({
     <Text
       {...getTextSizes({
         forceMobileSizes,
-        mobileSize: 20,
+        mobileSize: 22,
         mobileLineHeight: 24,
         desktopSize: 28,
         desktopLineHeight: 32,
       })}
-      weight={textPresets?.text5?.weight}
+      weight={getWeight(props)}
       {...props}
     />
   );
@@ -317,7 +333,7 @@ export const Text4: React.FC<LightRegularMediumProps> = ({
   />
 );
 
-export const Text3: React.FC<LightRegularMediumProps> = ({
+export const Text3: React.FC<LightRegularMediumBoldProps> = ({
   forceMobileSizes,
   ...props
 }) => (

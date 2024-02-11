@@ -1,18 +1,18 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import NavBar from '../components/NavBar/NavBar.web';
+import NavigationBar from '../components/NavBar/NavigationBar.web';
 import NavBarButton from '../components/NavBarButton/NavBarButton.web';
 import NavBarIcon from '../icons/NavBarIcon';
 import Avatar from '../components/Avatar/Avatar';
 
 export default {
-  title: 'components/NavBar',
-  component: NavBar,
-} as ComponentMeta<typeof NavBar>;
+  title: 'components/NavigationBar',
+  component: NavigationBar,
+} as ComponentMeta<typeof NavigationBar>;
 
-export const Basic: ComponentStory<typeof NavBar> = args => (
+export const Basic: ComponentStory<typeof NavigationBar> = args => (
   <>
-    <NavBar {...args}></NavBar>
+    <NavigationBar {...args}></NavigationBar>
   </>
 );
 
@@ -50,4 +50,4 @@ Basic.args = {
   ),
 };
 
-Basic.storyName = 'NavBar';
+Basic.storyName = 'NavigationBar';

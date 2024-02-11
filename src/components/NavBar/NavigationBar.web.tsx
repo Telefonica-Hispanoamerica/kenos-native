@@ -3,7 +3,7 @@ import {View, StyleSheet, Animated} from 'react-native';
 import {useTheme} from '../../utils/ThemeContextProvider';
 import {Text4, Text6} from '../Text/Text';
 
-type NavBarProps = {
+type NavigationBarProps = {
   headerTitle: string;
   children: any;
   displayMinimal: boolean;
@@ -11,13 +11,13 @@ type NavBarProps = {
   rightButtons: JSX.Element;
 };
 
-const NavBar = ({
+const NavigationBar = ({
   headerTitle,
   children,
   displayMinimal,
   leftButton,
   rightButtons,
-}: NavBarProps) => {
+}: NavigationBarProps) => {
   const {skin} = useTheme();
   const {navigationBarBackground, textPrimaryInverse} = skin.colors;
 
@@ -114,4 +114,4 @@ const NavBar = ({
   );
 };
 
-export default NavBar;
+export default NavigationBar;
