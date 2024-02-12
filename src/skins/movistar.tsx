@@ -37,7 +37,7 @@ export const palette = {
   grey5: '#86888C',
   grey6: '#313235',
   white: '#FFFFFF',
-  movistarBlueDark: '#313235',
+  movistarBlueDark: '#0B2739',
   darkModeBlack: '#061824',
   darkModeGrey: '#081F2E',
   darkModeGrey2: '#EAEBEE',
