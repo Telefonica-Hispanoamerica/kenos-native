@@ -4,22 +4,22 @@ import {useTheme} from '../../utils/ThemeContextProvider';
 import {Text4, Text6} from '../Text/Text';
 
 type NavigationBarProps = {
-  headerTitle: string;
+  title: string;
   children: any;
-  displayMinimal: boolean;
+  large?: boolean;
   leftButton: JSX.Element;
   rightButtons: JSX.Element;
 };
 
 const NavigationBar = ({
-  headerTitle,
+  title,
   children,
-  displayMinimal,
+  large,
   leftButton,
   rightButtons,
 }: NavigationBarProps) => {
   const {skin} = useTheme();
-  const {navigationBarBackground, textPrimaryInverse} = skin.colors;
+  const {navigationBarBackground, textNavigationBarPrimary} = skin.colors;
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const translateY = scrollY.interpolate({
@@ -42,7 +42,7 @@ const NavigationBar = ({
 
   const styles = StyleSheet.create({
     bigHeader: {
-      height: displayMinimal ? 0 : 53,
+      height: !large ? 0 : 56,
       backgroundColor: navigationBarBackground,
       justifyContent: 'flex-end',
     },
@@ -84,8 +84,8 @@ const NavigationBar = ({
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={styles.leftButtonContainer}>{leftButton}</View>
           <Animated.View style={styles.textSmall}>
-            <Text4 medium color={textPrimaryInverse}>
-              {headerTitle}
+            <Text4 medium color={textNavigationBarPrimary}>
+              {title}
             </Text4>
           </Animated.View>
           <View style={styles.rightButtonContainer}>{rightButtons}</View>
@@ -93,12 +93,12 @@ const NavigationBar = ({
       </View>
       <Animated.View style={[styles.bigHeader, {transform: [{translateY}]}]}>
         <Animated.View style={styles.textBig}>
-          <Text6 color={textPrimaryInverse}>{headerTitle}</Text6>
+          <Text6 color={textNavigationBarPrimary}>{title}</Text6>
         </Animated.View>
       </Animated.View>
       <Animated.ScrollView
         contentContainerStyle={{
-          paddingBottom: displayMinimal ? 0 : 53,
+          paddingBottom: !large ? 0 : 56,
           flexGrow: 1,
         }}
         bounces={false}

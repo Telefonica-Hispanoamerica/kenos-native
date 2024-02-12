@@ -1,6 +1,6 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import NavigationBar from '../components/NavBar/NavigationBar.web';
+import NavigationBar from '../components/NavigationBar/NavigationBar.web';
 import NavBarButton from '../components/NavBarButton/NavBarButton.web';
 import NavBarIcon from '../icons/NavBarIcon';
 import Avatar from '../components/Avatar/Avatar';
@@ -17,8 +17,8 @@ export const Basic: ComponentStory<typeof NavigationBar> = args => (
 );
 
 Basic.args = {
-  headerTitle: 'Cuenta',
-  displayMinimal: true,
+  title: 'Cuenta',
+  large: true,
   leftButton: (
     <NavBarButton
       onPress={() => console.log('xd')}
