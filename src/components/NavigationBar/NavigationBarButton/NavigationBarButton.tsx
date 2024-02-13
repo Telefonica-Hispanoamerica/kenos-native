@@ -57,7 +57,6 @@ function NavigationBarButton({ onPress, children, icon, inverse }: NavigationBar
   if (!iconComponent && !children) {
     iconComponent = DefaultIcon;
   }
-  console.log('Inverse en NavigationBarButton:', inverse);
   return (
     <View style={{ height: 28, width: 28, borderRadius: 50, overflow: 'hidden' }}>
       <Pressable

@@ -6,7 +6,7 @@ import {Button} from '../components/Button/Button';
 import {Text2, Text3, Text5} from '../components/Text/Text';
 
 export default {
-  title: 'components/Sheet',
+  title: 'Sheet',
   component: Sheet,
 } as ComponentMeta<typeof Sheet>;
 

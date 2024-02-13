@@ -3,8 +3,6 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import NavigationBar from '../components/NavigationBar/NavigationBar';
 import NavigationBarButton from '../components/NavigationBar/NavigationBarButton/NavigationBarButton';
 import Avatar from '../components/Avatar/Avatar';
-import Badge from '../components/Badge/Badge';
-import { Icon2gFilled, Icon3dViewFilled, IconAccessoriesFilled, IconAddBillPoundFilled, IconAlarmLightFilled, IconAlarmLightLight, IconAmbulanceRegular } from '../kenos-icons';
 
 export default {
   title: 'components/NavigationBar',

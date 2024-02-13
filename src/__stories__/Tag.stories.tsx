@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import { Text4 } from '../components/Text/Text';
 
 export default {
-  title: 'components/Tag',
+  title: 'Tag',
   component: Tag,
 } as ComponentMeta<typeof Tag>;
 

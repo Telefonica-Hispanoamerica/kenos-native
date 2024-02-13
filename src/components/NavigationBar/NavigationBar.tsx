@@ -26,7 +26,6 @@ const NavigationBar = ({
 
   const textColor = inverse ? colors.textPrimary : textNavigationBarPrimary;
   const backgroundColor = inverse ? colors.inverse : navigationBarBackground;
-  console.log('leftAction:', leftAction);
   const scrollY = useRef(new Animated.Value(0)).current;
   const translateY = scrollY.interpolate({
     inputRange: [0, 100],
