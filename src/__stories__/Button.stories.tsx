@@ -1,6 +1,5 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-
 import { Button, ButtonType } from '../components/Button/Button';
 import { Alert, ScrollView, View } from 'react-native';
 import { IconPhotoCameraFilled } from '..';
@@ -19,6 +18,9 @@ export const Basic: ComponentStory<typeof Button> = args => {
         {buttonTypes.map((aButtonType, index) => (
           <React.Fragment key={`button-${aButtonType}-${index}`}>
             <Button loadingText="" type={aButtonType} onPress={onPress}>
+              Send
+            </Button>
+            <Button loadingText="" type={aButtonType} onPress={onPress} rounded={true}>
               Send
             </Button>
             <Button
