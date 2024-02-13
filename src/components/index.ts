@@ -6,7 +6,7 @@ export {default as Divider} from './Divider/Divider';
 export {default as HorizontalScroll} from './HorizontalScroll/Horizontal-scroll';
 export {default as LoadingBar} from './LoadingBar/LoadingBar';
 export {Logo} from './Logo/Logo';
-export {default as NavBar} from './NavBar/NavigationBar.web';
+export {default as NavBar} from './NavigationBar/NavigationBar';
 export {default as Placeholder} from './Placeholder/Placeholder';
 export {default as ProgressBar} from './ProgressBar/ProgressBar';
 export {default as Sheet} from './Sheet/Sheet';

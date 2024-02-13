@@ -4,7 +4,7 @@ import Avatar from '../components/Avatar/Avatar';
 import { View } from 'react-native';
 
 export default {
-  title: 'components/Avatar',
+  title: 'Avatar',
   component: Avatar,
 } as ComponentMeta<typeof Avatar>;
 

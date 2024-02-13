@@ -194,8 +194,6 @@ export const Text10: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
-  const theme = useTheme();
-  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -215,8 +213,6 @@ export const Text9: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
-  const theme = useTheme();
-  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -236,8 +232,6 @@ export const Text8: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
-  const theme = useTheme();
-  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -257,8 +251,6 @@ export const Text7: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
-  const theme = useTheme();
-  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -278,8 +270,6 @@ export const Text6: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
-  const theme = useTheme();
-  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({
@@ -299,8 +289,6 @@ export const Text5: React.FC<BoldRegularProps> = ({
   forceMobileSizes,
   ...props
 }) => {
-  const theme = useTheme();
-  const { textPresets } = theme.skin;
   return (
     <Text
       {...getTextSizes({

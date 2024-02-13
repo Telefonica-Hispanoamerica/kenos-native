@@ -4,7 +4,7 @@ import Divider from '../components/Divider/Divider';
 import {View} from 'react-native';
 
 export default {
-  title: 'components/Divider',
+  title: 'Divider',
   component: Divider,
 } as ComponentMeta<typeof Divider>;
 
