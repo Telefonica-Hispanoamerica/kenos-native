@@ -4,7 +4,7 @@ import { SkeletonCircle, QuantityListSkeleton, SkeletonLine } from '../component
 import { View } from 'react-native';
 
 export default {
-  title: 'components/Skeletons',
+  title: 'Skeletons',
   component: QuantityListSkeleton,
 } as ComponentMeta<typeof QuantityListSkeleton>;
 

@@ -4,7 +4,7 @@ import {Title1, Title2} from '../components/Title/Title';
 import {View} from 'react-native';
 
 export default {
-  title: 'components/Title',
+  title: 'Title',
   component: Title1,
 } as ComponentMeta<typeof Title1>;
 

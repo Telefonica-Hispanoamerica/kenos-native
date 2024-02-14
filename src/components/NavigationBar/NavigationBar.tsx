@@ -1,26 +1,31 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
 import {useTheme} from '../../utils/ThemeContextProvider';
-import {Text4, Text6} from '../Text/Text';
+import {Text4, Text7} from '../Text/Text';
 
 type NavigationBarProps = {
-  headerTitle: string;
-  children: any;
-  displayMinimal: boolean;
-  leftButton: JSX.Element;
-  rightButtons: JSX.Element;
+  title: string;
+  children?: any;
+  large?: boolean;
+  inverse?: boolean;
+  leftAction: JSX.Element;
+  rightActions?: JSX.Element;
 };
 
 const NavigationBar = ({
-  headerTitle,
+  title,
   children,
-  displayMinimal,
-  leftButton,
-  rightButtons,
+  large,
+  inverse,
+  leftAction,
+  rightActions,
 }: NavigationBarProps) => {
   const {skin} = useTheme();
-  const {navigationBarBackground, textPrimaryInverse} = skin.colors;
+  const colors = skin.colors;
+  const {navigationBarBackground, textNavigationBarPrimary} = colors;
 
+  const textColor = inverse ? colors.textPrimary : textNavigationBarPrimary;
+  const backgroundColor = inverse ? colors.inverse : navigationBarBackground;
   const scrollY = useRef(new Animated.Value(0)).current;
   const translateY = scrollY.interpolate({
     inputRange: [0, 100],
@@ -42,15 +47,20 @@ const NavigationBar = ({
 
   const styles = StyleSheet.create({
     bigHeader: {
-      height: displayMinimal ? 0 : 53,
-      backgroundColor: navigationBarBackground,
+      height: !large ? 0 : 56,
+      backgroundColor: backgroundColor,
       justifyContent: 'flex-end',
     },
     smallHeader: {
       height: 56,
-      backgroundColor: navigationBarBackground,
+      backgroundColor: backgroundColor,
       justifyContent: 'center',
       zIndex: 1,
+    },
+    smallHeaderContent: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
     scrollView: {
       elevation: -1,
@@ -58,47 +68,56 @@ const NavigationBar = ({
     textBig: {
       marginLeft: 16,
       marginRight: 16,
-      marginTop: 8,
-      marginBottom: 8,
+      marginTop: 12,
+      marginBottom: 12,
       // opacity: displayMinimal ? 0 : opacity,
     },
     textSmall: {
       flex: 1,
-      marginLeft: 12,
+      marginLeft: 32,
       lineHeight: 24,
       // opacity: displayMinimal ? 100 : opacitySmall,
     },
     leftButtonContainer: {
-      marginLeft: 8,
+      marginLeft: 16,
     },
     rightButtonContainer: {
       flexDirection: 'row',
-      marginRight: 8,
-      gap: 8,
+      marginRight: 16,
+      gap: 24,
     },
   });
 
   return (
     <View>
       <View style={styles.smallHeader}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <View style={styles.leftButtonContainer}>{leftButton}</View>
-          <Animated.View style={styles.textSmall}>
-            <Text4 medium color={textPrimaryInverse}>
-              {headerTitle}
-            </Text4>
-          </Animated.View>
-          <View style={styles.rightButtonContainer}>{rightButtons}</View>
+        <View style={styles.smallHeaderContent}>
+          <View style={styles.leftButtonContainer}>
+            {React.cloneElement(leftAction, {inverse})}
+          </View>
+          {!large && (
+            <Animated.View style={styles.textSmall}>
+              <Text4 medium color={textColor}>
+                {title}
+              </Text4>
+            </Animated.View>
+          )}
+          <View style={styles.rightButtonContainer}>
+            {rightActions &&
+              React.Children.map(rightActions.props.children, child =>
+                React.cloneElement(child, {inverse}),
+              )}
+          </View>
         </View>
       </View>
       <Animated.View style={[styles.bigHeader, {transform: [{translateY}]}]}>
         <Animated.View style={styles.textBig}>
-          <Text6 color={textPrimaryInverse}>{headerTitle}</Text6>
+          <Text7 color={textColor}>{title}</Text7>
         </Animated.View>
       </Animated.View>
       <Animated.ScrollView
         contentContainerStyle={{
-          paddingBottom: displayMinimal ? 0 : 53,
+          paddingBottom: !large ? 0 : 56,
           flexGrow: 1,
         }}
         bounces={false}

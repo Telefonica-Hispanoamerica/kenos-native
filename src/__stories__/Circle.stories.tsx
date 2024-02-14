@@ -4,7 +4,7 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {Circle} from '../components/Circle/Circle';
 
 export default {
-  title: 'components/Primitives/Circle',
+  title: 'Primitives/Circle',
   component: Circle,
 } as ComponentMeta<typeof Circle>;
 
