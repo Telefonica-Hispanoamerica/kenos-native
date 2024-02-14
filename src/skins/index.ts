@@ -1,7 +1,5 @@
 export type { Skin, KnownSkinName, SkinName } from './types'
-export { MOVISTAR_SKIN, MOVISTAR_ARGENTINA_SKIN } from './constants'
+export { MOVISTAR_SKIN } from './constants'
 export { getSkinByName } from './utils'
 export { getMovistarSkin } from './movistar'
-export { getMovistarArgentina } from './movistar-argentina'
 export { palette as movistarPalette } from './movistar'
-export { palette as movistarArgentinaPalette} from './movistar-argentina'
