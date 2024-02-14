@@ -9,7 +9,7 @@ type ThemeContext = {
 
 const ThemeContext = createContext<ThemeContext>({
   skinName: 'Movistar',
-  skin: getSkinByName('MovistarArgentina'),
+  skin: getSkinByName('Movistar'),
 });
 
 export function ThemeContextProvider(props: any) {

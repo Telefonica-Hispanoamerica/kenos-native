@@ -18,7 +18,7 @@ export const Basic: ComponentStory<typeof NavigationBar> = args => (
 Basic.args = {
   title: 'Title',
   large: false,
-  inverse: false,
+  inverse: true,
   leftAction: (
     <NavigationBarButton onPress={() => console.log('xd')} icon='menu'/>
   ),
