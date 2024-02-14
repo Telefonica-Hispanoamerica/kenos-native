@@ -17,7 +17,7 @@ import {
 import { ScrollView, View } from 'react-native';
 
 export default {
-  title: 'components/Text',
+  title: 'Text',
   component: Text,
 } as ComponentMeta<typeof Text>;
 

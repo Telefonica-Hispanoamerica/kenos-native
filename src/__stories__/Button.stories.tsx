@@ -5,7 +5,7 @@ import { Alert, ScrollView, View } from 'react-native';
 import { IconPhotoCameraFilled } from '..';
 
 export default {
-  title: 'components/Buttons',
+  title: 'Buttons',
   component: Button,
 } as ComponentMeta<typeof Button>;
 

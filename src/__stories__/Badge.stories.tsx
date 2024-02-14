@@ -5,7 +5,7 @@ import IconBell from '../icons/icon-bell';
 import { View } from 'react-native';
 
 export default {
-  title: 'components/Badge',
+  title: 'Badge',
   component: Badge,
 } as ComponentMeta<typeof Badge>;
 
