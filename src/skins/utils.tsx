@@ -1,9 +1,7 @@
 import {
   MOVISTAR_SKIN,
-  MOVISTAR_ARGENTINA_SKIN,
 } from './constants';
 import {getMovistarSkin} from './movistar';
-import {getMovistarArgentina} from './movistar-argentina';
 import type {SkinVariant, KnownSkin, KnownSkinName} from './types';
 
 export const getSkinByName = (
@@ -13,8 +11,6 @@ export const getSkinByName = (
   switch (name) {
     case MOVISTAR_SKIN:
       return getMovistarSkin(variant);
-    case MOVISTAR_ARGENTINA_SKIN:
-      return getMovistarArgentina(variant);
     default: {
       return getMovistarSkin(variant);
     }

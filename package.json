@@ -29,7 +29,8 @@
     "import-icons": "node scripts/import-icons.js",
     "build": "yarn clean-build && node scripts/build.js",
     "clean-build": "rimraf dist && rimraf dist-ts && rimraf node_modules/.cache",
-    "gen-ts-defs": "rimraf dist-ts && tsc --project tsconfig.production.json && mkdir -p dist && cp -r dist-ts/* dist && rimraf dist-ts"
+    "gen-ts-defs": "rimraf dist-ts && tsc --project tsconfig.production.json && mkdir -p dist && cp -r dist-ts/* dist && rimraf dist-ts",
+    "import-tokens": "node scripts/tokens/index.js"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.3",
