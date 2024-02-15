@@ -3,12 +3,6 @@ import {Colors} from './colors';
 export type {Colors} from './colors';
 export type KnownSkinName =
   | 'Movistar'
-  | 'MovistarArgentina'
-  | 'O2'
-  | 'O2-classic'
-  | 'Vivo'
-  | 'Telefonica'
-  | 'Blau';
 export type SkinName = KnownSkinName | string;
 
 export type GetKnownSkin = (variant?: any) => KnownSkin;

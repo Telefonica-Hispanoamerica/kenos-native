@@ -5,7 +5,7 @@ import { Button } from '../components/Button/Button';
 import { View } from 'react-native';
 
 export default {
-  title: 'components/Stepper',
+  title: 'Stepper',
   component: Stepper,
 } as ComponentMeta<typeof Stepper>;
 
