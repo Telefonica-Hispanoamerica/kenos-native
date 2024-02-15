@@ -53,6 +53,7 @@ const getStories = () => {
     "./src/__stories__/Badge.stories.tsx": require("../src/__stories__/Badge.stories.tsx"),
     "./src/__stories__/Button.stories.tsx": require("../src/__stories__/Button.stories.tsx"),
     "./src/__stories__/Circle.stories.tsx": require("../src/__stories__/Circle.stories.tsx"),
+    "./src/__stories__/DataCard.stories.tsx": require("../src/__stories__/DataCard.stories.tsx"),
     "./src/__stories__/Divider.stories.tsx": require("../src/__stories__/Divider.stories.tsx"),
     "./src/__stories__/Horizontal.stories.tsx": require("../src/__stories__/Horizontal.stories.tsx"),
     "./src/__stories__/LoadingBar.stories.tsx": require("../src/__stories__/LoadingBar.stories.tsx"),

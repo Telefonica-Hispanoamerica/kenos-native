@@ -1,22 +1,24 @@
 import {createContext, useContext} from 'react';
 import {getSkinByName} from '../skins/utils';
-import {KnownSkinName, Skin} from '../skins/types';
+import {DefaultThemeContext, ThemeContextType, getTexts} from './theme';
 
-type ThemeContext = {
-  skinName: KnownSkinName;
-  skin: Skin;
-};
+const ThemeContext = createContext<ThemeContextType>(DefaultThemeContext);
 
-const ThemeContext = createContext<ThemeContext>({
-  skinName: 'Movistar',
-  skin: getSkinByName('Movistar'),
-});
+export function ThemeContextProvider(
+  props: ThemeContextType & {children: any},
+) {
+  const skinName = props.skinName || DefaultThemeContext.skinName;
+  const skin = props.skinName
+    ? getSkinByName(props.skinName)
+    : DefaultThemeContext.skin;
+  const textPresets = props.textPresets || DefaultThemeContext.textPresets;
+  const i18n = props.i18n || DefaultThemeContext.i18n;
+  const texts = getTexts() || DefaultThemeContext.texts;
+  const isDarkMode = props.isDarkMode || DefaultThemeContext.isDarkMode;
 
-export function ThemeContextProvider(props: any) {
-  const skinName = props.skinName;
-  const skin = getSkinByName(props.skinName);
   return (
-    <ThemeContext.Provider value={{skinName, skin}}>
+    <ThemeContext.Provider
+      value={{skinName, skin, textPresets, i18n, texts, isDarkMode}}>
       {props.children}
     </ThemeContext.Provider>
   );
