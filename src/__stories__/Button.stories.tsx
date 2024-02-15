@@ -5,7 +5,7 @@ import { Alert, ScrollView, View } from 'react-native';
 import { IconPhotoCameraFilled } from '..';
 
 export default {
-  title: 'Buttons',
+  title: 'components/Buttons',
   component: Button,
 } as ComponentMeta<typeof Button>;
 
@@ -15,16 +15,16 @@ export const Basic: ComponentStory<typeof Button> = args => {
   return (
     <ScrollView>
       <View style={{ gap: 16, margin: 16, width: 143 }}>
-      <Button {...args} />   
         {buttonTypes.map((aButtonType, index) => (
           <React.Fragment key={`button-${aButtonType}-${index}`}>
-            <Button loadingText="" type={aButtonType} onPress={onPress}>
+            <Button {...args} loadingText="" type={aButtonType} onPress={onPress}>
               Send
             </Button>
-            <Button loadingText="" type={aButtonType} onPress={onPress} rounded={true}>
+            {/* <Button loadingText="" type={aButtonType} onPress={onPress} rounded={true}>
               Send
-            </Button>
+            </Button> */}
             <Button
+              {...args}
               loadingText=""
               type={aButtonType}
               leftIcon={IconPhotoCameraFilled}
@@ -32,28 +32,30 @@ export const Basic: ComponentStory<typeof Button> = args => {
               Send
             </Button>
             <Button
+              {...args}
               loadingText=""
               type={aButtonType}
               rightIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
             </Button>
-            <Button loadingText="" type={aButtonType} disabled>
+            {/* <Button {...args} loadingText="" type={aButtonType} disabled showSpinner={false}>
+              Send
+            </Button> */}
+            <Button {...args} loadingText="Sending file" disabled={false} type={aButtonType} showSpinner>
               Send
             </Button>
-            <Button loadingText="Sending file" type={aButtonType} showSpinner>
+            <Button {...args} loadingText="" disabled={false} type={aButtonType} showSpinner>
               Send
             </Button>
-            <Button loadingText="" type={aButtonType} showSpinner>
-              Send
-            </Button>
-            <Button loadingText="" type={aButtonType} small onPress={onPress}>
+            {/* <Button loadingText="" type={aButtonType} small onPress={onPress}>
               Send
             </Button>
             <Button
               loadingText=""
               type={aButtonType}
               small
+              showSpinner={false}
               leftIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
@@ -62,6 +64,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
               loadingText=""
               type={aButtonType}
               small
+              showSpinner={false}
               rightIcon={IconPhotoCameraFilled}
               onPress={onPress}>
               Send
@@ -94,7 +97,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
             </Button>
             <Button loadingText="" type={aButtonType} showSpinner small>
               Send
-            </Button>
+            </Button> */}
           </React.Fragment>
         ))}
       </View>

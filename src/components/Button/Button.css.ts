@@ -3,7 +3,7 @@ import { ButtonType } from './Button';
 import { useTheme } from '../../utils/ThemeContextProvider';
 import {applyAlpha} from '../../utils/color';
 import {StyleSheet} from 'react-native';
-import {BUTTON_MIN_WIDTH, BORDER_RADIUS_ROUNDED, disabledStyle} from './Button.utils';
+import {BUTTON_MIN_WIDTH, BORDER_RADIUS_ROUNDED, disabledStyle, disabledBackground} from './Button.utils';
 
 export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonType}) => {
   
@@ -17,6 +17,9 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     textButtonPrimary,
     buttonPrimaryBackgroundInverse,
     textPrimaryInverse,
+    buttonSecondaryBackground,
+    textButtonSecondaryInverse,
+    buttonSecondaryBorderInverse,
   } = skin.colors;
 
   const buttonBR = skin.borderRadii?.button || '0px';
@@ -25,7 +28,7 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
   switch (props.type) {
     case 'secondary':
       return {
-        backgroundColor: textPrimaryInverse,
+        backgroundColor:buttonSecondaryBackground,
         borderColor: `${applyAlpha(
           buttonSecondaryBorder,
           props.disabled ? disabledStyle.opacity : 1,
