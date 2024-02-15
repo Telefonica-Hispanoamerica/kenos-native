@@ -15,6 +15,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
   return (
     <ScrollView>
       <View style={{ gap: 16, margin: 16, width: 143 }}>
+      <Button {...args} />
         {buttonTypes.map((aButtonType, index) => (
           <React.Fragment key={`button-${aButtonType}-${index}`}>
             <Button loadingText="" type={aButtonType} onPress={onPress}>
@@ -106,7 +107,8 @@ Basic.args = {
   disabled: false,
   children: 'Send',
   loadingText: 'Sending file',
-  type: 'primary',
+  inverse: false,
 };
+
 
 Basic.storyName = 'Buttons'

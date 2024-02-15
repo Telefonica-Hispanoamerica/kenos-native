@@ -14,6 +14,7 @@ interface CommonProps {
   loadingText?: string;
   disabled?: boolean;
   rounded?: boolean;
+  inverse?: boolean;
   leftIcon?: React.ComponentType<IconProps>;
   rightIcon?: React.ComponentType<IconProps>;
 }

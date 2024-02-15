@@ -13,6 +13,9 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     buttonDangerBackground,
     textButtonSecondary,
     buttonSecondaryBorder,
+    textButtonPrimaryInverse,
+    textButtonPrimary,
+    buttonPrimaryBackgroundInverse,
     textPrimaryInverse,
   } = skin.colors;
 
@@ -50,14 +53,14 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     default:
       return {
         backgroundColor: `${applyAlpha(
-          buttonPrimaryBackground,
+          props.inverse ? buttonPrimaryBackgroundInverse: buttonPrimaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         borderColor: `${applyAlpha(
-          buttonPrimaryBackground,
+          props.inverse ? buttonPrimaryBackgroundInverse: buttonPrimaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
-        textColor: 'white',
+        textColor: props.inverse ? textButtonPrimaryInverse:textButtonPrimary,
         borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
       };
   }
