@@ -8,8 +8,10 @@ export const styles = StyleSheet.create({
   dataCard: {
     display: 'flex',
     flex: 1,
-    paddingY: 24,
-    paddingX: 16,
+    paddingBottom: 24,
+    paddingTop: 24,
+    paddingLeft: 16,
+    paddingRight: 16,
     flexDirection: 'column',
     width: '100%',
   },

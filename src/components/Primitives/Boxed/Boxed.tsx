@@ -31,12 +31,12 @@ const getBorderStyle = (
   isInverseInside: boolean,
 ): StyleProp<ViewStyle> => {
   const {skin} = useTheme();
-  const {backgroundContainer} = skin.colors;
+  const {border} = skin.colors;
 
   if (isInverseOutside && !isInverseInside) {
     return {
       borderWidth: 1,
-      borderColor: backgroundContainer,
+      borderColor: border,
     };
   }
 
