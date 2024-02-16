@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof Tabs>
 
 export const Basic: ComponentStory<typeof Tabs> = (args) => {
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(0);
     return (
         <View>
             <Tabs selectedIndex={selectedIndex} onChange={setSelectedIndex}

@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { useTheme } from '../../utils/ThemeContextProvider';
-
 const { skin } = useTheme();
 
 export const TAB_MAX_WIDTH = 284;
