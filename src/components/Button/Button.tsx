@@ -38,6 +38,8 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
   const {backgroundColor, borderColor, textColor, borderRounded}=getButtonColorsByButtonType(props);
   const {buttonContainer, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded)
 
+  console.log(props.children)
+
   return (
     <View
       style={{
