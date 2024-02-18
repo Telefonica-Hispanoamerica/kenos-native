@@ -5,6 +5,7 @@ export const parameters = {
     default: "plain",
     values: [
       { name: "plain", value: "white" },
+      { name: "gray", value: "#F6F6F6" },
       { name: "warm", value: "hotpink" },
       { name: "cool", value: "deepskyblue" },
     ],

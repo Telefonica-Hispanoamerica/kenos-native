@@ -12,11 +12,11 @@ export default {
 export const Basic: ComponentStory<typeof Tabs> = (args) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     return (
-        <View>
-            <Tabs scrollable solidBackground selectedIndex={selectedIndex} onChange={setSelectedIndex}
-            tabs={['Combos', 'Navega', 'Combos', 'Navega', 'Combos', 'Navega','Navega', 'Combos', 'Navega', 'Navega', 'Combos', 'Navega'].map((text) => ({
+        <View style={{marginTop: 20, alignItems: 'center', flex: 1}}>
+            <Tabs variant="arrow" selectedIndex={selectedIndex} onChange={setSelectedIndex}
+            tabs={['Combos', 'Navega', 'Combos', 'Navega'].map((text) => ({
                 text,
-                icon: <IconLightningRegular></IconLightningRegular>
+                icon: <IconLightningRegular color='white'></IconLightningRegular>
             }))}
             ></Tabs>
         </View>
