@@ -4,13 +4,14 @@ import {getButtonColorsByButtonType, styles} from './Button.css';
 import {useTheme} from '../../utils/ThemeContextProvider';
 import {IconProps} from '../../utils/types';
 
-export type ButtonType = 'primary' | 'secondary' | 'danger';
+export type ButtonType = 'primary';
 
 interface CommonProps {
   children: React.ReactNode;
   style?: React.CSSProperties;
   small?: boolean;
   showSpinner?: boolean;
+  showBackground?: boolean;
   loadingText?: string;
   disabled?: boolean;
   rounded?: boolean;
@@ -19,16 +20,9 @@ interface CommonProps {
   rightIcon?: React.ComponentType<IconProps>;
 }
 
-export interface OnPressButtonProps extends CommonProps {
-  onPress?: Function | null | undefined | any;
-  submit?: undefined;
-  fake?: undefined;
-  to?: undefined;
-}
+export type ButtonProps = CommonProps;
 
-export type ButtonProps = OnPressButtonProps;
-
-export const Button = (props: ButtonProps & {type: ButtonType}) => {
+export const LinkButton = (props: ButtonProps & {type: ButtonType}) => {
   const {leftIcon: LeftIcon, rightIcon: RightIcon} = props;
 
   const {skin} = useTheme(); 
@@ -36,8 +30,8 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
   const buttonBRRN = parseFloat(buttonBR.replace(/px/g, '')); 
   
   const {backgroundColor, borderColor, textColor, borderRounded}=getButtonColorsByButtonType(props);
-  const {buttonContainer, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded)
-  
+  const {buttonContainerLink, buttonContainerBackgorundLink, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded)
+
   return (
     <View
       style={{
@@ -48,8 +42,7 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
       <Pressable
         disabled={props.disabled || props.showSpinner}
         android_ripple={{color: textColor, borderless: false}}
-        onPress={props.onPress}
-        style={buttonContainer}>
+        style={props.showBackground?buttonContainerBackgorundLink:buttonContainerLink}>
         <View style={buttonContent}>
           {props.showSpinner ? (
             <ActivityIndicator size="small" color={textColor} />
@@ -61,9 +54,11 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
           ) : (
             <></>
           )}
-          <Text selectable={false} numberOfLines={1} style={buttonText}>
-            {props.showSpinner ? props.loadingText : props.children}
-          </Text>
+        
+            <Text selectable={false} numberOfLines={1} style={buttonText}>
+              {props.showSpinner ? props.children : props.loadingText}
+            </Text>
+            
           {!props.showSpinner && RightIcon ? (
             <RightIcon color={textColor} size={24} />
           ) : (

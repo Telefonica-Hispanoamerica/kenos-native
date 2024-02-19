@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { IconButton } from '../components/Icon Button/IconButton';
+import { IconButton } from '../components/IconButton/IconButton';
 import { Text, View } from 'react-native';
 import { IconComputerUserLight } from '../kenos-icons';
 import { launchImageLibrary } from 'react-native-image-picker';
