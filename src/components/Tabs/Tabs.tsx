@@ -298,7 +298,11 @@ const Tabs: React.FC<TabsProps> = ({
                                     ]}
                                     aria-controls={ariaControls}
                                     ref={tabRefs.current[index]}>
-                                    {icon && <View style={baseTabStyles.icon}>{icon}</View>}
+                                    {icon && (
+                                        <View style={baseTabStyles.icon}>
+                                            {React.cloneElement(icon as React.ReactElement, { color: isSelected && variant !== 'primary' ? skin.colors.inverse : undefined })}
+                                        </View>
+                                    )}
                                     <Text3
                                         color={getTextColor(isSelected, variant)}
                                         {...(isSelected ? { bold: true } : { regular: true })}>
