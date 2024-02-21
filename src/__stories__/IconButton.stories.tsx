@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { IconButton } from '../components/Icon Button/IconButton';
 import { Text, View } from 'react-native';
-import { IconComputerUserLight } from '../kenos-icons';
+import { IconComputerUserRegular } from '../kenos-icons';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 export default {
@@ -35,14 +35,16 @@ export const iconImage = async ()=>{
 
 export const Basic: ComponentStory<typeof IconButton> = args => (
   <View>
-    <IconButton icon={IconComputerUserLight}/> 
+    <IconButton {...args} icon={IconComputerUserRegular}/> 
   </View>
 );
 
-/* Basic.args = {
-  children:'algo',
-  localPhoto:false,
-  src:iconImg,
-}; */
+Basic.args = {
+  children:'Texto',
+  inverse:false,
+  light:false,
+  medium:false,
+  highlight:false,
+};
  
 Basic.storyName = 'IconButton'
