@@ -6,7 +6,7 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {DataCard} from '../components/Cards/DataCard/DataCard';
 import {DataCardProps} from '../components/Cards/Card.Types';
 import {Text, View} from 'react-native';
-import {Button} from '../components';
+import {Button, Circle, Placeholder} from '../components';
 
 export default {
   title: 'components/Cards/DataCard',
@@ -15,8 +15,7 @@ export default {
 
 export const Basic: ComponentStory<typeof DataCard> = args => {
   return (
-    <View style={{flex: 1}}>
-      <DataCard {...args} />
+    <View style={{flex: 1, padding: 10}}>
       <DataCard {...args} />
     </View>
   );
@@ -31,14 +30,16 @@ const ButtonComponentLink = () => {
 };
 
 Basic.args = {
+  icon: <Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />,
   headline: 'Headline',
   pretitle: 'Pretitle',
   title: 'Title',
   subtitle: 'Subtitle',
   description: 'This is a description for the card',
-  extra: null,
+  extra: <Placeholder></Placeholder>,
   'aria-label': 'aria-label',
   onClose: undefined,
+
   // button: <Button type="primary">Action</Button>,
   // buttonLink: <Button type="primary">Link</Button>,
 };
