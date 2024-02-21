@@ -338,7 +338,7 @@ export const Text3: React.FC<LightRegularMediumBoldProps> = ({
   />
 );
 
-export const Text2: React.FC<RegularMediumProps> = ({
+export const Text2: React.FC<LightRegularMediumBoldProps> = ({
   forceMobileSizes,
   ...props
 }) => (
@@ -355,7 +355,7 @@ export const Text2: React.FC<RegularMediumProps> = ({
   />
 );
 
-export const Text1: React.FC<RegularMediumProps> = ({
+export const Text1: React.FC<LightRegularMediumBoldProps> = ({
   forceMobileSizes,
   ...props
 }) => (
