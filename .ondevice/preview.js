@@ -2,7 +2,7 @@ import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
 export const decorators = [withBackgrounds];
 export const parameters = {
   backgrounds: {
-    default: "plain",
+    default: "gray",
     values: [
       { name: "plain", value: "white" },
       { name: "gray", value: "#F6F6F6" },
