@@ -28,9 +28,9 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
   switch (props.type) {
     case 'secondary':
       return {
-        backgroundColor:buttonSecondaryBackground,
+        backgroundColor:'transparent',
         borderColor: `${applyAlpha(
-          buttonSecondaryBorder,
+          buttonSecondaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         textColor: `${applyAlpha(
