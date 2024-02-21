@@ -52,31 +52,30 @@ const Tabs: React.FC<TabsProps> = ({
     tabs.map(() => useRef<View>(null)),
   );
 
-  const TAB_HEIGHT = 56;
-
+  const colorMap = {
+    primary: {
+      selected: skin.colors.textPrimary,
+      unselected: skin.colors.textPrimary,
+    },
+    secondary: {
+      selected: skin.colors.textPrimaryInverse,
+      unselected: skin.colors.textPrimary,
+    },
+    arrow: {
+      selected: skin.colors.textPrimaryInverse,
+      unselected: skin.colors.textPrimary,
+    },
+  };
+  
   const getTextColor = (
     isSelected: boolean,
     variant: 'primary' | 'secondary' | 'arrow',
   ) => {
-    let selectedColor = '';
-    let unselectedColor = '';
-    switch (variant) {
-      case 'primary':
-        selectedColor = skin.colors.textPrimary;
-        unselectedColor = skin.colors.textPrimary;
-        break;
-      case 'secondary':
-        selectedColor = skin.colors.textPrimaryInverse;
-        unselectedColor = skin.colors.textPrimary;
-        break;
-      case 'arrow':
-        selectedColor = skin.colors.textPrimaryInverse;
-        unselectedColor = skin.colors.textPrimary;
-        break;
-    }
-
-    return isSelected ? selectedColor : unselectedColor;
+    const { selected, unselected } = colorMap[variant];
+    return isSelected ? selected : unselected;
   };
+  
+  const TAB_HEIGHT = 56;
 
   const baseTabStyles = StyleSheet.create({
     baseMainContainer: {},
@@ -136,10 +135,10 @@ const Tabs: React.FC<TabsProps> = ({
     secondary: StyleSheet.create({
       mainContainerTabs: {
         height: TAB_HEIGHT,
+        backgroundColor: skin.colors.background,
       },
       containerTabs: {
         ...baseTabStyles.baseContainer,
-        backgroundColor: skin.colors.background,
         padding: 8,
         columnGap: 8,
       },
@@ -161,6 +160,8 @@ const Tabs: React.FC<TabsProps> = ({
     }),
     arrow: StyleSheet.create({
       mainContainerTabs: {
+        backgroundColor: skin.colors.background,
+        borderRadius: 8,
         height: 68,
         elevation: 0,
         shadowColor: '#000000',
@@ -173,7 +174,6 @@ const Tabs: React.FC<TabsProps> = ({
       },
       containerTabs: {
         ...baseTabStyles.baseContainer,
-        backgroundColor: skin.colors.background,
         borderRadius: 8,
       },
       optionTabs: {

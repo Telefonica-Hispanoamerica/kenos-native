@@ -30,8 +30,9 @@ export const Basic: ComponentStory<typeof Tabs> = args => {
         <Text3 medium>Primary Tab</Text3>
         <Tabs
           variant="primary"
-          background
           scrollable
+          background
+          
           selectedIndex={selectedIndex}
           onChange={setSelectedIndex}
           tabs={['Tab 1', 'Tab 2', 'Tab 3', 'Tab 3'].map(text => ({
@@ -49,6 +50,7 @@ export const Basic: ComponentStory<typeof Tabs> = args => {
         }}>
         <Text3 medium>Secondary Tab</Text3>
         <Tabs
+        scrollable
           variant="secondary"
           selectedIndex={selectedIndex}
           onChange={setSelectedIndex}
