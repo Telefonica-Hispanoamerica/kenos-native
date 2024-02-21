@@ -88,6 +88,6 @@ export const InternalBoxed = ({
   );
 };
 
-export const Boxed = (props: Props & InternalProps) => {
+export const Boxed = (props: Props) => {
   return <InternalBoxed {...props} borderRadius={8}></InternalBoxed>;
 };

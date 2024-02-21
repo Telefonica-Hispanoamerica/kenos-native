@@ -58,6 +58,7 @@ const getStories = () => {
     "./src/__stories__/Horizontal.stories.tsx": require("../src/__stories__/Horizontal.stories.tsx"),
     "./src/__stories__/LoadingBar.stories.tsx": require("../src/__stories__/LoadingBar.stories.tsx"),
     "./src/__stories__/Logo.stories.tsx": require("../src/__stories__/Logo.stories.tsx"),
+    "./src/__stories__/MediaCard.stories.tsx": require("../src/__stories__/MediaCard.stories.tsx"),
     "./src/__stories__/NavigationBar.stories.tsx": require("../src/__stories__/NavigationBar.stories.tsx"),
     "./src/__stories__/Placeholder.stories.tsx": require("../src/__stories__/Placeholder.stories.tsx"),
     "./src/__stories__/ProgressBar.stories.tsx": require("../src/__stories__/ProgressBar.stories.tsx"),
