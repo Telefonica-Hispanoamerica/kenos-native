@@ -76,8 +76,8 @@ const SkeletonLine = ({width = '100%'}: SkeletonLineProps) => {
 };
 
 type SkeletonRectangleProps = {
-  width?: number;
-  height?: number;
+  width?: string | number;
+  height?: string | number;
   noBorderRadius: boolean;
 };
 

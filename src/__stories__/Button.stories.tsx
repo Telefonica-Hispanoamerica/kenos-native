@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 export const Basic: ComponentStory<typeof Button> = args => {
-  const buttonTypes: Array<ButtonType> = ['primary', 'secondary', 'danger'];
+  const buttonTypes: Array<ButtonType> = ['primary', 'secondary', 'danger', 'link'];
   const onPress = () => Alert.alert('Clicked!', 'Clicked successfully!');
   return (
     <ScrollView>
@@ -111,6 +111,7 @@ Basic.args = {
   children: 'Send',
   loadingText: 'Sending file',
   inverse: false,
+  selected:false
 };
 
 

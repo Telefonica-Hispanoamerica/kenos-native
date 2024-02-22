@@ -11,7 +11,7 @@ export const palette = {
     grey3: '#dddddd',
     grey4: '#949494',
     grey5: '#737578',
-    grey6: '#31323599',
+    grey6: '#313235',
     movistarBlue: '#019bef',
     movistarBlue10: '#e6f5fd',
     movistarBlue20: '#b3e1fb',

@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         paddingTop: 4,
         paddingRight: 12,
         verticalAlign: 'middle',
-        borderRadius: 999,
+        borderRadius: 4,
         alignSelf: 'flex-start',
     },
 });

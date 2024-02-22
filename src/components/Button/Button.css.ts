@@ -12,6 +12,7 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     buttonPrimaryBackground,
     buttonDangerBackground,
     textButtonSecondary,
+    buttonDangerBackgroundSelected,
     buttonSecondaryBorder,
     textButtonPrimaryInverse,
     textButtonPrimary,
@@ -20,6 +21,11 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     buttonSecondaryBackground,
     textButtonSecondaryInverse,
     buttonSecondaryBorderInverse,
+    buttonLinkBackgroundSelected,
+    buttonLinkBackgroundSelectedInverse,
+
+    textLink,
+    textLinkInverse
   } = skin.colors;
 
   const buttonBR = skin.borderRadii?.button || '0px';
@@ -38,38 +44,52 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
+        underline: false,
       };
     case 'danger':
       return {
         backgroundColor: `${applyAlpha(
-          buttonDangerBackground,
+          props.selected ? buttonDangerBackgroundSelected:buttonDangerBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         borderColor: `${applyAlpha(
-          buttonDangerBackground,
+          props.selected ? buttonDangerBackgroundSelected:buttonDangerBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
-        textColor: 'white',
+        textColor:'white',
         borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
+        underline: false,
       };
+      case 'link':
+        return {
+          backgroundColor: props.selected ? buttonLinkBackgroundSelected:'transparent',
+          borderColor: props.selected ? buttonLinkBackgroundSelected:'transparent',
+          textColor: `${applyAlpha(
+            props.inverse? textLinkInverse:textLink,
+            props.disabled ? disabledStyle.opacity : 1,
+          )}`,
+          borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
+          underline: true,
+        };
     case 'primary':
     default:
       return {
         backgroundColor: `${applyAlpha(
-          props.inverse ? buttonPrimaryBackgroundInverse: buttonPrimaryBackground,
+          props.inverse ? buttonPrimaryBackgroundInverse: props.selected ? buttonDangerBackgroundSelected:buttonPrimaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         borderColor: `${applyAlpha(
-          props.inverse ? buttonPrimaryBackgroundInverse: buttonPrimaryBackground,
+          props.inverse ? buttonPrimaryBackgroundInverse: props.selected ? buttonDangerBackgroundSelected:buttonPrimaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         textColor: props.inverse ? textButtonPrimaryInverse:textButtonPrimary,
         borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
+        underline: false
       };
   }
 };
 
-export const styles = (props: ButtonProps, backgroundColor:string, borderColor:string, textColor:string, borderRounded:number) =>{
+export const styles = (props: ButtonProps, backgroundColor:string, borderColor:string, textColor:string, borderRounded:number, underline:boolean) =>{
 
   return StyleSheet.create({
     buttonContainer: {
@@ -98,6 +118,7 @@ export const styles = (props: ButtonProps, backgroundColor:string, borderColor:s
       fontWeight: '700',
       textAlign: 'center',
       verticalAlign: 'middle',
+      textDecorationLine: underline ? 'underline':'none'
     },
   })
 }

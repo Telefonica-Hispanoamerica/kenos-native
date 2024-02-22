@@ -31,12 +31,12 @@ const getBorderStyle = (
   isInverseInside: boolean,
 ): StyleProp<ViewStyle> => {
   const {skin} = useTheme();
-  const {backgroundContainer} = skin.colors;
+  const {border} = skin.colors;
 
   if (isInverseOutside && !isInverseInside) {
     return {
       borderWidth: 1,
-      borderColor: backgroundContainer,
+      borderColor: border,
     };
   }
 
@@ -88,6 +88,6 @@ export const InternalBoxed = ({
   );
 };
 
-export const Boxed = (props: Props & InternalProps) => {
+export const Boxed = (props: Props) => {
   return <InternalBoxed {...props} borderRadius={8}></InternalBoxed>;
 };
