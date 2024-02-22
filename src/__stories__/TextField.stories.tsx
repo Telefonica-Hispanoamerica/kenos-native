@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof TextFieldBase>;
 
 export const Basic: ComponentStory<typeof TextFieldBase> = args => (
-    <TextFieldBase/>
+    <></>
 )
 
 Basic.args = {
