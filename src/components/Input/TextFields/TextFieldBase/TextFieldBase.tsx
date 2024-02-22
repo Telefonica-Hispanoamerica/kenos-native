@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, TextInput, Text, StyleSheet, Platform } from 'react-native';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
 
 interface TextFieldBaseProps {
   error?: boolean;
