@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import TextField from '../components/Input/TextFields/TextField/TextField';
+import TextFieldBase from '../components/Input/TextFields/TextFieldBase/TextFieldBase';
 
 export default {
   title: 'TextFieldBase',
-  component: TextField,
-} as ComponentMeta<typeof TextField>;
+  component: TextFieldBase,
+} as ComponentMeta<typeof TextFieldBase>;
 
-export const Basic: ComponentStory<typeof TextField> = args => (
-    <TextField/>
+export const Basic: ComponentStory<typeof TextFieldBase> = args => (
+    <TextFieldBase/>
 )
 
 Basic.args = {
