@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   View,
-  ImageBackground,
   StyleSheet,
-  Image,
   Pressable,
   Text,
   ScrollView,
@@ -17,9 +15,11 @@ export interface IconButtonProps {
   inverse?: boolean;
   medium?: boolean;
   highlight?: boolean;
-  buttonsOptions:Array<{
-     text:string,
-     icon?:React.ComponentType<IconProps>
+  light?: boolean;
+  onPress?: Function | null | undefined | any;
+  buttonsOptions: Array<{
+    text: string,
+    icon?: React.ComponentType<IconProps>
   }>;
 };
 
@@ -28,7 +28,7 @@ export type LayoutIcon = IconButtonProps
 export const IconButtonLayout = (props: LayoutIcon) => {
 
   const { skin } = useTheme();
-  const { neutralHigh, background, backgroundBrand, neutralLow, brand, brandLow, inverse, buttonPrimaryBackgroundInverse, textButtonPrimaryInverse } = skin.colors;
+  const { background, backgroundBrand } = skin.colors;
 
   const themeIcon = () => {
     if (props.inverse || props.medium || props.highlight) {
@@ -43,22 +43,21 @@ export const IconButtonLayout = (props: LayoutIcon) => {
     }
   };
 
-  const { backgroundIcon } = themeIcon()
-  const items=Array(15).fill(null);
+  const {backgroundIcon} = themeIcon()
   
-  console.log(props.buttonsOptions)
-
   return (
     <View style={[styles.container, { backgroundColor: backgroundIcon }]}>
-  
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} scrollEnabled={true} contentContainerStyle={{flexGrow:1,backgroundColor:'transparent', justifyContent:'space-between', alignItems:'center',columnGap:46}}>
+
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} scrollEnabled={true} contentContainerStyle={styles.containerScroll}>
         {
-           props.buttonsOptions.map(({text,icon}, index)=>(
-              <Pressable key={index} style={{ alignItems: 'center'}}>
-                   <IconButton {...props} icon={icon} />
-                  <Text style={styles.textButton}>{text}</Text>
-                </Pressable>
-           ))
+          props.buttonsOptions.map(({ text, icon }, index) => (
+            <Pressable key={index} style={{ alignItems: 'center'}} onPress={props.onPress}>
+              {
+                 props.light ? (<IconButton medium icon={icon} />):( <IconButton {...props} icon={icon}/>)
+              }
+              <Text style={styles.textButton}>{text}</Text>
+            </Pressable>
+          ))
         }
       </ScrollView>
     </View>
@@ -71,17 +70,23 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignSelf:'center', alignContent:'center', alignItems:'center',
-    /* justifyContent: 'space-around',
-    alignItems: 'center', */
+    alignSelf: 'center', 
+    alignContent: 'center', 
+    alignItems: 'center',
     width: '100%',
     height: 80,
     marginTop: 15,
   },
-  containerIcon: {
-    alignItems: 'center', marginTop: 4,
-  },
   textButton: {
-    color: 'black', fontSize: 12, marginTop: -24, paddingLeft: 10
+    color: 'black', 
+    fontSize: 12,
+    marginTop: -20,
+    paddingLeft: 10
+  },
+  containerScroll:{
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    columnGap: 46,
   }
 })
