@@ -12,10 +12,15 @@ export default {
 
 
 export const Basic: ComponentStory<typeof IconButtonLayout> = args => {
+
+
   return (
-    <View>
-      <IconButtonLayout {...args} icon={IconLightningRegular}/>
-    </View>
+    <>
+      <View>
+        <IconButtonLayout {...args} icon={IconLightningRegular} />
+      </View>
+    </>
+
   )
 
 };
@@ -24,7 +29,6 @@ Basic.args = {
   inverse: false,
   medium: false,
   highlight: false,
-  five: false,
 };
 
 Basic.storyName = 'IconButtonLayout'

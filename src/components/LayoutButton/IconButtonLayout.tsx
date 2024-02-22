@@ -42,13 +42,84 @@ export const IconButtonLayout = (props: LayoutIcon) => {
   };
 
   const { backgroundIcon } = themeIcon()
+  const items=Array(5).fill(null);
 
   return (
     <View style={[styles.container, { backgroundColor: backgroundIcon }]}>
-      <View style={{ alignItems: 'center', marginTop: 4, }}>
+        
+       {/*  <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {
+           items.map((item, index)=>(
+              <Pressable key={index} style={{ alignItems: 'center', marginTop: 4, }}>
+                   <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+                </Pressable>
+              
+           ))
+        }
+        </ScrollView> */}
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {
+           items.map((item, index)=>(
+              
+                   <Pressable key={index} style={{ alignItems: 'center', marginTop: 4, }}>
+                   <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+                </Pressable>
+      
+           ))
+        }
+      </ScrollView>
+      
+        
+      
+        {/* <View style={{ alignItems: 'center', marginTop: 4, }}>
         <IconButton {...props} icon={props.icon} />
-        <Text style={{ color: 'black', fontSize: 12, marginTop: -24, paddingLeft: 10, }}>Texto</Text>
-      </View>
+                  <Text style={styles.textButton}>Texto</Text>
+        </View>
+        <View style={{ alignItems: 'center', marginTop: 4, }}>
+        <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+        </View>
+        <View style={{ alignItems: 'center', marginTop: 4, }}>
+        <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+        </View>
+        <View style={{ alignItems: 'center', marginTop: 4, }}>
+        <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+        </View>
+        <View style={{ alignItems: 'center', marginTop: 4, }}>
+        <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+        </View> */}
+       
+    
+                {/* <Pressable style={{ alignItems: 'center', marginTop: 4, }}>
+                   <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+                </Pressable>
+                <Pressable style={{ alignItems: 'center', marginTop: 4, }}>
+                   <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+                </Pressable>
+                <Pressable style={{ alignItems: 'center', marginTop: 4, }}>
+                   <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+                </Pressable> */}
+     
+      {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {
+           items.map((item, index)=>(
+              <React.Fragment key={index}>
+                   <Pressable style={{ alignItems: 'center', marginTop: 4, }}>
+                   <IconButton {...props} icon={props.icon} />
+                  <Text style={styles.textButton}>Texto</Text>
+                </Pressable>
+              </React.Fragment>
+           ))
+        }
+      </ScrollView> */}
     </View>
   )
 
@@ -58,18 +129,17 @@ export const IconButtonLayout = (props: LayoutIcon) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     /* justifyContent: 'space-around',
     alignItems: 'center', */
     width: 360,
     height: 80,
     marginTop: 15,
-    paddingEnd: 15
   },
   containerIcon: {
     alignItems: 'center', marginTop: 4,
   },
   textButton: {
-    color: 'black', fontSize: 12, marginTop: -24, paddingLeft: 10,
+    color: 'black', fontSize: 12, marginTop: -24, paddingLeft: 10
   }
 })
