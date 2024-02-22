@@ -1,21 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import MaybeDismissable from '../../../hooks/MaybeDismissable/MaybeDismissable';
-import {DataAttributes} from '../../../utils/types';
-import {ButtonProps} from '../../Button/Button';
-import {Boxed} from '../../Primitives/Boxed/Boxed';
+import { DataAttributes } from '../../../utils/types';
+import { Boxed } from '../../Primitives/Boxed/Boxed';
 import {
-  ImageProps,
-  MediaBorderRadiusProvider,
+  MediaBorderRadiusProvider
 } from '../../Primitives/Image/Image';
-import {VideoProps} from '../../Primitives/Video/Video';
-import Tag, {TagProps} from '../../Tag/Tag';
-import {mediaCard, mediaCardContent, styles} from '../Card.css';
+import Tag from '../../Tag/Tag';
+import { mediaCard, mediaCardContent, styles } from '../Card.css';
 import CardContent from '../CardContent/CardContent';
 import MaybeSection from '../MaybeSection/MaybeSection';
 
 type MediaCardProps = {
-  media:  React.ReactNode, //React.ComponentType<ImageProps> | React.ComponentType<VideoProps>;
+  media: React.ReactNode; //React.ComponentType<ImageProps> | React.ComponentType<VideoProps>;
   headline?: string | typeof Tag;
   pretitle?: string;
   pretitleLinesMax?: number;
@@ -65,11 +62,11 @@ export const MediaCard = React.forwardRef<HTMLDivElement, MediaCardProps>(
           width="100%"
           height="100%">
           <MaybeSection style={mediaCard.container} aria-label={ariaLabel}>
-            <View style={{ flex: 1}}>
+            <View style={{flex: 1}}>
               <MediaBorderRadiusProvider value={false}>
-                {media}
+                {media}                
               </MediaBorderRadiusProvider>
-            </View>            
+            </View>
             <View style={mediaCardContent.default}>
               <CardContent
                 headline={headline}
