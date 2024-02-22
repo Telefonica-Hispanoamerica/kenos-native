@@ -10,6 +10,8 @@ export const SMALL_ICON_SIZE = 20;
 export const SPINNER_SIZE = 20;
 export const SMALL_SPINNER_SIZE = 16;
 export const PADDING_Y_LINK = 6;
+export const BORDER_RADIUS_ROUNDED=60;
 const PADDING_X_LINK = 12;
 
 export const disabledStyle = { opacity: 0.5 };
+export const disabledBackground = { opacity: 0 };
