@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./src/__stories__",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src[\\\\/]__stories__(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src\\/__stories__(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -75,6 +75,7 @@ const getStories = () => {
     "./src/__stories__/Tabs.stories.tsx": require("../src/__stories__/Tabs.stories.tsx"),
     "./src/__stories__/Tag.stories.tsx": require("../src/__stories__/Tag.stories.tsx"),
     "./src/__stories__/Text.stories.tsx": require("../src/__stories__/Text.stories.tsx"),
+    "./src/__stories__/TextField.stories.tsx": require("../src/__stories__/TextField.stories.tsx"),
     "./src/__stories__/Title.stories.tsx": require("../src/__stories__/Title.stories.tsx"),
   };
 };
