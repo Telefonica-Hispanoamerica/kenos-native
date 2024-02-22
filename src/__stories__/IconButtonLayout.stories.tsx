@@ -3,7 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { IconButton } from '../components/Icon Button/IconButton';
 import { IconButtonLayout } from '../components/LayoutButton/IconButtonLayout';
 import { ScrollView, Text, View } from 'react-native';
-import { IconLightningRegular } from '../kenos-icons';
+import { IconLightningRegular,IconFileImageRegular,IconChipSimCardRegular,IconFolderRegular,IconRobotRegular} from '../kenos-icons';
+
 
 export default {
   title: 'ButtonLayout',
@@ -12,12 +13,13 @@ export default {
 
 
 export const Basic: ComponentStory<typeof IconButtonLayout> = args => {
-
+  
+  const buttonsOptions=[{text:'text1',icon:IconChipSimCardRegular},{text:'text2',icon:IconFileImageRegular},{text:'text3',icon:IconLightningRegular},{text:'text4',icon:IconFolderRegular},{text:'text5',icon:IconRobotRegular}]
 
   return (
     <>
       <View>
-        <IconButtonLayout {...args} icon={IconLightningRegular} />
+        <IconButtonLayout {...args} buttonsOptions={buttonsOptions}/>
       </View>
     </>
 
