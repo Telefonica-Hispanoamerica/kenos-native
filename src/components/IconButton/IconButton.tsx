@@ -40,7 +40,7 @@ export const IconButton = (props: IconTypeProps) => {
 
   return (
     <View style={styles.container}>
-      <Pressable style={[styles.circle, {backgroundColor: background}]}>
+      <Pressable onPress={props.onPress} style={[styles.circle, {backgroundColor: background}]}>
         {iconComponent}
       </Pressable>
       <Text style={styles.textButton}>{props.children}</Text>
