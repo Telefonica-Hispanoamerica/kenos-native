@@ -1,9 +1,9 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {View} from 'react-native';
-import { IconButton } from '../components/Icon Button/IconButton';
+import { IconButton } from '../components/IconButton/IconButton';
 import {IconComputerUserRegular} from '../kenos-icons';
-import { IconButtonType } from '../components/Icon Button/IconButton.Types';
+import { IconButtonType } from '../components/IconButton/IconButton.Types';
 
 const buttonTypes: Array<IconButtonType> = [
   'inverse',
