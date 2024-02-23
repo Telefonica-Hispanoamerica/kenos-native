@@ -56,8 +56,7 @@ const CardContent: React.FC<CardContentProps> = ({
                   <Text2 truncate={pretitleLinesMax} regular>
                     {pretitle}
                   </Text2>
-                )}
-                {/* weight={textPresets.cardTitle.weight} */}
+                )}                
                 <Text
                   mobileSize={18}
                   mobileLineHeight="24px"
@@ -76,27 +75,22 @@ const CardContent: React.FC<CardContentProps> = ({
           )}
 
           {description && (
-            <Stack space={8}>
-              <Stack space={4}>
-                <Text2
-                  truncate={descriptionLinesMax}
-                  as="p"
-                  regular
-                  color={skin.colors.textSecondary}>
-                  {description}
-                </Text2>
-              </Stack>
-            </Stack>
+            <Text2
+              truncate={descriptionLinesMax}
+              as="p"
+              regular
+              color={skin.colors.textSecondary}>
+              {description}
+            </Text2>
           )}
         </Stack>
-
-        {extra && <>{extra}</>}
+        {extra && extra}
       </View>
 
       {/* *****************************/}
       {/* Cambiar por un button group */}
       {/* *****************************/}
-      <View style={ {display: 'flex', flex: 1, flexDirection: 'row'}}>
+      <View style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
         {button}
         {buttonLink}
       </View>

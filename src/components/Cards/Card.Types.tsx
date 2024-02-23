@@ -41,3 +41,23 @@ export interface DataCardProps {
   'aria-label'?: string;
   onClose?: () => void;
 }
+
+// type MediaCardProps = {
+//   media: RendersElement<typeof Image> | RendersElement<typeof Video>;
+//   headline?: string | RendersNullableElement<typeof Tag>;
+//   pretitle?: string;
+//   pretitleLinesMax?: number;
+//   title?: string;
+//   titleLinesMax?: number;
+//   subtitle?: string;
+//   subtitleLinesMax?: number;
+//   description?: string;
+//   descriptionLinesMax?: number;
+//   extra?: React.ReactNode;
+//   button?: React.ReactElement<ButtonPrimary>;  
+//     buttonLink?: RendersNullableElement<typeof ButtonLink>;
+//   children?: void;
+//   dataAttributes?: DataAttributes;
+//   'aria-label'?: string;
+//   onClose?: () => void;
+// };

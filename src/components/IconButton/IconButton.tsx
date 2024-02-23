@@ -9,26 +9,30 @@ import {
 } from 'react-native';
 import { useTheme } from '../../utils/ThemeContextProvider';
 import { IconProps } from '../../utils';
-import { IconLightningRegular } from '../../kenos-icons';
 
 
-type IconButtonProps = {
+export interface IconButtonProps {
   children?: React.ReactNode;
   icon?: React.ComponentType<IconProps>;
+  inverse?:boolean;
+  light?:boolean;
+  medium?:boolean;
+  highlight?:boolean;
 };
 
+export type IconTypeProps = IconButtonProps
 
-export const IconButton = ({ children, icon }: IconButtonProps) => {
+export const IconButton = (props:IconTypeProps) => {
 
   const { skin } = useTheme();
-  const { neutralHigh, brand, brandLow, inverse, buttonPrimaryBackgroundInverse, textButtonPrimaryInverse } = skin.colors;
+  const { neutralHigh, neutralLow, brand, brandLow, inverse, buttonPrimaryBackgroundInverse, textButtonPrimaryInverse } = skin.colors;
 
   const typeButton: Array<string> = ["inverse", "light", "medium", "highlight", "lightBlank"];
 
-  const Icon = icon as React.ComponentType<IconProps>;
+  const Icon = props.icon as React.ComponentType<IconProps>;
   let iconComponent: JSX.Element = <Icon />
 
-  const themeTypeButton = (typeButton: string) => {
+ /*  const themeTypeButton = (typeButton: string) => {
     switch (typeButton) {
       case "inverse":
         return {
@@ -57,27 +61,54 @@ export const IconButton = ({ children, icon }: IconButtonProps) => {
           typeIcon: iconComponent = React.cloneElement(iconComponent, { color: neutralHigh, size: 24 }),
         };
     }
-  }
+  } */
 
+  const themeTypeButton = () => {
+      if(props.inverse){
+        return {
+          background: inverse,
+          typeIcon: iconComponent = React.cloneElement(iconComponent, { color:brand, size: 24 }),
+        };
+      }
+      else if(props.light){
+        return{
+          background: neutralLow,
+          typeIcon: iconComponent = React.cloneElement(iconComponent, { color: neutralHigh, size: 24 }),
+        }
+      }
+      else if(props.medium){
+        return {
+          background: brandLow,
+          typeIcon: iconComponent = React.cloneElement(iconComponent, { color: brand, size: 24 }),
+        };
+      }
+      else if(props.highlight){
+         return{
+          background: brand,
+          typeIcon: iconComponent = React.cloneElement(iconComponent, { color: inverse, size: 24}) 
+         };
+      }
+      else{
+        return {
+          background: 'transparent',
+          typeIcon: iconComponent = React.cloneElement(iconComponent, { color: neutralHigh, size: 24 }),
+        };
+      }
+
+  };
+  
+  const { background, typeIcon } = themeTypeButton();
+  console.log(props.children)
   return (
-    <View>
+  
       <View style={styles.container}>
-        
-        {typeButton.map((aButtonType, index) => {
-
-          const { background, typeIcon } = themeTypeButton(aButtonType);
-
-          return (
-            <React.Fragment key={`button-${aButtonType}-${index}`}>
-              <Pressable style={[styles.circle, { backgroundColor: background }]}>
+      <Pressable style={[styles.circle, { backgroundColor: background }]}>
                 {typeIcon}
               </Pressable>
-              <Text style={styles.textButton}>Menu</Text>
-            </React.Fragment>
-          );
-        })}
+              <Text style={styles.textButton}>{props.children}</Text>
+        
       </View>
-    </View>
+
   );
 };
 

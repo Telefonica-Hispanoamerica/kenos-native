@@ -52,7 +52,7 @@ const Stack: React.FC<Props> = props => {
   const stylesView = StyleSheet.flatten([
     style,
     isNumeric ? styles.marginStack : styles.flexStack,
-    isNumeric ? {margin: space} : {justifyContent: `space-${space}`},
+    isNumeric ? {marginTop: space} : {justifyContent: `space-${space}`},
   ]);
 
   return (
@@ -61,9 +61,7 @@ const Stack: React.FC<Props> = props => {
       style={stylesView}
       aria-labelledby={props['aria-labelledby']}
       {...getPrefixedDataAttributes(props.dataAttributes)}>
-      {React.Children.map(children, child => (
-        <>{child}</>
-      ))}
+      {React.Children.map(children, child => child)}
     </View>
   );
 };
