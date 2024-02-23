@@ -1,7 +1,7 @@
 import React from 'react'
 import { GestureResponderHandlers, View } from 'react-native'
 import { styles } from '../Sheet.css';
-import { IconButton } from '../../Icon Button/IconButton';
+import { IconButton } from '../../IconButton/IconButton';
 import IconCloseRegular from '../../../kenos-icons/IconCloseRegular';
 
 interface PanResponderProps {
@@ -33,8 +33,7 @@ export const SheetHeader = ({ panHandlers, color, dismisableAction }: PanRespond
             <View style={styles.dismisableContainer}>
                 <IconButton 
                     icon={IconCloseRegular} 
-                    light={true} 
-                    styles={IconButtonStyles}
+                    type={'light'}
                     onPress={dismisableAction}
                 />
             </View>

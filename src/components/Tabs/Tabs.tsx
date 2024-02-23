@@ -1,19 +1,17 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
-  Animated,
+  Animated
 } from 'react-native';
-import {useTheme} from '../../utils/ThemeContextProvider';
-import {useElementDimensions} from '../../hooks/hooks';
-import {DataAttributes} from '../../utils/types';
-import {Text2, Text3} from '../Text/Text';
-import {IconArrowDropDownFilled} from '../../kenos-icons';
+import { useTheme } from '../../utils/ThemeContextProvider';
+import { useElementDimensions } from '../../hooks/hooks';
+import { DataAttributes } from '../../utils/types';
+import { Text2, Text3 } from '../Text/Text';
 
 const LINE_ANIMATION_DURATION_MS = 200;
-
 type TabsProps = {
   selectedIndex: number;
   onChange: (selectedIndex: number) => void;
@@ -29,19 +27,11 @@ type TabsProps = {
   dataAttributes?: DataAttributes;
   variant: 'primary' | 'secondary' | 'arrow';
 };
-
 const Tabs: React.FC<TabsProps> = ({
-  selectedIndex,
-  onChange,
-  tabs,
-  scrollable,
-  background,
-  rounded,
-  dataAttributes,
-  variant,
+  selectedIndex, onChange, tabs, scrollable, background, rounded, dataAttributes, variant,
 }: TabsProps) => {
-  const {skin} = useTheme();
-  const {onLayout} = useElementDimensions();
+  const { skin } = useTheme();
+  const { onLayout } = useElementDimensions();
   const animatedLineRef = useRef<typeof Animated.View>(null);
   const tabsContainerRef = useRef<View>(null);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -49,7 +39,7 @@ const Tabs: React.FC<TabsProps> = ({
   const lineWidth = useRef(new Animated.Value(0)).current;
   const tabWidths = useRef<number[]>([]);
   const tabRefs = useRef<React.RefObject<View>[]>(
-    tabs.map(() => useRef<View>(null)),
+    tabs.map(() => useRef<View>(null))
   );
 
   const colorMap = {
@@ -66,27 +56,26 @@ const Tabs: React.FC<TabsProps> = ({
       unselected: skin.colors.textPrimary,
     },
   };
-  
+
   const getTextColor = (
     isSelected: boolean,
-    variant: 'primary' | 'secondary' | 'arrow',
+    variant: 'primary' | 'secondary' | 'arrow'
   ) => {
     const { selected, unselected } = colorMap[variant];
     return isSelected ? selected : unselected;
   };
-  
+
   const TAB_HEIGHT = 56;
 
   const baseTabStyles = StyleSheet.create({
     baseMainContainer: {},
     baseContainer: {
       flexDirection: 'row',
-      overflow:
-        scrollable !== undefined
-          ? scrollable
-            ? 'scroll'
-            : 'hidden'
-          : 'hidden',
+      overflow: scrollable !== undefined
+        ? scrollable
+          ? 'scroll'
+          : 'hidden'
+        : 'hidden',
     },
     baseTab: {
       alignItems: 'center',
@@ -221,37 +210,46 @@ const Tabs: React.FC<TabsProps> = ({
   };
 
   useEffect(() => {
-    if (tabsContainerRef.current) {
+    const allTabsMounted = tabRefs.current.every(ref => ref.current !== null);
+    if (tabsContainerRef.current && allTabsMounted) {
       const newTabWidths: number[] = [];
       let cumulativeWidth = 0;
-      tabsContainerRef.current.measure(() => {
-        for (let i = 0; i < tabs.length; i++) {
-          tabRefs.current[i]?.current?.measureLayout(
-            tabsContainerRef.current!,
-            (x, y, tabWidth) => {
-              newTabWidths.push(tabWidth);
-              if (i === selectedIndex) {
-                linePositionX.setValue(cumulativeWidth);
-                lineWidth.setValue(tabWidth);
-              }
-              cumulativeWidth += tabWidth;
-              if (i === tabs.length - 1) {
-                tabWidths.current = newTabWidths;
-              }
-            },
-          );
+      const measureTabs = (index: number) => {
+        if (index >= tabs.length) {
+          tabWidths.current = newTabWidths;
+          animateLine(selectedIndex);
+          return;
         }
-      });
+
+        const tabRef = tabRefs.current[index];
+        tabRef.current?.measureLayout(
+          tabsContainerRef.current!,
+          (x, y, width) => {
+            newTabWidths.push(width);
+            cumulativeWidth += width;
+            if (index === selectedIndex) {
+              linePositionX.setValue(cumulativeWidth - width);
+              lineWidth.setValue(width);
+            }
+            measureTabs(index + 1);
+          },
+          () => {
+            console.error("Error al medir la pestaña");
+          }
+        );
+      };
+
+      // Iniciar la medición desde la primera pestaña
+      measureTabs(0);
     }
-  }, [selectedIndex, tabs]);
+  }, [selectedIndex, tabs.length]); // Dependencias del useEffect
 
   const animateLine = (toIndex: number) => {
     if (isAnimating || toIndex === selectedIndex) return;
     setIsAnimating(true);
-    const newPosition =
-      tabWidths.current
-        .slice(0, toIndex + 1)
-        .reduce((acc, val) => acc + val, 0) - tabWidths.current[toIndex];
+    const newPosition = tabWidths.current
+      .slice(0, toIndex + 1)
+      .reduce((acc, val) => acc + val, 0) - tabWidths.current[toIndex];
     const newWidth = tabWidths.current[toIndex] || 0;
     Animated.parallel([
       Animated.timing(linePositionX, {
@@ -281,7 +279,7 @@ const Tabs: React.FC<TabsProps> = ({
         scrollEnabled={scrollable !== undefined ? scrollable : false}
         style={variantTabStyles[variant].scrollableTabs}>
         <View style={variantTabStyles[variant].containerTabs}>
-          {tabs.map(({text, icon, 'aria-controls': ariaControls}, index) => {
+          {tabs.map(({ text, icon, 'aria-controls': ariaControls }, index) => {
             const isSelected = index === selectedIndex;
             const isArrowVariant = variant === 'arrow';
             const isFirstTab = index === 0;
@@ -302,11 +300,11 @@ const Tabs: React.FC<TabsProps> = ({
                   style={[
                     variantTabStyles[variant].optionTabs,
                     isArrowVariant &&
-                      isFirstTab &&
-                      specificTabStyles.arrow.firstTab,
+                    isFirstTab &&
+                    specificTabStyles.arrow.firstTab,
                     isArrowVariant &&
-                      isLastTab &&
-                      specificTabStyles.arrow.lastTab,
+                    isLastTab &&
+                    specificTabStyles.arrow.lastTab,
                     isSelected
                       ? isAnimating
                         ? specificTabStyles.primary.selectedAnimatingTab
@@ -318,23 +316,22 @@ const Tabs: React.FC<TabsProps> = ({
                   {icon && (
                     <View style={baseTabStyles.iconTab}>
                       {React.cloneElement(icon as React.ReactElement, {
-                        color:
-                          isSelected && variant !== 'primary'
-                            ? skin.colors.inverse
-                            : undefined,
+                        color: isSelected && variant !== 'primary'
+                          ? skin.colors.inverse
+                          : undefined,
                       })}
                     </View>
                   )}
                   {variant !== 'arrow' ? (
                     <Text3
                       color={getTextColor(isSelected, variant)}
-                      {...(isSelected ? {bold: true} : {regular: true})}>
+                      {...(isSelected ? { bold: true } : { regular: true })}>
                       {text}
                     </Text3>
                   ) : (
                     <Text2
                       color={getTextColor(isSelected, variant)}
-                      {...(isSelected ? {bold: true} : {medium: true})}>
+                      {...(isSelected ? { bold: true } : { medium: true })}>
                       {text}
                     </Text2>
                   )}
@@ -349,15 +346,13 @@ const Tabs: React.FC<TabsProps> = ({
                 specificTabStyles.primary.animatedLineTabs,
                 {
                   width: lineWidth,
-                  transform: [{translateX: linePositionX}],
+                  transform: [{ translateX: linePositionX }],
                 },
-              ]}
-            />
+              ]} />
           )}
         </View>
       </ScrollView>
     </View>
   );
 };
-
 export default Tabs;
