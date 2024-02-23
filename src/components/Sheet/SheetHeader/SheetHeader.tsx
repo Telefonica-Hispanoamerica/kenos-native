@@ -1,14 +1,24 @@
 import React from 'react'
 import { GestureResponderHandlers, View } from 'react-native'
 import { styles } from '../Sheet.css';
+import { IconButton } from '../../Icon Button/IconButton';
+import IconCloseRegular from '../../../kenos-icons/IconCloseRegular';
 
 interface PanResponderProps {
     panHandlers: GestureResponderHandlers;
     color: string;
     dismisable: boolean;
+    dismisableAction: () => void;
 }
 
-export const SheetHeader = ({ panHandlers, color }: PanResponderProps) => {
+const IconButtonStyles = {
+    height: 28, 
+    width: 28, 
+    padding: 2,
+    marginTop: -10
+}
+
+export const SheetHeader = ({ panHandlers, color, dismisableAction }: PanResponderProps) => {
     return (
         <View
             style={styles.draggableHandleContainer}
@@ -20,6 +30,14 @@ export const SheetHeader = ({ panHandlers, color }: PanResponderProps) => {
                     { backgroundColor: color }
                 ]}
             />
+            <View style={styles.dismisableContainer}>
+                <IconButton 
+                    icon={IconCloseRegular} 
+                    light={true} 
+                    styles={IconButtonStyles}
+                    onPress={dismisableAction}
+                />
+            </View>
         </View>
     )
 }

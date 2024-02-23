@@ -16,9 +16,15 @@ export interface BottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  dismisable?: boolean;
 }
 
-const BottomSheet = ({ isOpen, onClose, children }: BottomSheetProps) => {
+const BottomSheet = ({ 
+  isOpen, 
+  onClose, 
+  children, 
+  dismisable = false 
+}: BottomSheetProps) => {
   const { height } = Dimensions.get("window");
   const translateY = useRef(new Animated.Value(isOpen ? 0 : height)).current;
   const { skin } = useTheme();
@@ -79,7 +85,7 @@ const BottomSheet = ({ isOpen, onClose, children }: BottomSheetProps) => {
   const bottomSheetStyle = {
     transform: [{ translateY }],
     backgroundColor: background,
-    maxHeight: Dimensions.get("window").height * 0.7
+    maxHeight: height * 0.7
   };
 
 
@@ -97,7 +103,8 @@ const BottomSheet = ({ isOpen, onClose, children }: BottomSheetProps) => {
             <SheetHeader
               panHandlers={panResponder.panHandlers}
               color={control}
-              dismisable={true}
+              dismisable={dismisable}
+              dismisableAction={handleClose}
             />
             <ScrollView contentContainerStyle={styles.scrollContainer}>
               {children}

@@ -23,9 +23,15 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
       },
       draggableHandleContainer: {
-        height: 20,
+        paddingTop: 8,
         width: '100%',
         alignSelf: "center",
+      },
+      dismisableContainer: {
+        height: 28,
+        alignSelf: 'flex-end',
+        paddingLeft: 16,
+        paddingRight: 16,
       },
       scrollContainer: {
         flexGrow: 1,

@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { IconButton } from '../components/Icon Button/IconButton';
 import { Text, View } from 'react-native';
 import { IconComputerUserRegular } from '../kenos-icons';
-import { launchImageLibrary } from 'react-native-image-picker';
 
 export default {
   title: 'components/IconButton',
@@ -35,7 +34,7 @@ export const iconImage = async ()=>{
 
 export const Basic: ComponentStory<typeof IconButton> = args => (
   <View>
-    <IconButton {...args} icon={IconComputerUserRegular}/> 
+    <IconButton {...args} icon={IconComputerUserRegular} onPress={() => console.log("Pressed")}/> 
   </View>
 );
 
