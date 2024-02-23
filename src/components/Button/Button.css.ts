@@ -3,7 +3,7 @@ import { ButtonType } from './Button';
 import { useTheme } from '../../utils/ThemeContextProvider';
 import {applyAlpha} from '../../utils/color';
 import {StyleSheet} from 'react-native';
-import {BUTTON_MIN_WIDTH, BORDER_RADIUS_ROUNDED, disabledStyle, disabledBackground} from './Button.utils';
+import {BUTTON_MIN_WIDTH, BORDER_RADIUS_ROUNDED, disabledStyle, selected, linkSelectedInverse} from './Button.utils';
 
 export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonType}) => {
   
@@ -14,34 +14,43 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     textButtonSecondary,
     buttonDangerBackgroundSelected,
     buttonPrimaryBackgroundSelected,
-    buttonSecondaryBorder,
     textButtonPrimaryInverse,
     textButtonPrimary,
     buttonPrimaryBackgroundInverse,
-    textPrimaryInverse,
+    buttonPrimaryBackgroundSelectedInverse,
     buttonSecondaryBackground,
+    buttonSecondaryBackgroundSelected,
+    buttonSecondaryBackgroundSelectedInverse,
+    buttonSecondaryBorderSelectedInverse,
     textButtonSecondaryInverse,
     buttonSecondaryBorderInverse,
     buttonLinkBackgroundSelected,
     buttonLinkBackgroundSelectedInverse,
-
     textLink,
-    textLinkInverse
+    textLinkInverse,
   } = skin.colors;
 
   const buttonBR = skin.borderRadii?.button || '0px';
-  const buttonBRRN = parseFloat(buttonBR.replace(/px/g, '')); 
-
+  const buttonBRRN = parseFloat(buttonBR.replace(/px/g, ''));
+  
   switch (props.type) {
     case 'secondary':
       return {
-        backgroundColor:'transparent',
+        backgroundColor: props.selected ? `${applyAlpha(
+          buttonSecondaryBackgroundSelected,
+          selected.opacity
+        )}`: props.inverse && props.selected ? `${applyAlpha(
+          buttonSecondaryBackgroundSelectedInverse,
+          selected.opacity
+        )}`:'transparent',
         borderColor: `${applyAlpha(
-          buttonSecondaryBackground,
+          props.inverse ? buttonSecondaryBorderInverse:
+          props.inverse && props.selected ? buttonSecondaryBorderSelectedInverse: 
+          props.selected ? buttonSecondaryBackgroundSelected:buttonSecondaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         textColor: `${applyAlpha(
-          textButtonSecondary,
+          props.inverse ? textButtonSecondaryInverse:textButtonSecondary,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
@@ -63,8 +72,11 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
       };
       case 'link':
         return {
-          backgroundColor: props.selected ? buttonLinkBackgroundSelected:'transparent',
-          borderColor: props.selected ? buttonLinkBackgroundSelected:'transparent',
+          backgroundColor: props.inverse && props.selected ? `${applyAlpha(buttonLinkBackgroundSelectedInverse,
+             linkSelectedInverse.opacity)}`: props.selected ? buttonLinkBackgroundSelected:'transparent',
+          borderColor: props.inverse && props.selected ? `${applyAlpha(buttonLinkBackgroundSelectedInverse,
+            linkSelectedInverse.opacity)}`: 
+          props.selected ? buttonLinkBackgroundSelected:'transparent',
           textColor: `${applyAlpha(
             props.inverse? textLinkInverse:textLink,
             props.disabled ? disabledStyle.opacity : 1,
@@ -76,11 +88,15 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
     default:
       return {
         backgroundColor: `${applyAlpha(
-          props.inverse ? buttonPrimaryBackgroundInverse: props.selected ? buttonPrimaryBackgroundSelected:buttonPrimaryBackground,
+          props.selected && props.inverse ? buttonPrimaryBackgroundSelectedInverse:
+          props.inverse ? buttonPrimaryBackgroundInverse:
+          props.selected ? buttonPrimaryBackgroundSelected:buttonPrimaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         borderColor: `${applyAlpha(
-          props.inverse ? buttonPrimaryBackgroundInverse: props.selected ? buttonPrimaryBackgroundSelected:buttonPrimaryBackground,
+          props.inverse && props.selected ? buttonPrimaryBackgroundSelectedInverse:
+          props.inverse ? buttonPrimaryBackgroundInverse: 
+          props.selected ? buttonPrimaryBackgroundSelected:buttonPrimaryBackground,
           props.disabled ? disabledStyle.opacity : 1,
         )}`,
         textColor: props.inverse ? textButtonPrimaryInverse:textButtonPrimary,
