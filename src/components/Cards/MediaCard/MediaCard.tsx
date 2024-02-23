@@ -1,35 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import MaybeDismissable from '../../../hooks/MaybeDismissable/MaybeDismissable';
-import { DataAttributes } from '../../../utils/types';
-import { Boxed } from '../../Primitives/Boxed/Boxed';
-import {
-  MediaBorderRadiusProvider
-} from '../../Primitives/Image/Image';
-import Tag from '../../Tag/Tag';
-import { mediaCard, mediaCardContent, styles } from '../Card.css';
+import {Boxed} from '../../Primitives/Boxed/Boxed';
+import {MediaBorderRadiusProvider} from '../../Primitives/Image/Image';
+import {MediaCardProps} from '../Card.Types';
+import {mediaCard, mediaCardContent, styles} from '../Card.css';
 import CardContent from '../CardContent/CardContent';
 import MaybeSection from '../MaybeSection/MaybeSection';
-
-type MediaCardProps = {
-  media: React.ReactNode; //React.ComponentType<ImageProps> | React.ComponentType<VideoProps>;
-  headline?: string | typeof Tag;
-  pretitle?: string;
-  pretitleLinesMax?: number;
-  title?: string;
-  titleLinesMax?: number;
-  subtitle?: string;
-  subtitleLinesMax?: number;
-  description?: string;
-  descriptionLinesMax?: number;
-  extra?: React.ReactNode;
-  button?: React.ReactNode; //React.ComponentType<ButtonProps>; // RendersNullableElement<typeof Button>;
-  buttonLink?: React.ReactNode; //React.ComponentType<ButtonProps>;
-  children?: void;
-  dataAttributes?: DataAttributes;
-  'aria-label'?: string;
-  onClose?: () => void;
-};
 
 export const MediaCard = React.forwardRef<HTMLDivElement, MediaCardProps>(
   (
@@ -58,13 +35,12 @@ export const MediaCard = React.forwardRef<HTMLDivElement, MediaCardProps>(
         <Boxed
           styles={styles.boxed}
           dataAttributes={{'component-name': 'MediaCard', ...dataAttributes}}
-          // ref={ref}
           width="100%"
           height="100%">
           <MaybeSection style={mediaCard.container} aria-label={ariaLabel}>
             <View style={{flex: 1}}>
               <MediaBorderRadiusProvider value={false}>
-                {media}                
+                {media}
               </MediaBorderRadiusProvider>
             </View>
             <View style={mediaCardContent.default}>

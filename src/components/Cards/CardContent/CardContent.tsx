@@ -90,10 +90,10 @@ const CardContent: React.FC<CardContentProps> = ({
       {/* *****************************/}
       {/* Cambiar por un button group */}
       {/* *****************************/}
-      <View style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
+      {/* <View style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
         {button}
         {buttonLink}
-      </View>
+      </View> */}
       {/* {button && <View style={styles.actions}>{button}</View>}
 
       {buttonLink && <View style={styles.actions}>{buttonLink}</View>} */}

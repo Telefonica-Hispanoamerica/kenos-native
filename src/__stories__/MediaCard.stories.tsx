@@ -1,12 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
 
-import { ScrollView, View } from 'react-native';
-import { Placeholder, Text3 } from '../components';
-import { MediaCard } from '../components/Cards/MediaCard/MediaCard';
+import {ScrollView, View} from 'react-native';
+import {Placeholder, Text3} from '../components';
+import {MediaCard} from '../components/Cards/MediaCard/MediaCard';
 import Image from '../components/Primitives/Image/Image';
 import Video from '../components/Primitives/Video/Video';
-
 
 const VIDEO_SRC =
   'https://fr-cert1-es.mytelco.io/2O4-xBJqiMlAfLkseq8RkXs_mv2ACV7Hnt20HqXxNl-mK7KLI3M2dAw';
@@ -18,8 +17,16 @@ const IMAGE_SRC_2 =
   'https://s3-alpha-sig.figma.com/img/908a/f0fa/5d65525af9a72156bf2533d449884c7b?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CM9byo7OUC6Zz1AnOcoBrl0yc0Byo9MhA8S5q~LTDz9ihXFKGvg3ZJqIMmviS4dNJbyaHmytA4lJheNje9XIiZAtvtkooGNE6fh~o2hqVPp-zAUBe6FD7zYgHkPDqGy9D5Jltd-4wEccz~l19pQA~eGfFnHoz9iyBKvoCVk2Lj1jCl1aSXXMfsCRfeP96CglUmjFVt1qc~tEOanMcxEIYJp0xcM8lmJ3dwUU7hv8d~EG1sJpQMc6U216S4FVHSgiaeZtJSuTj4W9mXydPhPgBHyAWzaPKUQ7EPq~j0iv6dTg9EiF7Pgz~ceBhQgIYa94bZXt5bgxXVroZAMybzT5iQ__';
 
 export default {
-  title: 'components/Cards/MediaCard',
+  title: 'MediaCard',
   component: MediaCard,
+  // argTypes: {
+  //   media: {
+  //     control: {
+  //       type: 'select',
+  //       options: ['Image', 'Video'],
+  //     },
+  //   },
+  // },
 } as ComponentMeta<typeof MediaCard>;
 
 export const Basic: ComponentStory<typeof MediaCard> = args => {
@@ -67,6 +74,7 @@ export const Basic: ComponentStory<typeof MediaCard> = args => {
     </ScrollView>
   );
 };
+
 Basic.args = {
   headline: 'Headline',
   pretitle: 'Pretitle',
