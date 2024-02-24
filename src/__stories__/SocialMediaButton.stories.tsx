@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { SocialMediaButton } from '../components/SocialMediaButton/SocialMediaButton';
 import { View } from 'react-native';
 
-
 export default {
   title: 'SocialMediaButton',
   component: SocialMediaButton,
@@ -12,14 +11,15 @@ export default {
 
 export const Basic: ComponentStory<typeof SocialMediaButton> = args => (
   <View>
-    <SocialMediaButton icon='google'/> 
+    <SocialMediaButton {...args} />
   </View>
 );
 
-/* Basic.args = {
-  children:'algo',
-  localPhoto:false,
-  src:iconImg,
-}; */
- 
+Basic.args = {
+  text: 'Entrar con Red Social',
+  small: false,
+  rounded: false
+};
+
+
 Basic.storyName = 'SocialMediaButton'
