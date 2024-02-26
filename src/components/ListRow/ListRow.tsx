@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, View} from 'react-native';
+import { TouchableOpacity, View} from 'react-native';
 import { Text,Text2 } from '../Text/Text';
 import Radio from '../Radio/Radio';
 import IconChevron from '../../icons/icon-chevron';
 import Tag from '../Tag/Tag';
 import { useTheme } from '../../utils/ThemeContextProvider';
+import { getStylesRow } from './ListRow.css';
 
 interface RowProps {
   value: string;
@@ -33,55 +34,10 @@ const Row: React.FC<RowProps> = ({
   style = 'divider',
   icon
 }) => {
-  const [selectedValue, setSelectedValue] = useState(defaultValue);
-  const {skin, textPresets} = useTheme();
-  const {border, divider} = skin.colors
+  const [selectedValue, setSelectedValue] = useState(defaultValue); 
+  const {skin,textPresets} = useTheme()
 
-  const styles = StyleSheet.create({
-    row: {
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-    },
-    dividerRow: {
-      borderBottomWidth: 1,
-      borderBottomColor: divider,
-    },
-    borderedRow: {
-      borderWidth: 1,
-      borderColor: border,
-      borderRadius: 10,
-    },
-    disabledRow: {
-      opacity: 0.5, 
-    },
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      width: '100%',
-    },
-    leftContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    leftContent: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginRight: 10,
-    },
-    rightContent: {
-      flex: 1,
-      marginLeft: 10,
-    },
-    rightContainer: {
-      display:'flex',
-      justifyContent:'center',
-      alignContent:'center',
-      alignItems:'center'
-    },
-
-  });
+  const styles = getStylesRow(skin.colors)
 
   const handleSelect = (newValue: string) => {
     setSelectedValue(newValue);

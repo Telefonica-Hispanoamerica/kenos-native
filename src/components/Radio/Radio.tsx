@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTheme } from '../../utils/ThemeContextProvider';
+import { getStylesRadio } from './Radio.css';
 
 interface RadioButtonProps {
   label: string;
@@ -19,37 +20,8 @@ const Radio: React.FC<RadioButtonProps> = ({
 }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
   const {skin} = useTheme();
+  const styles = getStylesRadio(skin.colors)
   const {control, iosControlKnob, controlActivated} = skin.colors
-
-  const styles = StyleSheet.create({
-    option: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 10,
-    },
-    radioButton: {
-      width: 24,
-      height: 24,
-      borderRadius: 12,
-      borderWidth: 2,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    disabledRadioButton: {
-      opacity: 0.5, // Reduce la opacidad cuando está deshabilitado
-    },
-    innerCircle: {
-      width: 12,
-      height: 12,
-      borderRadius: 6,
-      backgroundColor: controlActivated,
-    },
-    label: {
-      marginLeft: 10,
-      fontSize: 16,
-      color: control
-    },
-  });
 
   const handleSelect = (newValue: string) => {
     if (selectedValue !== newValue) {
@@ -57,7 +29,7 @@ const Radio: React.FC<RadioButtonProps> = ({
       onSelect(newValue);
     }
   };
-
+  
   return (
     <TouchableOpacity
       style={styles.option}
