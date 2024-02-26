@@ -14,4 +14,5 @@ export const BORDER_RADIUS_ROUNDED=60;
 const PADDING_X_LINK = 12;
 
 export const disabledStyle = { opacity: 0.5 };
-export const disabledBackground = { opacity: 0 };
+export const selected = { opacity: 0.08};
+export const linkSelectedInverse = { opacity: 0.2};

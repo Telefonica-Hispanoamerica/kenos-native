@@ -1,9 +1,10 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
-import {View} from 'react-native';
-import { IconButton } from '../components/IconButton/IconButton';
-import {IconComputerUserRegular} from '../kenos-icons';
-import { IconButtonType } from '../components/IconButton/IconButton.Types';
+import { View } from 'react-native';
+
+import { IconButton } from '../components/Buttons/IconButton/IconButton';
+import { IconComputerUserRegular } from '../kenos-icons';
+import { IconButtonType } from '../components/Buttons/Buttons.types';
 
 const buttonTypes: Array<IconButtonType> = [
   'inverse',
@@ -33,7 +34,7 @@ export const Basic: ComponentStory<typeof IconButton> = args => {
       <View style={{flex: 2}}>
         {buttonTypes.map(type => (
           <View key={type}>
-            <IconButton icon={IconComputerUserRegular} type={type}>
+            <IconButton icon={IconComputerUserRegular} type={type} onPress={()=>{}}>
               {type}
             </IconButton>
           </View>
