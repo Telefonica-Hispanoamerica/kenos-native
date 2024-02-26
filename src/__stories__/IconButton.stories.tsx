@@ -26,7 +26,7 @@ export default {
 
 export const Basic: ComponentStory<typeof IconButton> = args => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, padding: 10}}>
       <View style={{flex: 1}}>
         <IconButton {...args} icon={IconComputerUserRegular} />
       </View>
