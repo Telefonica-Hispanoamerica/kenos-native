@@ -2,55 +2,188 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { View } from 'react-native';
-
-// Importa el componente `Row` que deseas mostrar en Storybook
+import { Circle } from '../components';
+import { IconButton } from '../components/IconButton/IconButton';
+import { IconComputerAcademicRegular } from '../kenos-icons';
+import { ScrollView } from 'react-native';
 import Row from '../components/ListRow/ListRow';
 
-// Define una historia para el componente `Row`
-storiesOf('Row', module)
-  // Agrega una historia para un `Row` con un RadioButton en la parte derecha
-  .add('with RadioButton', () => (
+storiesOf('List', module)
+  .add('Row', () => (
+    <ScrollView>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin:10, gap:8 }}>
       <Row
-        value="option1"
-        defaultValue="option1"
+        value="1"
+        defaultValue="1"
         onSelect={(value) => console.log('Selected value:', value)}
-        headline="Row headline"
-        title="Row title"
-        subtitle="Row subtitle"
-        description="Row description"
-        badge={true}
-        style='bordered'
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        rightComponent="IconChevron"
+      />
+       <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+      />
+      <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         disabled={true}
-        extra={<View style={{ width: 50, height: 50, backgroundColor: 'red' }} />} // Ejemplo de un componente extra
       />
       <Row
-        value="option1"
-        defaultValue="option1"
+        value="2"
+        defaultValue="2"
         onSelect={(value) => console.log('Selected value:', value)}
-        headline="Row headline"
-        title="Row title"
-        subtitle="Row subtitle"
-        description="Row description"
-        badge={true}
-        extra={<View style={{ width: 50, height: 50, backgroundColor: 'red' }} />} // Ejemplo de un componente extra
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"
+        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        rightComponent="IconChevron"
+      />
+       <Row
+        value="2"
+        defaultValue="2"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"
+        icon={<IconButton icon={IconComputerAcademicRegular} />}
+      />
+      <Row
+        value="2"
+        defaultValue="2"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"
+        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        disabled={true}
+      />
+      <Row
+        value="3"
+        defaultValue="3"
+        onSelect={(value) => console.log('Selected value:', value)}
+        title="Title"
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+      />
+       <Row
+        value="3"
+        defaultValue="3"
+        onSelect={(value) => console.log('Selected value:', value)}
+        title="Title"
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        rightComponent="IconChevron"
       />
     </View>
+    </ScrollView>
   ))
-  // Agrega una historia para un `Row` con un IconChevron en la parte derecha
-  .add('with IconChevron', () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Row
-        value="option2"
-        defaultValue="option2"
+  .add('Boxed Row', () => (
+    <ScrollView>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',margin:10, gap:8  }}>
+     <Row
+        value="1"
+        defaultValue="1"
         onSelect={(value) => console.log('Selected value:', value)}
-        headline="Row headline"
-        title="Row title"
-        subtitle="Row subtitle"
-        description="Row description"
-        badge={true}
-        rightComponent="IconChevron" // Usa el IconChevron como componente derecho
-        extra={<View style={{ width: 50, height: 50, backgroundColor: 'blue' }} />} // Ejemplo de un componente extra
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        rightComponent="IconChevron"
+        style="bordered"
+      />
+       <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        style="bordered"
+      />
+      <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        disabled={true}
+        style="bordered"
+      />
+      <Row
+        value="2"
+        defaultValue="2"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"
+        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        rightComponent="IconChevron"
+        style="bordered"
+      />
+       <Row
+        value="2"
+        defaultValue="2"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"
+        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        style="bordered"
+      />
+      <Row
+        value="2"
+        defaultValue="2"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"
+        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        disabled={true}
+        style="bordered"
+      />
+      <Row
+        value="3"
+        defaultValue="3"
+        onSelect={(value) => console.log('Selected value:', value)}
+        title="Title"
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        style="bordered"
+      />
+       <Row
+        value="3"
+        defaultValue="3"
+        onSelect={(value) => console.log('Selected value:', value)}
+        title="Title"
+        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        rightComponent="IconChevron"
+        style="bordered"
       />
     </View>
+    </ScrollView>
   ));

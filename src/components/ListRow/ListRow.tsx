@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, View} from 'react-native';
+import { Text,Text2 } from '../Text/Text';
 import Radio from '../Radio/Radio';
 import IconChevron from '../../icons/icon-chevron';
 import Tag from '../Tag/Tag';
+import { useTheme } from '../../utils/ThemeContextProvider';
 
 interface RowProps {
   value: string;
@@ -14,9 +16,8 @@ interface RowProps {
   title?: string;
   subtitle?: string;
   description?: string;
-  badge?: boolean | number;
-  extra?: React.ReactNode;
   style?: 'divider' | 'bordered';
+  icon?: React.ReactNode;
 }
 
 const Row: React.FC<RowProps> = ({
@@ -29,11 +30,58 @@ const Row: React.FC<RowProps> = ({
   title,
   subtitle,
   description,
-  badge,
-  extra,
   style = 'divider',
+  icon
 }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
+  const {skin, textPresets} = useTheme();
+  const {border, divider} = skin.colors
+
+  const styles = StyleSheet.create({
+    row: {
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+    },
+    dividerRow: {
+      borderBottomWidth: 1,
+      borderBottomColor: divider,
+    },
+    borderedRow: {
+      borderWidth: 1,
+      borderColor: border,
+      borderRadius: 10,
+    },
+    disabledRow: {
+      opacity: 0.5, 
+    },
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: '100%',
+    },
+    leftContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    leftContent: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginRight: 10,
+    },
+    rightContent: {
+      flex: 1,
+      marginLeft: 10,
+    },
+    rightContainer: {
+      display:'flex',
+      justifyContent:'center',
+      alignContent:'center',
+      alignItems:'center'
+    },
+
+  });
 
   const handleSelect = (newValue: string) => {
     setSelectedValue(newValue);
@@ -51,13 +99,29 @@ const Row: React.FC<RowProps> = ({
       <View style={styles.container}>
         <View style={styles.leftContainer}>
           <View style={styles.leftContent}>
-            <Text>Icono</Text>
+          {icon && (
+            <View >
+              {icon}
+            </View>
+           )}
           </View>
           <View style={styles.rightContent}>
           {headline !== undefined &&  <Tag children={headline} type='promo' /> }
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-            <Text style={styles.description}>{description}</Text>
+          <Text
+            mobileSize={18}
+            mobileLineHeight="24px"
+            desktopSize={20}
+            desktopLineHeight="28px"
+            weight={textPresets.cardTitle.weight}
+            as="h3">
+             {title}
+            </Text>
+            <Text2 as="div" regular>
+              {subtitle}
+            </Text2>
+            <Text2 as="div" regular>
+              {description}
+            </Text2>
           </View>
         </View>
         <View style={styles.rightContainer}>
@@ -82,59 +146,6 @@ const Row: React.FC<RowProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  row: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  dividerRow: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  borderedRow: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-  },
-  disabledRow: {
-    opacity: 0.5, // Aplica opacidad cuando está deshabilitado
-  },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  leftContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  leftContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 10,
-  },
-  rightContent: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  rightContainer: {},
-  headline: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: 14,
-  },
-  description: {
-    fontSize: 12,
-    color: 'gray',
-  },
-});
+
 
 export default Row;
