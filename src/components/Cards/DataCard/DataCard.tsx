@@ -2,8 +2,8 @@ import React from 'react';
 import MaybeDismissable from '../../../hooks/MaybeDismissable/MaybeDismissable';
 import {Box} from '../../../layout';
 import {Boxed} from '../../Primitives/Boxed/Boxed';
-import {DataCardProps} from '../Card.Types';
-import {styles} from '../Card.css';
+import {DataCardProps} from '../Cards.Types';
+import {styles} from '../Cards.css';
 import CardContent from '../CardContent/CardContent';
 import MaybeSection from '../MaybeSection/MaybeSection';
 

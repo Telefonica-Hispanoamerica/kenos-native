@@ -1,15 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {default as RNVideo} from 'react-native-video';
+import { AspectRatio, RATIO } from '../Primitives.Types';
 
-export type AspectRatio = '1:1' | '16:9' | '7:10' | '4:3';
-
-export const RATIO = {
-  '1:1': 1,
-  '16:9': 16 / 9,
-  '7:10': 7 / 10,
-  '4:3': 4 / 3,
-};
 
 export type VideoProps = {
   src: string;

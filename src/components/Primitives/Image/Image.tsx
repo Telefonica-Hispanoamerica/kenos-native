@@ -12,6 +12,7 @@ import {useTheme} from '../../../utils/ThemeContextProvider';
 import {useIsInverseVariant} from '../../../utils/ThemeVariantContext';
 import {SkeletonRectangle} from '../../Skeletons/Skeletons';
 import {FADE_IN_DURATION_MS, stylesImageError} from './Image.css';
+import { AspectRatio, RATIO } from '../Primitives.Types';
 
 const MediaBorderRadiusContext = createContext(true);
 
@@ -58,14 +59,6 @@ const ImageError = ({noBorderRadius}: ImageErrorProps) => {
   );
 };
 
-export type AspectRatio = '1:1' | '16:9' | '7:10' | '4:3';
-
-export const RATIO = {
-  '1:1': 1,
-  '16:9': 16 / 9,
-  '7:10': 7 / 10,
-  '4:3': 4 / 3,
-};
 
 export type ImageProps = {
   src: string;

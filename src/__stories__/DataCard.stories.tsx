@@ -1,19 +1,18 @@
 import React from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {ScrollView, View} from 'react-native';
-import {Circle, Placeholder, Text3} from '../components';
-import {DataCard} from '../components/Cards/DataCard/DataCard';
+import { ScrollView, View } from 'react-native';
+import { Circle, Placeholder, Text3 } from '../components';
 import Image from '../components/Primitives/Image/Image';
-import {MediaCard} from '../components/Cards/MediaCard/MediaCard';
+import { DataCard, MediaCard, PlanCard } from '../components/Cards';
 import Video from '../components/Primitives/Video/Video';
+
+//#region DataCard
 
 export default {
   title: 'DataCard',
   component: DataCard,
 } as ComponentMeta<typeof DataCard>;
-
-//#region DataCard
 
 export const Basic: ComponentStory<typeof DataCard> = args => {
   return (
@@ -112,3 +111,29 @@ Media_Card.args = {
 };
 
 //#endregion MediaCard
+
+//#region PlanCard
+
+export const Plan_Card: ComponentStory<typeof PlanCard> = args => {
+  return (
+    <View style={{flex: 1, padding: 10}}>
+      <PlanCard {...args} />
+    </View>
+  );
+};
+
+Plan_Card.storyName = 'Plan Card';
+
+Plan_Card.args = {
+  icon: <Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />,
+  headline: 'Headline',
+  pretitle: 'Pretitle',
+  title: 'Title',
+  subtitle: 'Subtitle',
+  description: 'This is a description for the card',
+  extra: <Placeholder></Placeholder>,
+  'aria-label': 'aria-label',
+  onClose: undefined,
+};
+
+//#endregion PlanCard

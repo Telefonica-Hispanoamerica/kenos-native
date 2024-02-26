@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardContentProps} from '../Card.Types';
+import {CardContentProps} from '../Cards.Types';
 import {StyleSheet, View} from 'react-native';
 import {Text, Text2} from '../../Text/Text';
 import {useTheme} from '../../../utils/ThemeContextProvider';

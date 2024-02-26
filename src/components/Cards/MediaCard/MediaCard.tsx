@@ -3,8 +3,8 @@ import {View} from 'react-native';
 import MaybeDismissable from '../../../hooks/MaybeDismissable/MaybeDismissable';
 import {Boxed} from '../../Primitives/Boxed/Boxed';
 import {MediaBorderRadiusProvider} from '../../Primitives/Image/Image';
-import {MediaCardProps} from '../Card.Types';
-import {mediaCard, mediaCardContent, styles} from '../Card.css';
+import {MediaCardProps} from '../Cards.Types';
+import {mediaCard, mediaCardContent, styles} from '../Cards.css';
 import CardContent from '../CardContent/CardContent';
 import MaybeSection from '../MaybeSection/MaybeSection';
 
