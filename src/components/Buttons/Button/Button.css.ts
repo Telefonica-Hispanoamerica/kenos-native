@@ -1,7 +1,7 @@
 import { ButtonProps } from './Button';
 import { ButtonType } from './Button';
-import { useTheme } from '../../utils/ThemeContextProvider';
-import {applyAlpha} from '../../utils/color';
+import { useTheme } from '../../../utils/ThemeContextProvider';
+import {applyAlpha} from '../../../utils/color';
 import {StyleSheet} from 'react-native';
 import {BUTTON_MIN_WIDTH, BORDER_RADIUS_ROUNDED, disabledStyle, selected, linkSelectedInverse} from './Button.utils';
 

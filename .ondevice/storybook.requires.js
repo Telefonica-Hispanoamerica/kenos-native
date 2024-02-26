@@ -71,6 +71,7 @@ const getStories = () => {
     "./src/__stories__/SkeletonRow.stories.tsx": require("../src/__stories__/SkeletonRow.stories.tsx"),
     "./src/__stories__/Skeletons.stories.tsx": require("../src/__stories__/Skeletons.stories.tsx"),
     "./src/__stories__/SkeletonText.stories.tsx": require("../src/__stories__/SkeletonText.stories.tsx"),
+    "./src/__stories__/SocialMediaButton.stories.tsx": require("../src/__stories__/SocialMediaButton.stories.tsx"),
     "./src/__stories__/Stepper.stories.tsx": require("../src/__stories__/Stepper.stories.tsx"),
     "./src/__stories__/Tabs.stories.tsx": require("../src/__stories__/Tabs.stories.tsx"),
     "./src/__stories__/Tag.stories.tsx": require("../src/__stories__/Tag.stories.tsx"),

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Stepper from '../components/Stepper/Stepper';
-import { Button } from '../components/Button/Button';
 import { View } from 'react-native';
+import { Button } from '../components/Buttons';
 
 export default {
   title: 'Stepper',

@@ -1,8 +1,8 @@
 import React from 'react';
 import {ActivityIndicator, Pressable, Text, View} from 'react-native';
 import {getButtonColorsByButtonType, styles} from './Button.css';
-import {useTheme} from '../../utils/ThemeContextProvider';
-import {IconProps} from '../../utils/types';
+import {useTheme} from '../../../utils/ThemeContextProvider';
+import {IconProps} from '../../../utils/types';
 
 export type ButtonType = 'primary' | 'secondary' | 'danger' | 'link';
 
@@ -33,7 +33,7 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
   const {leftIcon: LeftIcon, rightIcon: RightIcon} = props;
 
   const {skin} = useTheme(); 
-  const buttonBR = skin.borderRadii?.button || '0px';
+  const buttonBR = skin.borderRadii?.button ?? '0px';
   const buttonBRRN = parseFloat(buttonBR.replace(/px/g, '')); 
   
   const {backgroundColor, borderColor, textColor, borderRounded, underline}=getButtonColorsByButtonType(props);
@@ -47,7 +47,7 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
         flex: 1,
       }}>
       <Pressable
-        disabled={props.disabled || props.showSpinner}
+        disabled={props.disabled ?? props.showSpinner}
         android_ripple={{color: textColor, borderless: false}}
         onPress={props.onPress}
         style={buttonContainer}>

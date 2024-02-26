@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Button, ButtonType } from '../components/Button/Button';
 import { Alert, ScrollView, View } from 'react-native';
 import { IconPhotoCameraFilled } from '..';
+import { Button, ButtonType } from '../components/Buttons';
 
 export default {
   title: 'components/Buttons',

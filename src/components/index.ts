@@ -1,6 +1,8 @@
 export {default as Avatar} from './Avatar/Avatar';
 export {default as Badge} from './Badge/Badge';
-export {Button} from './Button/Button';
+export {Button} from './Buttons/Button/Button';
+export {IconButton} from './Buttons/IconButton/IconButton';
+export {SocialMediaButton} from './Buttons/SocialMediaButton/SocialMediaButton';
 export {Circle} from './Circle/Circle';
 export {default as Divider} from './Divider/Divider';
 export {default as HorizontalScroll} from './HorizontalScroll/Horizontal-scroll';
