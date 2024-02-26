@@ -1,10 +1,10 @@
-import { IconProps } from '../../utils';
+import { IconProps } from '../../../utils';
 
 export interface IconButtonProps {
   children?: React.ReactNode;
   icon?: React.ComponentType<IconProps>;
   type?: IconButtonType;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 export type IconButtonType =

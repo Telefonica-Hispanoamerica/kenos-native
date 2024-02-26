@@ -1,10 +1,10 @@
 import React from 'react';
 import {ActivityIndicator, Pressable, Text, View} from 'react-native';
 import {getButtonColorsByButtonType, styles} from './Button.css';
-import {useTheme} from '../../utils/ThemeContextProvider';
-import {IconProps} from '../../utils/types';
+import {useTheme} from '../../../utils/ThemeContextProvider';
+import {IconProps} from '../../../utils/types';
 
-export type ButtonType = 'primary' | 'secondary' | 'danger';
+export type ButtonType = 'primary' | 'secondary' | 'danger' | 'link';
 
 interface CommonProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ interface CommonProps {
   disabled?: boolean;
   rounded?: boolean;
   inverse?: boolean;
+  selected?: boolean;
   leftIcon?: React.ComponentType<IconProps>;
   rightIcon?: React.ComponentType<IconProps>;
 }
@@ -32,13 +33,11 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
   const {leftIcon: LeftIcon, rightIcon: RightIcon} = props;
 
   const {skin} = useTheme(); 
-  const buttonBR = skin.borderRadii?.button || '0px';
+  const buttonBR = skin.borderRadii?.button ?? '0px';
   const buttonBRRN = parseFloat(buttonBR.replace(/px/g, '')); 
   
-  const {backgroundColor, borderColor, textColor, borderRounded}=getButtonColorsByButtonType(props);
-  const {buttonContainer, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded)
-
-  console.log(props.children)
+  const {backgroundColor, borderColor, textColor, borderRounded, underline}=getButtonColorsByButtonType(props);
+  const {buttonContainer, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded, underline)
 
   return (
     <View
@@ -48,7 +47,7 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
         flex: 1,
       }}>
       <Pressable
-        disabled={props.disabled || props.showSpinner}
+        disabled={props.disabled ?? props.showSpinner}
         android_ripple={{color: textColor, borderless: false}}
         onPress={props.onPress}
         style={buttonContainer}>

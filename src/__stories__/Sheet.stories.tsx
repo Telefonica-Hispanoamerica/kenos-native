@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {View} from 'react-native';
 import Sheet from '../components/Sheet/Sheet';
-import {Button} from '../components/Button/Button';
 import {Text2, Text3, Text5} from '../components/Text/Text';
+import { Button } from '../components/Buttons';
 
 export default {
   title: 'Sheet',

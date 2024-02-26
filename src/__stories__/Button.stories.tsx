@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Button, ButtonType } from '../components/Button/Button';
 import { Alert, ScrollView, View } from 'react-native';
 import { IconPhotoCameraFilled } from '..';
+import { Button, ButtonType } from '../components/Buttons';
 
 export default {
   title: 'components/Buttons',
@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 export const Basic: ComponentStory<typeof Button> = args => {
-  const buttonTypes: Array<ButtonType> = ['primary', 'secondary', 'danger'];
+  const buttonTypes: Array<ButtonType> = ['primary', 'secondary', 'danger', 'link'];
   const onPress = () => Alert.alert('Clicked!', 'Clicked successfully!');
   return (
     <ScrollView>
@@ -42,12 +42,12 @@ export const Basic: ComponentStory<typeof Button> = args => {
             {/* <Button {...args} loadingText="" type={aButtonType} disabled showSpinner={false}>
               Send
             </Button> */}
-            <Button {...args} loadingText="Sending file" disabled={false} type={aButtonType} showSpinner>
+            <Button {...args} loadingText="Sending file" type={aButtonType} showSpinner>
               Send
             </Button>
-            <Button {...args} loadingText="" disabled={false} type={aButtonType} showSpinner>
+           {/*  <Button {...args} loadingText="" disabled={false} type={aButtonType} showSpinner>
               Send
-            </Button>
+            </Button> */}
             {/* <Button loadingText="" type={aButtonType} small onPress={onPress}>
               Send
             </Button>
@@ -111,6 +111,7 @@ Basic.args = {
   children: 'Send',
   loadingText: 'Sending file',
   inverse: false,
+  selected:false
 };
 
 
