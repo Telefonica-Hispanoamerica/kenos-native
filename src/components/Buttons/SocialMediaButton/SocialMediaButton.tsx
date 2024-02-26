@@ -48,7 +48,6 @@ export const SocialMediaButton = ({ icon, children, text, small, rounded }: Soci
   }
 
   const typeButton = styleButton(small, rounded);
-  console.log(typeButton)
 
   const styleApply = styles[typeButton ?? 'largeButton'];
 
