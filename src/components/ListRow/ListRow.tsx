@@ -1,41 +1,37 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
 import Radio from '../Radio/Radio';
 import IconChevron from '../../icons/icon-chevron';
-import { Text1 } from '../Text/Text';
+import Tag from '../Tag/Tag';
 
 interface RowProps {
-  label: string;
   value: string;
   onSelect: (value: string) => void;
   defaultValue: string;
   disabled?: boolean;
-  rightComponent?: 'RadioButton' | 'IconChevron'; // Nuevo prop para especificar el componente derecho
-  // Incluye otros props existentes aquí
-  // Por ejemplo:
+  rightComponent?: 'RadioButton' | 'IconChevron';
   headline?: string;
   title?: string;
   subtitle?: string;
   description?: string;
   badge?: boolean | number;
   extra?: React.ReactNode;
+  style?: 'divider' | 'bordered';
 }
 
 const Row: React.FC<RowProps> = ({
-  label,
   value,
   onSelect,
   defaultValue,
   disabled = false,
-  rightComponent = 'RadioButton', // Por defecto, mostrar RadioButton
-  // Incluye otros props existentes aquí
-  // Por ejemplo:
+  rightComponent = 'RadioButton',
   headline,
   title,
   subtitle,
   description,
   badge,
   extra,
+  style = 'divider',
 }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
 
@@ -46,35 +42,41 @@ const Row: React.FC<RowProps> = ({
 
   return (
     <TouchableOpacity
-      style={styles.row}
+      style={[styles.row, style === 'divider' ? styles.dividerRow : styles.borderedRow, disabled && styles.disabledRow]}
       onPress={() => handleSelect(value)}
       disabled={disabled}
-      // Pasa otros props existentes aquí
-      // Por ejemplo:
-      accessibilityLabel={label}
+      accessibilityLabel={""}
       testID={`row-${value}`}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-        <View>
-          <Text1>holaaaa</Text1>
-          <Text1>holaaaa</Text1>
-          
+      <View style={styles.container}>
+        <View style={styles.leftContainer}>
+          <View style={styles.leftContent}>
+            <Text>Icono</Text>
+          </View>
+          <View style={styles.rightContent}>
+          {headline !== undefined &&  <Tag children={headline} type='promo' /> }
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
+            <Text style={styles.description}>{description}</Text>
+          </View>
         </View>
-        {rightComponent === 'RadioButton' && (
-          <Radio
-            label={label}
-            value={value}
-            defaultValue={defaultValue}
-            onSelect={onSelect}
-            disabled={disabled}
-          />
-        )}
-        {rightComponent === 'IconChevron' && (
-          <IconChevron
-            color={disabled ? 'grey' : 'black'}
-            direction="right"
-          />
-        )}
+        <View style={styles.rightContainer}>
+          {rightComponent === 'RadioButton' && (
+            <Radio
+              label=""
+              value={value}
+              defaultValue={defaultValue}
+              onSelect={onSelect}
+              disabled={disabled}
+            />
+          )}
+          {rightComponent === 'IconChevron' && (
+            <IconChevron
+              color={disabled ? 'grey' : 'black'}
+              direction="right"
+            />
+          )}
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -84,8 +86,54 @@ const styles = StyleSheet.create({
   row: {
     paddingVertical: 10,
     paddingHorizontal: 20,
+  },
+  dividerRow: {
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+  },
+  borderedRow: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+  },
+  disabledRow: {
+    opacity: 0.5, // Aplica opacidad cuando está deshabilitado
+  },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  leftContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  rightContent: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  rightContainer: {},
+  headline: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    fontSize: 14,
+  },
+  description: {
+    fontSize: 12,
+    color: 'gray',
   },
 });
 

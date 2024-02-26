@@ -10,9 +10,21 @@ import Row from '../components/ListRow/ListRow';
 storiesOf('Row', module)
   // Agrega una historia para un `Row` con un RadioButton en la parte derecha
   .add('with RadioButton', () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin:10, gap:8 }}>
       <Row
-        label=""
+        value="option1"
+        defaultValue="option1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Row headline"
+        title="Row title"
+        subtitle="Row subtitle"
+        description="Row description"
+        badge={true}
+        style='bordered'
+        disabled={true}
+        extra={<View style={{ width: 50, height: 50, backgroundColor: 'red' }} />} // Ejemplo de un componente extra
+      />
+      <Row
         value="option1"
         defaultValue="option1"
         onSelect={(value) => console.log('Selected value:', value)}
@@ -29,7 +41,6 @@ storiesOf('Row', module)
   .add('with IconChevron', () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Row
-        label="Option 2"
         value="option2"
         defaultValue="option2"
         onSelect={(value) => console.log('Selected value:', value)}
