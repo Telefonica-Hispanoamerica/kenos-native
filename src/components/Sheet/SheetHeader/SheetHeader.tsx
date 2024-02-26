@@ -1,8 +1,8 @@
 import React from 'react'
 import { GestureResponderHandlers, View } from 'react-native'
 import { styles } from '../Sheet.css';
-import { IconButton } from '../../IconButton/IconButton';
 import IconCloseRegular from '../../../kenos-icons/IconCloseRegular';
+import { IconButton } from '../../Buttons';
 
 interface PanResponderProps {
     panHandlers: GestureResponderHandlers;

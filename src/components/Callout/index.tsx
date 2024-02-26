@@ -9,10 +9,10 @@ import {
   IconWarningRegular,
 } from '../../kenos-icons';
 import { useTheme } from '../../utils/ThemeContextProvider';
-import { IconButton } from '../IconButton/IconButton';
 import { CalloutProps, TypeCallout } from './Callout.Types';
 import { styles } from './Callout.css';
 import { CalloutIcon } from './CalloutIcon/CalloutIcon';
+import { IconButton } from '../Buttons';
 
 export const Callout: React.FC<CalloutProps> = props => {
   const {title, icon, type, text, size, inverse, dismissable} = props;

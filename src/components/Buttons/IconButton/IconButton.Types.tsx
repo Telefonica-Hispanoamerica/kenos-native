@@ -1,5 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import { IconProps } from '../../utils';
+import { IconProps } from '../../../utils';
 
 export interface IconButtonProps {
   children?: React.ReactNode;

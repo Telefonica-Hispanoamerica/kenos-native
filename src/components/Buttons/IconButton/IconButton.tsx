@@ -1,8 +1,8 @@
 import React from 'react';
 import {Pressable, Text, View} from 'react-native';
 
-import {IconProps} from '../../utils';
-import {useTheme} from '../../utils/ThemeContextProvider';
+import {IconProps} from '../../../utils';
+import {useTheme} from '../../../utils/ThemeContextProvider';
 import {IconTypeProps} from './IconButton.Types';
 import { styles } from './IconButton.css';
 
