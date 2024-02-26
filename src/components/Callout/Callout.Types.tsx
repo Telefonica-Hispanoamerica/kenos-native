@@ -8,6 +8,7 @@ export interface CalloutProps {
     text: string;
     title?: string;
     type: UrgencyType;
+    onClose?: () => void;
 }
 
 export type UrgencyType = "general" | "info" | "success" | "warning" | "danger";

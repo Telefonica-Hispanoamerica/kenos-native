@@ -95,7 +95,7 @@ export const Callout: React.FC<CalloutProps> = props => {
 
   const customStylesText = {
     ...styles.calloutText,
-    color: inverse ? textSecondary : textPrimary
+    color: inverse || type === 'general' && size !== 'small' ? textSecondary : textPrimary
   }
 
   return (
@@ -111,7 +111,7 @@ export const Callout: React.FC<CalloutProps> = props => {
         )}
       </View>
       <View style={styles.calloutContent}>
-        { !inverse && <Text style={customStylesTitle}>{title}</Text> }
+        { size === 'large' && <Text style={customStylesTitle}>{title}</Text> }
         <Text style={customStylesText}>{text}</Text>
       </View>
       {dismissable && (
