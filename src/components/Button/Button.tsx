@@ -4,7 +4,7 @@ import {getButtonColorsByButtonType, styles} from './Button.css';
 import {useTheme} from '../../utils/ThemeContextProvider';
 import {IconProps} from '../../utils/types';
 
-export type ButtonType = 'primary' | 'secondary' | 'danger';
+export type ButtonType = 'primary' | 'secondary' | 'danger' | 'link';
 
 interface CommonProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ interface CommonProps {
   disabled?: boolean;
   rounded?: boolean;
   inverse?: boolean;
+  selected?: boolean;
   leftIcon?: React.ComponentType<IconProps>;
   rightIcon?: React.ComponentType<IconProps>;
 }
@@ -35,10 +36,8 @@ export const Button = (props: ButtonProps & {type: ButtonType}) => {
   const buttonBR = skin.borderRadii?.button || '0px';
   const buttonBRRN = parseFloat(buttonBR.replace(/px/g, '')); 
   
-  const {backgroundColor, borderColor, textColor, borderRounded}=getButtonColorsByButtonType(props);
-  const {buttonContainer, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded)
-
-  console.log(props.children)
+  const {backgroundColor, borderColor, textColor, borderRounded, underline}=getButtonColorsByButtonType(props);
+  const {buttonContainer, buttonContent, buttonText}=styles(props,backgroundColor, borderColor,textColor,borderRounded, underline)
 
   return (
     <View
