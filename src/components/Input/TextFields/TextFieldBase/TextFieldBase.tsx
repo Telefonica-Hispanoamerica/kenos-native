@@ -202,12 +202,11 @@ export const TextFieldBase: React.FC<TextFieldBaseProps> = (
 
   const commonInputStyles = {
     commonInputStyles: {
+      backgroundColor: 'transparent',
+      borderWidth: 0,
       minWidth: 0,
-      color: 'black',
+      color: vars.colors.textPrimary,
       width: '100%',
-      height: 500,
-      backgroundColor: 'red',
-      borderColor: 'red',
     },
   };
 
@@ -235,13 +234,14 @@ export const TextFieldBase: React.FC<TextFieldBaseProps> = (
       ...commonStyles,
     },
     textAreaWithLabel: {
-      marginTop: 28,
+      marginTop: 24,
     },
     textAreaWithoutLabel: {
       marginTop: 16,
     },
     input: {
       position: 'relative',
+      height: '100%',
       ...commonInputStyles.commonInputStyles,
     },
     inputWithLabel: {
@@ -322,7 +322,7 @@ export const TextFieldBase: React.FC<TextFieldBaseProps> = (
             styles.prefix,
             hasLabel ? styles.prefixWithLabel : styles.prefixWithoutLabel,
             {opacity: inputState === 'default' ? 0 : 1},
-            {alignSelf: prefixAlignSelf}
+            {alignSelf: prefixAlignSelf},
           ]}>
           <Text3 color={vars.colors.textSecondary} regular wordBreak={false}>
             {prefix}
@@ -334,37 +334,52 @@ export const TextFieldBase: React.FC<TextFieldBaseProps> = (
           styles.fullWidth,
           {alignSelf: prefix ? 'baseline' : 'flex-start'},
         ]}>
-          {React.createElement(inputComponent || defaultInputElement, {
-            ...props,
-            style: {...props.style},
-            onFocus: (event: React.FocusEvent<TextInput>) => {
-              setInputState('focused');
-              onFocus?.(event);
-              console.log('Input Focused');
-            },
-            onBlur: (event: React.FocusEvent<TextInput>) => {
-              if (true) {
-                setInputState('filled');
-              } else {
-                setInputState('default');
-              }
-              onBlur?.(event);
-            },
-            onChange: (event: React.ChangeEvent<TextInput>) => {
-              if (maxLength === undefined) {
-                setCharacterCount(20);
-                props.onChange?.(event);
-              } else {
-                event.stopPropagation();
-                event.preventDefault();
-              }
-              console.log('Input Changes');
-            },
-            defaultValue,
-            value,
-            error,
-            multiline
-          })}
+        {React.createElement(inputComponent || defaultInputElement, {
+          ...props,
+          style: {
+            ...props.style,
+            ...(multiline
+              ? {
+                  ...styles.textArea,
+                  ...(hasLabel
+                    ? styles.textAreaWithLabel
+                    : styles.textAreaWithoutLabel),
+                }
+              : {
+                  ...styles.input,
+                  ...(hasLabel
+                    ? styles.inputWithLabel
+                    : styles.inputWithoutLabel),
+                }),
+          },
+          onFocus: (event: React.FocusEvent<TextInput>) => {
+            setInputState('focused');
+            onFocus?.(event);
+            console.log('Input Focused');
+          },
+          onBlur: (event: React.FocusEvent<TextInput>) => {
+            if (true) {
+              setInputState('filled');
+            } else {
+              setInputState('default');
+            }
+            onBlur?.(event);
+          },
+          onChange: (event: React.ChangeEvent<TextInput>) => {
+            if (maxLength === undefined) {
+              setCharacterCount(20);
+              props.onChange?.(event);
+            } else {
+              event.stopPropagation();
+              event.preventDefault();
+            }
+            console.log('Input Changes');
+          },
+          defaultValue,
+          value,
+          error,
+          multiline,
+        })}
       </View>
       {label && (
         <Label
