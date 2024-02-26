@@ -58,6 +58,7 @@ const getStories = () => {
     "./src/__stories__/Divider.stories.tsx": require("../src/__stories__/Divider.stories.tsx"),
     "./src/__stories__/Horizontal.stories.tsx": require("../src/__stories__/Horizontal.stories.tsx"),
     "./src/__stories__/IconButton.stories.tsx": require("../src/__stories__/IconButton.stories.tsx"),
+    "./src/__stories__/IconButtonLayout.stories.tsx": require("../src/__stories__/IconButtonLayout.stories.tsx"),
     "./src/__stories__/LoadingBar.stories.tsx": require("../src/__stories__/LoadingBar.stories.tsx"),
     "./src/__stories__/Logo.stories.tsx": require("../src/__stories__/Logo.stories.tsx"),
     "./src/__stories__/MediaCard.stories.tsx": require("../src/__stories__/MediaCard.stories.tsx"),
@@ -71,10 +72,12 @@ const getStories = () => {
     "./src/__stories__/SkeletonRow.stories.tsx": require("../src/__stories__/SkeletonRow.stories.tsx"),
     "./src/__stories__/Skeletons.stories.tsx": require("../src/__stories__/Skeletons.stories.tsx"),
     "./src/__stories__/SkeletonText.stories.tsx": require("../src/__stories__/SkeletonText.stories.tsx"),
+    "./src/__stories__/SocialMediaButton.stories.tsx": require("../src/__stories__/SocialMediaButton.stories.tsx"),
     "./src/__stories__/Stepper.stories.tsx": require("../src/__stories__/Stepper.stories.tsx"),
     "./src/__stories__/Tabs.stories.tsx": require("../src/__stories__/Tabs.stories.tsx"),
     "./src/__stories__/Tag.stories.tsx": require("../src/__stories__/Tag.stories.tsx"),
     "./src/__stories__/Text.stories.tsx": require("../src/__stories__/Text.stories.tsx"),
+    "./src/__stories__/TextField.stories.tsx": require("../src/__stories__/TextField.stories.tsx"),
     "./src/__stories__/Title.stories.tsx": require("../src/__stories__/Title.stories.tsx"),
   };
 };
