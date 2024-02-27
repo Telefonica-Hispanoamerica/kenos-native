@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleProp, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, View, ViewStyle} from 'react-native';
 import {
   IconAlertRegular,
   IconCheckedRegular,
@@ -13,6 +13,7 @@ import {CalloutProps, TypeCallout} from './Callout.Types';
 import {styles} from './Callout.css';
 import {CalloutIcon} from './CalloutIcon/CalloutIcon';
 import {Button, IconButton} from '../Buttons';
+import { Text2, Text3 } from '../Text/Text';
 
 export const Callout: React.FC<CalloutProps> = props => {
   const {
@@ -99,18 +100,8 @@ export const Callout: React.FC<CalloutProps> = props => {
     marginTop: 0,
   };
 
-  const customStylesTitle = {
-    ...styles.calloutTitle,
-    color: textPrimary,
-  };
+  const customColorText = (inverse || (type === 'general' && size !== 'small')? textSecondary : textPrimary);
 
-  const customStylesText = {
-    ...styles.calloutText,
-    color:
-      inverse || (type === 'general' && size !== 'small')
-        ? textSecondary
-        : textPrimary,
-  };
 
   return (
     <View style={[styles.callout, customStyles]}>
@@ -129,8 +120,8 @@ export const Callout: React.FC<CalloutProps> = props => {
         )}
       </View>
       <View style={styles.calloutContent}>
-        {size === 'large' && <Text style={customStylesTitle}>{title}</Text>}
-        <Text style={customStylesText}>{text}</Text>
+        {size === 'large' && <Text3 color={textPrimary}>{title}</Text3>}
+        <Text2 color={customColorText}>{text}</Text2>
         <Button
           type="link"
           small={true}

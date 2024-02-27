@@ -21,14 +21,7 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
     fontFamily: 'Roboto-Regular',
     padding: 0,
-    margin: 0
-  },
-  calloutText: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontFamily: 'Roboto-Regular',
-    padding: 0,
-    margin: 0
+    margin: 0,
   },
   calloutAction: {
     display: 'flex',
