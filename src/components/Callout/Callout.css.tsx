@@ -19,12 +19,16 @@ export const styles = StyleSheet.create({
   calloutTitle: {
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'Roboto-Regular'
+    fontFamily: 'Roboto-Regular',
+    padding: 0,
+    margin: 0
   },
   calloutText: {
     fontSize: 14,
     lineHeight: 20,
-    fontFamily: 'Roboto-Regular'
+    fontFamily: 'Roboto-Regular',
+    padding: 0,
+    margin: 0
   },
   calloutAction: {
     display: 'flex',

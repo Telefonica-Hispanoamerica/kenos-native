@@ -3,7 +3,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { Callout } from '../components/Callout/index';
 import { UrgencyType } from '../components/Callout/Callout.Types';
 
@@ -14,6 +14,8 @@ const calloutTypes: Array<UrgencyType> = [
   'success',
   'danger',
 ];
+
+const onPress = () => Alert.alert('Clicked!', 'Clicked successfully!');
 
 export default {
   title: 'Callout',
@@ -47,9 +49,11 @@ Basic.args = {
   text: 'This is the description',
   type: 'info',
   inverse: false,
-  dismissable: false,
+  dismissable: true,
   size: 'large',
-  icon: true
+  icon: true,
+  linkText: 'Button link',
+  linkAction: onPress
 };
 
 Basic.storyName = 'Callout';

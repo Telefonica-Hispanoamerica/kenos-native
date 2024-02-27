@@ -1,7 +1,7 @@
 export interface CalloutProps {
-    action?: () => void;
     actionText?: string;
     dismissable?: boolean;
+    dismissableAction?: () => void;
     icon?: boolean;
     inverse: boolean;
     size: Sizes;
@@ -9,6 +9,8 @@ export interface CalloutProps {
     title?: string;
     type: UrgencyType;
     onClose?: () => void;
+    linkText?: string;
+    linkAction?: () => void;
 }
 
 export type UrgencyType = "general" | "info" | "success" | "warning" | "danger";

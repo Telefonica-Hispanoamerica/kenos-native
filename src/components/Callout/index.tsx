@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProp, Text, View, ViewStyle } from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {
   IconAlertRegular,
   IconCheckedRegular,
@@ -8,14 +8,25 @@ import {
   IconLightningRegular,
   IconWarningRegular,
 } from '../../kenos-icons';
-import { useTheme } from '../../utils/ThemeContextProvider';
-import { CalloutProps, TypeCallout } from './Callout.Types';
-import { styles } from './Callout.css';
-import { CalloutIcon } from './CalloutIcon/CalloutIcon';
-import { IconButton } from '../Buttons';
+import {useTheme} from '../../utils/ThemeContextProvider';
+import {CalloutProps, TypeCallout} from './Callout.Types';
+import {styles} from './Callout.css';
+import {CalloutIcon} from './CalloutIcon/CalloutIcon';
+import {Button, IconButton} from '../Buttons';
 
 export const Callout: React.FC<CalloutProps> = props => {
-  const {title, icon, type, text, size, inverse, dismissable} = props;
+  const {
+    title,
+    icon,
+    type,
+    text,
+    size,
+    inverse,
+    dismissable,
+    linkText,
+    linkAction,
+    dismissableAction,
+  } = props;
 
   const {skin} = useTheme();
   const {
@@ -35,7 +46,7 @@ export const Callout: React.FC<CalloutProps> = props => {
     errorLow,
     background,
     textPrimary,
-    textSecondary
+    textSecondary,
   } = skin.colors;
 
   const themeTypeCallout: TypeCallout = {
@@ -90,17 +101,24 @@ export const Callout: React.FC<CalloutProps> = props => {
 
   const customStylesTitle = {
     ...styles.calloutTitle,
-    color: textPrimary
-  }
+    color: textPrimary,
+  };
 
   const customStylesText = {
     ...styles.calloutText,
-    color: inverse || type === 'general' && size !== 'small' ? textSecondary : textPrimary
-  }
+    color:
+      inverse || (type === 'general' && size !== 'small')
+        ? textSecondary
+        : textPrimary,
+  };
 
   return (
     <View style={[styles.callout, customStyles]}>
-      <View style={styles.calloutIcon}>
+      <View
+        style={[
+          styles.calloutIcon,
+          size === 'small' ? {justifyContent: 'center'} : {},
+        ]}>
         {icon && (
           <CalloutIcon
             color={color}
@@ -111,12 +129,26 @@ export const Callout: React.FC<CalloutProps> = props => {
         )}
       </View>
       <View style={styles.calloutContent}>
-        { size === 'large' && <Text style={customStylesTitle}>{title}</Text> }
+        {size === 'large' && <Text style={customStylesTitle}>{title}</Text>}
         <Text style={customStylesText}>{text}</Text>
+        <Button
+          type="link"
+          small={true}
+          aligned={true}
+          style={size === 'small' ? {marginTop: -6} : {}}
+          urgency={type}
+          onPress={linkAction}
+        >
+          {linkText}
+        </Button>
       </View>
       {dismissable && (
         <View style={styles.calloutAction}>
-          <IconButton icon={IconCloseRegular} styles={iconButtonStyles} />
+          <IconButton
+            icon={IconCloseRegular}
+            styles={iconButtonStyles}
+            onPress={dismissableAction}
+          />
         </View>
       )}
     </View>
