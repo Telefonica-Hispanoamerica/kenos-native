@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./src/__stories__",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src[\\\\/]__stories__(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src\\/__stories__(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -65,6 +65,7 @@ const getStories = () => {
     "./src/__stories__/NavigationBar.stories.tsx": require("../src/__stories__/NavigationBar.stories.tsx"),
     "./src/__stories__/Placeholder.stories.tsx": require("../src/__stories__/Placeholder.stories.tsx"),
     "./src/__stories__/ProgressBar.stories.tsx": require("../src/__stories__/ProgressBar.stories.tsx"),
+    "./src/__stories__/Radio.stories.tsx": require("../src/__stories__/Radio.stories.tsx"),
     "./src/__stories__/Sheet.stories.tsx": require("../src/__stories__/Sheet.stories.tsx"),
     "./src/__stories__/SkeletonCircle.stories.tsx": require("../src/__stories__/SkeletonCircle.stories.tsx"),
     "./src/__stories__/SkeletonLine.stories.tsx": require("../src/__stories__/SkeletonLine.stories.tsx"),
