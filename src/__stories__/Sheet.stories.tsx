@@ -18,16 +18,15 @@ export const Basic: ComponentStory<typeof Sheet> = args => {
         <Button
           type="primary"
           onPress={() => setBottomSheetOpen(true)}
-          children="Abrir Sheet"
-        />
+        >Abrir Sheet</Button>
       </View>
       <Sheet isOpen={bottomSheetOpen} onClose={() => setBottomSheetOpen(false)}>
         <View style={{gap: 8, padding: 16}}>
           <Text5>Title</Text5>
           <Text3>Subtitle</Text3>
           <Text2 color="gray">Description</Text2>
-          <Button type="primary" children="Primary Button" />
-          <Button type="secondary" children="Secondary Button" />
+          <Button type="primary">Primary Button</Button>
+          <Button type="secondary">Secondary Button</Button>
         </View>
       </Sheet>
     </View>

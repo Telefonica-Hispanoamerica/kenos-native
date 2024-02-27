@@ -1,3 +1,4 @@
+import { StyleProp, ViewStyle } from 'react-native';
 import { IconProps } from '../../../utils';
 
 export interface IconButtonProps {
@@ -5,6 +6,7 @@ export interface IconButtonProps {
   icon?: React.ComponentType<IconProps>;
   type?: IconButtonType;
   onPress?: () => void;
+  styles?: StyleProp<ViewStyle>;
 }
 
 export type IconButtonType =

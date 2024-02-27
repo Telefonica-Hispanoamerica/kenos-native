@@ -4,8 +4,6 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-around',
-    marginLeft: 10,
-    marginTop: 10,
   },
   circle: {
     width: 40,
