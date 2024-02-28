@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View} from 'react-native';
 import { ButtonsLayoutProps } from './ButtonLayout.Type';
 
 import { styles } from './ButtonLayout.css';
@@ -12,15 +12,15 @@ export const ButtonLayout = (props: ButtonsLayoutProps) => {
   return anyAction ? (
     <View style={styles.container}>
       {
-        (props.primaryButton || props.secondaryButton) && (
-          <View style={styles.containerButtons}>
-            {props.primaryButton && <>{props.primaryButton}</>}
-            {props.secondaryButton && <>{props.secondaryButton}</>}
-          </View>
-        )
+        props.buttonLink && (<View style={{ width: bothButtons ? '100%' : 'auto' }}>{props.buttonLink}</View>)
       }
       {
-        props.buttonLink && (<View style={{ width: bothButtons ? '100%' : 'auto' }}>{props.buttonLink}</View>)
+        (props.primaryButton || props.secondaryButton) && (
+          <View style={styles.containerButtons}>
+            {props.secondaryButton && <View>{props.secondaryButton}</View>}
+            {props.primaryButton && <View>{props.primaryButton}</View>}
+          </View>
+        )
       }
     </View>
   ) : null
