@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import TextField from '../components/Input/TextFields/TextField/TextField';
 import { View } from 'react-native';
+import { Icon2gFilled } from '../kenos-icons';
 
 export default {
   title: 'TextField',
@@ -10,7 +11,7 @@ export default {
 
 export const Basic: ComponentStory<typeof TextField> = args => (
   <View style={{marginVertical: 20, display: 'flex', alignItems: 'center',}}>
-    <TextField name="text" label="Nombre"></TextField>
+    <TextField label="Label" placeholder='' error optional name=''  helperText='sdakjdsakj'></TextField>
   </View>
   
 );

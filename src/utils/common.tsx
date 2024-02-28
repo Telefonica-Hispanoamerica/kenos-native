@@ -1,6 +1,7 @@
 import React from 'react';
 
-export const combineRefs = <T extends any>(...refs: Array<React.RefObject<T> | ((instance: T | null) => void) | null>) => {
+export const combineRefs = <T,>(...refs: Array<React.Ref<T> | undefined>) => {
+  console.log('xd')
   return (refValue: T | null) => {
     refs.forEach(ref => {
       if (!ref) return;

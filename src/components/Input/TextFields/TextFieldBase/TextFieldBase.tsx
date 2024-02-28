@@ -1,5 +1,12 @@
 import React from 'react';
-import {TextInput, View, StyleSheet} from 'react-native';
+import {
+  TextInput,
+  View,
+  StyleSheet,
+  TextInputFocusEventData,
+  GestureResponderEvent,
+} from 'react-native';
+import {NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 import {useTheme} from '../../../../utils/ThemeContextProvider';
 import {FieldValidator} from '../../../../patterns/Forms/FormContext';
 import type {InputState} from '../TextFieldComponent/TextFieldComponent';
@@ -42,19 +49,23 @@ export interface CommonFormFieldProps {
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
-  label: string;
+  label?: string;
   name: string;
   optional?: boolean;
   maxLength?: number;
   validate?: FieldValidator;
-  onFocus?: (event: React.FocusEvent) => void;
-  onBlur?: (event: React.FocusEvent) => void;
-  onChange?: (event: React.ChangeEvent<TextInput>) => void;
+  autoComplete?: AutoComplete;
+  onFocus?: (event: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onChange?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onEndEditing?: (
+    event: NativeSyntheticEvent<TextInputChangeEventData>,
+  ) => void;
   getSuggestions?: (text: string) => ReadonlyArray<string>;
   fullWidth?: boolean;
   placeholder?: string;
   value?: string;
   defaultValue?: string;
+  children?: void;
   readOnly?: boolean;
 }
 
@@ -81,17 +92,17 @@ interface TextFieldBaseProps {
   value?: string;
   inputRef?: React.Ref<TextInput>;
   getSuggestions?: (value: string) => ReadonlyArray<string>;
-  onClick?: (event: React.MouseEvent) => void;
-  onChange?: (event: React.ChangeEvent<TextInput>) => void;
-  onBlur?: (eveent: React.FocusEvent) => void;
-  onFocus?: (event: React.FocusEvent) => void;
-  onKeyDown?: (event: React.KeyboardEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
+  onChange?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onEndEditing?: (
+    event: NativeSyntheticEvent<TextInputChangeEventData>,
+  ) => void;
+  onFocus?: (event: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   inputProps?: {[name: string]: string | number | undefined};
   inputComponent?: React.ComponentType<any>;
   shrinkLabel?: boolean;
   focus?: boolean;
   fieldRef?: React.RefObject<TextInput>;
-  onInput?: (event: React.FormEvent<TextInput>) => void;
   multiline?: boolean;
   inputMode?: string;
   readOnly?: boolean;
@@ -99,304 +110,305 @@ interface TextFieldBaseProps {
   max?: string;
 }
 
-export const TextFieldBase: React.FC<TextFieldBaseProps> = (
-  {
-    error,
-    helperText,
-    label,
-    inputProps,
-    inputRef,
-    defaultValue,
-    value,
-    onFocus,
-    onBlur,
-    inputComponent,
-    prefix,
-    startIcon,
-    endIcon,
-    endIconOverlay,
-    shrinkLabel: shrinkLabelProp,
-    multiline = false,
-    focus,
-    fieldRef,
-    maxLength,
-    autoComplete: autoCompleteProp,
-    fullWidth,
-    ...rest
-  },
-  ref,
-) => {
-  const [inputState, setInputState] = React.useState<InputState>(
-    defaultValue?.length || value?.length ? 'filled' : 'default',
-  );
-  const [characterCount, setCharacterCount] = React.useState(
-    defaultValue?.length ?? 0,
-  );
-  const hasLabel = !!label || !rest.required;
-  const vars = useTheme().skin;
+export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
+  (
+    {
+      error,
+      helperText,
+      label,
+      inputProps,
+      inputRef,
+      defaultValue,
+      value,
+      onFocus,
+      onEndEditing,
+      inputComponent,
+      prefix,
+      startIcon,
+      endIcon,
+      endIconOverlay,
+      shrinkLabel: shrinkLabelProp,
+      multiline,
+      focus,
+      fieldRef,
+      maxLength,
+      autoComplete: autoCompleteProp,
+      fullWidth,
+      ...rest
+    },
+    ref,
+  ) => {
+    const [inputState, setInputState] = React.useState<InputState>(
+      defaultValue?.length || value?.length ? 'filled' : 'default',
+    );
+    const [characterCount, setCharacterCount] = React.useState(
+      defaultValue?.length ?? 0,
+    );
+    const hasLabel = !!label || !rest.required;
+    const vars = useTheme().skin;
 
-  const shrinkLabel =
-    shrinkLabelProp ||
-    ((rest.type === 'date' ||
-      rest.type === 'datetime-local' ||
-      rest.type === 'month') &&
-      !rest.required);
+    const shrinkLabel =
+      shrinkLabelProp ||
+      ((rest.type === 'date' ||
+        rest.type === 'datetime-local' ||
+        rest.type === 'month') &&
+        !rest.required);
 
-  const [prefixAlignSelf, setPrefixAlignSelf] = React.useState<
-    'baseline' | 'flex-start'
-  >('baseline');
+    const [prefixAlignSelf, setPrefixAlignSelf] = React.useState<
+      'baseline' | 'flex-start'
+    >('baseline');
 
-  React.useEffect(() => {
-    setPrefixAlignSelf('baseline');
-  }, []);
+    React.useEffect(() => {
+      setPrefixAlignSelf('baseline');
+    }, []);
 
-  React.useEffect(() => {
-    if (inputState !== 'focused' && value?.length) {
-      setCharacterCount(value.length);
-      setInputState('filled');
-    }
-    if (focus) {
-      setInputState('focused');
-    }
-    if (focus === false && !value?.length) {
-      // when textfield is used in selects it doesn't get or lose focus
-      setInputState('default');
-    }
-    if (focus === false && value?.length) {
-      setInputState('filled');
-    }
-  }, [inputState, value, focus]);
-
-  React.useEffect(() => {
-    if (rest.autoFocus) {
-      setInputState('focused');
-    }
-  }, [rest.autoFocus]);
-
-  const defaultInputElement = TextInput;
-
-  const props = {
-    ...rest,
-    maxLength,
-    autoComplete: autoCompleteProp,
-    ...inputProps,
-  };
-
-  const isShrinked =
-    shrinkLabel || inputState === 'focused' || inputState === 'filled';
-  const LABEL_LEFT_POSITION = 12;
-  const LABEL_SCALE_MOBILE = 0.75;
-  const scale = isShrinked ? LABEL_SCALE_MOBILE : 1;
-  const labelStyle = {
-    left: startIcon ? 48 : LABEL_LEFT_POSITION,
-    width: `calc(100% - ${
-      LABEL_LEFT_POSITION + (startIcon ? 48 : LABEL_LEFT_POSITION)
-    }px)`,
-    paddingRight: endIcon && !isShrinked ? 36 : 0,
-  };
-
-  const commonStyles = {
-    paddingRight: endIcon ? 0 : 16,
-    paddingLeft: prefix ? 0 : startIcon ? 48 : 12,
-  };
-
-  const commonInputStyles = {
-    commonInputStyles: {
-      backgroundColor: 'transparent',
-      borderWidth: 0,
-      minWidth: 0,
-      color: vars.colors.textPrimary,
-      width: '100%',
-    },
-  };
-
-  const styles = StyleSheet.create({
-    placeholder: {
-      opacity: 0,
-    },
-    placeholderFocus: {
-      opacity: 0.5,
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      minWidth: 96,
-    },
-    fullWidth: {
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-    },
-    textArea: {
-      padding: 0,
-      resize: 'none',
-      paddingBottom: 8,
-      ...commonStyles,
-    },
-    textAreaWithLabel: {
-      marginTop: 24,
-    },
-    textAreaWithoutLabel: {
-      marginTop: 16,
-    },
-    input: {
-      position: 'relative',
-      height: '100%',
-      ...commonInputStyles.commonInputStyles,
-    },
-    inputWithLabel: {
-      paddingTop: 24,
-      paddingBottom: 8,
-    },
-    inputWithoutLabel: {
-      paddingTop: 16,
-      paddingBottom: 16,
-    },
-    endIcon: {
-      paddingLeft: 8,
-      paddingRight: 16,
-      display: 'flex',
-      alignItems: 'center',
-      alignSelf: 'center',
-    },
-    startIcon: {
-      paddingHorizontal: 12,
-      display: 'flex',
-      alignItems: 'center',
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-    },
-    prefix: {
-      paddingLeft: 12,
-      paddingRight: 16,
-    },
-    prefixWithLabel: {
-      paddingTop: 24,
-      paddingBottom: 8,
-    },
-    prefixWithoutLabel: {
-      paddingVertical: 16,
-    },
-    menuItem: {
-      height: 48,
-      display: 'flex',
-      alignItems: 'center',
-      padding: '6px 16px',
-    },
-    menuItemSelected: {
-      backgroundColor: vars.colors.backgroundAlternative,
-    },
-    suggestionsContainer: {
-      position: 'absolute',
-      backgroundColor: 'white',
-      zIndex: 2,
-    },
-  });
-
-  return (
-    <FieldContainer
-      disabled={rest.disabled}
-      helperText={
-        <HelperText
-          error={error}
-          leftText={helperText}
-          rightText={
-            multiline && maxLength
-              ? `${characterCount}/${maxLength}`
-              : undefined
-          }
-        />
+    React.useEffect(() => {
+      if (inputState !== 'focused' && value?.length) {
+        setCharacterCount(value.length);
+        setInputState('filled');
       }
-      multiline={multiline}
-      fullWidth={fullWidth}
-      fieldRef={fieldRef}
-      inputState={inputState}
-      readOnly={rest.readOnly}
-      error={error}>
-      {startIcon && <View style={styles.startIcon}>{startIcon}</View>}
+      if (focus) {
+        setInputState('focused');
+      }
+      if (focus === false && !value?.length) {
+        setInputState('default');
+      }
+      if (focus === false && value?.length) {
+        setInputState('filled');
+      }
+    }, [inputState, value, focus]);
 
-      {prefix && (
+    React.useEffect(() => {
+      if (rest.autoFocus) {
+        setInputState('focused');
+      }
+    }, [rest.autoFocus]);
+
+    const defaultInputElement = TextInput;
+
+    const props = {
+      ...rest,
+      maxLength,
+      autoComplete: autoCompleteProp,
+      ...inputProps,
+    };
+
+    const isShrinked =
+      shrinkLabel || inputState === 'focused' || inputState === 'filled';
+    const LABEL_LEFT_POSITION = 12;
+    const LABEL_SCALE_MOBILE = 0.75;
+    const scale = isShrinked ? LABEL_SCALE_MOBILE : 1;
+
+    const labelStyle = {
+      left: startIcon ? 48 : LABEL_LEFT_POSITION,
+      width: `calc(100% - ${
+        LABEL_LEFT_POSITION + (startIcon ? 48 : LABEL_LEFT_POSITION)
+      }px)`,
+      paddingRight: endIcon && !isShrinked ? 36 : 0,
+    };
+
+    const commonInputStyles = {
+      commonInputStyles: {
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        minWidth: 0,
+        color: vars.colors.textPrimary,
+        width: '100%',
+        paddingLeft: 12,
+        paddingRight: 16,
+        fontSize: 16,
+        lineHeight: 24,
+      },
+    };
+
+    const styles = StyleSheet.create({
+      placeholder: {
+        opacity: 0,
+      },
+      placeholderFocus: {
+        opacity: 0.5,
+      },
+      container: {
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 96,
+      },
+      fullWidth: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+      },
+      textArea: {
+        padding: 0,
+        ...commonInputStyles,
+      },
+      textAreaWithLabel: {
+        marginTop: 24,
+      },
+      textAreaWithoutLabel: {
+        marginTop: 16,
+      },
+      input: {
+        position: 'relative',
+        ...commonInputStyles.commonInputStyles,
+      },
+      inputWithLabel: {
+        paddingTop: 24,
+        paddingBottom: 8,
+      },
+      inputWithoutLabel: {
+        paddingTop: 16,
+        paddingBottom: 16,
+      },
+      endIcon: {
+        paddingLeft: 8,
+        paddingRight: 16,
+        display: 'flex',
+        alignItems: 'center',
+        alignSelf: 'center',
+      },
+      startIcon: {
+        paddingHorizontal: 12,
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+      },
+      prefix: {
+        paddingLeft: 12,
+        paddingRight: 16,
+      },
+      prefixWithLabel: {
+        paddingTop: 24,
+        paddingBottom: 8,
+      },
+      prefixWithoutLabel: {
+        paddingVertical: 16,
+      },
+      menuItem: {
+        height: 48,
+        display: 'flex',
+        alignItems: 'center',
+        padding: '6px 16px',
+      },
+      menuItemSelected: {
+        backgroundColor: vars.colors.backgroundAlternative,
+      },
+      suggestionsContainer: {
+        position: 'absolute',
+        backgroundColor: 'white',
+        zIndex: 2,
+      },
+    });
+
+    return (
+      <FieldContainer
+        disabled={rest.disabled}
+        helperText={
+          <HelperText
+            error={error}
+            leftText={helperText}
+            rightText={
+              multiline && maxLength
+                ? `${characterCount}/${maxLength}`
+                : undefined
+            }
+          />
+        }
+        multiline={multiline}
+        fullWidth={fullWidth}
+        fieldRef={fieldRef}
+        inputState={inputState}
+        readOnly={rest.readOnly}
+        error={error}>
+        {startIcon && <View style={styles.startIcon}>{startIcon}</View>}
+        {prefix && (
+          <View
+            style={[
+              styles.prefix,
+              hasLabel ? styles.prefixWithLabel : styles.prefixWithoutLabel,
+              {opacity: inputState === 'default' ? 0 : 1},
+              {alignSelf: prefixAlignSelf},
+            ]}>
+            <Text3 color={vars.colors.textSecondary} regular wordBreak={false}>
+              {prefix}
+            </Text3>
+          </View>
+        )}
         <View
           style={[
-            styles.prefix,
-            hasLabel ? styles.prefixWithLabel : styles.prefixWithoutLabel,
-            {opacity: inputState === 'default' ? 0 : 1},
-            {alignSelf: prefixAlignSelf},
+            styles.fullWidth,
+            {alignSelf: prefix ? 'baseline' : 'flex-start'},
           ]}>
-          <Text3 color={vars.colors.textSecondary} regular wordBreak={false}>
-            {prefix}
-          </Text3>
+          {React.createElement(inputComponent || defaultInputElement, {
+            ...props,
+            style: {
+              ...props.style,
+              ...(multiline
+                ? {
+                    ...styles.textArea,
+                    ...(hasLabel
+                      ? styles.textAreaWithLabel
+                      : styles.textAreaWithoutLabel),
+                  }
+                : {
+                    ...styles.input,
+                    ...(hasLabel
+                      ? styles.inputWithLabel
+                      : styles.inputWithoutLabel),
+                  }),
+            },
+            onFocus: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+              setInputState('focused');
+              onFocus?.(event);
+            },
+            onChange: (
+              event: NativeSyntheticEvent<TextInputChangeEventData>,
+            ) => {
+              if (
+                maxLength === undefined ||
+                event.nativeEvent.text.length <= maxLength
+              ) {
+                setCharacterCount(event.nativeEvent.text.length);
+                props.onChange?.(event);
+              } else {
+                event.stopPropagation();
+                event.preventDefault();
+              }
+            },
+            onEndEditing: (
+              event: NativeSyntheticEvent<TextInputFocusEventData>,
+            ) => {
+              if (event.nativeEvent.text.length > 0) {
+                setInputState('filled');
+              } else {
+                setInputState('default');
+              }
+              onEndEditing?.(event);
+            },
+            defaultValue,
+            value,
+            error,
+          })}
         </View>
-      )}
-      <View
-        style={[
-          styles.fullWidth,
-          {alignSelf: prefix ? 'baseline' : 'flex-start'},
-        ]}>
-        {React.createElement(inputComponent || defaultInputElement, {
-          ...props,
-          style: {
-            ...props.style,
-            ...(multiline
-              ? {
-                  ...styles.textArea,
-                  ...(hasLabel
-                    ? styles.textAreaWithLabel
-                    : styles.textAreaWithoutLabel),
-                }
-              : {
-                  ...styles.input,
-                  ...(hasLabel
-                    ? styles.inputWithLabel
-                    : styles.inputWithoutLabel),
-                }),
-          },
-          onFocus: (event: React.FocusEvent<TextInput>) => {
-            setInputState('focused');
-            onFocus?.(event);
-            console.log('Input Focused');
-          },
-          onBlur: (event: React.FocusEvent<TextInput>) => {
-            if (true) {
-              setInputState('filled');
-            } else {
-              setInputState('default');
-            }
-            onBlur?.(event);
-          },
-          onChange: (event: React.ChangeEvent<TextInput>) => {
-            if (maxLength === undefined) {
-              setCharacterCount(20);
-              props.onChange?.(event);
-            } else {
-              event.stopPropagation();
-              event.preventDefault();
-            }
-            console.log('Input Changes');
-          },
-          defaultValue,
-          value,
-          error,
-          multiline,
-        })}
-      </View>
-      {label && (
-        <Label
-          style={labelStyle}
-          error={error}
-          forId=""
-          inputState={inputState}
-          shrinkLabel={shrinkLabel}
-          optional={!rest.required}>
-          {label}
-        </Label>
-      )}
-      {endIcon && <View style={styles.endIcon}>{endIcon}</View>}
-      {endIconOverlay}
-    </FieldContainer>
-  );
-};
+        {label && (
+          <Label
+            style={labelStyle}
+            error={error}
+            forId=""
+            inputState={inputState}
+            shrinkLabel={shrinkLabel}
+            optional={!rest.required}>
+            {label}
+          </Label>
+        )}
+        {endIcon && <View style={styles.endIcon}>{endIcon}</View>}
+        {endIconOverlay}
+      </FieldContainer>
+    );
+  },
+);
 
 export const TextFieldBaseAutosuggest = React.forwardRef<
   any,
@@ -416,9 +428,14 @@ export const TextFieldBaseAutosuggest = React.forwardRef<
   return getSuggestions ? (
     <React.Suspense
       fallback={
-        <TextFieldBase {...props} label={props.label} autoComplete="off" />
+        <TextFieldBase
+          {...props}
+          label={props.label}
+          autoComplete="off"
+          ref={ref}
+        />
       }></React.Suspense>
   ) : (
-    <TextFieldBase {...props} />
+    <TextFieldBase {...props} ref={ref} />
   );
 });

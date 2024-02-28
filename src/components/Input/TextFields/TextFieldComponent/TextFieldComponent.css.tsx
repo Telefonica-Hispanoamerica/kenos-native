@@ -10,17 +10,29 @@ export const styles = StyleSheet.create({
 
   labelContainer: {
     position: 'absolute',
-    top: 0,
+    top: 15,
     height: 24,
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     left: LABEL_LEFT_POSITION,
   },
 
-  shrinked: {
-    height: 16 / LABEL_SCALE_MOBILE,
-    lineHeight: 16 / LABEL_SCALE_MOBILE,
-    width: '100%',
+  labelText: {
+    overflow: 'hidden',
+    flexShrink: 1,
+    fontSize: 16,
+    lineHeight: 24,
+  },
+
+  shrinkedContainer: {
+    height: 16,
+    top: 8
+  },
+
+  shrinkedText: {
+    fontSize: 12,
+    lineHeight: 16
   },
 
   helperContainer: {
@@ -69,6 +81,10 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#737578',
+    alignContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    textAlignVertical: 'center',
   },
 
   fieldMulti: {
@@ -77,15 +93,5 @@ export const styles = StyleSheet.create({
 
   fieldSingle: {
     height: 56,
-  },
-
-  labelText: {
-    overflow: 'hidden',
-    flexShrink: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    fontSize: 16,
-    lineHeight: 24,
   },
 });

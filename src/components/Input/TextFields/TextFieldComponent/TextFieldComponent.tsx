@@ -49,11 +49,13 @@ export const Label: React.FC<LabelProps> = ({
   }
 
   return (
-    <View style={[styles.labelContainer, isShrinked && styles.shrinked]}>
-      <Text style={[styles.labelText, {color}]}>{children}</Text>
+    <View style={[styles.labelContainer, isShrinked && styles.shrinkedContainer]}>
+      <Text style={[styles.labelText, isShrinked && styles.shrinkedText, {color}]}>{children}
       {optional ? (
-        <Text>&nbsp;({texts.formFieldOptionalLabelSuffix})</Text>
-      ) : null}
+         <Text>&nbsp;({texts.formFieldOptionalLabelSuffix})</Text>
+        ) : null}
+      </Text>
+     
     </View>
   );
 };
@@ -156,7 +158,7 @@ export const FieldContainer: React.FC<FieldContainerProps> = ({
               ? vars.colors.neutralLow
               : vars.colors.backgroundContainer,
           },
-          getBorderStyle(),
+          getBorderStyle()
         ]}
         ref={fieldRef}>
         {children}
