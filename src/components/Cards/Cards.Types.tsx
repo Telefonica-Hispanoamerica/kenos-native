@@ -1,6 +1,6 @@
 import {IconProps} from '../../utils';
 import {DataAttributes} from '../../utils/types';
-import {ButtonProps} from '../Button/Button';
+import {ButtonProps} from '../Buttons';
 import Tag from '../Tag/Tag';
 
 export interface BaseCardProps {
@@ -32,4 +32,8 @@ export interface MediaCardProps extends BaseCardProps {
   media: React.ReactNode;
   children?: void;
   dataAttributes?: DataAttributes;
+}
+
+export interface PlanCardProps extends DataCardProps {
+  
 }

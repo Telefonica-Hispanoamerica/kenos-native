@@ -116,7 +116,7 @@ Media_Card.args = {
 
 export const Plan_Card: ComponentStory<typeof PlanCard> = args => {
   return (
-    <View style={{flex: 1, padding: 10}}>
+    <View style={{width:'100%', minHeight: 389, padding: 10}}>
       <PlanCard {...args} />
     </View>
   );

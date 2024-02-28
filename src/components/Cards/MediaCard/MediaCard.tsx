@@ -33,6 +33,7 @@ export const MediaCard = React.forwardRef<HTMLDivElement, MediaCardProps>(
     return (
       <MaybeDismissable onClose={onClose} aria-label={ariaLabel}>
         <Boxed
+          borderRadius={8}
           styles={styles.boxed}
           dataAttributes={{'component-name': 'MediaCard', ...dataAttributes}}
           width="100%"
