@@ -44,10 +44,10 @@ const Tag: React.FC<TagProps> = ({ Icon, children, type = 'promo', isInverseTag 
 
     return (
         <View
-            style={withBackground ? [styles.tag, { paddingLeft: Icon ? 5 : 9,  backgroundColor: isInverseTag ? inverseBackGroundColor : backgroundColor }]: [styles.tag, { paddingLeft: Icon ? 8 : 12 }]}>
+            style={withBackground ? [styles.tag, { paddingLeft: Icon ? 6 : 10,  backgroundColor: isInverseTag ? inverseBackGroundColor : backgroundColor }]: [styles.tag, { paddingLeft: Icon ? 8 : 12 }]}>
             {Icon && (
                 <Box paddingRight={4}>
-                    <Icon color={isInverseTag ? inverseTextColor : textColor} size={16} />
+                    <Icon color={isInverseTag ? inverseTextColor : textColor} size={24} />
                 </Box>
             )}
             <Text
