@@ -4,7 +4,7 @@ import {Pressable, Text, View} from 'react-native';
 import {IconProps} from '../../../utils';
 import {useTheme} from '../../../utils/ThemeContextProvider';
 import {IconTypeProps} from './IconButton.Types';
-import {styles} from './IconButton.css';
+import { styles } from './IconButton.css';
 
 export const IconButton = (props: IconTypeProps) => {
   const {skin} = useTheme();
@@ -40,7 +40,7 @@ export const IconButton = (props: IconTypeProps) => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={props.onPress} style={[styles.circle, {backgroundColor: background}]}>
+      <Pressable onPress={props.onPress} style={[styles.circle, {backgroundColor: background}, props.styles]}>
         {iconComponent}
       </Pressable>
       <Text style={styles.textButton}>{props.children}</Text>
