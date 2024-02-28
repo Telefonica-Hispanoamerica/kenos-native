@@ -1,11 +1,10 @@
 // Importa los módulos necesarios de Storybook
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Circle } from '../components';
-import { IconButton } from '../components/IconButton/IconButton';
+import { IconButton } from '../components/Buttons/IconButton/IconButton';
 import { IconComputerAcademicRegular } from '../kenos-icons';
-import { ScrollView } from 'react-native';
 import Row from '../components/ListRow/ListRow';
 
 storiesOf('List', module)

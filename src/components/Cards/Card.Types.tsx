@@ -1,4 +1,3 @@
-import {Button, ButtonProps} from '../Button/Button';
 import {DataAttributes} from '../../utils/types';
 import {IconProps} from '../../utils';
 import Tag from '../Tag/Tag';
