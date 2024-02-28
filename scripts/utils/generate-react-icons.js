@@ -40,8 +40,9 @@ function convertTags (tag) {
 
 function outputFileContents (generatedCode, iconName) {
     return `// File generated automatically with 'npm run import-icons'.
-import Svg, { Path } from 'react-native-svg'
-import { IconProps } from '../utils/types'
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+import { IconProps } from '../utils/types';
 
 
 const ${iconName}: React.ComponentType<IconProps> = (props) =>{
