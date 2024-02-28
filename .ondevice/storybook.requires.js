@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./src/__stories__",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src\\/__stories__(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src[\\\\/]__stories__(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -52,6 +52,7 @@ const getStories = () => {
     "./src/__stories__/Avatar.stories.tsx": require("../src/__stories__/Avatar.stories.tsx"),
     "./src/__stories__/Badge.stories.tsx": require("../src/__stories__/Badge.stories.tsx"),
     "./src/__stories__/Button.stories.tsx": require("../src/__stories__/Button.stories.tsx"),
+    "./src/__stories__/ButtonLayout.stories.tsx": require("../src/__stories__/ButtonLayout.stories.tsx"),
     "./src/__stories__/Callout.stories.tsx": require("../src/__stories__/Callout.stories.tsx"),
     "./src/__stories__/Checkbox.stories.tsx": require("../src/__stories__/Checkbox.stories.tsx"),
     "./src/__stories__/Circle.stories.tsx": require("../src/__stories__/Circle.stories.tsx"),
@@ -60,6 +61,7 @@ const getStories = () => {
     "./src/__stories__/Horizontal.stories.tsx": require("../src/__stories__/Horizontal.stories.tsx"),
     "./src/__stories__/IconButton.stories.tsx": require("../src/__stories__/IconButton.stories.tsx"),
     "./src/__stories__/IconButtonLayout.stories.tsx": require("../src/__stories__/IconButtonLayout.stories.tsx"),
+    "./src/__stories__/ListRow.stories.tsx": require("../src/__stories__/ListRow.stories.tsx"),
     "./src/__stories__/LoadingBar.stories.tsx": require("../src/__stories__/LoadingBar.stories.tsx"),
     "./src/__stories__/Logo.stories.tsx": require("../src/__stories__/Logo.stories.tsx"),
     "./src/__stories__/MediaCard.stories.tsx": require("../src/__stories__/MediaCard.stories.tsx"),

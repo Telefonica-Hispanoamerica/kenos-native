@@ -2,8 +2,7 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { View } from 'react-native';
-import { Circle } from '../components';
-import { IconButton } from '../components/IconButton/IconButton';
+import { Circle, IconButton } from '../components';
 import { IconComputerAcademicRegular } from '../kenos-icons';
 import { ScrollView } from 'react-native';
 import Row from '../components/ListRow/ListRow';
