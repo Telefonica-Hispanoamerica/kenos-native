@@ -1,6 +1,6 @@
 import {IconProps} from '../../utils';
 import {DataAttributes} from '../../utils/types';
-import {ButtonProps} from '../Buttons';
+import { ButtonProps } from '../Buttons/Button/Button.Types';
 import Tag from '../Tag/Tag';
 
 export interface BaseCardProps {

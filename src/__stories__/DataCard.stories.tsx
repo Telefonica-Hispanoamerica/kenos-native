@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 
-import { ScrollView, View } from 'react-native';
-import { Circle, Placeholder, Text3 } from '../components';
+import {ScrollView, View} from 'react-native';
+import {Circle, Placeholder, Text3} from '../components';
 import Image from '../components/Primitives/Image/Image';
-import { DataCard, MediaCard, PlanCard } from '../components/Cards';
+import {DataCard, MediaCard, PlanCard} from '../components/Cards';
 import Video from '../components/Primitives/Video/Video';
 
 //#region DataCard
@@ -116,7 +116,7 @@ Media_Card.args = {
 
 export const Plan_Card: ComponentStory<typeof PlanCard> = args => {
   return (
-    <View style={{width:'100%', minHeight: 389, padding: 10}}>
+    <View style={{flex: 1, padding: 10}}>
       <PlanCard {...args} />
     </View>
   );
