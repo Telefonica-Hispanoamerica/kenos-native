@@ -3,8 +3,9 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { IconButton } from '../components/Buttons/IconButton/IconButton';
-import { IconComputerUserRegular } from '../kenos-icons';
 import { IconButtonType } from '../components/Buttons/Buttons.Types';
+import { IconComputerUserRegular } from '../kenos-icons';
+
 
 const buttonTypes: Array<IconButtonType> = [
   'inverse',
