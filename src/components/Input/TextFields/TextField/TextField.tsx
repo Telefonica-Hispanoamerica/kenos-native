@@ -37,31 +37,6 @@ const TextField = React.forwardRef<TextInput, TextFieldProps>(
     ) => {
         const inputRef = React.useRef<TextInput | null>(null);
         const processValue = (v: string) => v;
-        console.log('error: ', error);
-        
-        // const onEndEditing = (event: React.FocusEvent<Element>) => {
-        //     if (rest.multiline && inputRef.current) {
-        //         // scroll to start
-        //         inputRef.current.scrollTop = 0;
-        //     }
-        //     onEndEditingProp?.(event);
-        // };
-
-        // const onFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
-        //     if (rest.multiline) {
-        //       setTimeout(() => {
-        //         if (inputRef.current) {
-        //           // place caret to the end
-        //           const value = inputRef.current.value;
-        //           inputRef.current.setNativeProps({ text: '' });
-        //           inputRef.current.setNativeProps({ text: value });
-        //           // scroll to end
-        //           inputRef.current.scrollToEnd();
-        //         }
-        //       }, 0);
-        //     }
-        //     onFocusProp?.(event);
-        //   };
         const onEndEditing = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
             if (rest.multiline && inputRef.current) {
             }

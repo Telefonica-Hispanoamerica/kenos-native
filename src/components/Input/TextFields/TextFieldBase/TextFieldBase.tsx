@@ -235,8 +235,6 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
       },
       fullWidth: {
         width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
       },
       textArea: {
         padding: 0,
@@ -249,7 +247,6 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
         marginTop: 16,
       },
       input: {
-        position: 'relative',
         ...commonInputStyles.commonInputStyles,
       },
       inputWithLabel: {
@@ -260,12 +257,12 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
         paddingTop: 16,
         paddingBottom: 16,
       },
-      endIcon: {
-        paddingLeft: 8,
+      endIconContainer: {
         paddingRight: 16,
-        display: 'flex',
-        alignItems: 'center',
-        alignSelf: 'center',
+        paddingLeft: 8,
+      },
+      endIcon: {
+       
       },
       startIcon: {
         paddingHorizontal: 12,
@@ -301,7 +298,6 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
         zIndex: 2,
       },
     });
-
     return (
       <FieldContainer
         disabled={rest.disabled}
@@ -343,6 +339,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
           ]}>
           {React.createElement(inputComponent || defaultInputElement, {
             ...props,
+            placeholder: inputState === 'focused' || value ? props.placeholder : '',
             style: {
               ...props.style,
               ...(multiline
@@ -390,6 +387,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
             defaultValue,
             value,
             error,
+            
           })}
         </View>
         {label && (
@@ -403,7 +401,11 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
             {label}
           </Label>
         )}
-        {endIcon && <View style={styles.endIcon}>{endIcon}</View>}
+        {endIcon && 
+        <View style={styles.endIconContainer}>
+          <View style={styles.endIcon}>{endIcon}</View>
+          </View>
+          }
         {endIconOverlay}
       </FieldContainer>
     );

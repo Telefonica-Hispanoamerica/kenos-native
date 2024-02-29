@@ -59,7 +59,6 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     minWidth: 96,
-    borderRadius: 8,
   },
 
   fullWidth: {
@@ -67,7 +66,7 @@ export const styles = StyleSheet.create({
   },
 
   normalWidth: {
-    width: 328,
+    width: DEFAULT_WIDTH,
   },
 
   disabled: {
@@ -75,16 +74,12 @@ export const styles = StyleSheet.create({
   },
 
   field: {
-    overflow: 'hidden',
     display: 'flex',
-    position: 'relative',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#737578',
-    alignContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    textAlignVertical: 'center',
+    width: '100%',
+    flexDirection: 'row',
   },
 
   fieldMulti: {
