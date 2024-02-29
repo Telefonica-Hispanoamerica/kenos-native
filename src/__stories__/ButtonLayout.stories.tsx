@@ -30,8 +30,6 @@ Basic.args = {
   primaryButtonText: 'Primary Button',
   secondaryButtonText: 'Secondary Button',
   linkText: 'Link Button',
-  small:false,
-  alignment:'column' 
 };
 
 Basic.storyName = 'ButtonsLayout'
