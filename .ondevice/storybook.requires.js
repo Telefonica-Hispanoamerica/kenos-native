@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./src/__stories__",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src\\/__stories__(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src[\\\\/]__stories__(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -79,6 +79,7 @@ const getStories = () => {
     "./src/__stories__/SkeletonText.stories.tsx": require("../src/__stories__/SkeletonText.stories.tsx"),
     "./src/__stories__/SocialMediaButton.stories.tsx": require("../src/__stories__/SocialMediaButton.stories.tsx"),
     "./src/__stories__/Stepper.stories.tsx": require("../src/__stories__/Stepper.stories.tsx"),
+    "./src/__stories__/StepperCircular.stories.tsx": require("../src/__stories__/StepperCircular.stories.tsx"),
     "./src/__stories__/Tabs.stories.tsx": require("../src/__stories__/Tabs.stories.tsx"),
     "./src/__stories__/Tag.stories.tsx": require("../src/__stories__/Tag.stories.tsx"),
     "./src/__stories__/Text.stories.tsx": require("../src/__stories__/Text.stories.tsx"),
