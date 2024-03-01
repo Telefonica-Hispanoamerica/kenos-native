@@ -1,10 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { View } from 'react-native';
-
 import { IconButton } from '../components/Buttons/IconButton/IconButton';
 import { IconComputerUserRegular } from '../kenos-icons';
-import { IconButtonType } from '../components/Buttons/Buttons.types';
+import { IconButtonType } from '../components/Buttons/Buttons.Types';
 
 const buttonTypes: Array<IconButtonType> = [
   'inverse',
@@ -47,6 +46,7 @@ export const Basic: ComponentStory<typeof IconButton> = args => {
 Basic.args = {
   children: 'Texto',
   type: 'light',
+  topArea: false
 };
 
 Basic.storyName = 'IconButton';

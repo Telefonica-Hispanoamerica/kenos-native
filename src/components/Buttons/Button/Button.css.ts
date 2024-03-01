@@ -1,5 +1,4 @@
-import { ButtonProps } from './Button';
-import { ButtonType } from './Button';
+import { ButtonProps, ButtonType } from './Button';
 import { useTheme } from '../../../utils/ThemeContextProvider';
 import {applyAlpha} from '../../../utils/color';
 import {StyleSheet} from 'react-native';

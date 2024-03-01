@@ -16,7 +16,11 @@ export const styles = StyleSheet.create({
     marginBottom: 3,
   },
   textButton: {
-    color: '#313235',
     marginBottom: 20,
   },
+  topArea: {
+    width: 40,
+    height: 40,
+  },
+  
 });

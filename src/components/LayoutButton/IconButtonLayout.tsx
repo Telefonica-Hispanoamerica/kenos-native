@@ -1,33 +1,58 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Pressable,
   Text,
   ScrollView,
 } from 'react-native';
+import { Text2 } from '../Text/Text';
 import { useTheme } from '../../utils/ThemeContextProvider';
 import { IconButton } from '../Buttons';
 import { styles } from './IconButtonLayout.css';
 import { LayoutIconButton } from './IconButtonLayout.Type';
+import { IconButtonType } from '../Buttons/IconButton/IconButton.Types';
 
 export const IconButtonLayout = (props: LayoutIconButton) => {
 
   const { skin } = useTheme();
-  const { background, backgroundBrand } = skin.colors;
-  const { inverse, medium, highlight } = props;
-  const backgroundIcon = ((inverse || medium || highlight) ? background : backgroundBrand);
+  const { background, backgroundBrand, textPrimary, textPrimaryInverse, backgroundBrandSecondary} = skin.colors;
+  const { inverse, medium, highlight, dark, light } = props;
 
+  const backgroundIcon = () => {
+ 
+    if(light && inverse) return backgroundBrand;
+    if(dark) return backgroundBrandSecondary;
+   
+    return background;
+ 
+}
+  
+ let typeButton:IconButtonType='lightBlank';
+ 
+ const themeTypeLayout=()=> {
+    switch (true) {
+      case medium: typeButton='medium';break;
+      case highlight: typeButton='highlight';break;
+      case dark: typeButton='darkLight';break;
+      case light:default:typeButton='inverse'; break; 
+    }
+  }
+
+  themeTypeLayout();
+  
   return (
-    <View style={[styles.container, { backgroundColor: backgroundIcon }]}>
-
+    <View style={[styles.container, { backgroundColor: backgroundIcon()}]}>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} scrollEnabled={true} contentContainerStyle={styles.containerScroll}>
         {
           props.buttonsOptions.map(({ text, icon }) => (
             <Pressable key={text} style={{ alignItems: 'center' }} onPress={props.onPress}>
               {
-                props.light ? (<IconButton type={'medium'} icon={icon} />) : (<IconButton {...props} icon={icon} />)
+                <IconButton type={typeButton} icon={icon}/>
               }
-              <Text style={styles.textButton}>{text}</Text>
+              {/* <Text style={[styles.textButton, {color: inverse && dark ? textPrimaryInverse:textPrimary}]}>{text}</Text> */}
+              <View style={styles.textButton}>
+                 <Text2 color={inverse && dark ? textPrimaryInverse:textPrimary} medium>{text}</Text2>
+              </View>
             </Pressable>
           ))
         }

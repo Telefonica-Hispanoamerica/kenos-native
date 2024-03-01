@@ -10,10 +10,10 @@ export const styles = StyleSheet.create({
       width: '100%',
       height: 80,
       marginTop: 15,
+      paddingLeft:8, 
+      paddingBottom:3
     },
     textButton: {
-      color: 'black',
-      fontSize: 12,
       marginTop: -20,
       paddingLeft: 10
     },
