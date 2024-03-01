@@ -2,14 +2,24 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        width: '100%', // Width in pixels
-        height: 'auto', // Height in pixels
-        top: 25, // Top position in pixels}
-        padding: 16, 
-        borderRadius: 16, // Top left and top right corners rounded
-        borderBottomLeftRadius: 0, // Bottom left corner not rounded
-        borderBottomRightRadius: 0, // Bottom right corner not rounded
-        gap: 16, // Gap between child elements in pixels
-        backgroundColor:'#FFFFFF'
-   }
+        width: '100%',
+        height: 'auto',
+        padding: 16,
+        top: 16,
+        borderRadius: 16,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        /* gap: 16, */
+        backgroundColor: '#FFFFFF'
+    },
+    withShadow: {
+        shadowColor: '#000000',
+        shadowOffset: {
+            width: 0,
+            height: -2,
+        },
+        shadowOpacity: 0.16,
+        shadowRadius: 8,
+        elevation:4
+    }
 })

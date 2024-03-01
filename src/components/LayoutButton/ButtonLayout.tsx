@@ -8,7 +8,7 @@ export const ButtonLayout = (props: ButtonsLayoutProps) => {
   const anyAction = !!props.primaryButton || !!props.secondaryButton || !!props.buttonLink;
   const bothButtons = !!props.primaryButton && !!props.secondaryButton;
   const customStylesLayout = StyleSheet.flatten([styles.container, {flexDirection:props.alignment ?? 'row',}])
-
+  console.log(props)
   return anyAction ? (
     <View style={customStylesLayout}>
       {
@@ -16,7 +16,7 @@ export const ButtonLayout = (props: ButtonsLayoutProps) => {
       }
       {
         (props.primaryButton || props.secondaryButton) && (
-          <View style={styles.containerButtons}>
+          <View style={[styles.containerButtons, {flexDirection:props.alignment ?? 'row'}]}>
             {props.secondaryButton && <View>{props.secondaryButton}</View>}
             {props.primaryButton && <View>{props.primaryButton}</View>}
           </View>
