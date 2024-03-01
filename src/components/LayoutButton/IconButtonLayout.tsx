@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View,
   Pressable,
-  Text,
   ScrollView,
 } from 'react-native';
 import { Text2 } from '../Text/Text';
