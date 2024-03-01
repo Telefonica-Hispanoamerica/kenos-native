@@ -4,12 +4,12 @@ export const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: 'auto',
-        padding: 16,
+        paddingLeft:16,
+        paddingRight:16,
         top: 16,
         borderRadius: 16,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        /* gap: 16, */
         backgroundColor: '#FFFFFF'
     },
     withShadow: {

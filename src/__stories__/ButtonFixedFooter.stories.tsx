@@ -19,8 +19,8 @@ export const Basic: ComponentStory<typeof ButtonFixedFooter> = args => {
 
   const buttonsOptions = [{ text: 'text1', icon: IconChipSimCardRegular }, { text: 'text2', icon: IconFileImageRegular }, { text: 'text3', icon: IconLightningRegular }, { text: 'text4', icon: IconFolderRegular }, { text: 'text5', icon: IconRobotRegular }]
 
-  const primaryButton = <Button type={'primary'} rounded>{args.primaryButtonText}</Button>;
-  const secondaryButton = <Button type={'secondary'} rounded>{args.secondaryButtonText}</Button>;
+  const primaryButton = <Button type={'primary'} rounded onPress={() => { }}>{args.primaryButtonText}</Button>;
+  const secondaryButton = <Button type={'secondary'} rounded onPress={() => { }}>{args.secondaryButtonText}</Button>;
   const buttonLink = <Button type={'link'} rounded rightIcon={IconFileImageRegular} onPress={() => { }}>{args.linkText}</Button>;
 
   return (

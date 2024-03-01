@@ -48,7 +48,6 @@ export const IconButtonLayout = (props: LayoutIconButton) => {
               {
                 <IconButton type={typeButton} icon={icon}/>
               }
-              {/* <Text style={[styles.textButton, {color: inverse && dark ? textPrimaryInverse:textPrimary}]}>{text}</Text> */}
               <View style={styles.textButton}>
                  <Text2 color={inverse && (dark || !dark) ? textPrimaryInverse:textPrimary} medium>{text}</Text2>
               </View>
