@@ -1,11 +1,10 @@
 // Importa los módulos necesarios de Storybook
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Circle } from '../components';
-import { IconButton } from '../components/IconButton/IconButton';
-import { IconComputerAcademicRegular } from '../kenos-icons';
-import { ScrollView } from 'react-native';
+import { IconButton } from '../components/Buttons/IconButton/IconButton';
+import { IconComputerAcademicRegular,IconEditPencilRegular} from '../kenos-icons';
 import Row from '../components/ListRow/ListRow';
 
 storiesOf('List', module)
@@ -20,7 +19,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"      
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="IconChevron"
       />
        <Row
@@ -31,7 +30,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"      
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
       />
       <Row
         value="1"
@@ -41,7 +40,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"      
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         disabled={true}
       />
       <Row
@@ -52,7 +51,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"
-        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         rightComponent="IconChevron"
       />
        <Row
@@ -63,7 +62,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"
-        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
       />
       <Row
         value="2"
@@ -73,7 +72,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"
-        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         disabled={true}
       />
       <Row
@@ -81,14 +80,14 @@ storiesOf('List', module)
         defaultValue="3"
         onSelect={(value) => console.log('Selected value:', value)}
         title="Title"
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
       />
        <Row
         value="3"
         defaultValue="3"
         onSelect={(value) => console.log('Selected value:', value)}
         title="Title"
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="IconChevron"
       />
     </View>
@@ -105,7 +104,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"      
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="IconChevron"
         style="bordered"
       />
@@ -117,7 +116,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"      
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         style="bordered"
       />
       <Row
@@ -128,7 +127,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"      
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         disabled={true}
         style="bordered"
       />
@@ -140,7 +139,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"
-        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         rightComponent="IconChevron"
         style="bordered"
       />
@@ -152,7 +151,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"
-        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         style="bordered"
       />
       <Row
@@ -163,7 +162,7 @@ storiesOf('List', module)
         title="Title"
         subtitle="Subtitle"
         description="Description"
-        icon={<IconButton icon={IconComputerAcademicRegular} />}
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         disabled={true}
         style="bordered"
       />
@@ -172,7 +171,7 @@ storiesOf('List', module)
         defaultValue="3"
         onSelect={(value) => console.log('Selected value:', value)}
         title="Title"
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         style="bordered"
       />
        <Row
@@ -180,9 +179,65 @@ storiesOf('List', module)
         defaultValue="3"
         onSelect={(value) => console.log('Selected value:', value)}
         title="Title"
-        icon={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
+        leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="IconChevron"
         style="bordered"
+      />
+    </View>
+    </ScrollView>
+  ))
+  .add('List Structure', () => (
+    <ScrollView>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',margin:10, gap:8  }}>
+     <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
+        rightComponent="IconChevron"
+        numberBagdeLS={10}
+        priceLS={1000}
+        iconLS={IconEditPencilRegular}
+      />
+      <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
+        rightComponent="IconChevron"
+        numberBagdeLS={10}
+      />
+      <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
+        rightComponent="IconChevron"
+        priceLS={1000}
+      />
+      <Row
+        value="1"
+        defaultValue="1"
+        onSelect={(value) => console.log('Selected value:', value)}
+        headline="Headline"
+        title="Title"
+        subtitle="Subtitle"
+        description="Description"      
+        leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
+        rightComponent="IconChevron"
+        iconLS={IconEditPencilRegular}
       />
     </View>
     </ScrollView>

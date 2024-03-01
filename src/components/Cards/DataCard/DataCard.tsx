@@ -31,7 +31,6 @@ export const DataCard: React.FC<DataCardProps> = ({
       <MaybeDismissable aria-label={ariaLabel} onClose={onClose}>
         <Boxed
           styles={styles.boxed}
-          borderRadius={8}
           dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}
           width="100%"
           height="100%">
