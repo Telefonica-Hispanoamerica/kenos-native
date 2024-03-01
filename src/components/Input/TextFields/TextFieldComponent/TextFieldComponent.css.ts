@@ -7,7 +7,6 @@ export const LABEL_SCALE_DESKTOP = 0.78;
 export const LABEL_SCALE_MOBILE = 0.75;
 
 export const styles = StyleSheet.create({
-
   labelContainer: {
     position: 'absolute',
     top: 15,
@@ -27,12 +26,12 @@ export const styles = StyleSheet.create({
 
   shrinkedContainer: {
     height: 16,
-    top: 8
+    top: 8,
   },
 
   shrinkedText: {
     fontSize: 12,
-    lineHeight: 16
+    lineHeight: 16,
   },
 
   helperContainer: {
