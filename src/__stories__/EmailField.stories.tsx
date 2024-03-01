@@ -1,36 +1,35 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import TextField from '../components/Input/TextFields/TextField/TextField';
+import EmailField from '../components/Input/EmailField/EmailField';
 import {View} from 'react-native';
-import {IconMusicFilled} from '../kenos-icons';
 
 export default {
-  title: 'TextField',
-  component: TextField,
-} as ComponentMeta<typeof TextField>;
+  title: 'EmailField',
+  component: EmailField,
+} as ComponentMeta<typeof EmailField>;
 
-export const Basic: ComponentStory<typeof TextField> = args => (
+export const Basic: ComponentStory<typeof EmailField> = args => (
   <View
     style={{
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      paddingHorizontal: 16,
     }}>
-    <TextField {...args} endIcon={<IconMusicFilled />}></TextField>
+    <EmailField {...args}></EmailField>
   </View>
 );
 
 Basic.args = {
-  label: 'Nombre',
+  label: 'Email',
   placeholder: '',
   helperText: '',
   maxLength: 20,
   error: false,
   optional: false,
-  multiline: false,
   readOnly: false,
   disabled: false,
   fullWidth: false,
 };
 
-Basic.storyName = 'TextField';
+Basic.storyName = 'EmailField';

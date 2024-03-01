@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { LayoutChangeEvent } from 'react-native';
+import { Dimensions } from 'react-native';
 
 export const useElementDimensions = (): {
   width: number;

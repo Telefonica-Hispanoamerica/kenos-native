@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View} from 'react-native';
-import { Text,Text2 } from '../Text/Text';
+import { Text,Text1,Text2 } from '../Text/Text';
 import Radio from '../Radio/Radio';
 import IconChevron from '../../icons/icon-chevron';
 import Tag from '../Tag/Tag';
 import { useTheme } from '../../utils/ThemeContextProvider';
 import { getStylesRow } from './ListRow.css';
+import Badge from '../Badge/Badge';
+import { IconProps } from '../../utils';
+import { colors } from '../../../scripts/tokens/utils/contracts';
+import { Box } from '../../layout';
 
 interface RowProps {
   value: string;
   onSelect: (value: string) => void;
   defaultValue: string;
   disabled?: boolean;
-  rightComponent?: 'RadioButton' | 'IconChevron';
+  leftComponent?: React.ReactNode;
+  rightComponent?: 'RadioButton' | 'IconChevron' | 'Without';
   headline?: string;
   title?: string;
   subtitle?: string;
   description?: string;
   style?: 'divider' | 'bordered';
-  icon?: React.ReactNode;
+  numberBagdeLS?: number
+  priceLS?:number
+  iconLS?: React.ComponentType<IconProps>;
 }
 
 const Row: React.FC<RowProps> = ({
@@ -26,19 +33,24 @@ const Row: React.FC<RowProps> = ({
   onSelect,
   defaultValue,
   disabled = false,
+  leftComponent,
   rightComponent = 'RadioButton',
   headline,
   title,
   subtitle,
   description,
   style = 'divider',
-  icon
+  numberBagdeLS,
+  priceLS,
+  iconLS:IconLS
 }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue); 
   const {skin,textPresets} = useTheme()
-
+  const formatNumberPrice = (number:number) =>  {
+    const numberConvert =  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return `$ ${numberConvert.toString()}`
+  }
   const styles = getStylesRow(skin.colors)
-
   const handleSelect = (newValue: string) => {
     setSelectedValue(newValue);
     onSelect(newValue);
@@ -55,9 +67,9 @@ const Row: React.FC<RowProps> = ({
       <View style={styles.container}>
         <View style={styles.leftContainer}>
           <View style={styles.leftContent}>
-          {icon && (
+          {leftComponent && (
             <View >
-              {icon}
+              {leftComponent}
             </View>
            )}
           </View>
@@ -80,6 +92,15 @@ const Row: React.FC<RowProps> = ({
             </Text2>
           </View>
         </View>
+        <View style={styles.listStructure}>
+        {numberBagdeLS && <Badge value={numberBagdeLS}></Badge>}
+        {priceLS && <Text1>{formatNumberPrice(priceLS)}</Text1>}
+        {IconLS && 
+          <Box paddingRight={4}>
+            <IconLS color={colors.controlActivated} size={24} />
+          </Box>
+        }
+        </View>
         <View style={styles.rightContainer}>
           {rightComponent === 'RadioButton' && (
             <Radio
@@ -95,6 +116,9 @@ const Row: React.FC<RowProps> = ({
               color={disabled ? 'grey' : 'black'}
               direction="right"
             />
+          )}
+           {rightComponent === 'Without' && (
+            null
           )}
         </View>
       </View>
