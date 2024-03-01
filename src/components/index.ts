@@ -22,7 +22,7 @@ export {
   SkeletonRow,
 } from './Skeletons/Skeletons';
 export {default as StatusBar} from './StatusBar/StatusBar';
-export {default as Stepper} from './Stepper/Stepper';
+export {default as Stepper} from './Steppers/Stepper';
 export {default as Tag} from './Tag/Tag';
 export {
   Text,

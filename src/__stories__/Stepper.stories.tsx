@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Stepper from '../components/Stepper/Stepper';
+import Stepper from '../components/Steppers/Stepper';
 import { View } from 'react-native';
 import { Button } from '../components/Buttons';
 

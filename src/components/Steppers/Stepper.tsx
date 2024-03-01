@@ -3,11 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { IconAutenticationSuccessFilled } from '../../kenos-icons';
 import { useTheme } from '../../utils/ThemeContextProvider';
 import ProgressBar from '../ProgressBar/ProgressBar';
-
-type StepperProps = {
-    steps: ReadonlyArray<string>;
-    currentIndex: number;
-};
+import { StepperProps } from './Steppers.Types';
 
 const Stepper: React.FC<StepperProps> = ({ steps, currentIndex }: StepperProps) => {
     const previousIndexRef = useRef(currentIndex);
