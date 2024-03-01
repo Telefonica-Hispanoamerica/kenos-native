@@ -2,47 +2,23 @@ import React from 'react';
 import {
   TextInput,
   View,
-  StyleSheet,
-  TextInputFocusEventData,
+  NativeSyntheticEvent,
   GestureResponderEvent,
+  TextInputFocusEventData,
+  TextInputChangeEventData,
 } from 'react-native';
-import {NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 import {useTheme} from '../../../../utils/ThemeContextProvider';
 import {FieldValidator} from '../../../../patterns/Forms/FormContext';
-import type {InputState} from '../TextFieldComponent/TextFieldComponent';
 import {
   Label,
+  InputState,
   FieldContainer,
   HelperText,
 } from '../TextFieldComponent/TextFieldComponent';
 import {Text3} from '../../../Text/Text';
-import {combineRefs} from '../../../../utils/common';
-
-export type AutoComplete =
-  | 'on'
-  | 'off'
-  | 'name' // full name
-  | 'given-name' // first name
-  | 'additional-name' // middle name
-  | 'family-name' // last name
-  | 'email'
-  | 'tel'
-  | 'street-address'
-  | 'address-line1' // for two address inputs
-  | 'address-line2' // for two address inputs
-  | 'address-level1' // state or province
-  | 'address-level2' // city
-  | 'country'
-  | 'postal-code'
-  | 'transaction-amount'
-  | 'new-password'
-  | 'current-password'
-  | 'cc-type' // The type of payment instrument (such as "Visa" or "Master Card")
-  | 'cc-name' // The full name as printed on or associated with a payment instrument such as a credit card
-  | 'cc-number' // A credit card number or other number identifying a payment method, such as an account number
-  | 'cc-exp' // A payment method expiration date, typically in the form "MM/YY" or "MM/YYYY"
-  | 'cc-csc' // The security code; on credit cards, this is the 3-digit verification number on the back of the card
-  | 'username'; // Username or account name, when used with a password field the browser offers to save credentials together
+import {AutoComplete} from './TextFieldBase.Types';
+import {IconWarningRegular} from '../../../../kenos-icons';
+import {styles} from './TextFieldBase.css';
 
 export interface CommonFormFieldProps {
   autoFocus?: boolean;
@@ -145,7 +121,26 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
       defaultValue?.length ?? 0,
     );
     const hasLabel = !!label || !rest.required;
-    const vars = useTheme().skin;
+    const {skin} = useTheme();
+    const {textPrimary, textSecondary, errorHigh} = skin.colors;
+
+    const {
+      fullSize,
+      textArea,
+      textAreaWithLabel,
+      textAreaWithoutLabel,
+      input,
+      inputWithLabel,
+      inputWithoutLabel,
+      endIconContainer,
+      endIconElement,
+      startIconElement,
+      prefixElement,
+      prefixWithLabel,
+      prefixWithoutLabel,
+      endIconWithoutError,
+      endIconWithError,
+    } = styles(textPrimary, textSecondary);
 
     const shrinkLabel =
       shrinkLabelProp ||
@@ -196,8 +191,6 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
     const isShrinked =
       shrinkLabel || inputState === 'focused' || inputState === 'filled';
     const LABEL_LEFT_POSITION = 12;
-    const LABEL_SCALE_MOBILE = 0.75;
-    const scale = isShrinked ? LABEL_SCALE_MOBILE : 1;
 
     const labelStyle = {
       left: startIcon ? 48 : LABEL_LEFT_POSITION,
@@ -206,101 +199,6 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
       }px)`,
       paddingRight: endIcon && !isShrinked ? 36 : 0,
     };
-
-    const commonInputStyles = {
-      commonInputStyles: {
-        backgroundColor: 'transparent',
-        borderWidth: 0,
-        minWidth: 0,
-        color: vars.colors.textPrimary,
-        width: '100%',
-        paddingLeft: 12,
-        paddingRight: 16,
-        fontSize: 16,
-        lineHeight: 24,
-      },
-    };
-
-    const styles = StyleSheet.create({
-      placeholder: {
-        opacity: 0,
-      },
-      placeholderFocus: {
-        opacity: 0.5,
-      },
-      container: {
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 96,
-      },
-      fullWidth: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-      },
-      textArea: {
-        padding: 0,
-        ...commonInputStyles,
-      },
-      textAreaWithLabel: {
-        marginTop: 24,
-      },
-      textAreaWithoutLabel: {
-        marginTop: 16,
-      },
-      input: {
-        position: 'relative',
-        ...commonInputStyles.commonInputStyles,
-      },
-      inputWithLabel: {
-        paddingTop: 24,
-        paddingBottom: 8,
-      },
-      inputWithoutLabel: {
-        paddingTop: 16,
-        paddingBottom: 16,
-      },
-      endIcon: {
-        paddingLeft: 8,
-        paddingRight: 16,
-        display: 'flex',
-        alignItems: 'center',
-        alignSelf: 'center',
-      },
-      startIcon: {
-        paddingHorizontal: 12,
-        display: 'flex',
-        alignItems: 'center',
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-      },
-      prefix: {
-        paddingLeft: 12,
-        paddingRight: 16,
-      },
-      prefixWithLabel: {
-        paddingTop: 24,
-        paddingBottom: 8,
-      },
-      prefixWithoutLabel: {
-        paddingVertical: 16,
-      },
-      menuItem: {
-        height: 48,
-        display: 'flex',
-        alignItems: 'center',
-        padding: '6px 16px',
-      },
-      menuItemSelected: {
-        backgroundColor: vars.colors.backgroundAlternative,
-      },
-      suggestionsContainer: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        zIndex: 2,
-      },
-    });
 
     return (
       <FieldContainer
@@ -322,41 +220,36 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
         inputState={inputState}
         readOnly={rest.readOnly}
         error={error}>
-        {startIcon && <View style={styles.startIcon}>{startIcon}</View>}
+        {startIcon && <View style={startIconElement}>{startIcon}</View>}
         {prefix && (
           <View
             style={[
-              styles.prefix,
-              hasLabel ? styles.prefixWithLabel : styles.prefixWithoutLabel,
+              prefixElement,
+              hasLabel ? prefixWithLabel : prefixWithoutLabel,
               {opacity: inputState === 'default' ? 0 : 1},
               {alignSelf: prefixAlignSelf},
             ]}>
-            <Text3 color={vars.colors.textSecondary} regular wordBreak={false}>
+            <Text3 color={textSecondary} regular wordBreak={false}>
               {prefix}
             </Text3>
           </View>
         )}
         <View
-          style={[
-            styles.fullWidth,
-            {alignSelf: prefix ? 'baseline' : 'flex-start'},
-          ]}>
+          style={[fullSize, {alignSelf: prefix ? 'baseline' : 'flex-start'}]}>
           {React.createElement(inputComponent || defaultInputElement, {
             ...props,
+            placeholder:
+              inputState === 'focused' || value ? props.placeholder : '',
             style: {
               ...props.style,
               ...(multiline
                 ? {
-                    ...styles.textArea,
-                    ...(hasLabel
-                      ? styles.textAreaWithLabel
-                      : styles.textAreaWithoutLabel),
+                    ...textArea,
+                    ...(hasLabel ? textAreaWithLabel : textAreaWithoutLabel),
                   }
                 : {
-                    ...styles.input,
-                    ...(hasLabel
-                      ? styles.inputWithLabel
-                      : styles.inputWithoutLabel),
+                    ...input,
+                    ...(hasLabel ? inputWithLabel : inputWithoutLabel),
                   }),
             },
             onFocus: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -390,6 +283,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
             defaultValue,
             value,
             error,
+            ref,
           })}
         </View>
         {label && (
@@ -403,7 +297,22 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
             {label}
           </Label>
         )}
-        {endIcon && <View style={styles.endIcon}>{endIcon}</View>}
+        {error && (
+          <View
+            style={[
+              endIconContainer,
+              endIcon ? endIconWithError : endIconWithoutError,
+            ]}>
+            <View style={endIconElement}>
+              <IconWarningRegular color={errorHigh}></IconWarningRegular>
+            </View>
+          </View>
+        )}
+        {endIcon && (
+          <View style={endIconContainer}>
+            <View style={endIconElement}>{endIcon}</View>
+          </View>
+        )}
         {endIconOverlay}
       </FieldContainer>
     );
@@ -414,11 +323,6 @@ export const TextFieldBaseAutosuggest = React.forwardRef<
   any,
   TextFieldBaseProps
 >(({getSuggestions, ...props}, ref) => {
-  const [suggestions, setSuggestions] = React.useState<ReadonlyArray<string>>(
-    [],
-  );
-  const inputRef = React.useRef<TextInput>(null);
-  const {texts} = useTheme();
   if (
     getSuggestions &&
     (props.value === undefined || props.defaultValue !== undefined)

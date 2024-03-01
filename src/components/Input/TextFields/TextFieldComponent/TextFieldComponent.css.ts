@@ -7,7 +7,6 @@ export const LABEL_SCALE_DESKTOP = 0.78;
 export const LABEL_SCALE_MOBILE = 0.75;
 
 export const styles = StyleSheet.create({
-
   labelContainer: {
     position: 'absolute',
     top: 15,
@@ -27,12 +26,12 @@ export const styles = StyleSheet.create({
 
   shrinkedContainer: {
     height: 16,
-    top: 8
+    top: 8,
   },
 
   shrinkedText: {
     fontSize: 12,
-    lineHeight: 16
+    lineHeight: 16,
   },
 
   helperContainer: {
@@ -59,7 +58,6 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     minWidth: 96,
-    borderRadius: 8,
   },
 
   fullWidth: {
@@ -67,7 +65,7 @@ export const styles = StyleSheet.create({
   },
 
   normalWidth: {
-    width: 328,
+    width: DEFAULT_WIDTH,
   },
 
   disabled: {
@@ -75,16 +73,12 @@ export const styles = StyleSheet.create({
   },
 
   field: {
-    overflow: 'hidden',
     display: 'flex',
-    position: 'relative',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#737578',
-    alignContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    textAlignVertical: 'center',
+    width: '100%',
+    flexDirection: 'row',
   },
 
   fieldMulti: {

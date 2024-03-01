@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const combineRefs = <T,>(...refs: Array<React.Ref<T> | undefined>) => {
-  console.log('xd')
   return (refValue: T | null) => {
     refs.forEach(ref => {
       if (!ref) return;
