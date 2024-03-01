@@ -1,118 +1,171 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useTheme } from '../../../../utils/ThemeContextProvider'; // Asegúrate de que useTheme sea compatible con React Native
+import React, {useLayoutEffect} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {useTheme} from '../../../../utils/ThemeContextProvider';
+import {styles} from './TextFieldComponent.css';
 
 export type InputState = 'focused' | 'filled' | 'default';
 
 type LabelProps = {
-    shrinkLabel?: boolean;
-    forId: string;
-    inputState: InputState;
-    error?: boolean;
-    children: string;
-    optional?: boolean;
+  shrinkLabel?: boolean;
+  forId: string;
+  inputState: InputState;
+  error?: boolean;
+  children: string;
+  style?: React.CSSProperties;
+  optional?: boolean;
 };
 
 export const Label: React.FC<LabelProps> = ({
-    shrinkLabel,
-    inputState,
-    error,
-    children,
-    optional,
+  shrinkLabel,
+  forId,
+  inputState,
+  error,
+  children,
+  style,
+  optional,
 }) => {
-    const { skin, texts } = useTheme(); // Asume que useTheme devuelve un objeto con colores y textos
+  const isShrinked =
+    shrinkLabel || inputState === 'focused' || inputState === 'filled';
+  const [transitionStyle, setTransitionStyle] = React.useState('initial');
+  const vars = useTheme().skin;
+  const texts = useTheme().texts;
 
-    let color = error && inputState !== 'default' ? skin.colors.errorHigh : skin.colors.textSecondary;
-    if (inputState === 'focused') {
-        color = skin.colors.textPrimary;
-    }
+  useLayoutEffect(() => {
+    const tid = setTimeout(() => {
+      if (process.env.NODE_ENV !== 'test') {
+        setTransitionStyle('transform 150ms, width 150ms');
+      }
+    });
+    return () => {
+      clearTimeout(tid);
+    };
+  }, []);
 
-    return (
-        <Text style={[styles.label, { color }]}>
-            {children}
-            {optional && ` (${texts.formFieldOptionalLabelSuffix})`}
-        </Text>
-    );
+  let color = vars.colors.textSecondary;
+  if (error && inputState !== 'default') {
+    color = vars.colors.errorHigh;
+  } else if (inputState === 'focused') {
+    color = vars.colors.textPrimary;
+  }
+
+  return (
+    <View
+      style={[styles.labelContainer, isShrinked && styles.shrinkedContainer]}>
+      <Text
+        style={[styles.labelText, isShrinked && styles.shrinkedText, {color}]}>
+        {children}
+        {optional ? (
+          <Text>&nbsp;({texts.formFieldOptionalLabelSuffix})</Text>
+        ) : null}
+      </Text>
+    </View>
+  );
 };
 
 type HelperTextProps = {
-    leftText?: string;
-    rightText?: string;
-    error?: boolean;
+  leftText?: string;
+  rightText?: string;
+  error?: boolean;
+  children?: void;
 };
 
-export const HelperText: React.FC<HelperTextProps> = ({leftText, rightText, error}) => {
-    const { skin } = useTheme(); // Asume que useTheme devuelve un objeto con colores
+export const HelperText: React.FC<HelperTextProps> = ({
+  leftText,
+  rightText,
+  error,
+}) => {
+  const vars = useTheme().skin;
+  const leftColor = error ? vars.colors.errorHigh : vars.colors.textPrimary;
+  const rightColor = vars.colors.textSecondary;
 
-    const leftColor = error ? skin.colors.errorHigh : skin.colors.textPrimary;
-    const rightColor = skin.colors.textSecondary;
-
-    return (
-        <View style={styles.helperContainer}>
-            {leftText && (
-                <Text style={[styles.helperText, { color: leftColor }]}>{leftText}</Text>
-            )}
-            {rightText && (
-                <Text style={[styles.helperText, styles.rightText, { color: rightColor }]}>{rightText}</Text>
-            )}
-        </View>
-    );
+  return (
+    <View style={styles.helperContainer}>
+      {leftText && (
+        <Text style={[styles.helperText, styles.leftText, {color: leftColor}]}>
+          {leftText}
+        </Text>
+      )}
+      {rightText && (
+        <Text
+          style={[styles.helperText, styles.rightText, {color: rightColor}]}>
+          {rightText}
+        </Text>
+      )}
+    </View>
+  );
 };
 
 type FieldContainerProps = {
-    multiline?: boolean;
-    disabled?: boolean;
-    children: React.ReactNode;
-    helperText?: React.ReactNode;
-    fullWidth?: boolean;
-    readOnly?: boolean;
-    inputState: InputState;
-    error?: boolean;
+  multiline?: boolean;
+  disabled?: boolean;
+  children: React.ReactNode;
+  helperText?: React.ReactNode;
+  fullWidth?: boolean;
+  fieldRef?: React.RefObject<View>;
+  readOnly?: boolean;
+  inputState: InputState;
+  error?: boolean;
 };
 
 export const FieldContainer: React.FC<FieldContainerProps> = ({
-    multiline,
-    disabled,
-    children,
-    helperText,
-    fullWidth,
-    readOnly,
-    inputState,
-    error,
+  multiline,
+  disabled,
+  children,
+  helperText,
+  fieldRef,
+  fullWidth,
+  readOnly,
+  inputState,
+  error,
 }) => {
-    const { skin } = useTheme(); // Asume que useTheme devuelve un objeto con colores
+  const vars = useTheme().skin;
+  const getBorderStyle = () => {
+    if (error && inputState !== 'default') {
+      return borderStyles.borderError;
+    } else if (inputState === 'focused') {
+      return borderStyles.borderSelected;
+    } else {
+      return borderStyles.borderDark;
+    }
+  };
 
-    const backgroundColor = readOnly ? skin.colors.neutralLow : skin.colors.backgroundContainer;
-    const borderColor = error && inputState !== 'default' ? skin.colors.error : undefined;
+  const borderStyles = StyleSheet.create({
+    borderError: {
+      borderWidth: 2,
+      borderColor: vars.colors.error,
+    },
+    borderSelected: {
+      borderWidth: 2,
+      borderColor: vars.colors.borderSelected,
+    },
+    borderDark: {
+      borderWidth: 1,
+      borderColor: vars.colors.borderDark,
+    },
+  });
 
-    return (
-        <View style={[styles.fieldContainer, fullWidth && styles.fullWidth, { backgroundColor, borderColor }]}>
-            {children}
-            {helperText}
-        </View>
-    );
+  return (
+    <View
+      style={[
+        styles.fieldContainer,
+        fullWidth ? styles.fullWidth : styles.normalWidth,
+        disabled && styles.disabled,
+      ]}>
+      <View
+        style={[
+          styles.field,
+          multiline ? styles.fieldMulti : styles.fieldSingle,
+          {
+            backgroundColor: readOnly
+              ? vars.colors.neutralLow
+              : vars.colors.backgroundContainer,
+          },
+          getBorderStyle(),
+        ]}
+        ref={fieldRef}>
+        {children}
+      </View>
+      {helperText}
+    </View>
+  );
 };
-
-// Define tus estilos aquí
-const styles = StyleSheet.create({
-  label: {
-    // Estilos para Label
-  },
-  helperContainer: {
-    // Estilos para HelperText
-  },
-  helperText: {
-    // Estilos comunes para el texto de ayuda
-  },
-  rightText: {
-    // Estilos específicos para el texto de ayuda derecho
-  },
-  fieldContainer: {
-    // Estilos para FieldContainer
-  },
-  fullWidth: {
-    // Estilos para cuando el contenedor debe ocupar el ancho completo
-  },
-  // Agrega más estilos según sea necesario
-});
-
