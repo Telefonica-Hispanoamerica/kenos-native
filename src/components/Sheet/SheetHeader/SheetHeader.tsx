@@ -35,6 +35,7 @@ export const SheetHeader = ({ panHandlers, color, dismisableAction }: PanRespond
                     icon={IconCloseRegular} 
                     type={'light'}
                     onPress={dismisableAction}
+                    styles={IconButtonStyles}
                 />
             </View>
         </View>

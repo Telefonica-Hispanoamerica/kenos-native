@@ -2,7 +2,6 @@ import React from 'react';
 import {View} from 'react-native';
 import MaybeDismissable from '../../../hooks/MaybeDismissable/MaybeDismissable';
 import {DataAttributes} from '../../../utils/types';
-import {ButtonProps} from '../../Button/Button';
 import {Boxed} from '../../Primitives/Boxed/Boxed';
 import {
   ImageProps,

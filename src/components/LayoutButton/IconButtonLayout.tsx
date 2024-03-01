@@ -31,7 +31,7 @@ export const IconButtonLayout = (props: LayoutIconButton) => {
  
  const themeTypeLayout=()=> {
     switch (true) {
-      case medium: typeButton='medium';break;
+      case medium || (light && inverse): typeButton='medium';break;
       case highlight: typeButton='highlight';break;
       case dark: typeButton='darkLight';break;
       case light:default:typeButton='inverse'; break; 
@@ -51,7 +51,7 @@ export const IconButtonLayout = (props: LayoutIconButton) => {
               }
               {/* <Text style={[styles.textButton, {color: inverse && dark ? textPrimaryInverse:textPrimary}]}>{text}</Text> */}
               <View style={styles.textButton}>
-                 <Text2 color={inverse && dark ? textPrimaryInverse:textPrimary} medium>{text}</Text2>
+                 <Text2 color={inverse && (dark || !dark) ? textPrimaryInverse:textPrimary} medium>{text}</Text2>
               </View>
             </Pressable>
           ))

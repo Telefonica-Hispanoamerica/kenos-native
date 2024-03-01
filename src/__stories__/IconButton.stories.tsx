@@ -2,8 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { View } from 'react-native';
 import { IconButton } from '../components/Buttons/IconButton/IconButton';
-import { IconComputerUserRegular } from '../kenos-icons';
 import { IconButtonType } from '../components/Buttons/Buttons.Types';
+import { IconComputerUserRegular } from '../kenos-icons';
 
 const buttonTypes: Array<IconButtonType> = [
   'inverse',
@@ -26,7 +26,7 @@ export default {
 
 export const Basic: ComponentStory<typeof IconButton> = args => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, padding: 10}}>
       <View style={{flex: 1}}>
         <IconButton {...args} icon={IconComputerUserRegular} />
       </View>

@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     },
     textButton: {
       marginTop: -20,
-      paddingLeft: 10
     },
     containerScroll: {
       flexGrow: 1,
