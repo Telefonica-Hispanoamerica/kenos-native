@@ -1,101 +1,43 @@
-import React, { useRef, useEffect } from 'react';
-import { Animated } from 'react-native';
-import styled from 'styled-components/native';
+import React from 'react';
+import { View } from 'react-native';
+import Svg, { Path, Circle } from 'react-native-svg';
+import { Text2 } from '../Text/Text';
 import { useTheme } from '../../utils/ThemeContextProvider';
-import { Text4 } from '../Text/Text';
 
-interface CircularProgressProps {
-  progress?: number;
-  size?: number;
+interface StepperProps {
+  totalSteps: number;
+  currentStep: number;
 }
 
-const CircularProgress: React.FC<CircularProgressProps> = ({
-  progress = 30,
-  size = 50,
-}) => {
-  const animatedProgress = useRef(new Animated.Value(0)).current;
+const size = 48;
+const StyledProgressSVG = ({ totalSteps, currentStep }: StepperProps) => {
+  const progress = (currentStep / totalSteps) * 100;
+  const circumference = 2 * Math.PI * 19.5;
+  const progressValue = (circumference * (100 - progress)) / 100;
 
   const {skin} = useTheme();
-  const { border, borderSelected } = skin.colors;
-  
-  const CircleBase = styled(Animated.View)<{ size: number }>`
-    width: ${(props) => props.size}px;
-    height: ${(props) => props.size}px;
-    border-radius: ${(props) => props.size / 2}px;
-    border-width: ${(props) => props.size / 10}px;
-  `;
-
-  const EmptyCircle = styled(CircleBase)`
-    border-color: ${border};
-    justify-content: center;
-    align-items: center;
-    transform: rotate(-45deg);
-  `;
-
-  const Indicator = styled(CircleBase)`
-    position: absolute;
-    border-left-color: ${borderSelected};
-    border-top-color: ${borderSelected};
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-  `;
-
-  const CoverIndicator = styled(CircleBase)`
-    position: absolute;
-    border-left-color: ${border};
-    border-top-color: ${border};
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-  `;
-
-  const animateProgress = useRef((toValue: number) => {
-    Animated.spring(animatedProgress, {
-      toValue,
-      useNativeDriver: true,
-    }).start();
-  }).current;
-
-  useEffect(() => {
-    animateProgress(progress);
-    console.log("progress: ",animateProgress)
-  }, [animateProgress, progress]);
-
-  const firstIndicatorRotate = animatedProgress.interpolate({
-    inputRange: [0, 50],
-    outputRange: ['0deg', '180deg'],
-    extrapolate: 'clamp',
-  });
-
-  const secondIndicatorRotate = animatedProgress.interpolate({
-    inputRange: [0, 100],
-    outputRange: ['0deg', '360deg'],
-    extrapolate: 'clamp',
-  });
-
-  const secondIndicatorVisibility = animatedProgress.interpolate({
-    inputRange: [0, 49, 50, 100],
-    outputRange: [0, 0, 1, 1],
-    extrapolate: 'clamp',
-  });
+  const {textSecondary, border, borderSelected} = skin.colors;
 
   return (
-    <EmptyCircle size={size}>
-      <Text4>{JSON.stringify(firstIndicatorRotate)}</Text4>
-      <Indicator
-        style={{ transform: [{ rotate: firstIndicatorRotate }] }}
-        size={size}
-      />
-      <CoverIndicator size={size} />
-      <Indicator
-        size={size}
-        style={{
-          transform: [{ rotate: secondIndicatorRotate }],
-          opacity: secondIndicatorVisibility,
-          flex: 1
-        }}
-      />
-    </EmptyCircle>
+    <View style={{ width: size, height: size }}>
+      <Svg width="100%" height="100%" viewBox={`0 0 ${size} ${size}`} fill="none">
+        <View style={{justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+          <Text2 medium color={textSecondary}>{currentStep}/{totalSteps}</Text2>
+        </View>
+        <Circle cx={24} cy={24} r="19.5" stroke={border} strokeWidth="5.5" />
+        <Path
+          stroke={borderSelected}
+          strokeWidth="5.5"
+          fill="none"
+          strokeDasharray={`${circumference} ${circumference}`}
+          strokeDashoffset={progressValue}
+          d="M24 4.5
+             a 19.5 19.5 0 0 1 0 39
+             a 19.5 19.5 0 0 1 0 -39"
+        />
+      </Svg>
+    </View>
   );
 };
 
-export default CircularProgress;
+export default StyledProgressSVG;

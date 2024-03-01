@@ -5,18 +5,17 @@ import { View } from 'react-native';
 import CircularStepper from '../components/Stepper/CircularStepper';
 
 export default {
-  title: 'StepperCircular',
-  component: CircularStepper,
+  title: 'Stepper/CircularStepper',
 } as ComponentMeta<typeof Stepper>;
 
 export const Basic: ComponentStory<typeof CircularStepper> = (args) => {
   return <View style={{ flex: 1, padding: 20}}>
-    <CircularStepper size={args.size} progress={args.progress}  />
+    <CircularStepper totalSteps={args.totalSteps} currentStep={args.currentStep}  />
   </View>
 }
 
-Basic.storyName = 'StepperCircular';
+Basic.storyName = 'Circular';
 Basic.args = {
-  size: 100,
-  progress: 60
+  totalSteps: 4,
+  currentStep: 2
 };
