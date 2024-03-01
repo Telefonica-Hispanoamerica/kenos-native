@@ -5,6 +5,7 @@ export interface IconButtonProps {
   children?: React.ReactNode;
   icon?: React.ComponentType<IconProps>;
   type?: IconButtonType;
+  topArea?:boolean;
   onPress?: () => void;
   styles?: StyleProp<ViewStyle>;
 }
@@ -14,6 +15,7 @@ export type IconButtonType =
   | 'light'
   | 'medium'
   | 'highlight'
+  | 'darkLight'
   | 'lightBlank';
 
 export type IconTypeProps = IconButtonProps;
