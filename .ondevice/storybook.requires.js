@@ -52,6 +52,7 @@ const getStories = () => {
     "./src/__stories__/Avatar.stories.tsx": require("../src/__stories__/Avatar.stories.tsx"),
     "./src/__stories__/Badge.stories.tsx": require("../src/__stories__/Badge.stories.tsx"),
     "./src/__stories__/Button.stories.tsx": require("../src/__stories__/Button.stories.tsx"),
+    "./src/__stories__/ButtonLayout.stories.tsx": require("../src/__stories__/ButtonLayout.stories.tsx"),
     "./src/__stories__/Callout.stories.tsx": require("../src/__stories__/Callout.stories.tsx"),
     "./src/__stories__/Checkbox.stories.tsx": require("../src/__stories__/Checkbox.stories.tsx"),
     "./src/__stories__/Circle.stories.tsx": require("../src/__stories__/Circle.stories.tsx"),
