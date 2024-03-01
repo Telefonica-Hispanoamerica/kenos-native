@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useTheme} from '../../utils/ThemeContextProvider';
+import { getStylesBadge } from './Badge.css';
 import {Text1} from '../Text/Text';
 
 type Props = {
@@ -8,87 +9,17 @@ type Props = {
   value?: number;
   right?: number;
   top?: number;
+  type?: string
 };
 
-const Badge: React.FC<Props> = ({children, value, right, top}: Props) => {
+const Badge: React.FC<Props> = ({children, value, right, top, type = 'bagde'}: Props) => {
   const {skin} = useTheme();
   const {colors} = skin;
   const isBigNumber = value && value > 9;
-  const styles = StyleSheet.create({
-    container: {
-      position: 'relative',
-    },
-    badge: {
-      width: 8,
-      height: 8,
-      top: -2,
-      right: -6,
-      backgroundColor: colors.badge,
-      borderRadius: 50,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 0,
-      },
-      shadowOpacity: 0.5,
-      shadowRadius: 1.5,
-      elevation: 2,
-    },
-    badgeNumber: {
-      width: 18,
-      height: 18,
-      top: -8,
-      right: -9,
-      backgroundColor: colors.badge,
-      borderRadius: 50,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 0,
-      },
-      shadowOpacity: 0.5,
-      shadowRadius: 1.5,
-      elevation: 2,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: colors.textPrimaryInverse,
-      fontSize: 12,
-      fontWeight: '500',
-    },
-    badgeWithChildren: {
-      width: isBigNumber ? 24 : !value ? 8 : 18,
-      height: !value ? 8 : 18,
-      backgroundColor: colors.badge,
-      borderRadius: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: colors.textPrimaryInverse,
-      zIndex: 1,
-      elevation: 1,
-    },
-    badgeBigNumber: {
-      width: 24,
-      borderRadius: 50,
-      backgroundColor: skin.colors.badge,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 0,
-      },
-      shadowOpacity: 0.5,
-      shadowRadius: 1.5,
-      elevation: 2,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      top: -8,
-      right: -14,
-      height: 18,
-      fontSize: 12,
-      fontWeight: '500',
-    },
-  });
+  
+  console.log(typeof(isBigNumber))
+  const colorBadge = type === 'warning' ? colors.warning : type === 'success' ? colors.success : colors.badge
+  const styles = getStylesBadge(colorBadge,colors,isBigNumber,value)
 
   if (children && value === 0) {
     return <>{children}</>;
