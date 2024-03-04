@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Badge from '../components/Badge/Badge';
 import IconBell from '../icons/icon-bell';
 import { View } from 'react-native';
+import { Text3 } from '../components';
 
 export default {
   title: 'Badge',
@@ -11,6 +12,7 @@ export default {
 
 export const Basic: ComponentStory<typeof Badge> = args => (
   <View style={{ gap: 16, margin: 16 }}>
+    <Text3>Icon</Text3>
     <Badge right={-18} top={3}>
       <IconBell color="black" size={20} />
     </Badge>
@@ -22,6 +24,17 @@ export const Basic: ComponentStory<typeof Badge> = args => (
     </Badge>
     <Badge value={10} right={-8} top={8}>
       <IconBell color="black" size={20} />
+    </Badge>
+     <Text3>Without Icon</Text3>
+    <Badge right={-13} top={3}>
+    </Badge>
+    <Badge right={-13} top={3} type='warning'>
+    </Badge>
+    <Badge right={-13} top={3} type='success'>
+    </Badge>
+    <Badge value={1} right={-8} top={8}>
+    </Badge>
+    <Badge value={10} right={-8} top={8}>
     </Badge>
   </View>
 );

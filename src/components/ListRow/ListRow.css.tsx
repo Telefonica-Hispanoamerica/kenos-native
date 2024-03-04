@@ -1,3 +1,4 @@
+import { flatten } from 'lodash';
 import {StyleSheet} from 'react-native';
 
 export const getStylesRow = (skin:any) => StyleSheet.create({
@@ -32,6 +33,12 @@ export const getStylesRow = (skin:any) => StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       marginRight: 10,
+    },
+    listStructure:{
+      display:'flex',
+      flexDirection:'row',
+      gap: 10,
+      marginRight:15
     },
     rightContent: {
       flex: 1,
