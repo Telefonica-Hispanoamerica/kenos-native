@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ButtonLayout } from '../components/LayoutButton/ButtonLayout';
+import { ButtonLayout } from '../components/LayoutButton';
 import { View } from 'react-native';
 import { Button } from '../components';
 
 export default {
-  title: 'component/buttonLayout',
+  title: 'ButtonsLayout',
   component: ButtonLayout,
 } as ComponentMeta<typeof ButtonLayout>;
 

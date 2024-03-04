@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { IconButtonLayout } from '../components/LayoutButton/IconButtonLayout';
+import { IconButtonLayout } from '../components/LayoutButton';
 import { View, Alert } from 'react-native';
 import { IconLightningRegular, IconFileImageRegular, IconChipSimCardRegular, IconFolderRegular, IconRobotRegular } from '../kenos-icons';
 
 
 export default {
-  title: 'ButtonLayout',
+  title: 'IconButtonLayout',
   component: IconButtonLayout,
 } as ComponentMeta<typeof IconButtonLayout>;
 

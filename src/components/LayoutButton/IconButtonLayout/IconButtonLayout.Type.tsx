@@ -1,4 +1,4 @@
-import { IconProps } from "../../utils";
+import { IconProps } from "../../../utils";
 
 export interface IconButtonLayoutProps {
     icon?: React.ComponentType<IconProps>;

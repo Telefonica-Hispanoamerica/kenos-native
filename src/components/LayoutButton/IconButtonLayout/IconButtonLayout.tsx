@@ -4,12 +4,12 @@ import {
   Pressable,
   ScrollView,
 } from 'react-native';
-import { Text2 } from '../Text/Text';
-import { useTheme } from '../../utils/ThemeContextProvider';
-import { IconButton } from '../Buttons';
+import { Text2 } from '../../Text/Text';
+import { useTheme } from '../../../utils/ThemeContextProvider';
+import { IconButton } from '../../Buttons';
 import { styles } from './IconButtonLayout.css';
 import { LayoutIconButton } from './IconButtonLayout.Type';
-import { IconButtonType } from '../Buttons/IconButton/IconButton.Types';
+import { IconButtonType } from '../../Buttons/IconButton/IconButton.Types';
 
 export const IconButtonLayout = (props: LayoutIconButton) => {
 
