@@ -1,27 +1,20 @@
 import { IconProps } from "../../../utils";
 
 export interface ButtonFixedFooterProps {
-  children?: React.ReactNode
-  primaryButton?: React.ReactNode;
-  secondaryButton?: React.ReactNode;
-  addLink?: boolean;
-  shadow?: boolean;
-  primaryButtonText?:React.ReactNode
-  secondaryButtonText?:React.ReactNode;
-  linkText?:React.ReactNode;
   buttonLink?: React.ReactNode;
+  children?: React.ReactNode
+  highlight?: boolean; 
   inverse?: boolean;
+  light?: boolean; 
   medium?: boolean;
-  highlight?: boolean;
-  iconButton?: boolean;
-  light?: boolean;
-  primary?: boolean;
-  secondary?: boolean;
+  primaryButton?: React.ReactNode;
+  secondaryButton?: React.ReactNode; 
+  shadow?: boolean; 
   buttonsOptions: Array<{
     text: string,
+    onPress?: () => void;
     icon?: React.ComponentType<IconProps>
-  }>
-  onPress?: () => void;
+  }>  
 };
 
 export type ButtonFixedFooterLayout = ButtonFixedFooterProps

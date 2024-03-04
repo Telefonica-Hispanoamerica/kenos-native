@@ -1,18 +1,17 @@
-import { IconProps } from "../../../utils";
+import {IconProps} from '../../../utils';
 
 export interface IconButtonLayoutProps {
-    icon?: React.ComponentType<IconProps>;
-    inverse?: boolean;
-    medium?: boolean;
-    highlight?: boolean;
-    light?: boolean;
-    dark?:boolean;
+  icon?: React.ComponentType<IconProps>;
+  inverse?: boolean;
+  medium?: boolean;
+  highlight?: boolean;
+  light?: boolean;
+  dark?: boolean;
+  buttonsOptions: Array<{
+    text: string;
     onPress?: () => void;
-    buttonsOptions: Array<{
-      text: string,
-      icon?: React.ComponentType<IconProps>
-    }>;
-  };
+    icon?: React.ComponentType<IconProps>;
+  }>;
+}
 
-
-export type LayoutIconButton = IconButtonLayoutProps
+export type LayoutIconButton = IconButtonLayoutProps;
