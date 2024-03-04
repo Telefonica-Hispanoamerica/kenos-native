@@ -9,7 +9,7 @@ import { Text2 } from '../../Text/Text';
 
 export const IconButton = (props: IconTypeProps) => {
   const { skin } = useTheme();
-  const { neutralHigh, neutralLow, brand, brandLow, inverse, textPrimaryInverse } = skin.colors;
+  const { neutralHigh, neutralLow, brand, brandLow, inverse, textPrimaryInverse, textPrimary } = skin.colors;
 
   const themeTypeButton = {
     inverse: {
@@ -51,7 +51,9 @@ export const IconButton = (props: IconTypeProps) => {
         </Pressable>
       </View>
       <View style={styles.textButton}>
-        <Text2 medium>{props.children}</Text2>
+        <Text2 medium color={
+          props.inverse ? textPrimaryInverse : textPrimary
+        }>{props.children}</Text2>
       </View>
     </View>
   );

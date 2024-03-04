@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Pressable, ScrollView} from 'react-native';
-import {Text2} from '../../Text/Text';
 import {useTheme} from '../../../utils/ThemeContextProvider';
 import {IconButton} from '../../Buttons';
 import {styles} from './IconButtonLayout.css';
@@ -12,10 +11,9 @@ export const IconButtonLayout = (props: LayoutIconButton) => {
   const {
     background,
     backgroundBrand,
-    textPrimary,
-    textPrimaryInverse,
     backgroundBrandSecondary,
   } = skin.colors;
+  
   const {inverse, medium, highlight, dark, light} = props;
 
   const backgroundIcon = () => {
@@ -57,19 +55,9 @@ export const IconButtonLayout = (props: LayoutIconButton) => {
         {props.buttonsOptions.map(({text, icon, onPress}) => (
           <Pressable
             key={text}
-            style={{alignItems: 'center'}}
+            style={{alignItems:'center'}}
             onPress={onPress}>
-            <IconButton type={typeButton} icon={icon} onPress={onPress}>             
-            </IconButton>
-            <View style={styles.textButton}>
-              <Text2
-                color={
-                  inverse && (dark || !dark) ? textPrimaryInverse : textPrimary
-                }
-                medium>
-                {text}
-              </Text2>
-            </View>
+            <IconButton type={typeButton} inverse={props.inverse} icon={icon} onPress={onPress}>{text}</IconButton>
           </Pressable>
         ))}
       </ScrollView>

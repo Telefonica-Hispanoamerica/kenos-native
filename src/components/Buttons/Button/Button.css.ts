@@ -122,7 +122,6 @@ export const styles = (props: ButtonProps, backgroundColor:string, borderColor:s
       paddingVertical: props.small ? 4.5 : 10.5,
     },
     buttonLink: {
-      alignSelf: 'flex-start',
       paddingVertical: 6,
       paddingHorizontal: props.aligned ? 0 : 12,
     },
