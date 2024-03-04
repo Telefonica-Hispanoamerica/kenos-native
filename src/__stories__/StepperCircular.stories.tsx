@@ -1,20 +1,20 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Stepper from '../components/Stepper/Stepper';
+import Stepper from '../components/Steppers/Stepper';
 import { View } from 'react-native';
-import CircularStepper from '../components/Stepper/CircularStepper';
+import CircleStepper from '../components/Steppers/CircleStepper';
 
 export default {
-  title: 'Stepper/CircularStepper',
+  title: 'Stepper/CircleStepper',
 } as ComponentMeta<typeof Stepper>;
 
-export const Basic: ComponentStory<typeof CircularStepper> = (args) => {
+export const Basic: ComponentStory<typeof CircleStepper> = (args) => {
   return <View style={{ flex: 1, padding: 20}}>
-    <CircularStepper totalSteps={args.totalSteps} currentStep={args.currentStep}  />
+    <CircleStepper totalSteps={args.totalSteps} currentStep={args.currentStep}  />
   </View>
 }
 
-Basic.storyName = 'Circular';
+Basic.storyName = 'Circle';
 Basic.args = {
   totalSteps: 4,
   currentStep: 2
