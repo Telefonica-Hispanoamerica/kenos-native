@@ -1,10 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
-import {styles} from './index.css';
 import CircleStepper from '../CircleStepper';
 import {Text5, Text2} from '../../Text/Text';
 import {useTheme} from '../../../utils/ThemeContextProvider';
-import {StepperCircularLayoutProps} from './index.Type';
+import {styles} from './CircleStepperLayout.css';
+import { StepperCircularLayoutProps } from '../Steppers.Types';
 
 const CircleStepperLayout = ({
   title,

@@ -6,5 +6,10 @@ export type StepperProps = {
 export interface CircleStepperProps {
     totalSteps: number;
     currentStep: number;
-  }
-  
+}
+
+export interface StepperCircularLayoutProps {
+    title: string;
+    subtitle: string;
+    stepperAttrs: CircleStepperProps
+}

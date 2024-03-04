@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Stepper from '../components/Steppers/Stepper';
 import { View } from 'react-native';
-import CircleStepperLayout from '../components/Steppers/CircleStepperLayout';
+import CircleStepperLayout from '../components/Steppers/CircleStepperLayout/CircleStepperLayout';
 
 export default {
   title: 'Stepper/CircleStepperLayout',
