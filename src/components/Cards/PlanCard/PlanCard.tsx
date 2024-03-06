@@ -19,6 +19,7 @@ import {Text, View} from 'react-native';
 import Row from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ScrollView} from 'react-native';
+import {ButtonLayout} from '../../LayoutButton';
 // import {ListViewBase} from 'react-native';
 
 // TODO: crear un type que incluya un objeto con los datos de la tarjeta
@@ -48,10 +49,11 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
         borderWidth={2}
         // styles={styles.boxed}
         dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}
-        width="100%">
+        // width="100%"
+      >
         <FeatureTag icon={IconLightningRegular} text="¡El plan más top!" />
         <Header
-          name=""
+          name="Plan Name"
           quantity="32 GB"
           duration="x12 month."
           description="Luego 16 GB"
@@ -62,50 +64,47 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
           icon={IconQuestionRegular}
         />
 
-        <TagLabel text="30% Dcto. x 3 meses" icon={IconOfferPercentFilled} />
+        <TagLabel
+          type="promo"
+          text="30% Dcto. x 3 meses"
+          icon={IconOfferPercentFilled}
+        />
 
         <Pricing {...pricingData} />
 
-        {/* TODO: Validar si es necesario crear un ButtonGroup ya que es muy común este diseño de botones en vertical */}
-
-        <View style={{padding: 10}}>
-          <Button
-            type="primary"
-            rounded
-            onPress={() => {
-              console.log('Click');
-            }}>
-            Primary button
-          </Button>
-        </View>
-        {/* TODO: revisar el border del button type secondary no coincide con el diseño de figma */}
-
-        <View style={{padding: 10}}>
-          <Button
-            type="secondary"
-            rounded
-            onPress={() => {
-              console.log('Click');
-            }}>
-            Secondary button
-          </Button>
-        </View>
-
-        {!isExpanded ? (
-          <View
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{
-              padding: 10,
-              alignItems: 'center',
-            }}>
+        <ButtonLayout
+          alignment="column-reverse"
+          primaryButton={
             <Button
-              type={'link'}
-              rightIcon={IconChevronDownRegular}
-              onPress={handleExpandIconClick}>
-              More details
+              type="primary"
+              rounded
+              onPress={() => {
+                console.log('Click');
+              }}>
+              Primary button
             </Button>
-          </View>
-        ) : null}
+          }
+          secondaryButton={
+            <Button
+              type="secondary"
+              rounded
+              onPress={() => {
+                console.log('Click');
+              }}>
+              Secondary button
+            </Button>
+          }
+          buttonLink={
+            !isExpanded ? (
+              <Button
+                type={'link'}
+                rightIcon={IconChevronDownRegular}
+                onPress={handleExpandIconClick}>
+                More details
+              </Button>
+            ) : null
+          }
+        />
 
         {isExpanded ? (
           <View>
