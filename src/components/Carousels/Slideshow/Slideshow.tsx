@@ -76,13 +76,11 @@ const Slideshow: React.FC<SlideshowProps> = ({ items }) => {
           style={[styles.navButton, styles.prevButton]}
           onPress={handlePrev}
         >
-          {/* Agrega aquí el icono de retroceso */}
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.navButton, styles.nextButton]}
           onPress={handleNext}
         >
-          {/* Agrega aquí el icono de avance */}
         </TouchableOpacity>
       </View>
     </View>
