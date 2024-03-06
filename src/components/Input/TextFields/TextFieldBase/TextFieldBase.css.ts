@@ -38,7 +38,8 @@ export const styles = (textPrimary: string, textSecondary: string) => {
       paddingBottom: 16,
     },
     endIconContainer: {
-      paddingRight: 16,
+      //paddingRight: 16,
+      paddingRight: 4,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
