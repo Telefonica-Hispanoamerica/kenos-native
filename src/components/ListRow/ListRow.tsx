@@ -73,7 +73,7 @@ const Row: React.FC<RowProps> = ({
            )}
           </View>
           <View style={styles.rightContent}>
-          {headline !== undefined &&  <Tag children={headline} type='promo' /> }
+          {headline !== undefined &&  <Tag type='promo'>{headline}</Tag> }
           <Text
             mobileSize={18}
             mobileLineHeight="24px"
