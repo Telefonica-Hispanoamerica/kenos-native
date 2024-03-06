@@ -9,7 +9,7 @@ import { Text2 } from '../../Text/Text';
 
 export const IconButton = (props: IconTypeProps) => {
   const { skin } = useTheme();
-  const { neutralHigh, neutralLow, brand, brandLow, inverse, textPrimaryInverse } = skin.colors;
+  const { neutralHigh, neutralLow, brand, brandLow, inverse, textPrimaryInverse, textPrimary } = skin.colors;
 
   const themeTypeButton = {
     inverse: {
@@ -45,13 +45,13 @@ export const IconButton = (props: IconTypeProps) => {
 
   return (
     <View style={styles.container}>
-      <View style={props.topArea ? [styles.topArea, { backgroundColor: `${applyAlpha('#E894E64D', 0.30)}` }] : null}>
         <Pressable onPress={props.onPress} style={[styles.circle, { backgroundColor: background }]}>
           {iconComponent}
         </Pressable>
-      </View>
       <View style={styles.textButton}>
-        <Text2 medium>{props.children}</Text2>
+        <Text2 medium color={
+          props.inverse ? textPrimaryInverse : textPrimary
+        }>{props.children}</Text2>
       </View>
     </View>
   );

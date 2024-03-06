@@ -101,6 +101,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
             </Button> */}
           </React.Fragment>
         ))}
+        <Button {...args} newColor='#00FF99'>Other Type</Button>
       </View>
     </ScrollView>
   );
@@ -112,7 +113,7 @@ Basic.args = {
   children: 'Send',
   loadingText: 'Sending file',
   inverse: false,
-  selected:false
+  selected:false,
 };
 
 
