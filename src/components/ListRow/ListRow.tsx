@@ -96,7 +96,7 @@ const Row: React.FC<RowProps> = ({
         {priceLS && <Text1>{formatNumberPrice(priceLS)}</Text1>}
         {IconLS && 
           <Box paddingRight={4}>
-            <IconLS color={colors.controlActivated} size={24} />
+            <IconLS color={skin.colors.controlActivated} size={24} />
           </Box>
         }
         </View>
