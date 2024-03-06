@@ -12,7 +12,7 @@ interface CheckboxProps {
   checkedCheck?: boolean
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, linkText, linkURL, onChange, disabled = false, checkedCheck = false }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ label, linkText, linkURL, onChange, disabled = false, checkedCheck = false }) => {
 
   const [checked, setChecked] = useState<boolean>(checkedCheck);
   const {skin} = useTheme();
