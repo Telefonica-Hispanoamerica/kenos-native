@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       width: '100%',
       height: 80,
-      marginTop: 15,
+      marginTop: 16,
       paddingLeft:8, 
       paddingBottom:3
     },
@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
       flexGrow: 1,
       justifyContent: 'space-between',
       alignItems: 'center',
+      paddingTop:5,
       columnGap: 46,
     }
   })

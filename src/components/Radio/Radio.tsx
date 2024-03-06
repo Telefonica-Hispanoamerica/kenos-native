@@ -11,7 +11,7 @@ interface RadioButtonProps {
   disabled?: boolean;
 }
 
-const Radio: React.FC<RadioButtonProps> = ({
+export const Radio: React.FC<RadioButtonProps> = ({
   label,
   value,
   defaultValue,
