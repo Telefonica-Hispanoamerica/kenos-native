@@ -27,7 +27,7 @@ interface RowProps {
   iconLS?: React.ComponentType<IconProps>;
 }
 
-const Row: React.FC<RowProps> = ({
+export const Row: React.FC<RowProps> = ({
   value,
   onSelect,
   defaultValue,
