@@ -6,7 +6,6 @@ export interface IconButtonProps {
   icon?: React.ComponentType<IconProps>;
   type?: IconButtonType;
   inverse?:boolean;
-  topArea?:boolean;
   onPress?: () => void;
   styles?: StyleProp<ViewStyle>;
 }

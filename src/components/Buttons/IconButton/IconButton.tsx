@@ -45,11 +45,9 @@ export const IconButton = (props: IconTypeProps) => {
 
   return (
     <View style={styles.container}>
-      <View style={props.topArea ? [styles.topArea, { backgroundColor: `${applyAlpha('#E894E64D', 0.30)}` }] : null}>
         <Pressable onPress={props.onPress} style={[styles.circle, { backgroundColor: background }]}>
           {iconComponent}
         </Pressable>
-      </View>
       <View style={styles.textButton}>
         <Text2 medium color={
           props.inverse ? textPrimaryInverse : textPrimary

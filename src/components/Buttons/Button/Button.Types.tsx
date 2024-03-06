@@ -14,6 +14,7 @@ export interface CommonProps {
   rightIcon?: React.ComponentType<IconProps>;
   urgency?: string;
   aligned?: boolean;
+  newColor: string;
 }
 
 export interface OnPressButtonProps extends CommonProps {

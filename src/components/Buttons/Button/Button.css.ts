@@ -3,6 +3,7 @@ import { useTheme } from '../../../utils/ThemeContextProvider';
 import {applyAlpha} from '../../../utils/color';
 import {StyleSheet} from 'react-native';
 import {BORDER_RADIUS_ROUNDED, disabledStyle, selected, linkSelectedInverse} from './Button.utils';
+import { isEmpty } from 'lodash';
 
 
 export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonType}) => {
@@ -32,6 +33,18 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
 
   const buttonBR = skin.borderRadii?.button ?? '0px';
   const buttonBRRN = parseFloat(buttonBR.replace(/px/g, ''));
+
+  if(props.newColor && props.newColor.trim() !== '')
+  {
+    return {
+      backgroundColor: props.newColor,
+      borderColor: props.newColor,
+      textColor: textButtonPrimary,
+      borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
+      underline: false,
+    };
+  }
+
   
   switch (props.type) {
     case 'secondary':

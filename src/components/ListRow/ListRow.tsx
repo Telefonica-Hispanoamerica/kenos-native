@@ -8,7 +8,6 @@ import { useTheme } from '../../utils/ThemeContextProvider';
 import { getStylesRow } from './ListRow.css';
 import Badge from '../Badge/Badge';
 import { IconProps } from '../../utils';
-import { colors } from '../../../scripts/tokens/utils/contracts';
 import { Box } from '../../layout';
 
 interface RowProps {
@@ -28,7 +27,7 @@ interface RowProps {
   iconLS?: React.ComponentType<IconProps>;
 }
 
-const Row: React.FC<RowProps> = ({
+export const Row: React.FC<RowProps> = ({
   value,
   onSelect,
   defaultValue,
@@ -74,7 +73,7 @@ const Row: React.FC<RowProps> = ({
            )}
           </View>
           <View style={styles.rightContent}>
-          {headline !== undefined &&  <Tag children={headline} type='promo' /> }
+          {headline !== undefined &&  <Tag type='promo'>{headline}</Tag> }
           <Text
             mobileSize={18}
             mobileLineHeight="24px"
@@ -97,7 +96,7 @@ const Row: React.FC<RowProps> = ({
         {priceLS && <Text1>{formatNumberPrice(priceLS)}</Text1>}
         {IconLS && 
           <Box paddingRight={4}>
-            <IconLS color={colors.controlActivated} size={24} />
+            <IconLS color={skin.colors.controlActivated} size={24} />
           </Box>
         }
         </View>

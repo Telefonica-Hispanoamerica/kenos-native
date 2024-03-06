@@ -58,6 +58,10 @@ const TEXTS_ES = {
   clearButton: 'Borrar',
   carouselNextButton: 'siguiente',
   carouselPrevButton: 'anterior',
+  passwordLevelExcellent: 'Excelente, Tu contraseña es segura',
+  passwordLevelGood: 'Buena, Para hacerla más segura agrega un símbolo',
+  passwordLevelMedium: 'Media, Debe contener al menos un número',
+  passwordLevelLow: 'Débil, Debe contener al menos 6 caracteres y un número',
 };
 
 const TEXTS_EN: ThemeTexts = {
@@ -93,6 +97,10 @@ const TEXTS_EN: ThemeTexts = {
   clearButton: 'Clear',
   carouselNextButton: 'next',
   carouselPrevButton: 'previous',
+  passwordLevelExcellent: 'Excellent, Your password is secure',
+  passwordLevelGood: 'Good, To make it more secure add a symbol',
+  passwordLevelMedium: 'Medium, It must contain at least one number',
+  passwordLevelLow: 'Weak, It must contain at least 6 characters and a number',
 };
 
 const TEXTS_DE: ThemeTexts = {
@@ -128,6 +136,12 @@ const TEXTS_DE: ThemeTexts = {
   clearButton: 'Löschen',
   carouselNextButton: 'nächste',
   carouselPrevButton: 'vorherige',
+  passwordLevelExcellent: 'Ausgezeichnet, Ihr Passwort ist sicher',
+  passwordLevelGood:
+    'Gut, Um es sicherer zu machen, fügen Sie ein Symbol hinzu',
+  passwordLevelMedium: 'Mittel, Es muss mindestens eine Zahl enthalten',
+  passwordLevelLow:
+    'Schwach, Es muss mindestens 6 Zeichen und eine Zahl enthalten',
 };
 
 const TEXTS_PT: ThemeTexts = {
@@ -163,6 +177,10 @@ const TEXTS_PT: ThemeTexts = {
   clearButton: 'Apagar',
   carouselNextButton: 'próximo',
   carouselPrevButton: 'anterior',
+  passwordLevelExcellent: 'Excelente, Sua senha é segura',
+  passwordLevelGood: 'Bom, Para torná-la mais segura, adicione um símbolo',
+  passwordLevelMedium: 'Médio, Deve conter pelo menos um número',
+  passwordLevelLow: 'Fraca, Deve conter pelo menos 6 caracteres e um número',
 };
 
 //#endregion
