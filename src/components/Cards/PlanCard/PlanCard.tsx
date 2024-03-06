@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  IconChevronDownRegular,
+  IconChevronUpRegular,
   IconLightningRegular,
   IconOfferPercentFilled,
   IconQuestionRegular,
@@ -12,15 +14,16 @@ import FeatureTag from './FeatureTag/FeatureTag';
 import Header from './Header/Header';
 import Pricing, {PricingProps} from './Pricing/Pricing';
 import TagLabel from './TagLabel/TagLabel';
-import {Button} from '../../Buttons';
-import {View} from 'react-native';
+import {Button, IconButton} from '../../Buttons';
+import {Text, View} from 'react-native';
+import Row from '../../ListRow/ListRow';
+import {FlatList} from 'react-native';
+import {ScrollView} from 'react-native';
+// import {ListViewBase} from 'react-native';
 
 // TODO: crear un type que incluya un objeto con los datos de la tarjeta
 
 export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
-  const {skin} = useTheme();
-  const {borderSelected} = skin.colors;
-
   const pricingData: PricingProps = {
     offerDescription: 'Offer Description',
     price: '$2.199',
@@ -29,62 +32,152 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
     durationDescription: 'Offer description',
     type: 'vertical',
   };
+  const {skin} = useTheme();
+  const {borderSelected} = skin.colors;
+  const [isExpanded, setIsExpanded] = useState(false); //defaultExpanded ? true :
+
+  const handleExpandIconClick = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
-    <Boxed
-      borderRadius={16}
-      borderColor={borderSelected}
-      borderWidth={2}
-      styles={styles.boxed}
-      dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}
-      width="100%"
-      height="100%">
-      <FeatureTag
-        icon={IconLightningRegular}
-        text="¡El plan más top!"></FeatureTag>
+    <ScrollView>
+      <Boxed
+        borderRadius={16}
+        borderColor={borderSelected}
+        borderWidth={2}
+        // styles={styles.boxed}
+        dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}
+        width="100%">
+        <FeatureTag icon={IconLightningRegular} text="¡El plan más top!" />
+        <Header
+          name=""
+          quantity="32 GB"
+          duration="x12 month."
+          description="Luego 16 GB"
+          price="$18.893"
+          priceDuration="x12 month."
+          priceDescription="Luego $24.990"
+          type="vertical"
+          icon={IconQuestionRegular}
+        />
 
-      <Header
-        name="Plan Name"
-        quantity="32 GB"
-        duration="x12 month."
-        description="Luego 16 GB"
-        price="$18.893"
-        priceDuration="x12 month."
-        priceDescription="Luego $24.990"
-        type="vertical"
-        icon={IconQuestionRegular}></Header>
+        <TagLabel text="30% Dcto. x 3 meses" icon={IconOfferPercentFilled} />
 
-      <TagLabel
-        text="30% Dcto. x 3 meses"
-        icon={IconOfferPercentFilled}></TagLabel>
+        <Pricing {...pricingData} />
 
-      <Pricing {...pricingData}></Pricing>
+        {/* TODO: Validar si es necesario crear un ButtonGroup ya que es muy común este diseño de botones en vertical */}
 
-      {/* TODO: Validar si es necesario crear un ButtonGroup ya que es muy común este diseño de botones en vertical */}
+        <View style={{padding: 10}}>
+          <Button
+            type="primary"
+            rounded
+            onPress={() => {
+              console.log('Click');
+            }}>
+            Primary button
+          </Button>
+        </View>
+        {/* TODO: revisar el border del button type secondary no coincide con el diseño de figma */}
 
-      <View style={{padding: 10}}>
-        <Button
-          type="primary"
-          rounded
-          onPress={() => {
-            console.log('Click');
-          }}>
-          Primary button
-        </Button>
-      </View>
+        <View style={{padding: 10}}>
+          <Button
+            type="secondary"
+            rounded
+            onPress={() => {
+              console.log('Click');
+            }}>
+            Secondary button
+          </Button>
+        </View>
 
-      {/* TODO: revisar el border del button type secondary no coincide con el diseño de figma */}
+        {!isExpanded ? (
+          <View
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              padding: 10,
+              alignItems: 'center',
+            }}>
+            <Button
+              type={'link'}
+              rightIcon={IconChevronDownRegular}
+              onPress={handleExpandIconClick}>
+              More details
+            </Button>
+          </View>
+        ) : null}
 
-      <View style={{padding: 10}}>
-        <Button
-          type="secondary"
-          rounded
-          onPress={() => {
-            console.log('Click');
-          }}>
-          Secondary button
-        </Button>
-      </View>
-    </Boxed>
+        {isExpanded ? (
+          <View>
+            <Row
+              value="1"
+              defaultValue="1"
+              onSelect={value => console.log('Selected value:', value)}
+              title="Title"
+              subtitle="Subtitle"
+              description="Description"
+              rightComponent="Without"
+              leftComponent={<IconButton icon={IconLightningRegular} />}
+            />
+            <Row
+              value="1"
+              defaultValue="1"
+              onSelect={value => console.log('Selected value:', value)}
+              title="Title"
+              subtitle="Subtitle"
+              description="Description"
+              rightComponent="Without"
+              leftComponent={<IconButton icon={IconLightningRegular} />}
+            />
+            <Row
+              value="1"
+              defaultValue="1"
+              onSelect={value => console.log('Selected value:', value)}
+              title="Title"
+              subtitle="Subtitle"
+              description="Description"
+              rightComponent="Without"
+              leftComponent={<IconButton icon={IconLightningRegular} />}
+            />
+            <Row
+              value="1"
+              defaultValue="1"
+              onSelect={value => console.log('Selected value:', value)}
+              title="Title"
+              subtitle="Subtitle"
+              description="Description"
+              rightComponent="Without"
+              leftComponent={<IconButton icon={IconLightningRegular} />}
+            />
+            <Row
+              value="1"
+              defaultValue="1"
+              onSelect={value => console.log('Selected value:', value)}
+              title="Title"
+              subtitle="Subtitle"
+              description="Description"
+              rightComponent="Without"
+              leftComponent={<IconButton icon={IconLightningRegular} />}
+            />
+          </View>
+        ) : null}
+
+        {isExpanded ? (
+          <View
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              padding: 10,
+              alignItems: 'center',
+            }}>
+            <Button
+              type={'link'}
+              rightIcon={IconChevronUpRegular}
+              onPress={handleExpandIconClick}>
+              Hide details
+            </Button>
+          </View>
+        ) : null}
+      </Boxed>
+    </ScrollView>
   );
 };
