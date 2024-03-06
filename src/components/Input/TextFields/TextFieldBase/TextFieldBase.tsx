@@ -6,6 +6,7 @@ import {
   GestureResponderEvent,
   TextInputFocusEventData,
   TextInputChangeEventData,
+  TouchableOpacity,
 } from 'react-native';
 import {useTheme} from '../../../../utils/ThemeContextProvider';
 import {FieldValidator} from '../../../../patterns/Forms/FormContext';
@@ -74,6 +75,7 @@ interface TextFieldBaseProps {
     event: NativeSyntheticEvent<TextInputChangeEventData>,
   ) => void;
   onFocus?: (event: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onPressEndIcon?: () => void;
   inputProps?: {[name: string]: string | number | undefined};
   inputComponent?: React.ComponentType<any>;
   shrinkLabel?: boolean;
@@ -102,6 +104,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
       prefix,
       startIcon,
       endIcon,
+      onPressEndIcon,
       endIconOverlay,
       shrinkLabel: shrinkLabelProp,
       multiline,
@@ -236,10 +239,11 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
         )}
         <View
           style={[fullSize, {alignSelf: prefix ? 'baseline' : 'flex-start'}]}>
-          {React.createElement(inputComponent || defaultInputElement, {
+          {React.createElement(inputComponent ?? defaultInputElement, {
             ...props,
             placeholder:
               inputState === 'focused' || value ? props.placeholder : '',
+            secureTextEntry: props.type === 'password',
             style: {
               ...props.style,
               ...(multiline
@@ -310,7 +314,13 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
         )}
         {endIcon && (
           <View style={endIconContainer}>
-            <View style={endIconElement}>{endIcon}</View>
+            <TouchableOpacity
+             style={endIconElement}
+             activeOpacity={1}
+             onPress={onPressEndIcon}
+            >
+              {endIcon}
+            </TouchableOpacity>
           </View>
         )}
         {endIconOverlay}
