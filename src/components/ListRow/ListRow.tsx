@@ -8,7 +8,6 @@ import { useTheme } from '../../utils/ThemeContextProvider';
 import { getStylesRow } from './ListRow.css';
 import Badge from '../Badge/Badge';
 import { IconProps } from '../../utils';
-import { colors } from '../../../scripts/tokens/utils/contracts';
 import { Box } from '../../layout';
 
 interface RowProps {
