@@ -101,7 +101,7 @@ export const Basic: ComponentStory<typeof Button> = args => {
             </Button> */}
           </React.Fragment>
         ))}
-        <Button {...args} newColor='#00FF99'>Other Type</Button>
+        <Button {...args} customColor='#00FF99'>Other Type</Button>
       </View>
     </ScrollView>
   );

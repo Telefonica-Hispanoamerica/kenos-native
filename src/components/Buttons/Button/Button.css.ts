@@ -34,11 +34,11 @@ export const getButtonColorsByButtonType = (props: ButtonProps & {type: ButtonTy
   const buttonBR = skin.borderRadii?.button ?? '0px';
   const buttonBRRN = parseFloat(buttonBR.replace(/px/g, ''));
 
-  if(props.newColor && props.newColor.trim() !== '')
+  if(props.customColor && props.customColor.trim() !== '')
   {
     return {
-      backgroundColor: props.newColor,
-      borderColor: props.newColor,
+      backgroundColor: props.customColor,
+      borderColor: props.customColor,
       textColor: textButtonPrimary,
       borderRounded: props.rounded ? BORDER_RADIUS_ROUNDED: buttonBRRN,
       underline: false,
