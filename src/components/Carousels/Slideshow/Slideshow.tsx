@@ -9,7 +9,7 @@ interface SlideshowProps {
   items: (string | ReactNode)[];
 }
 
-const Slideshow: React.FC<SlideshowProps> = ({ items }) => {
+export const Slideshow: React.FC<SlideshowProps> = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<FlatList<any>>(null);
   const {skin} = useTheme();

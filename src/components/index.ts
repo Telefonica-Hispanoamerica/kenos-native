@@ -21,6 +21,8 @@ export {
   SkeletonText,
   SkeletonRow,
 } from './Skeletons/Skeletons';
+export {Slideshow}from './Carousels/Slideshow/Slideshow';
+export {Carousel} from './Carousels/Carousel/Carousel';
 export {default as StatusBar} from './StatusBar/StatusBar';
 export {default as Stepper} from './Steppers/Stepper';
 export {default as Tag} from './Tag/Tag';

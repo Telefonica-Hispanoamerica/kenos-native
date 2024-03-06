@@ -9,7 +9,7 @@ interface CarouselProps {
   items: (React.ReactNode | string)[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ items }) => {
+export const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0); 
   const [containerWidth, setContainerWidth] = useState(width);
   const [totalItems, setTotalItems] = useState(0);
