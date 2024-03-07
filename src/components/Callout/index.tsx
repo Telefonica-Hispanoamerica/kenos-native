@@ -13,7 +13,7 @@ import {CalloutProps, TypeCallout} from './Callout.Types';
 import {styles} from './Callout.css';
 import {CalloutIcon} from './CalloutIcon/CalloutIcon';
 import {Button, IconButton} from '../Buttons';
-import { Text2, Text3 } from '../Text/Text';
+import {Text2, Text3} from '../Text/Text';
 
 export const Callout: React.FC<CalloutProps> = props => {
   const {
@@ -93,15 +93,10 @@ export const Callout: React.FC<CalloutProps> = props => {
     padding: size === 'small' ? 8 : 16,
   };
 
-  const iconButtonStyles: StyleProp<ViewStyle> = {
-    height: 24,
-    width: 24,
-    backgroundColor: background,
-    marginTop: 0,
-  };
-
-  const customColorText = (inverse || (type === 'general' && size !== 'small')? textSecondary : textPrimary);
-
+  const customColorText =
+    inverse || (type === 'general' && size !== 'small')
+      ? textSecondary
+      : textPrimary;
 
   return (
     <View style={[styles.callout, customStyles]}>
@@ -128,16 +123,17 @@ export const Callout: React.FC<CalloutProps> = props => {
           aligned={true}
           style={size === 'small' ? {marginTop: -6} : {}}
           urgency={type}
-          onPress={linkAction}
-        >
+          onPress={linkAction}>
           {linkText}
         </Button>
       </View>
       {dismissable && (
         <View style={styles.calloutAction}>
           <IconButton
+            type="light"
             icon={IconCloseRegular}
-            styles={iconButtonStyles}
+            sizeCircle={24}
+            sizeIcon={24}
             onPress={dismissableAction}
           />
         </View>

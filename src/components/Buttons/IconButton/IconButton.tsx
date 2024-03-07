@@ -41,14 +41,15 @@ export const IconButton = (props: IconTypeProps) => {
   const { background, color } = themeTypeButton[props.type ?? 'lightBlank'];
 
   const Icon = props.icon as React.ComponentType<IconProps>;
-  const iconComponent: JSX.Element = <Icon size={24} color={color} />;
+  const iconComponent: JSX.Element = <Icon size={props.sizeIcon ?? 24} color={color} />;
+  const {container, circle, textButton} = styles(props,background);
 
   return (
-    <View style={styles.container}>
-        <Pressable onPress={props.onPress} style={[styles.circle, { backgroundColor: background }]}>
+    <View style={container}>
+        <Pressable onPress={props.onPress} style={circle}>
           {iconComponent}
         </Pressable>
-      <View style={styles.textButton}>
+      <View style={textButton}>
         <Text2 medium color={
           props.inverse ? textPrimaryInverse : textPrimary
         }>{props.children}</Text2>
