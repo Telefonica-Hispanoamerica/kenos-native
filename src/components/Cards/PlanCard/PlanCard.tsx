@@ -24,6 +24,49 @@ import {ButtonLayout} from '../../LayoutButton';
 
 // TODO: crear un type que incluya un objeto con los datos de la tarjeta
 
+const DataRow = [
+  {
+    id: '1',
+    value: 'Value1',
+    defaultValue: 'DefaultValue1',
+    title: 'Title1',
+    subtitle: 'Subtitle1',
+    description: 'Description1',
+    rightComponent: 'IconChevron',
+    leftComponent: <IconButton icon={IconLightningRegular} />,
+  },
+  {
+    id: '2',
+    value: 'Value2',
+    defaultValue: 'DefaultValue2',
+    title: 'Title2',
+    subtitle: 'Subtitle2',
+    description: 'Description2',
+    rightComponent: 'IconChevron',
+    leftComponent: <IconButton icon={IconLightningRegular} />,
+  },
+  {
+    id: '3',
+    value: 'Value2',
+    defaultValue: 'DefaultValue2',
+    title: 'Title2',
+    subtitle: 'Subtitle2',
+    description: 'Description2',
+    rightComponent: 'IconChevron',
+    leftComponent: <IconButton icon={IconLightningRegular} />,
+  },
+  {
+    id: '4',
+    value: 'Value2',
+    defaultValue: 'DefaultValue2',
+    title: 'Title2',
+    subtitle: 'Subtitle2',
+    description: 'Description2',
+    rightComponent: 'IconChevron',
+    leftComponent: <IconButton icon={IconLightningRegular} />,
+  },
+];
+
 export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
   const pricingData: PricingProps = {
     offerDescription: 'Offer Description',
@@ -42,15 +85,12 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
   };
 
   return (
-    <ScrollView>
+    <>
       <Boxed
         borderRadius={16}
         borderColor={borderSelected}
         borderWidth={2}
-        // styles={styles.boxed}
-        dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}
-        // width="100%"
-      >
+        dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}>
         <FeatureTag icon={IconLightningRegular} text="¡El plan más top!" />
         <Header
           name="Plan Name"
@@ -108,55 +148,21 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
 
         {isExpanded ? (
           <View>
-            <Row
-              value="1"
-              defaultValue="1"
-              onSelect={value => console.log('Selected value:', value)}
-              title="Title"
-              subtitle="Subtitle"
-              description="Description"
-              rightComponent="Without"
-              leftComponent={<IconButton icon={IconLightningRegular} />}
-            />
-            <Row
-              value="1"
-              defaultValue="1"
-              onSelect={value => console.log('Selected value:', value)}
-              title="Title"
-              subtitle="Subtitle"
-              description="Description"
-              rightComponent="Without"
-              leftComponent={<IconButton icon={IconLightningRegular} />}
-            />
-            <Row
-              value="1"
-              defaultValue="1"
-              onSelect={value => console.log('Selected value:', value)}
-              title="Title"
-              subtitle="Subtitle"
-              description="Description"
-              rightComponent="Without"
-              leftComponent={<IconButton icon={IconLightningRegular} />}
-            />
-            <Row
-              value="1"
-              defaultValue="1"
-              onSelect={value => console.log('Selected value:', value)}
-              title="Title"
-              subtitle="Subtitle"
-              description="Description"
-              rightComponent="Without"
-              leftComponent={<IconButton icon={IconLightningRegular} />}
-            />
-            <Row
-              value="1"
-              defaultValue="1"
-              onSelect={value => console.log('Selected value:', value)}
-              title="Title"
-              subtitle="Subtitle"
-              description="Description"
-              rightComponent="Without"
-              leftComponent={<IconButton icon={IconLightningRegular} />}
+            <FlatList
+              data={DataRow}
+              renderItem={({item}) => (
+                <Row
+                  value={item.value}
+                  defaultValue={item.defaultValue}
+                  onSelect={value => console.log('Selected value:', value)}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  description={item.description}
+                  rightComponent={item.rightComponent}
+                  leftComponent={item.leftComponent}
+                />
+              )}
+              keyExtractor={item => item.id}
             />
           </View>
         ) : null}
@@ -165,7 +171,7 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
           <View
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
-              padding: 10,
+              padding: 8,
               alignItems: 'center',
             }}>
             <Button
@@ -177,6 +183,6 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
           </View>
         ) : null}
       </Boxed>
-    </ScrollView>
+    </>
   );
 };
