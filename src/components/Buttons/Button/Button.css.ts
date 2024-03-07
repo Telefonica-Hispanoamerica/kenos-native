@@ -163,26 +163,16 @@ export const styles = (
   return StyleSheet.create({
     buttonContainer: {
       backgroundColor: backgroundColor,
-
       alignSelf: 'flex-start',
-
       justifyContent: 'center',
-
       width: '100%',
-
       borderRadius: borderRounded,
-
       borderWidth: 1,
-
       borderColor: borderColor,
-
       overflow: 'hidden',
-
       paddingHorizontal: props.small ? 10.5 : 14.5,
-
       paddingVertical: props.small ? 4.5 : 10.5,
     },
-
     buttonLink: {
       backgroundColor: backgroundColor,
       borderRadius: borderRounded,
@@ -193,40 +183,25 @@ export const styles = (
       paddingVertical: 6,
       paddingHorizontal: props.aligned ? 0 : 12,
     },
-
     buttonContent: {
       display: 'flex',
-
       flexDirection: 'row',
-
       justifyContent: 'center',
-
       gap: 8,
     },
-
     buttonText: {
       lineHeight: 20,
-
       height: 22,
-
       color: textColor,
-
       fontSize: props.small ? 14 : 16,
-
       textAlign: 'center',
-
       verticalAlign: 'middle',
-
       fontFamily: 'Roboto-Bold',
     },
-
     textUnderline: {
       textDecorationColor: 'red',
-
       paddingBottom: 2,
-
       borderBottomWidth: 1,
-
       borderBottomColor: customColor,
     },
   });
