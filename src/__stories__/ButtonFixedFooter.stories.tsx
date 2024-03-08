@@ -8,6 +8,7 @@ import IconFileImageRegular from '../kenos-icons/IconFileImageRegular';
 import IconLightningRegular from '../kenos-icons/IconLightningRegular';
 import IconFolderRegular from '../kenos-icons/IconFolderRegular';
 import IconRobotRegular from '../kenos-icons/IconRobotRegular';
+import { SocialMediaButton } from '../components';
 
 export default {
   title: 'ButtonFixedFooterLayout',
@@ -52,24 +53,31 @@ export const Basic: ComponentStory<typeof ButtonFixedFooter> = args => {
     </Button>
   );
 
+  const slotZone =(
+     <SocialMediaButton text='Entrar con Red Social'/>)
+
   return (
     <View>
       <ButtonFixedFooter
         {...args}
+        textTitle='Total (IVA incl.)'
+        textPrice='229,42€'
+        typeMsj='/mo'
         primaryButton={primaryButton}
         secondaryButton={secondaryButton}
         buttonLink={buttonLink}
         buttonsOptions={buttonsOptions}
+        children={slotZone}
       />
     </View>
   );
 };
 
 Basic.args = {
-  children: 'text button',
   shadow: false,
   inverse: false,
   light: false,
+  slot:false
 };
 
 Basic.storyName = 'ButtonFixedFooterLayout';
