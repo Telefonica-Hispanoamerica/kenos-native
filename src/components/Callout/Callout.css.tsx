@@ -24,10 +24,8 @@ export const styles = StyleSheet.create({
     margin: 0,
   },
   calloutAction: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    marginTop:0,
     alignItems: 'flex-end',
     position: 'relative',
-    height: 24,
   },
 });
