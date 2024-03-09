@@ -2,10 +2,15 @@ import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 
 import {ScrollView, View} from 'react-native';
-import {Circle, Placeholder, Text3} from '../components';
+import {Circle, IconButton, Placeholder, Text3} from '../components';
 import Image from '../components/Primitives/Image/Image';
 import {DataCard, MediaCard, PlanCard} from '../components/Cards';
 import Video from '../components/Primitives/Video/Video';
+import {
+  IconLightningRegular,
+  IconOfferPercentFilled,
+  IconQuestionRegular,
+} from '../kenos-icons';
 
 //#region DataCard
 
@@ -116,24 +121,85 @@ Media_Card.args = {
 
 export const Plan_Card: ComponentStory<typeof PlanCard> = args => {
   return (
-    <View style={{flex: 1, padding: 10}}>
+    <ScrollView style={{flex: 1, padding: 10}}>
       <PlanCard {...args} />
-    </View>
+    </ScrollView>
   );
 };
 
 Plan_Card.storyName = 'Plan Card';
 
 Plan_Card.args = {
-  icon: <Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />,
-  headline: 'Headline',
-  pretitle: 'Pretitle',
-  title: 'Title',
-  subtitle: 'Subtitle',
-  description: 'This is a description for the card',
-  extra: <Placeholder></Placeholder>,
-  'aria-label': 'aria-label',
-  onClose: undefined,
+  namePrimaryButton: 'namePrimaryButton',
+  nameSecondaryButton: 'nameSecondaryButton',
+  linkButtonMoreDetails: 'linkButtonMoreDetails',
+  linkButtonHideDetails: 'linkButtonHideDetails',
+  dataRowList: [
+    {
+      id: '1',
+      value: 'Value1',
+      defaultValue: 'DefaultValue1',
+      title: 'Title1',
+      subtitle: 'Subtitle1',
+      description: 'Description1',
+      rightComponent: 'Without',
+      onSelect: () => {},
+      leftComponent: <IconButton icon={IconLightningRegular} />,
+    },
+    {
+      id: '2',
+      value: 'Value2',
+      defaultValue: 'DefaultValue2',
+      title: 'Title2',
+      subtitle: 'Subtitle2',
+      description: 'Description2',
+      rightComponent: 'Without',
+      onSelect: () => {},
+      leftComponent: <IconButton icon={IconLightningRegular} />,
+    },
+    {
+      id: '3',
+      value: 'Value2',
+      defaultValue: 'DefaultValue2',
+      title: 'Title2',
+      subtitle: 'Subtitle2',
+      description: 'Description2',
+      rightComponent: 'Without',
+      onSelect: () => {},
+      leftComponent: <IconButton icon={IconLightningRegular} />,
+    },
+    {
+      id: '4',
+      value: 'Value2',
+      defaultValue: 'DefaultValue2',
+      title: 'Title2',
+      subtitle: 'Subtitle2',
+      description: 'Description2',
+      rightComponent: 'Without',
+      onSelect: () => {},
+      leftComponent: <IconButton icon={IconLightningRegular} />,
+    },
+  ],
+  textFeatureTag: '¡El plan más top!',
+  iconFeatureTag: IconLightningRegular,
+  name: 'Plan Name',
+  quantity: '32 GB',
+  duration: 'x12 month.',
+  description: 'Luego 16 GB',
+  price: '$18.893',
+  priceDuration: 'x12 month.',
+  priceDescription: 'Luego $24.990',
+  typeHeader: 'vertical',
+  iconHeader: IconQuestionRegular,
+  typeTagLabel: 'promo',
+  textTagLabel: '30% Dcto. x 3 meses',
+  iconTagLabel: IconOfferPercentFilled,
+  offerDescription: 'Offer Description',
+  pricePricing: '$2.199',
+  priceDescriptionPricing: 'x month',
+  durationPricing: 'x12 month.',
+  durationDescription: 'Offer description',
+  typePricing: 'vertical',
 };
 
 //#endregion PlanCard

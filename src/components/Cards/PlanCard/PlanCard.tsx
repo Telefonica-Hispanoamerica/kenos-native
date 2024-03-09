@@ -2,80 +2,78 @@ import React, {useState} from 'react';
 import {
   IconChevronDownRegular,
   IconChevronUpRegular,
-  IconLightningRegular,
-  IconOfferPercentFilled,
-  IconQuestionRegular,
 } from '../../../kenos-icons';
 import {useTheme} from '../../../utils/ThemeContextProvider';
 import {Boxed} from '../../Primitives/Boxed/Boxed';
-import {DataCardProps} from '../Cards.Types';
-import {styles} from '../Cards.css';
 import FeatureTag from './FeatureTag/FeatureTag';
 import Header from './Header/Header';
-import Pricing, {PricingProps} from './Pricing/Pricing';
+import Pricing from './Pricing/Pricing';
 import TagLabel from './TagLabel/TagLabel';
-import {Button, IconButton} from '../../Buttons';
-import {Text, View} from 'react-native';
-import Row from '../../ListRow/ListRow';
+import {Button} from '../../Buttons';
+import {View} from 'react-native';
+import Row, {RowProps} from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ScrollView} from 'react-native';
 import {ButtonLayout} from '../../LayoutButton';
-// import {ListViewBase} from 'react-native';
+import {IconProps} from '../../../utils';
+export type PlanCardProps = {
+  borderRadius: number;
+  namePrimaryButton: string;
+  nameSecondaryButton: string;
+  linkButtonMoreDetails: string;
+  linkButtonHideDetails: string;
+  dataRowList: Array<RowProps>;
+  iconFeatureTag: React.ComponentType<IconProps>;
+  textFeatureTag: string;
+  name: string;
+  quantity: string;
+  duration: string;
+  description: string;
+  price: string;
+  priceDuration: string;
+  priceDescription: string;
+  typeHeader: string;
+  iconHeader: React.ComponentType<IconProps>;
+  typeTagLabel: string;
+  textTagLabel: string;
+  iconTagLabel: React.ComponentType<IconProps>;
+  offerDescription: string;
+  pricePricing: string;
+  priceDescriptionPricing: string;
+  durationPricing: string;
+  durationDescription: string;
+  typePricing: string;
+};
 
-// TODO: crear un type que incluya un objeto con los datos de la tarjeta
-
-const DataRow = [
-  {
-    id: '1',
-    value: 'Value1',
-    defaultValue: 'DefaultValue1',
-    title: 'Title1',
-    subtitle: 'Subtitle1',
-    description: 'Description1',
-    rightComponent: 'IconChevron',
-    leftComponent: <IconButton icon={IconLightningRegular} />,
-  },
-  {
-    id: '2',
-    value: 'Value2',
-    defaultValue: 'DefaultValue2',
-    title: 'Title2',
-    subtitle: 'Subtitle2',
-    description: 'Description2',
-    rightComponent: 'IconChevron',
-    leftComponent: <IconButton icon={IconLightningRegular} />,
-  },
-  {
-    id: '3',
-    value: 'Value2',
-    defaultValue: 'DefaultValue2',
-    title: 'Title2',
-    subtitle: 'Subtitle2',
-    description: 'Description2',
-    rightComponent: 'IconChevron',
-    leftComponent: <IconButton icon={IconLightningRegular} />,
-  },
-  {
-    id: '4',
-    value: 'Value2',
-    defaultValue: 'DefaultValue2',
-    title: 'Title2',
-    subtitle: 'Subtitle2',
-    description: 'Description2',
-    rightComponent: 'IconChevron',
-    leftComponent: <IconButton icon={IconLightningRegular} />,
-  },
-];
-
-export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
-  const pricingData: PricingProps = {
-    offerDescription: 'Offer Description',
-    price: '$2.199',
-    priceDescription: 'x month',
-    duration: 'x12 month.',
-    durationDescription: 'Offer description',
-    type: 'vertical',
-  };
+export const PlanCard: React.FC<PlanCardProps> = props => {
+  const {
+    borderRadius = 16,
+    namePrimaryButton,
+    nameSecondaryButton,
+    linkButtonMoreDetails,
+    linkButtonHideDetails,
+    dataRowList,
+    iconFeatureTag,
+    textFeatureTag,
+    name,
+    quantity,
+    duration,
+    description,
+    price,
+    priceDuration,
+    priceDescription,
+    typeHeader,
+    iconHeader,
+    typeTagLabel,
+    textTagLabel,
+    iconTagLabel,
+    offerDescription,
+    pricePricing,
+    priceDescriptionPricing,
+    durationPricing,
+    durationDescription,
+    typePricing,
+  } = props;
   const {skin} = useTheme();
   const {borderSelected} = skin.colors;
   const [isExpanded, setIsExpanded] = useState(false); //defaultExpanded ? true :
@@ -85,104 +83,111 @@ export const PlanCard: React.FC<DataCardProps> = ({dataAttributes}) => {
   };
 
   return (
-    <>
-      <Boxed
-        borderRadius={16}
-        borderColor={borderSelected}
-        borderWidth={2}
-        dataAttributes={{'component-name': 'DataCard', ...dataAttributes}}>
-        <FeatureTag icon={IconLightningRegular} text="¡El plan más top!" />
-        <Header
-          name="Plan Name"
-          quantity="32 GB"
-          duration="x12 month."
-          description="Luego 16 GB"
-          price="$18.893"
-          priceDuration="x12 month."
-          priceDescription="Luego $24.990"
-          type="vertical"
-          icon={IconQuestionRegular}
-        />
+    <Boxed
+      borderRadius={borderRadius}
+      borderColor={borderSelected}
+      borderWidth={2}>
+      <FeatureTag
+        icon={iconFeatureTag}
+        text={textFeatureTag}
+        // {...featureTagData}
+      />
 
-        <TagLabel
-          type="promo"
-          text="30% Dcto. x 3 meses"
-          icon={IconOfferPercentFilled}
-        />
-
-        <Pricing {...pricingData} />
-
-        <ButtonLayout
-          alignment="column-reverse"
-          primaryButton={
-            <Button
-              type="primary"
-              rounded
-              onPress={() => {
-                console.log('Click');
-              }}>
-              Primary button
-            </Button>
-          }
-          secondaryButton={
-            <Button
-              type="secondary"
-              rounded
-              onPress={() => {
-                console.log('Click');
-              }}>
-              Secondary button
-            </Button>
-          }
-          buttonLink={
-            !isExpanded ? (
-              <Button
-                type={'link'}
-                rightIcon={IconChevronDownRegular}
-                onPress={handleExpandIconClick}>
-                More details
-              </Button>
-            ) : null
-          }
-        />
-
-        {isExpanded ? (
-          <View>
-            <FlatList
-              data={DataRow}
-              renderItem={({item}) => (
-                <Row
-                  value={item.value}
-                  defaultValue={item.defaultValue}
-                  onSelect={value => console.log('Selected value:', value)}
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  description={item.description}
-                  rightComponent={item.rightComponent}
-                  leftComponent={item.leftComponent}
-                />
-              )}
-              keyExtractor={item => item.id}
-            />
-          </View>
-        ) : null}
-
-        {isExpanded ? (
-          <View
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{
-              padding: 8,
-              alignItems: 'center',
+      <Header
+        name={name}
+        quantity={quantity}
+        duration={duration}
+        description={description}
+        price={price}
+        priceDuration={priceDuration}
+        priceDescription={priceDescription}
+        type={typeHeader}
+        icon={iconHeader}
+        // {...headerData}
+      />
+      <TagLabel
+        type={typeTagLabel}
+        text={textTagLabel}
+        icon={iconTagLabel}
+        // {...tagLabelData}
+      />
+      <Pricing
+        offerDescription={offerDescription}
+        price={pricePricing}
+        priceDescription={priceDescriptionPricing}
+        duration={durationPricing}
+        durationDescription={durationDescription}
+        type={typePricing}
+        // {...pricingData}
+      />
+      <ButtonLayout
+        alignment="column-reverse"
+        primaryButton={
+          <Button
+            type="primary"
+            rounded
+            onPress={() => {
+              console.log('Click');
             }}>
+            {namePrimaryButton}
+          </Button>
+        }
+        secondaryButton={
+          <Button
+            type="secondary"
+            rounded
+            onPress={() => {
+              console.log('Click');
+            }}>
+            {nameSecondaryButton}
+          </Button>
+        }
+        buttonLink={
+          !isExpanded ? (
             <Button
               type={'link'}
-              rightIcon={IconChevronUpRegular}
+              rightIcon={IconChevronDownRegular}
               onPress={handleExpandIconClick}>
-              Hide details
+              {linkButtonMoreDetails}
             </Button>
-          </View>
-        ) : null}
-      </Boxed>
-    </>
+          ) : null
+        }
+      />
+      {isExpanded ? (
+        <View>
+          <FlatList
+            data={dataRowList}
+            renderItem={({item}) => (
+              <Row
+                value={item.value}
+                defaultValue={item.defaultValue}
+                onSelect={value => console.log('Selected value:', value)}
+                title={item.title}
+                subtitle={item.subtitle}
+                description={item.description}
+                rightComponent={item.rightComponent}
+                leftComponent={item.leftComponent}
+              />
+            )}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      ) : null}
+      {isExpanded ? (
+        <View
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            padding: 8,
+            alignItems: 'center',
+          }}>
+          <Button
+            type={'link'}
+            rightIcon={IconChevronUpRegular}
+            onPress={handleExpandIconClick}>
+            {linkButtonHideDetails}
+          </Button>
+        </View>
+      ) : null}
+    </Boxed>
   );
 };
