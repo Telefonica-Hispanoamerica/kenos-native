@@ -121,15 +121,16 @@ Media_Card.args = {
 
 export const Plan_Card: ComponentStory<typeof PlanCard> = args => {
   return (
-    <ScrollView style={{flex: 1, padding: 10}}>
+    <View style={{flex: 1, padding: 10}}>
       <PlanCard {...args} />
-    </ScrollView>
+    </View>
   );
 };
 
 Plan_Card.storyName = 'Plan Card';
 
 Plan_Card.args = {
+  borderRadius: 16,
   namePrimaryButton: 'namePrimaryButton',
   nameSecondaryButton: 'nameSecondaryButton',
   linkButtonMoreDetails: 'linkButtonMoreDetails',
