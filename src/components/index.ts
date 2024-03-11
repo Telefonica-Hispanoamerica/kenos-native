@@ -44,4 +44,6 @@ export {
   Text9,
   Text10,
 } from './Text/Text';
-export { Title1, Title2 } from './Title/Title'
+export { Title1, Title2 } from './Title/Title';
+export { default as PassswordField } from './Input/PasswordField/PasswordField';
+export { Callout } from './Callout/index';
