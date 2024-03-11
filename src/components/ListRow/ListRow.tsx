@@ -11,6 +11,7 @@ import {IconProps} from '../../utils';
 import {Box} from '../../layout';
 
 export interface RowProps {
+  id: string;
   value: string;
   onSelect: (value: string) => void;
   defaultValue: string;

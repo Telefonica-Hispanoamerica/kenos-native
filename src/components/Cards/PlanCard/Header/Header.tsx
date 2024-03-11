@@ -1,8 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useTheme} from '../../../../utils/ThemeContextProvider';
 import {IconProps} from '../../../../utils/types';
 import {Text1, Text2, Text7} from '../../../Text/Text';
+
+export type PositionTypeProps = 'vertical' | 'horizontal' | 'double';
 
 export type HeaderProps = {
   name?: string;
@@ -13,10 +16,11 @@ export type HeaderProps = {
   priceDescription?: string;
   priceDuration?: string;
   icon?: React.ComponentType<IconProps>;
-  type: 'vertical' | 'horizontal' | 'double';
+  type: PositionTypeProps;
 };
 
 const Header = (props: HeaderProps) => {
+  const {type} = props;
   const {skin} = useTheme();
   const {backgroundBrandSecondary, textPrimaryInverse, brand, divider} =
     skin.colors;
@@ -26,7 +30,7 @@ const Header = (props: HeaderProps) => {
 
   // TODO: separar en componentes HeaderVertical, HeaderHorizontal y HeaderDouble
 
-  if (props.type === 'vertical')
+  if (type === 'vertical') {
     return (
       <View
         style={[
@@ -66,8 +70,9 @@ const Header = (props: HeaderProps) => {
         ) : null}
       </View>
     );
+  }
 
-  if (props.type === 'double')
+  if (type === 'double') {
     return (
       <View
         style={[
@@ -113,6 +118,7 @@ const Header = (props: HeaderProps) => {
         </View>
       </View>
     );
+  }
 
   return null;
 };

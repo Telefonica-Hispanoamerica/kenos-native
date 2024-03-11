@@ -131,10 +131,10 @@ Plan_Card.storyName = 'Plan Card';
 
 Plan_Card.args = {
   borderRadius: 16,
-  namePrimaryButton: 'namePrimaryButton',
-  nameSecondaryButton: 'nameSecondaryButton',
-  linkButtonMoreDetails: 'linkButtonMoreDetails',
-  linkButtonHideDetails: 'linkButtonHideDetails',
+  namePrimaryButton: 'Primary',
+  nameSecondaryButton: 'Secondary',
+  linkButtonMoreDetails: 'MoreDetails',
+  linkButtonHideDetails: 'HideDetails',
   dataRowList: [
     {
       id: '1',
@@ -183,24 +183,30 @@ Plan_Card.args = {
   ],
   textFeatureTag: '¡El plan más top!',
   iconFeatureTag: IconLightningRegular,
-  name: 'Plan Name',
-  quantity: '32 GB',
-  duration: 'x12 month.',
-  description: 'Luego 16 GB',
-  price: '$18.893',
-  priceDuration: 'x12 month.',
-  priceDescription: 'Luego $24.990',
-  typeHeader: 'vertical',
-  iconHeader: IconQuestionRegular,
-  typeTagLabel: 'promo',
-  textTagLabel: '30% Dcto. x 3 meses',
-  iconTagLabel: IconOfferPercentFilled,
-  offerDescription: 'Offer Description',
-  pricePricing: '$2.199',
-  priceDescriptionPricing: 'x month',
-  durationPricing: 'x12 month.',
-  durationDescription: 'Offer description',
-  typePricing: 'vertical',
+  header: {
+    name: 'Plan Name',
+    quantity: '32 GB',
+    duration: 'x12 month.',
+    description: 'Luego 16 GB',
+    price: '$18.893',
+    priceDuration: 'x12 month.',
+    priceDescription: 'Luego $24.990',
+    type: 'vertical',
+    icon: IconQuestionRegular,
+  },
+  tagLabel: {
+    type: 'promo',
+    text: '30% Dcto. x 3 meses',
+    icon: IconOfferPercentFilled,
+  },
+  pricing: {
+    offerDescription: 'Offer Description',
+    price: '$2.199',
+    priceDescription: 'x month',
+    duration: 'x12 month.',
+    durationDescription: 'Offer description',
+    type: 'vertical',
+  },
 };
 
 //#endregion PlanCard
