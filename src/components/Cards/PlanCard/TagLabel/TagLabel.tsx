@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { IconProps } from '../../../../utils/types';
-import Tag, { TagType } from '../../../Tag/Tag';
+import {StyleSheet, View} from 'react-native';
+import {IconProps} from '../../../../utils/types';
+import Tag, {TagProps, TagType} from '../../../Tag/Tag';
 
 export type TagLabelProps = {
   text: string;
@@ -12,7 +12,7 @@ export type TagLabelProps = {
 const TagLabel = (props: TagLabelProps) => {
   return (
     <View style={styles.tagLabelContainer}>
-      <Tag Icon={props.icon} type={props.type ?? 'promo'}>
+      <Tag Icon={props.icon} type={props.type ?? 'promo'} isInverseTag>
         {props.text}
       </Tag>
     </View>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {
   IconChevronDownRegular,
   IconChevronUpRegular,
@@ -15,6 +15,7 @@ import Row, {RowProps} from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ButtonLayout} from '../../LayoutButton';
 import {IconProps} from '../../../utils';
+import {TagProps} from '../../Tag/Tag';
 
 export type PlanCardProps = {
   borderRadius: number;
@@ -75,8 +76,13 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     typePricing,
   } = props;
   const {skin} = useTheme();
-  const {borderSelected} = skin.colors;
+  const {borderSelected, border} = skin.colors;
   const [isExpanded, setIsExpanded] = useState(false);
+  const [colorBorder, sizeBorder] = useMemo(() => {
+    const color = textFeatureTag ? borderSelected : border;
+    const size = textFeatureTag ? 2 : 1;
+    return [color, size];
+  }, [textFeatureTag, borderSelected, border]);
 
   const handleExpandIconClick = () => {
     setIsExpanded(!isExpanded);
@@ -88,9 +94,9 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
       renderItem={() => (
         <Boxed
           borderRadius={borderRadius}
-          borderColor={borderSelected}
-          borderWidth={2}>
-          {!!iconFeatureTag ?? (
+          borderColor={colorBorder}
+          borderWidth={sizeBorder}>
+          {textFeatureTag && (
             <FeatureTag icon={iconFeatureTag} text={textFeatureTag} />
           )}
 
