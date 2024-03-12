@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {Circle, IconButton, Placeholder, Text3} from '../components';
 import Image from '../components/Primitives/Image/Image';
 import {DataCard, MediaCard, PlanCard} from '../components/Cards';
@@ -35,7 +36,7 @@ Basic.args = {
   title: 'Title',
   subtitle: 'Subtitle',
   description: 'This is a description for the card',
-  extra: <Placeholder></Placeholder>,
+  extra: <Placeholder />,
   'aria-label': 'aria-label',
   onClose: undefined,
 
@@ -73,7 +74,8 @@ export const Media_Card: ComponentStory<typeof MediaCard> = args => {
               height="100%"
               autoPlay={true}
             />
-          }></MediaCard>
+          }
+        />
       </View>
       <View style={{height: 200, paddingTop: 10, marginBottom: 200}}>
         <MediaCard
@@ -94,7 +96,8 @@ export const Media_Card: ComponentStory<typeof MediaCard> = args => {
               src={IMAGE_SRC_2}
               width="100%"
               height={100}
-              resizeMode="contain"></Image>
+              resizeMode="contain"
+            />
           }
         />
       </View>
@@ -109,7 +112,7 @@ Media_Card.args = {
   title: 'Title',
   subtitle: 'Subtitle',
   description: 'This is a description for the card',
-  extra: <Placeholder></Placeholder>,
+  extra: <Placeholder />,
   'aria-label': 'aria-label',
   onClose: undefined,
   media: <Image src={IMAGE_SRC} width="100%" height={150} resizeMode="cover" />,
