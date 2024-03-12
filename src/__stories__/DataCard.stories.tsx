@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 
-import {ScrollView, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {Circle, IconButton, Placeholder, Text3} from '../components';
 import Image from '../components/Primitives/Image/Image';
 import {DataCard, MediaCard, PlanCard} from '../components/Cards';
@@ -131,8 +131,18 @@ Plan_Card.storyName = 'Plan Card';
 
 Plan_Card.args = {
   borderRadius: 16,
-  namePrimaryButton: 'Primary',
-  nameSecondaryButton: 'Secondary',
+  buttonPrimary: {
+    onPress: () => {},
+    children: 'primary',
+    rounded: true,
+  },
+  buttonTypePrimary: 'primary',
+  buttonSecondary: {
+    onPress: () => {},
+    children: 'secondary',
+    rounded: true,
+  },
+  buttonTypeSecondary: 'secondary',
   linkButtonMoreDetails: 'MoreDetails',
   linkButtonHideDetails: 'HideDetails',
   dataRowList: [

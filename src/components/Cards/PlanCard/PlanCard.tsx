@@ -15,6 +15,7 @@ import Row, {RowProps} from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ButtonLayout} from '../../LayoutButton';
 import {IconProps} from '../../../utils';
+import {ButtonProps, ButtonType} from '../../Buttons/Button/Button.Types';
 
 export type PlanCardProps = {
   borderRadius: 8 | 16 | undefined;
@@ -28,13 +29,15 @@ export type PlanCardProps = {
   header: HeaderProps;
   tagLabel: TagLabelProps;
   pricing: PricingProps;
+  buttonPrimary: ButtonProps;
+  buttonTypePrimary: ButtonType;
+  buttonSecondary: ButtonProps;
+  buttonTypeSecondary: ButtonType;
 };
 
 export const PlanCard: React.FC<PlanCardProps> = props => {
   const {
     borderRadius = 16,
-    namePrimaryButton,
-    nameSecondaryButton,
     linkButtonMoreDetails,
     linkButtonHideDetails,
     dataRowList,
@@ -43,6 +46,10 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     header,
     tagLabel,
     pricing,
+    buttonPrimary,
+    buttonTypePrimary,
+    buttonSecondary,
+    buttonTypeSecondary,
   } = props;
   const {skin} = useTheme();
   const {borderSelected, border} = skin.colors;
@@ -75,24 +82,10 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
           <ButtonLayout
             alignment="column-reverse"
             primaryButton={
-              <Button
-                type="primary"
-                rounded
-                onPress={() => {
-                  console.log('Click');
-                }}>
-                {namePrimaryButton}
-              </Button>
+              <Button {...buttonPrimary} type={buttonTypePrimary} />
             }
             secondaryButton={
-              <Button
-                type="secondary"
-                rounded
-                onPress={() => {
-                  console.log('Click');
-                }}>
-                {nameSecondaryButton}
-              </Button>
+              <Button {...buttonSecondary} type={buttonTypeSecondary} />
             }
             buttonLink={
               !isExpanded ? (
