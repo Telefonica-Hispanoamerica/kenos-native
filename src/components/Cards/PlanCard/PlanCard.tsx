@@ -6,34 +6,15 @@ import {
 import {useTheme} from '../../../utils/ThemeContextProvider';
 import {Boxed} from '../../Primitives/Boxed/Boxed';
 import FeatureTag from './FeatureTag/FeatureTag';
-import Header, {HeaderProps} from './Header/Header';
-import Pricing, {PricingProps} from './Pricing/Pricing';
-import TagLabel, {TagLabelProps} from './TagLabel/TagLabel';
+import Header from './Header/Header';
+import Pricing from './Pricing/Pricing';
+import TagLabel from './TagLabel/TagLabel';
 import {Button} from '../../Buttons';
 import {View} from 'react-native';
-import Row, {RowProps} from '../../ListRow/ListRow';
+import Row from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ButtonLayout} from '../../LayoutButton';
-import {IconProps} from '../../../utils';
-import {ButtonProps, ButtonType} from '../../Buttons/Button/Button.Types';
-
-export type PlanCardProps = {
-  borderRadius: 8 | 16 | undefined;
-  namePrimaryButton: string;
-  nameSecondaryButton: string;
-  linkButtonMoreDetails: string;
-  linkButtonHideDetails: string;
-  dataRowList: Array<RowProps>;
-  iconFeatureTag: React.ComponentType<IconProps>;
-  textFeatureTag: string;
-  header: HeaderProps;
-  tagLabel: TagLabelProps;
-  pricing: PricingProps;
-  buttonPrimary: ButtonProps;
-  buttonTypePrimary: ButtonType;
-  buttonSecondary: ButtonProps;
-  buttonTypeSecondary: ButtonType;
-};
+import {PlanCardProps} from './PlanCard.Types';
 
 export const PlanCard: React.FC<PlanCardProps> = props => {
   const {
