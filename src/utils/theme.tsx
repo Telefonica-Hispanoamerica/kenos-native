@@ -62,6 +62,7 @@ const TEXTS_ES = {
   passwordLevelGood: 'Buena, Para hacerla más segura agrega un símbolo',
   passwordLevelMedium: 'Media, Debe contener al menos un número',
   passwordLevelLow: 'Débil, Debe contener al menos 6 caracteres y un número',
+  phoneMask: [/\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/]
 };
 
 const TEXTS_EN: ThemeTexts = {
@@ -101,6 +102,7 @@ const TEXTS_EN: ThemeTexts = {
   passwordLevelGood: 'Good, To make it more secure add a symbol',
   passwordLevelMedium: 'Medium, It must contain at least one number',
   passwordLevelLow: 'Weak, It must contain at least 6 characters and a number',
+  phoneMask: [/\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/]
 };
 
 const TEXTS_DE: ThemeTexts = {
@@ -142,6 +144,7 @@ const TEXTS_DE: ThemeTexts = {
   passwordLevelMedium: 'Mittel, Es muss mindestens eine Zahl enthalten',
   passwordLevelLow:
     'Schwach, Es muss mindestens 6 Zeichen und eine Zahl enthalten',
+    phoneMask: [/\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/],
 };
 
 const TEXTS_PT: ThemeTexts = {
@@ -181,6 +184,7 @@ const TEXTS_PT: ThemeTexts = {
   passwordLevelGood: 'Bom, Para torná-la mais segura, adicione um símbolo',
   passwordLevelMedium: 'Médio, Deve conter pelo menos um número',
   passwordLevelLow: 'Fraca, Deve conter pelo menos 6 caracteres e um número',
+  phoneMask: [/\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/],
 };
 
 //#endregion
