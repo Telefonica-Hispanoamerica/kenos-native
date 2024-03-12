@@ -3,14 +3,12 @@ import {useTheme} from '../../../utils/ThemeContextProvider';
 import {useFieldProps} from '../../../patterns/Forms/FormContext';
 import {TextFieldBaseAutosuggest} from '../TextFields/TextFieldBase/TextFieldBase';
 import type {CommonFormFieldProps} from '../TextFields/TextFieldBase/TextFieldBase';
-import PasswordSecurityLevel from './Security/PasswordSecurityLevel';
 import { View } from 'react-native';
 import { IconEyeOffRegular, IconEyeRegular } from '../../../kenos-icons';
+import PasswordSecurityLevel from './Security/PasswordSecurityLevel';
 
 export interface PasswordFieldProps extends CommonFormFieldProps {
     onChangeValue?: (value: string, rawValue: string) => void;
-    //onPress?: (event: GestureResponderEvent) => void;
-    //multiline?: boolean;
     prefix?: React.ReactNode;
     endIcon?: React.ReactNode;
     securityIndicator?: boolean;
