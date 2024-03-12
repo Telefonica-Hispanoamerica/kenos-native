@@ -7,8 +7,6 @@ import { IconButton } from '../components/Buttons/IconButton/IconButton';
 import { IconComputerAcademicRegular,IconEditPencilRegular} from '../kenos-icons';
 import Row from '../components/ListRow/ListRow';
 import { Button } from '../components';
-import { ButtonLayout } from '../components';
-
 
 const buttonLink = (
 <View style={{marginLeft:-12}}>
@@ -29,7 +27,7 @@ storiesOf('List', module)
         headline="Headline"
         title="Title"
         subtitle="Subtitle"
-        description={<ButtonLayout buttonLink={buttonLink} />}      
+        description={buttonLink}      
         leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="Without"
       />
@@ -114,7 +112,7 @@ storiesOf('List', module)
         headline="Headline"
         title="Title"
         subtitle="Subtitle"
-        description={<Link onPress={() => console.log('Link clicked')}>Click me</Link>}           
+        description={buttonLink}           
         leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="IconChevron"
         style="bordered"
@@ -207,7 +205,7 @@ storiesOf('List', module)
         headline="Headline"
         title="Title"
         subtitle="Subtitle"
-        description={<Link onPress={() => console.log('Link clicked')}>Click me</Link>}           
+        description={buttonLink}          
         leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         rightComponent="IconChevron"
         numberBagdeLS={10}
