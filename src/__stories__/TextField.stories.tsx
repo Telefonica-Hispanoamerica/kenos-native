@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {ComponentStory} from '@storybook/react';
 import TextField from '../components/Input/TextFields/TextField/TextField';
-import {View} from 'react-native';
-import {IconMusicFilled} from '../kenos-icons';
+import {Text, View} from 'react-native';
+import {IconMobileDeviceRegular, IconMusicFilled} from '../kenos-icons';
 import PassswordField from '../components/Input/PasswordField/PasswordField';
+import PhoneField from '../components/Input/PhoneField/PhoneField';
 
 export default {
   title: 'TextField',
@@ -11,8 +12,9 @@ export default {
 };
 
 export const Basic: ComponentStory<typeof TextField> = args => {
-  const [password, setPassword] = useState("");
-  
+  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const argsPasswordField = {
     ...args,
     label: 'Password',
@@ -22,14 +24,31 @@ export const Basic: ComponentStory<typeof TextField> = args => {
     defaultValue: '',
   };
 
+  const argsPhoneField = {
+    ...args,
+    label: 'Phone with prefix',
+    name: 'phone',
+    onChangeValue: setPhoneNumber,
+    value: phoneNumber,
+    helperText: 'Helper text',
+    maxLength: 12, //Debe incluir cantidad de numeros + espacios
+  };
+
   return (
     <View
       style={{
-        padding: 20
+        padding: 20,
       }}>
       <TextField {...args} endIcon={<IconMusicFilled />} fullWidth></TextField>
-      <View style={{ marginTop: 20 }} />
+      <View style={{marginTop: 20}} />
       <PassswordField {...argsPasswordField} fullWidth />
+      <View style={{marginTop: 20}} />
+      <Text>Real Value: {phoneNumber}</Text>
+      <PhoneField
+        {...argsPhoneField}
+        endIcon={<IconMobileDeviceRegular />}
+        fullWidth
+      />
     </View>
   );
 };

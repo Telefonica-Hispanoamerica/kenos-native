@@ -61,4 +61,5 @@ export {
   Text10,
 } from './Text/Text';
 export {Title1, Title2} from './Title/Title';
-export {PlanCard} from './Cards/PlanCard/PlanCard';
+export {default as PassswordField} from './Input/PasswordField/PasswordField';
+export {default as PhoneField} from './Input/PhoneField/PhoneField';
