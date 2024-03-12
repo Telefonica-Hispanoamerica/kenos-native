@@ -7,7 +7,6 @@ export const styles = (textPrimary: string, textSecondary: string) => {
     minWidth: 0,
     color: textPrimary,
     width: '100%',
-    paddingLeft: 12,
     paddingRight: 16,
     fontSize: 16,
     lineHeight: 24,
@@ -31,19 +30,19 @@ export const styles = (textPrimary: string, textSecondary: string) => {
     },
     inputWithLabel: {
       paddingTop: 24,
-      paddingBottom: 8,
+      paddingBottom: 4,
+      paddingLeft: 12,
     },
     inputWithoutLabel: {
       paddingTop: 16,
       paddingBottom: 16,
     },
     endIconContainer: {
-      //paddingRight: 16,
-      paddingRight: 4,
+      paddingRight: 16,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: 50,
+      width: 40,
     },
     endIconElement: {
       width: 24,
@@ -65,7 +64,6 @@ export const styles = (textPrimary: string, textSecondary: string) => {
     },
     prefixElement: {
       paddingLeft: 12,
-      paddingRight: 16,
     },
     prefixWithLabel: {
       paddingTop: 24,
