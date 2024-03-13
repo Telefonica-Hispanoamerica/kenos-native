@@ -1,6 +1,7 @@
 import {IconProps} from '../../../utils';
 import {ButtonProps, ButtonType} from '../../Buttons/Button/Button.Types';
 import {RowProps} from '../../ListRow/ListRow';
+import {FeatureTagProps} from './FeatureTag/FeatureTag';
 import {HeaderProps} from './Header/Header';
 import {PricingProps} from './Pricing/Pricing';
 import {TagLabelProps} from './TagLabel/TagLabel';
@@ -21,4 +22,5 @@ export type PlanCardProps = {
   buttonTypePrimary: ButtonType;
   buttonSecondary: ButtonProps;
   buttonTypeSecondary: ButtonType;
+  featureTag: FeatureTagProps;
 };

@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {
   IconChevronDownRegular,
   IconChevronUpRegular,
@@ -15,6 +15,7 @@ import Row from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ButtonLayout} from '../../LayoutButton';
 import {PlanCardProps} from './PlanCard.Types';
+import {Colors} from '../../../skins/colors';
 
 export const PlanCard: React.FC<PlanCardProps> = props => {
   const {
@@ -22,8 +23,6 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     linkButtonMoreDetails,
     linkButtonHideDetails,
     dataRowList,
-    iconFeatureTag,
-    textFeatureTag,
     header,
     tagLabel,
     pricing,
@@ -31,15 +30,14 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     buttonTypePrimary,
     buttonSecondary,
     buttonTypeSecondary,
+    featureTag,
   } = props;
   const {skin} = useTheme();
   const {borderSelected, border} = skin.colors;
   const [isExpanded, setIsExpanded] = useState(false);
-  const [colorBorder, sizeBorder] = useMemo(() => {
-    const color = textFeatureTag ? borderSelected : border;
-    const size = textFeatureTag ? 2 : 1;
-    return [color, size];
-  }, [textFeatureTag, borderSelected, border]);
+  const colorBase = skin.colors[featureTag?.color as keyof Colors];
+  const colorDefault = featureTag?.text ? borderSelected : border;
+  const size = featureTag?.text ? 2 : 1;
 
   const handleExpandIconClick = () => {
     setIsExpanded(!isExpanded);
@@ -51,11 +49,9 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
       renderItem={() => (
         <Boxed
           borderRadius={borderRadius}
-          borderColor={colorBorder}
-          borderWidth={sizeBorder}>
-          {textFeatureTag && (
-            <FeatureTag icon={iconFeatureTag} text={textFeatureTag} />
-          )}
+          borderColor={colorBase ?? colorDefault}
+          borderWidth={size}>
+          {featureTag?.text && <FeatureTag {...featureTag} />}
 
           <Header {...header} />
           <TagLabel {...tagLabel} />
