@@ -1,15 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
-import Video from 'react-native-video';
+import {default as RNVideo} from 'react-native-video';
+import { AspectRatio, RATIO } from '../Primitives.Types';
 
-export type AspectRatio = '1:1' | '16:9' | '7:10' | '4:3';
-
-export const RATIO = {
-  '1:1': 1,
-  '16:9': 16 / 9,
-  '7:10': 7 / 10,
-  '4:3': 4 / 3,
-};
 
 export type VideoProps = {
   src: string;
@@ -24,7 +17,7 @@ export type VideoProps = {
   height?: string | number;
 };
 
-const VideoComponent = React.forwardRef<Video, VideoProps>(
+const Video = React.forwardRef<RNVideo, VideoProps>(
   (
     {
       src,
@@ -33,32 +26,38 @@ const VideoComponent = React.forwardRef<Video, VideoProps>(
       muted = true,
       loop = true,
       preload = 'none',
-      aspectRatio = '1:1',
+      aspectRatio = 0,
       dataAttributes,
       ...props
     },
     ref,
   ) => {
-    const videoRef = useRef<Video>(null);
+    const videoRef = useRef<RNVideo>(null);
 
-    // useEffect(() => {
-    //     const video = videoRef.current;
-    //     if (video && autoPlay) {
-    //         videoRef.current.seek(0); // Reinicia el video al principio
-    //         videoRef.current.play(); // Reproduce el video
-    //     }
-    // }, [autoPlay]);
+    useEffect(() => {
+      const video = videoRef.current;
+      if (video && autoPlay) {
+        videoRef.current.seek(0); // Reinicia el video al principio
+        videoRef.current.setState({paused: !autoPlay});
+      }
+    }, [autoPlay]);
 
     const ratio =
       typeof aspectRatio === 'number' ? aspectRatio : RATIO[aspectRatio];
 
     return (
       <View
-        style={{aspectRatio: ratio, width: props.width, height: props.height}}>
-        <Video
+        style={[
+          StyleSheet.absoluteFill,
+          {
+            width: props.width,
+            height: props.height,
+          },
+        ]}>
+        <RNVideo
           ref={videoRef}
           source={{uri: src}}
-          style={StyleSheet.absoluteFill}
+          style={{flex: 1}}
           muted={muted}
           repeat={loop}
           resizeMode="cover"
@@ -71,4 +70,4 @@ const VideoComponent = React.forwardRef<Video, VideoProps>(
   },
 );
 
-export default VideoComponent;
+export default Video;
