@@ -11,7 +11,7 @@ export type TagType = 'promo' | 'active' | 'inactive' | 'success' | 'warning' | 
 export type TagProps = {
     type?: TagType
     children: string;
-    Icon?: React.FC<IconProps>;
+    Icon?: React.ComponentType<IconProps>;
     isInverseTag?: boolean
     withBackground?: boolean
 };

@@ -10,7 +10,7 @@
   import { IconProps } from '../../utils';
   import { Box } from '../../layout';
 
-  interface RowProps {
+  export interface RowProps {
     value: string;
     onSelect: (value: string) => void;
     defaultValue: string;
