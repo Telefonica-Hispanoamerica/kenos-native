@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 
@@ -151,6 +150,7 @@ Plan_Card.args = {
   featureTag: {
     text: '¡El plan más top!',
     icon: IconLightningRegular,
+    color: 'borderSelected',
   },
   header: {
     name: 'Plan Name',
@@ -222,6 +222,8 @@ Plan_Card.args = {
       leftComponent: <IconButton icon={IconLightningRegular} />,
     },
   ],
+  viewApps: <Placeholder />,
+  listOffers: [<Placeholder />, <Placeholder />, <Placeholder />],
 };
 
 //#endregion PlanCard

@@ -1,3 +1,4 @@
+import {ReactNode} from 'react';
 import {IconProps} from '../../../utils';
 import {ButtonProps, ButtonType} from '../../Buttons/Button/Button.Types';
 import {RowProps} from '../../ListRow/ListRow';
@@ -10,8 +11,8 @@ export type PlanCardProps = {
   borderRadius: 8 | 16 | undefined;
   namePrimaryButton: string;
   nameSecondaryButton: string;
-  linkButtonMoreDetails: string;
-  linkButtonHideDetails: string;
+  linkButtonMoreDetails?: string;
+  linkButtonHideDetails?: string;
   dataRowList: Array<RowProps>;
   iconFeatureTag: React.ComponentType<IconProps>;
   textFeatureTag: string;
@@ -23,4 +24,6 @@ export type PlanCardProps = {
   buttonSecondary: ButtonProps;
   buttonTypeSecondary: ButtonType;
   featureTag: FeatureTagProps;
+  viewApps?: ReactNode;
+  listOffers?: ReactNode;
 };

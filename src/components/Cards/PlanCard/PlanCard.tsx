@@ -31,6 +31,8 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     buttonSecondary,
     buttonTypeSecondary,
     featureTag,
+    viewApps,
+    listOffers,
   } = props;
   const {skin} = useTheme();
   const {borderSelected, border} = skin.colors;
@@ -56,25 +58,30 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
           <Header {...header} />
           <TagLabel {...tagLabel} />
           <Pricing {...pricing} />
+          {viewApps && <View style={{margin: 10}}>{viewApps}</View>}
           <ButtonLayout
             alignment="column-reverse"
             primaryButton={
               <Button {...buttonPrimary} type={buttonTypePrimary} />
             }
             secondaryButton={
-              <Button {...buttonSecondary} type={buttonTypeSecondary} />
+              buttonSecondary && (
+                <Button {...buttonSecondary} type={buttonTypeSecondary} />
+              )
             }
             buttonLink={
-              !isExpanded ? (
+              linkButtonMoreDetails &&
+              (!isExpanded ? (
                 <Button
                   type={'link'}
                   rightIcon={IconChevronDownRegular}
                   onPress={handleExpandIconClick}>
                   {linkButtonMoreDetails}
                 </Button>
-              ) : null
+              ) : null)
             }
           />
+          {listOffers && <View style={{margin: 10}}>{listOffers}</View>}
           {isExpanded ? (
             <View>
               <FlatList
