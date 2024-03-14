@@ -22,7 +22,7 @@ export const ButtonFixedFooter = (props: ButtonFixedFooterLayout) => {
         },
         props.shadow ? styles.withShadow : null,
       ]}>
-      {props.slot && props.children ? props.children : null}
+      {props.children}
       {props.fixedFooter && (
         <View
           style={{
@@ -43,7 +43,7 @@ export const ButtonFixedFooter = (props: ButtonFixedFooterLayout) => {
           <ButtonLayout primaryButton={props.primaryButton}></ButtonLayout>
         </View>
       )}
-      {props.buttonsOptions && !props.fixedFooter && !props.slot ? (
+      {props.buttonsOptions && !props.fixedFooter && !props.children ? (
         <View style={{paddingLeft: 16, paddingRight: 16, paddingBottom: 16}}>
           <IconButtonLayout
             light={props.light}
@@ -52,7 +52,7 @@ export const ButtonFixedFooter = (props: ButtonFixedFooterLayout) => {
           />
         </View>
       ) : null}
-      {!props.fixedFooter && !props.slot && (
+      {!props.fixedFooter && !props.children && (
         <ButtonLayout
           primaryButton={props.primaryButton}
           secondaryButton={props.secondaryButton}

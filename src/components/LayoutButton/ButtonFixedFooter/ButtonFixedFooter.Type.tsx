@@ -9,11 +9,10 @@ export interface ButtonFixedFooterProps {
   secondaryButton?: React.ReactNode; 
   shadow?: boolean;
   fixedFooter?: boolean;
-  slot?: boolean; 
   textTitle?:string;
   textPrice?:string;
   typeMsj?:string;
-  buttonsOptions: Array<{
+  buttonsOptions?: Array<{
     text: string,
     onPress?: () => void;
     icon?: React.ComponentType<IconProps>
