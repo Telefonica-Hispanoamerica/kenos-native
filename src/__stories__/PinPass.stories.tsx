@@ -18,6 +18,12 @@ export default {
       control: {
         type: 'select',
       },
+    },
+    length: {
+      step: 1,
+      min: 1,
+      max: 7,
+      range: true,
     }
   },
 }as ComponentMeta<typeof PinPassField>;
@@ -53,7 +59,11 @@ export const Basic: ComponentStory<typeof PinPassField> = args => {
 };
 
 Basic.args = {
-  state: 'default'
+  state: 'default',
+  length: 6,
+  inverse: false,
+  hiddenText: false,
+  helperText: ''
 };
 
 Basic.storyName = 'PinPassField';
