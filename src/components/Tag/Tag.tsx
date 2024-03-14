@@ -6,12 +6,12 @@ import { IconProps } from '../../utils/types';
 import { View } from 'react-native';
 import { styles } from './Tag.css';
 
-export type TagType = 'promo' | 'active' | 'inactive' | 'success' | 'warning' | 'error';
+export type TagType = 'promo' | 'active' | 'inactive' | 'success' | 'warning' | 'error' | 'highlight';
 
 export type TagProps = {
     type?: TagType
     children: string;
-    Icon?: React.FC<IconProps>;
+    Icon?: React.ComponentType<IconProps>;
     isInverseTag?: boolean
     withBackground?: boolean
 };
@@ -38,6 +38,7 @@ const Tag: React.FC<TagProps> = ({ Icon, children, type = 'promo', isInverseTag 
         success: [colors.successHigh, colors.inverse, colors.successLow,colors.success],
         warning: [colors.warningHigh, colors.inverse, colors.warningLow,colors.warning],
         error: [colors.errorHigh, colors.inverse, colors.errorLow, colors.error],
+        highlight: [colors.highlight, colors.inverse, colors.highlightLow, colors.highlight],
     } as const;
 
     const [textColor, inverseTextColor, backgroundColor, inverseBackGroundColor] = tagTypeToColors[type];

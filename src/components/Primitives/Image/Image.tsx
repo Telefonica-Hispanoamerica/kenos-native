@@ -6,12 +6,13 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {Image as RNImage, View} from 'react-native';
+import {ImageResizeMode, Image as RNImage, View} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {useTheme} from '../../../utils/ThemeContextProvider';
 import {useIsInverseVariant} from '../../../utils/ThemeVariantContext';
 import {SkeletonRectangle} from '../../Skeletons/Skeletons';
 import {FADE_IN_DURATION_MS, stylesImageError} from './Image.css';
+import { AspectRatio, RATIO } from '../Primitives.Types';
 
 const MediaBorderRadiusContext = createContext(true);
 
@@ -58,14 +59,6 @@ const ImageError = ({noBorderRadius}: ImageErrorProps) => {
   );
 };
 
-export type AspectRatio = '1:1' | '16:9' | '7:10' | '4:3';
-
-export const RATIO = {
-  '1:1': 1,
-  '16:9': 16 / 9,
-  '7:10': 7 / 10,
-  '4:3': 4 / 3,
-};
 
 export type ImageProps = {
   src: string;
@@ -78,12 +71,13 @@ export type ImageProps = {
   onLoad?: () => void;
   loadingFallback?: boolean;
   errorFallback?: boolean;
+  resizeMode?: ImageResizeMode;
 };
 
 const Image = React.forwardRef<RNImage, ImageProps>(
   (
     {
-      aspectRatio = '1:1',
+      aspectRatio = 0,
       alt = '',
       noBorderRadius,
       src,
@@ -117,11 +111,12 @@ const Image = React.forwardRef<RNImage, ImageProps>(
       <RNImage
         ref={imageRef}
         style={{
-          opacity: isLoading && loadingFallback ? 0 : 1,
-          // position: ratio !== 0 ? 'absolute' : 'relative',
+          aspectRatio: ratio !== 0 ? ratio : undefined,
+          opacity: isLoading && loadingFallback ? 0 : 1,          
           borderRadius: noBorderSetting ? 0 : 8,
           width: props.width,
           height: props.height,
+          resizeMode: props.resizeMode,
         }}
         source={{uri: src}}
         onError={() => {

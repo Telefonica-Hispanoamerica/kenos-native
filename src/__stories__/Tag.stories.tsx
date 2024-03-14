@@ -22,6 +22,7 @@ export const Basic: ComponentStory<typeof Tag> = args => (
       <Tag children='Success' Icon={IconOfferPercentFilled} type='success' />
       <Tag children='Warning' Icon={IconOfferPercentFilled} type='warning' />
       <Tag children='Error' Icon={IconOfferPercentFilled} type='error' />
+      <Tag children='Highlight' Icon={IconOfferPercentFilled} type='highlight' />
       <Text2 medium>Inverse</Text2>
       <Tag children='Promo' Icon={IconOfferPercentFilled} type='promo' isInverseTag={true}/>
       <Tag children='Active' Icon={IconOfferPercentFilled} type='active' isInverseTag={true}/>
@@ -29,6 +30,7 @@ export const Basic: ComponentStory<typeof Tag> = args => (
       <Tag children='Success' Icon={IconOfferPercentFilled} type='success' isInverseTag={true} />
       <Tag children='Warning' Icon={IconOfferPercentFilled} type='warning' isInverseTag={true}/>
       <Tag children='Error' Icon={IconOfferPercentFilled} type='error' isInverseTag={true}/>
+      <Tag children='Highlight' Icon={IconOfferPercentFilled} type='highlight' isInverseTag={true}/>
       <Text2 medium>Without Background</Text2>
       <Tag children='Promo' Icon={IconOfferPercentFilled} type='promo' withBackground={false}/>
       <Tag children='Active' Icon={IconOfferPercentFilled} type='active' withBackground={false}/>
@@ -36,6 +38,7 @@ export const Basic: ComponentStory<typeof Tag> = args => (
       <Tag children='Success' Icon={IconOfferPercentFilled} type='success' withBackground={false}/>
       <Tag children='Warning' Icon={IconOfferPercentFilled} type='warning' withBackground={false}/>
       <Tag children='Error' Icon={IconOfferPercentFilled} type='error' withBackground={false}/>
+      <Tag children='Highlight' Icon={IconOfferPercentFilled} type='highlight' withBackground={false}/>
     </View>
     <View style={{ gap: 16, padding: 16, flexDirection: 'column' }}>
       <Text4 medium>Without icon</Text4>
@@ -46,6 +49,7 @@ export const Basic: ComponentStory<typeof Tag> = args => (
       <Tag children='Success' type='success' />
       <Tag children='Warning' type='warning' />
       <Tag children='Error' type='error' />
+      <Tag children='Highlight' type='highlight' />
       <Text2 medium>Inverse</Text2>
       <Tag children='Promo' type='promo' isInverseTag={true} />
       <Tag children='Active' type='active' isInverseTag={true} />
@@ -53,6 +57,7 @@ export const Basic: ComponentStory<typeof Tag> = args => (
       <Tag children='Success' type='success' isInverseTag={true} />
       <Tag children='Warning' type='warning' isInverseTag={true}/>
       <Tag children='Error' type='error' isInverseTag={true} />
+      <Tag children='Highlight' type='highlight' isInverseTag={true}/>
       <Text2 medium>Without Background</Text2>
       <Tag children='Promo' type='promo' withBackground={false} />
       <Tag children='Active' type='active' withBackground={false}/>
@@ -60,6 +65,7 @@ export const Basic: ComponentStory<typeof Tag> = args => (
       <Tag children='Success' type='success' withBackground={false}/>
       <Tag children='Warning' type='warning' withBackground={false}/>
       <Tag children='Error' type='error' withBackground={false}/>
+      <Tag children='Highlight' type='highlight' withBackground={false}/>
     </View>
   </View>
   </ScrollView>

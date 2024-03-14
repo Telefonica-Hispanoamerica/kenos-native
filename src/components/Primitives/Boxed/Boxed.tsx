@@ -19,32 +19,10 @@ type Props = {
   minHeight?: number | string;
   styles?: StyleProp<ViewStyle>;
   width?: number | string;
-};
-
-type InternalProps = {
   borderRadius: 8 | 16;
+  borderWidth?: number;
+  borderColor?: string;
   background?: string;
-};
-
-const getBorderStyle = (
-  isInverseOutside: boolean,
-  isInverseInside: boolean,
-): StyleProp<ViewStyle> => {
-  const {skin} = useTheme();
-  const {border} = skin.colors;
-
-  if (isInverseOutside && !isInverseInside) {
-    return {
-      borderWidth: 1,
-      borderColor: border,
-    };
-  }
-
-  if (isInverseInside) {
-    return {borderWidth: 0};
-  }
-
-  return {borderWidth: 1}; //sprinkles({border: 'regular'});
 };
 
 export const InternalBoxed = ({
@@ -56,27 +34,31 @@ export const InternalBoxed = ({
   styles,
   borderRadius,
   background,
-}: Props & InternalProps) => {
-  const {skin} = useTheme();
-  const {backgroundContainer, backgroundBrand} = skin.colors;
+  borderWidth,
+  borderColor,
+}: Props) => {
+  const {skin, isDarkMode} = useTheme();
+  const {backgroundContainer, backgroundBrand, border} = skin.colors;
 
-  const {isDarkMode} = useTheme();
   const isInverseOutside = useIsInverseVariant();
+  const borderWidthApply = borderWidth ?? (isInverseInside ? 0 : 1);
+  const borderColorApply = borderColor ?? border; // (isInverseOutside && !isInverseInside ? border : undefined);
+  const backgroundApply =
+    background ?? (isInverseInside && !isDarkMode)
+      ? backgroundBrand
+      : backgroundContainer;
 
   const styleBoxed = StyleSheet.flatten([
     styles,
     {
       borderRadius: borderRadius,
       overflow: 'hidden' as const,
-      background: !background
-        ? isInverseInside && !isDarkMode
-          ? backgroundBrand
-          : backgroundContainer
-        : undefined,
+      borderWidth: borderWidthApply,
+      borderColor: borderColorApply,
+      background: backgroundApply,
     },
-    getBorderStyle(isInverseOutside, isInverseInside),
   ]);
-   
+
   return (
     <View
       style={styleBoxed}
@@ -89,5 +71,5 @@ export const InternalBoxed = ({
 };
 
 export const Boxed = (props: Props) => {
-  return <InternalBoxed {...props} borderRadius={8}></InternalBoxed>;
+  return <InternalBoxed {...props}></InternalBoxed>;
 };

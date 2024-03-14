@@ -1,7 +1,3 @@
-import PhoneField from './Input/PhoneField/PhoneField';
-
-
-
 export {Callout} from './Callout';
 export {CalloutIcon} from './Callout/CalloutIcon/CalloutIcon';
 export {ButtonFixedFooter} from './LayoutButton/ButtonFixedFooter/ButtonFixedFooter';
@@ -18,7 +14,7 @@ export {default as Tabs} from './Tabs/Tabs';
 export {default as EmailField} from './Input/EmailField/EmailField';
 export {default as PasswordField} from './Input/PasswordField/PasswordField';
 export {default as PasswordSecurityLevel} from './Input/PasswordField/Security/PasswordSecurityLevel';
-export {default as PasswordStrengthIndicator }from './Input/PasswordField/Security/PasswordStrengthIndicator';
+export {default as PasswordStrengthIndicator} from './Input/PasswordField/Security/PasswordStrengthIndicator';
 export {default as Avatar} from './Avatar/Avatar';
 export {default as Badge} from './Badge/Badge';
 export {Button} from './Buttons/Button/Button';
@@ -46,7 +42,7 @@ export {
   SkeletonText,
   SkeletonRow,
 } from './Skeletons/Skeletons';
-export {Slideshow}from './Carousels/Slideshow/Slideshow';
+export {Slideshow} from './Carousels/Slideshow/Slideshow';
 export {Carousel} from './Carousels/Carousel/Carousel';
 export {default as StatusBar} from './StatusBar/StatusBar';
 export {default as Stepper} from './Steppers/Stepper';
