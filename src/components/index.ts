@@ -63,4 +63,4 @@ export {
 export {Title1, Title2} from './Title/Title';
 export {default as PassswordField} from './Input/PasswordField/PasswordField';
 export {default as PhoneField} from './Input/PhoneField/PhoneField';
-export {CardConsumption} from './Cards'
+export {CardConsumption} from './Cards/CardConsumption/CardConsumption'
