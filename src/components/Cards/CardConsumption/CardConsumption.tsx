@@ -1,16 +1,14 @@
 import React from 'react';
 import {Pressable, View} from 'react-native';
-import {IconAddMoreRegular} from '../../kenos-icons';
-
-import {DonutsProps} from './Donuts.Types';
-import {styles} from './Donuts.css';
-
+import {IconAddMoreRegular} from '../../../kenos-icons';
+import { cardConsumption } from '../Cards.css';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
-import {useTheme} from '../../utils/ThemeContextProvider';
-import {Text1, Text2} from '../Text/Text';
+import {useTheme} from '../../../utils/ThemeContextProvider';
+import {Text1, Text2} from '../../Text/Text';
 import SvgComponent from './GradientSvg/SvgComponent';
+import { CardConsumptionProps } from '../Cards.Types';
 
-export const Donuts = (props: DonutsProps) => {
+export const CardConsumption = (props: CardConsumptionProps) => {
   const {skin} = useTheme();
   const {
     borderLight,
@@ -28,11 +26,11 @@ export const Donuts = (props: DonutsProps) => {
   const {
     percentage,
     type,
-    consumptionGB,
     subtitle,
+    internalTitle,
+    internalSubtitle,
+    description,
     title,
-    totalGB,
-    expirationDate,
   } = props;
 
   const valuePercentage = percentage ?? 0;
@@ -60,24 +58,24 @@ export const Donuts = (props: DonutsProps) => {
   const strokeColor = getColorValue()?.color;
 
   return (
-    <View style={styles.container}>
+    <View style={cardConsumption.container}>
       <View
         style={[
-          styles.card,
+          cardConsumption.card,
           {
-            backgroundColor: type === 'See more' ? backgroundBrand : background,
-            borderColor: type === 'See more' ? borderSelected : border,
+            backgroundColor: type === 'SeeMore' ? backgroundBrand : background,
+            borderColor: type === 'SeeMore' ? borderSelected : border,
           },
         ]}>
-        {type === 'See more' ? (
-          <Pressable style={styles.cardSeeMore} onPress={props.onPress}>
+        {type === 'SeeMore' ? (
+          <Pressable style={cardConsumption.cardSeeMore} onPress={props.onPress}>
             <IconAddMoreRegular size={24} color={inverse} />
             <Text2 color={inverse} medium>
-              See more
+              {title}
             </Text2>
           </Pressable>
         ) : (
-          <View style={styles.cardDefault}>
+          <View style={cardConsumption.cardDefault}>
             <Text2 color={textPrimary} medium>
               {title}
             </Text2>
@@ -85,7 +83,9 @@ export const Donuts = (props: DonutsProps) => {
               {subtitle}
             </Text1>
             {type === 'Unlimited' ? (
-              <View style={{paddingTop:1}}><SvgComponent {...props}/></View>
+              <View style={{paddingTop: 1}}>
+                <SvgComponent {...props}/>
+              </View>
             ) : (
               <AnimatedCircularProgress
                 size={90}
@@ -107,22 +107,22 @@ export const Donuts = (props: DonutsProps) => {
               {type === 'Default' ? (
                 <View style={{alignItems: 'center'}}>
                   <Text2 color={textPrimary} medium>
-                    {consumptionGB} GB
+                    {internalTitle}
                   </Text2>
                   <Text1 color={textSecondary} regular>
-                    de {totalGB} GB
+                    {internalSubtitle}
                   </Text1>
                 </View>
               ) : (
                 <View style={{paddingTop: 8, paddingBottom: 8}}>
                   <Text2 color={textPrimary} medium>
-                    Unlimited
+                    {internalTitle}
                   </Text2>
                 </View>
               )}
               <View style={{marginTop: 15}}>
                 <Text1 color={textSecondary} regular>
-                  {expirationDate}
+                  {description}
                 </Text1>
               </View>
             </View>

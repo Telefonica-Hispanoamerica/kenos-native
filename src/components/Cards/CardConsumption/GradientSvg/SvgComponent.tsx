@@ -2,6 +2,9 @@ import * as React from "react"
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg"
 
 function SvgComponent(props:any){
+  
+    console.log(props.colorGradientPrimary)
+  
   return (
     <Svg
       width={90}
