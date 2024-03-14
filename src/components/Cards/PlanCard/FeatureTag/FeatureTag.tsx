@@ -14,7 +14,9 @@ export type FeatureTagProps = {
 const FeatureTag = (props: FeatureTagProps) => {
   const {skin} = useTheme();
   const {borderSelected, inverse} = skin.colors;
-  const colorBase = props.color
+  const colorBase = props.color?.startsWith('#')
+    ? props.color
+    : props.color
     ? skin.colors[props.color as keyof Colors]
     : borderSelected;
 
@@ -22,7 +24,11 @@ const FeatureTag = (props: FeatureTagProps) => {
   const iconComponent: JSX.Element = <Icon size={16} color={inverse} />;
 
   return (
-    <View style={[styles.container, {backgroundColor: colorBase}]}>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: colorBase ?? borderSelected},
+      ]}>
       <View style={styles.content}>
         {props.icon && <View style={{marginRight: 5}}>{iconComponent}</View>}
         {props.text && (

@@ -150,7 +150,7 @@ Plan_Card.args = {
   featureTag: {
     text: '¡El plan más top!',
     icon: IconLightningRegular,
-    color: 'borderSelected',
+    color: '',
   },
   header: {
     name: 'Plan Name',
@@ -223,7 +223,7 @@ Plan_Card.args = {
     },
   ],
   viewApps: <Placeholder />,
-  listOffers: [<Placeholder />, <Placeholder />, <Placeholder />],
+  listOffers: <Placeholder />,
 };
 
 //#endregion PlanCard

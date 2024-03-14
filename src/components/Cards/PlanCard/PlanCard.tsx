@@ -37,7 +37,9 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
   const {skin} = useTheme();
   const {borderSelected, border} = skin.colors;
   const [isExpanded, setIsExpanded] = useState(false);
-  const colorBase = skin.colors[featureTag?.color as keyof Colors];
+  const colorBase = featureTag.color?.startsWith('#')
+    ? featureTag.color
+    : skin.colors[featureTag?.color as keyof Colors];
   const colorDefault = featureTag?.text ? borderSelected : border;
   const size = featureTag?.text ? 2 : 1;
 
@@ -62,7 +64,14 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
           <ButtonLayout
             alignment="column-reverse"
             primaryButton={
-              <Button {...buttonPrimary} type={buttonTypePrimary} />
+              <Button
+                {...buttonPrimary}
+                style={{
+                  backgroundColor: colorBase ?? colorDefault,
+                  borderColor: colorBase ?? colorDefault,
+                }}
+                type={buttonTypePrimary}
+              />
             }
             secondaryButton={
               buttonSecondary && (
