@@ -7,8 +7,12 @@ export interface ButtonFixedFooterProps {
   light?: boolean; 
   primaryButton?: React.ReactNode;
   secondaryButton?: React.ReactNode; 
-  shadow?: boolean; 
-  buttonsOptions: Array<{
+  shadow?: boolean;
+  fixedFooter?: boolean;
+  textTitle?:string;
+  textPrice?:string;
+  typeMsj?:string;
+  buttonsOptions?: Array<{
     text: string,
     onPress?: () => void;
     icon?: React.ComponentType<IconProps>

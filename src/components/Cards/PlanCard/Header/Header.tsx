@@ -21,6 +21,12 @@ export type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   const {type} = props;
+  const optionPosition: PositionTypeProps[] = [
+    'vertical',
+    'horizontal',
+    'double',
+  ];
+  const typePosition = optionPosition.includes(type) ? type : 'vertical';
   const {skin} = useTheme();
   const {backgroundBrandSecondary, textPrimaryInverse, brand, divider} =
     skin.colors;
@@ -28,9 +34,7 @@ const Header = (props: HeaderProps) => {
   const Icon = props.icon as React.ComponentType<IconProps>;
   const iconComponent: JSX.Element = <Icon size={16} color={brand} />;
 
-  // TODO: separar en componentes HeaderVertical, HeaderHorizontal y HeaderDouble
-
-  if (type === 'vertical') {
+  if (typePosition === 'vertical') {
     return (
       <View
         style={[
@@ -72,7 +76,7 @@ const Header = (props: HeaderProps) => {
     );
   }
 
-  if (type === 'double') {
+  if (typePosition === 'double') {
     return (
       <View
         style={[
@@ -108,6 +112,45 @@ const Header = (props: HeaderProps) => {
             <Text7 regular color={textPrimaryInverse}>
               {props.price}
             </Text7>
+            <Text1 bold color={textPrimaryInverse}>
+              {props.priceDuration}
+            </Text1>
+            <Text1 regular color={textPrimaryInverse}>
+              {props.priceDescription}
+            </Text1>
+          </View>
+        </View>
+      </View>
+    );
+  }
+
+  if (typePosition === 'horizontal') {
+    return (
+      <View
+        style={[
+          stylesHorizontal.horizontalContainer,
+          {backgroundColor: backgroundBrandSecondary},
+        ]}>
+        {props.name || props.icon ? (
+          <View style={{flexDirection: 'row'}}>
+            {props.name && (
+              <View style={{marginRight: 10, marginBottom: 5}}>
+                <Text2 regular color={textPrimaryInverse}>
+                  {props.name}
+                </Text2>
+              </View>
+            )}
+            {iconComponent && iconComponent}
+          </View>
+        ) : null}
+        <View style={stylesHorizontal.horizontalContainerData}>
+          <View style={[stylesHorizontal.horizontalDuration]}>
+            <Text7 regular color={textPrimaryInverse}>
+              {props.quantity}
+            </Text7>
+          </View>
+
+          <View style={stylesHorizontal.horizontalPrice}>
             <Text1 bold color={textPrimaryInverse}>
               {props.priceDuration}
             </Text1>
@@ -157,5 +200,25 @@ const stylesHeader = StyleSheet.create({
     flexDirection: 'column',
     marginLeft: 10,
     borderRightWidth: 1,
+  },
+});
+const stylesHorizontal = StyleSheet.create({
+  horizontalContainer: {
+    ...stylesHeader.doubleContainer,
+    minHeight: 63,
+  },
+  horizontalContainerData: {
+    flexDirection: 'row',
+    paddingTop: 10,
+  },
+  horizontalDuration: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginLeft: 10,
+    paddingRight: 16,
+  },
+  horizontalPrice: {
+    alignItems: 'center',
+    flexDirection: 'column',
   },
 });
