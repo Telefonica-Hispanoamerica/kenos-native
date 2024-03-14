@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {
   IconChevronDownRegular,
   IconChevronUpRegular,
@@ -15,6 +15,7 @@ import Row from '../../ListRow/ListRow';
 import {FlatList} from 'react-native';
 import {ButtonLayout} from '../../LayoutButton';
 import {PlanCardProps} from './PlanCard.Types';
+import {Colors} from '../../../skins/colors';
 
 export const PlanCard: React.FC<PlanCardProps> = props => {
   const {
@@ -22,8 +23,6 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     linkButtonMoreDetails,
     linkButtonHideDetails,
     dataRowList,
-    iconFeatureTag,
-    textFeatureTag,
     header,
     tagLabel,
     pricing,
@@ -31,15 +30,18 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
     buttonTypePrimary,
     buttonSecondary,
     buttonTypeSecondary,
+    featureTag,
+    viewApps,
+    listOffers,
   } = props;
   const {skin} = useTheme();
   const {borderSelected, border} = skin.colors;
   const [isExpanded, setIsExpanded] = useState(false);
-  const [colorBorder, sizeBorder] = useMemo(() => {
-    const color = textFeatureTag ? borderSelected : border;
-    const size = textFeatureTag ? 2 : 1;
-    return [color, size];
-  }, [textFeatureTag, borderSelected, border]);
+  const colorBase = featureTag?.color?.startsWith('#')
+    ? featureTag.color
+    : skin.colors[featureTag?.color as keyof Colors];
+  const colorDefault = featureTag ? borderSelected : border;
+  const size = featureTag ? 2 : 1;
 
   const handleExpandIconClick = () => {
     setIsExpanded(!isExpanded);
@@ -51,34 +53,35 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
       renderItem={() => (
         <Boxed
           borderRadius={borderRadius}
-          borderColor={colorBorder}
-          borderWidth={sizeBorder}>
-          {textFeatureTag && (
-            <FeatureTag icon={iconFeatureTag} text={textFeatureTag} />
-          )}
+          borderColor={colorBase ?? colorDefault}
+          borderWidth={size}>
+          {featureTag && <FeatureTag {...featureTag} />}
 
           <Header {...header} />
           <TagLabel {...tagLabel} />
           <Pricing {...pricing} />
+          {viewApps && <View style={{margin: 10}}>{viewApps}</View>}
           <ButtonLayout
             alignment="column-reverse"
             primaryButton={
               <Button {...buttonPrimary} type={buttonTypePrimary} />
             }
             secondaryButton={
-              <Button {...buttonSecondary} type={buttonTypeSecondary} />
-            }
-            buttonLink={
-              !isExpanded ? (
-                <Button
-                  type={'link'}
-                  rightIcon={IconChevronDownRegular}
-                  onPress={handleExpandIconClick}>
-                  {linkButtonMoreDetails}
-                </Button>
-              ) : null
+              buttonSecondary && (
+                <Button {...buttonSecondary} type={buttonTypeSecondary} />
+              )
             }
           />
+          {listOffers && <View style={{margin: 10}}>{listOffers}</View>}
+          {linkButtonMoreDetails &&
+            (!isExpanded ? (
+              <Button
+                type={'link'}
+                rightIcon={IconChevronDownRegular}
+                onPress={handleExpandIconClick}>
+                {linkButtonMoreDetails}
+              </Button>
+            ) : null)}
           {isExpanded ? (
             <View>
               <FlatList
