@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: 'auto',
-        top: 200,
         borderRadius: 16,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
