@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {ComponentStory} from '@storybook/react';
 import TextField from '../components/Input/TextFields/TextField/TextField';
-import {Text, View} from 'react-native';
+import {Alert, Text, View} from 'react-native';
 import {IconMobileDeviceRegular, IconMusicFilled} from '../kenos-icons';
 import PassswordField from '../components/Input/PasswordField/PasswordField';
 import PhoneField from '../components/Input/PhoneField/PhoneField';
+import PinPassField from '../components/Input/PinPassField/PinPassField';
 
 export default {
   title: 'TextField',
@@ -14,6 +15,11 @@ export default {
 export const Basic: ComponentStory<typeof TextField> = args => {
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [pinPass, setPinPass] = useState('');
+
+  const handleChangePin = () => {
+    Alert.alert('PIN ingresado correctamente: ', pinPass);
+  }
 
   const argsPasswordField = {
     ...args,
