@@ -1,44 +1,134 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  Easing,
-  TextInput,
-  Animated,
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
+import {IconAddMoreRegular} from '../../kenos-icons';
 
-import Svg, {G, Circle, Rect, Path} from 'react-native-svg';
 import {DonutsProps} from './Donuts.Types';
-import { styles } from './Donuts.css';
+import {styles} from './Donuts.css';
 
-
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
-const AnimatedPath= Animated.createAnimatedComponent(Path);
-
+import {AnimatedCircularProgress} from 'react-native-circular-progress';
+import {useTheme} from '../../utils/ThemeContextProvider';
+import {Text1, Text2} from '../Text/Text';
+import SvgComponent from './GradientSvg/SvgComponent';
 
 export const Donuts = (props: DonutsProps) => {
+  const {skin} = useTheme();
+  const {
+    borderLight,
+    backgroundBrand,
+    borderSelected,
+    border,
+    background,
+    error,
+    warning,
+    success,
+    textPrimary,
+    textSecondary,
+    inverse,
+  } = skin.colors;
   const {
     percentage,
-    color,
-    max,
-    delay,
-    radius,
-    strokeWidth,
-    duration,
-    textColor,
+    type,
+    consumptionGB,
+    subtitle,
+    title,
+    totalGB,
+    expirationDate,
   } = props;
 
+  const valuePercentage = percentage ?? 0;
+
+  const getColorValue = () => {
+    if (valuePercentage <= 19) {
+      return {
+        color: error,
+      };
+    }
+
+    if (valuePercentage >= 20 && valuePercentage <= 49) {
+      return {
+        color: warning,
+      };
+    }
+
+    if (valuePercentage >= 50) {
+      return {
+        color: success,
+      };
+    }
+  };
+
+  const strokeColor = getColorValue()?.color;
 
   return (
     <View style={styles.container}>
-       <View style={styles.card}>
-          <Svg width="90" height="48" viewBox="0 0 90 48" fill="none">
-            <Path d="M87 45C87 21.804 68.196 3 45 3C21.804 3 3 21.804 3 45" stroke="#F6F6F6" strokeWidth="5" strokeLinecap="round"/>
-            <Path d="M3 45C3 44.3304 3 43.6636 3 43" stroke="#FF374A" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-          </Svg>
-       </View>
+      <View
+        style={[
+          styles.card,
+          {
+            backgroundColor: type === 'See more' ? backgroundBrand : background,
+            borderColor: type === 'See more' ? borderSelected : border,
+          },
+        ]}>
+        {type === 'See more' ? (
+          <View style={styles.cardSeeMore}>
+            <IconAddMoreRegular size={24} color={inverse} />
+            <Text2 color={inverse} medium>
+              See more
+            </Text2>
+          </View>
+        ) : (
+          <View style={styles.cardDefault}>
+            <Text2 color={textPrimary} medium>
+              {title}
+            </Text2>
+            <Text1 color={textSecondary} regular>
+              {subtitle}
+            </Text1>
+            {type === 'Unlimited' ? (
+              <View style={{paddingTop:1}}><SvgComponent {...props}/></View>
+            ) : (
+              <AnimatedCircularProgress
+                size={90}
+                width={5}
+                fill={valuePercentage}
+                tintColor={strokeColor}
+                backgroundColor={borderLight}
+                arcSweepAngle={180}
+                rotation={-200 - 250}
+                lineCap="round"
+              />
+            )}
+            <View
+              style={{
+                alignItems: 'center',
+                position: 'absolute',
+                marginTop: 85,
+              }}>
+              {type === 'Default' ? (
+                <View style={{alignItems: 'center'}}>
+                  <Text2 color={textPrimary} medium>
+                    {consumptionGB} GB
+                  </Text2>
+                  <Text1 color={textSecondary} regular>
+                    de {totalGB} GB
+                  </Text1>
+                </View>
+              ) : (
+                <View style={{paddingTop: 8, paddingBottom: 8}}>
+                  <Text2 color={textPrimary} medium>
+                    Unlimited
+                  </Text2>
+                </View>
+              )}
+              <View style={{marginTop: 15}}>
+                <Text1 color={textSecondary} regular>
+                  {expirationDate}
+                </Text1>
+              </View>
+            </View>
+          </View>
+        )}
+      </View>
     </View>
   );
 };

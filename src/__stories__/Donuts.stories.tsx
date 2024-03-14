@@ -1,9 +1,7 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
-import { View } from 'react-native';
-import { Donuts } from '../components/Donuts/Donuts';
-
-
+import {ScrollView, View} from 'react-native';
+import {Donuts} from '../components/Donuts/Donuts';
 
 export default {
   title: 'Donuts',
@@ -12,14 +10,31 @@ export default {
 
 export const Basic: ComponentStory<typeof Donuts> = args => {
   return (
-    <View>
-       <Donuts percentage={14} color='tomato' max={100} delay={0} radius={5} strokeWidth={10} duration={500} textColor='red'/>
-    </View>
+    <ScrollView horizontal={true}>
+      <View style={{flexDirection: 'row', height: 'auto'}}>
+        <Donuts
+          {...args}
+          consumptionGB={0}
+          subtitle="SubTitle"
+          title="Title"
+          totalGB={0}
+          type="Default"
+          expirationDate="Expiration date"
+        />
+        <Donuts
+          subtitle="SubTitle"
+          title="Title"
+          type="Unlimited"
+          expirationDate="Expiration date"
+        />
+        <Donuts type="See more" />
+      </View>
+    </ScrollView>
   );
 };
 
 Basic.args = {
-  
+  percentage:50
 };
 
 Basic.storyName = 'Donuts';

@@ -1,12 +1,13 @@
 export interface DonutsProps{
-  percentage:number;
-  radius:number;
-  strokeWidth:number;
-  duration:number;
-  color:string;
-  delay:number;
-  textColor:string;
-  max:number;
+  percentage?:number;
+  title?:string;
+  subtitle?:string;
+  totalGB?:number;
+  consumptionGB?:number;
+  expirationDate?:string;
+  colorGradientPrimary?:string;
+  colorGradientSecondary?:string;
+  type?: 'Default'|'Unlimited'|'See more'; 
 }
 
 export type DonutsTypeProps = DonutsProps;

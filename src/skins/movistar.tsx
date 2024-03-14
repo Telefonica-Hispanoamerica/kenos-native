@@ -11,7 +11,7 @@ export const palette = {
     grey3: '#dddddd',
     grey4: '#949494',
     grey5: '#737578',
-    grey6: '#313235',
+    grey6: '#31323599',
     movistarBlue: '#019bef',
     movistarBlue10: '#e6f5fd',
     movistarBlue20: '#b3e1fb',
@@ -138,27 +138,6 @@ export const getMovistarSkin: GetKnownSkin = () => {
             errorHighInverse: "",
             promoHighInverse: "",
         },
-        borderRadii: {
-            avatar: '50%',
-            bar: '999px',
-            button: '4px',
-            checkbox: '2px',
-            container: '8px',
-            indicator: '999px',
-            input: '8px',
-            legacyDisplay: '16px',
-            popup: '8px',
-            sheet: '8px',
-          },
-          textPresets: {
-            cardTitle: {weight: 'regular'},
-            text5: {weight: 'light'},
-            text6: {weight: 'light'},
-            text7: {weight: 'light'},
-            text8: {weight: 'light'},
-            text9: {weight: 'light'},
-            text10: {weight: 'light'},
-          },
     }
     return skin;
 };
