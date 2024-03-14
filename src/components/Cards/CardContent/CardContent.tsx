@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardContentProps} from '../Card.Types';
+import {CardContentProps} from '../Cards.Types';
 import {StyleSheet, View} from 'react-native';
 import {Text, Text2} from '../../Text/Text';
 import {useTheme} from '../../../utils/ThemeContextProvider';
@@ -90,10 +90,10 @@ const CardContent: React.FC<CardContentProps> = ({
       {/* *****************************/}
       {/* Cambiar por un button group */}
       {/* *****************************/}
-      <View style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
+      {/* <View style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
         {button}
         {buttonLink}
-      </View>
+      </View> */}
       {/* {button && <View style={styles.actions}>{button}</View>}
 
       {buttonLink && <View style={styles.actions}>{buttonLink}</View>} */}

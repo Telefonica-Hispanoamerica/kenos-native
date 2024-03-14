@@ -78,6 +78,7 @@ export type Colors = {
    // STATES
    error: string;
    highlight: string;
+   highlightLow: string;
    success: string;
    warning: string;
 
