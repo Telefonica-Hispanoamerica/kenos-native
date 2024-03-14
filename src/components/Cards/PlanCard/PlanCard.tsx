@@ -37,11 +37,11 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
   const {skin} = useTheme();
   const {borderSelected, border} = skin.colors;
   const [isExpanded, setIsExpanded] = useState(false);
-  const colorBase = featureTag.color?.startsWith('#')
+  const colorBase = featureTag?.color?.startsWith('#')
     ? featureTag.color
     : skin.colors[featureTag?.color as keyof Colors];
-  const colorDefault = featureTag?.text ? borderSelected : border;
-  const size = featureTag?.text ? 2 : 1;
+  const colorDefault = featureTag ? borderSelected : border;
+  const size = featureTag ? 2 : 1;
 
   const handleExpandIconClick = () => {
     setIsExpanded(!isExpanded);
@@ -55,7 +55,7 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
           borderRadius={borderRadius}
           borderColor={colorBase ?? colorDefault}
           borderWidth={size}>
-          {featureTag?.text && <FeatureTag {...featureTag} />}
+          {featureTag && <FeatureTag {...featureTag} />}
 
           <Header {...header} />
           <TagLabel {...tagLabel} />
@@ -64,33 +64,24 @@ export const PlanCard: React.FC<PlanCardProps> = props => {
           <ButtonLayout
             alignment="column-reverse"
             primaryButton={
-              <Button
-                {...buttonPrimary}
-                style={{
-                  backgroundColor: colorBase ?? colorDefault,
-                  borderColor: colorBase ?? colorDefault,
-                }}
-                type={buttonTypePrimary}
-              />
+              <Button {...buttonPrimary} type={buttonTypePrimary} />
             }
             secondaryButton={
               buttonSecondary && (
                 <Button {...buttonSecondary} type={buttonTypeSecondary} />
               )
             }
-            buttonLink={
-              linkButtonMoreDetails &&
-              (!isExpanded ? (
-                <Button
-                  type={'link'}
-                  rightIcon={IconChevronDownRegular}
-                  onPress={handleExpandIconClick}>
-                  {linkButtonMoreDetails}
-                </Button>
-              ) : null)
-            }
           />
           {listOffers && <View style={{margin: 10}}>{listOffers}</View>}
+          {linkButtonMoreDetails &&
+            (!isExpanded ? (
+              <Button
+                type={'link'}
+                rightIcon={IconChevronDownRegular}
+                onPress={handleExpandIconClick}>
+                {linkButtonMoreDetails}
+              </Button>
+            ) : null)}
           {isExpanded ? (
             <View>
               <FlatList

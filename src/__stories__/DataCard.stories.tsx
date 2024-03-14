@@ -132,7 +132,6 @@ export const Plan_Card: ComponentStory<typeof PlanCard> = args => {
 Plan_Card.storyName = 'Plan Card';
 
 Plan_Card.args = {
-  borderRadius: 16,
   buttonPrimary: {
     onPress: () => {},
     children: 'primary',
