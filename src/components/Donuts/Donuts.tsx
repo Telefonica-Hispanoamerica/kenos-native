@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import {IconAddMoreRegular} from '../../kenos-icons';
 
 import {DonutsProps} from './Donuts.Types';
@@ -70,12 +70,12 @@ export const Donuts = (props: DonutsProps) => {
           },
         ]}>
         {type === 'See more' ? (
-          <View style={styles.cardSeeMore}>
+          <Pressable style={styles.cardSeeMore} onPress={props.onPress}>
             <IconAddMoreRegular size={24} color={inverse} />
             <Text2 color={inverse} medium>
               See more
             </Text2>
-          </View>
+          </Pressable>
         ) : (
           <View style={styles.cardDefault}>
             <Text2 color={textPrimary} medium>

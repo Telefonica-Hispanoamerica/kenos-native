@@ -7,7 +7,8 @@ export interface DonutsProps{
   expirationDate?:string;
   colorGradientPrimary?:string;
   colorGradientSecondary?:string;
-  type?: 'Default'|'Unlimited'|'See more'; 
+  type?: 'Default'|'Unlimited'|'See more';
+  onPress?: () => void; 
 }
 
 export type DonutsTypeProps = DonutsProps;

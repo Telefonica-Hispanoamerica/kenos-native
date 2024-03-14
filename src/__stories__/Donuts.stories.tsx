@@ -27,7 +27,7 @@ export const Basic: ComponentStory<typeof Donuts> = args => {
           type="Unlimited"
           expirationDate="Expiration date"
         />
-        <Donuts type="See more" />
+        <Donuts type="See more" onPress={()=>{}} />
       </View>
     </ScrollView>
   );
