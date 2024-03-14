@@ -6,7 +6,7 @@ export {IconButtonLayout} from './LayoutButton/IconButtonLayout/IconButtonLayout
 export {default as NavigationBarButton} from './NavigationBar/NavigationBarButton/NavigationBarButton';
 export {Boxed} from './Primitives/Boxed/Boxed';
 export {default as Image} from './Primitives/Image/Image';
-export {default as Video} from './Primitives/Video/Video';
+/* export {default as Video} from './Primitives/Video/Video'; */
 export {default as Stack} from './Stack/Stack';
 export {default as CircleStepper} from './Steppers/CircleStepper';
 export {default as CircleStepperLayout} from './Steppers/CircleStepperLayout/CircleStepperLayout';
