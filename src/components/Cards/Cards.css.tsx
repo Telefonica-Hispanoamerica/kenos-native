@@ -17,37 +17,14 @@ export const styles = StyleSheet.create({
   },
 });
 
-// export const dataCard = style([
-//     sprinkles({
-//         display: 'flex',
-//         flex: 1,
-//         paddingY: 24,
-//         paddingX: 16,
-//         flexDirection: 'column',
-//         width: '100%',
-//     }),
-//     {
-//         '@media': {
-//             [mq.desktopOrBigger]: {
-//                 paddingTop: 32,
-//                 paddingBottom: 32,
-//                 paddingLeft: 24,
-//                 paddingRight: 24,
-//             },
-//         },
-//     },
-// ]);
-
-
 export const mediaCard = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     width: '100%',
-    height: '100%',  
+    height: '100%',
   },
 });
-
 
 export const mediaCardContent = StyleSheet.create({
   default: {

@@ -61,13 +61,14 @@ interface TextFieldBaseProps {
   defaultValue?: string;
   name?: string;
   maxLength?: number;
-  prefix?: React.ReactNode;
+  prefix?: React.ReactNode | string;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   endIconOverlay?: React.ReactNode;
   style?: React.CSSProperties;
   value?: string;
   inputRef?: React.Ref<TextInput>;
+  onBlur?: () => void;
   getSuggestions?: (value: string) => ReadonlyArray<string>;
   onPress?: (event: GestureResponderEvent) => void;
   onChange?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
@@ -86,6 +87,8 @@ interface TextFieldBaseProps {
   readOnly?: boolean;
   min?: string;
   max?: string;
+  mask?: any;
+  onChangeValue?: (value: string, rawValue?: string) => void;
 }
 
 export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
@@ -98,6 +101,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
       inputRef,
       defaultValue,
       value,
+      onBlur,
       onFocus,
       onEndEditing,
       inputComponent,
@@ -113,6 +117,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
       maxLength,
       autoComplete: autoCompleteProp,
       fullWidth,
+      mask,
       ...rest
     },
     ref,
@@ -230,7 +235,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
               prefixElement,
               hasLabel ? prefixWithLabel : prefixWithoutLabel,
               {opacity: inputState === 'default' ? 0 : 1},
-              {alignSelf: prefixAlignSelf},
+              {alignSelf: 'center'},
             ]}>
             <Text3 color={textSecondary} regular wordBreak={false}>
               {prefix}
@@ -241,6 +246,11 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
           style={[fullSize, {alignSelf: prefix ? 'baseline' : 'flex-start'}]}>
           {React.createElement(inputComponent ?? defaultInputElement, {
             ...props,
+            mask: mask,
+            onChangeText: (masked: string, unmasked: string) => {
+              if(!unmasked || !props.onChangeValue) return;
+              props.onChangeValue(unmasked);
+            },
             placeholder:
               inputState === 'focused' || value ? props.placeholder : '',
             secureTextEntry: props.type === 'password',
@@ -284,6 +294,7 @@ export const TextFieldBase = React.forwardRef<any, TextFieldBaseProps>(
               }
               onEndEditing?.(event);
             },
+            onBlur,
             defaultValue,
             value,
             error,

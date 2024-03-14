@@ -6,6 +6,15 @@ import { Circle } from '../components';
 import { IconButton } from '../components/Buttons/IconButton/IconButton';
 import { IconComputerAcademicRegular,IconEditPencilRegular} from '../kenos-icons';
 import Row from '../components/ListRow/ListRow';
+import { Button } from '../components';
+
+const buttonLink = (
+<View style={{marginLeft:-12}}>
+  <Button type={'link'} rounded>
+    Link Button
+  </Button>
+</View>
+);
 
 storiesOf('List', module)
   .add('Row', () => (
@@ -18,9 +27,9 @@ storiesOf('List', module)
         headline="Headline"
         title="Title"
         subtitle="Subtitle"
-        description="Description"      
+        description={buttonLink}      
         leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
-        rightComponent="IconChevron"
+        rightComponent="Without"
       />
        <Row
         value="1"
@@ -103,7 +112,7 @@ storiesOf('List', module)
         headline="Headline"
         title="Title"
         subtitle="Subtitle"
-        description="Description"      
+        description={buttonLink}           
         leftComponent={<Circle size={40} backgroundImage="https://i.imgur.com/QwNlo5s.png" />}
         rightComponent="IconChevron"
         style="bordered"
@@ -196,7 +205,7 @@ storiesOf('List', module)
         headline="Headline"
         title="Title"
         subtitle="Subtitle"
-        description="Description"      
+        description={buttonLink}          
         leftComponent={<IconButton icon={IconComputerAcademicRegular} />}
         rightComponent="IconChevron"
         numberBagdeLS={10}
