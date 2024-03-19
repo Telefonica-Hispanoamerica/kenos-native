@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import {ComponentStory} from '@storybook/react';
 import TextField from '../components/Input/TextFields/TextField/TextField';
 import {Alert, Text, View} from 'react-native';
-import {IconMobileDeviceRegular, IconMusicFilled} from '../kenos-icons';
+import {IconCreditCardVisaRegular, IconMobileDeviceRegular, IconMusicFilled} from '../kenos-icons';
 import PassswordField from '../components/Input/PasswordField/PasswordField';
 import PhoneField from '../components/Input/PhoneField/PhoneField';
 import PinPassField from '../components/Input/PinPassField/PinPassField';
+import CreditCardNumberField from '../components/Input/CreditCardNumberField/CreditCardNumberField';
 
 export default {
   title: 'TextField',
@@ -15,6 +16,7 @@ export default {
 export const Basic: ComponentStory<typeof TextField> = args => {
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [creditCardNumber, setCreditCardNumber] = useState('');
   const [pinPass, setPinPass] = useState('');
 
   const handleChangePin = () => {
@@ -40,6 +42,16 @@ export const Basic: ComponentStory<typeof TextField> = args => {
     maxLength: 12, //Debe incluir cantidad de numeros + espacios
   };
 
+  const argsCreditCardNumber = {
+    ...args,
+    label: 'Card number',
+    name: 'card',
+    onChangeValue: setCreditCardNumber,
+    value: creditCardNumber,
+    helperText: 'Helper text',
+    maxLength: 19, //Debe incluir cantidad de numeros + espacios
+  };
+
   return (
     <View
       style={{
@@ -53,6 +65,13 @@ export const Basic: ComponentStory<typeof TextField> = args => {
       <PhoneField
         {...argsPhoneField}
         endIcon={<IconMobileDeviceRegular />}
+        fullWidth
+      />
+      <View style={{marginTop: 20}} />
+      <Text>Credit Card: {creditCardNumber}</Text>
+      <CreditCardNumberField
+        {...argsCreditCardNumber}
+        endIcon={<IconCreditCardVisaRegular/>}
         fullWidth
       />
     </View>
