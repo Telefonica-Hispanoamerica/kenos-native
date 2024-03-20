@@ -16,6 +16,7 @@ export interface TextFieldProps extends CommonFormFieldProps {
   prefix?: React.ReactNode;
   endIcon?: React.ReactNode;
   getSuggestions?: (value: string) => ReadonlyArray<string>;
+  keyboardType?: 'numeric' | 'default'
 }
 
 const TextField = React.forwardRef<TextInput, TextFieldProps>(
@@ -34,6 +35,7 @@ const TextField = React.forwardRef<TextInput, TextFieldProps>(
       onEndEditing: onEndEditingProp,
       onFocus: onFocusProp,
       onPress,
+      keyboardType,
       ...rest
     },
     ref,
@@ -67,7 +69,7 @@ const TextField = React.forwardRef<TextInput, TextFieldProps>(
         {...rest}
         {...fieldProps}
         onPress={onPress}
-        type="text"
+        type={keyboardType ?? 'default'}
         error={error}
       />
     );
