@@ -60,9 +60,9 @@ export {
   Text9,
   Text10,
 } from './Text/Text';
-export { Title1, Title2 } from './Title/Title';
-export { default as PassswordField } from './Input/PasswordField/PasswordField';
-export { default as PhoneField } from './Input/PhoneField/PhoneField';
-export { default as PinPassField } from './Input/PinPassField/PinPassField';
-export { default as DoubleField } from './Input/DoubleField/DoubleField';
-
+export {Title1, Title2} from './Title/Title';
+export {default as PassswordField} from './Input/PasswordField/PasswordField';
+export {default as PhoneField} from './Input/PhoneField/PhoneField';
+export {default as PinPassField} from './Input/PinPassField/PinPassField';
+export {default as DoubleField} from './Input/DoubleField/DoubleField';
+export {CardConsumption} from './Cards/CardConsumption/CardConsumption';

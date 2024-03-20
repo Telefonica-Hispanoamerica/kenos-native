@@ -34,6 +34,17 @@ export interface MediaCardProps extends BaseCardProps {
   dataAttributes?: DataAttributes;
 }
 
+export interface CardConsumptionProps extends BaseCardProps{
+  percentage?:number;
+  internalTitle?:string;
+  internalSubtitle?:string;
+  colorGradientPrimary?:string;
+  colorGradientSecondary?:string;
+  type?: 'Default'|'Unlimited'|'SeeMore';
+  onPress?: () => void; 
+}
+
+
 export interface PlanCardProps extends DataCardProps {
   
 }

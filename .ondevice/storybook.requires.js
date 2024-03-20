@@ -55,6 +55,7 @@ const getStories = () => {
     "./src/__stories__/ButtonFixedFooter.stories.tsx": require("../src/__stories__/ButtonFixedFooter.stories.tsx"),
     "./src/__stories__/ButtonLayout.stories.tsx": require("../src/__stories__/ButtonLayout.stories.tsx"),
     "./src/__stories__/Callout.stories.tsx": require("../src/__stories__/Callout.stories.tsx"),
+    "./src/__stories__/CardConsumption.stories.tsx": require("../src/__stories__/CardConsumption.stories.tsx"),
     "./src/__stories__/Carousels.stories.tsx": require("../src/__stories__/Carousels.stories.tsx"),
     "./src/__stories__/Checkbox.stories.tsx": require("../src/__stories__/Checkbox.stories.tsx"),
     "./src/__stories__/Circle.stories.tsx": require("../src/__stories__/Circle.stories.tsx"),
