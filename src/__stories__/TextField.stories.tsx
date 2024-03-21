@@ -5,6 +5,7 @@ import {Text, View} from 'react-native';
 import {IconMobileDeviceRegular, IconMusicFilled} from '../kenos-icons';
 import PassswordField from '../components/Input/PasswordField/PasswordField';
 import PhoneField from '../components/Input/PhoneField/PhoneField';
+import DoubleField from '../components/Input/DoubleField/DoubleField';
 
 export default {
   title: 'TextField',
@@ -34,6 +35,25 @@ export const Basic: ComponentStory<typeof TextField> = args => {
     maxLength: 12, //Debe incluir cantidad de numeros + espacios
   };
 
+  const DoubleFieldLeft = (
+    <TextField
+      {...argsPhoneField}
+      label='CVV'
+      helperText=''
+      fullWidth
+      keyboardType='numeric'
+    />
+  );
+
+  const DoubleFieldRigth = (
+    <TextField
+      {...args}
+      label='Expire'
+      helperText=''
+      fullWidth
+    />
+  );
+
   return (
     <View
       style={{
@@ -48,6 +68,12 @@ export const Basic: ComponentStory<typeof TextField> = args => {
         {...argsPhoneField}
         endIcon={<IconMobileDeviceRegular />}
         fullWidth
+      />
+      <View style={{marginTop: 20}} />
+      <DoubleField
+        leftField={DoubleFieldLeft}
+        rightField={DoubleFieldRigth}
+        layout="30/70"
       />
     </View>
   );

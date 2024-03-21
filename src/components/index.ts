@@ -6,7 +6,7 @@ export {IconButtonLayout} from './LayoutButton/IconButtonLayout/IconButtonLayout
 export {default as NavigationBarButton} from './NavigationBar/NavigationBarButton/NavigationBarButton';
 export {Boxed} from './Primitives/Boxed/Boxed';
 export {default as Image} from './Primitives/Image/Image';
-export {default as Video} from './Primitives/Video/Video';
+/* export {default as Video} from './Primitives/Video/Video'; */
 export {default as Stack} from './Stack/Stack';
 export {default as CircleStepper} from './Steppers/CircleStepper';
 export {default as CircleStepperLayout} from './Steppers/CircleStepperLayout/CircleStepperLayout';
@@ -63,3 +63,6 @@ export {
 export {Title1, Title2} from './Title/Title';
 export {default as PassswordField} from './Input/PasswordField/PasswordField';
 export {default as PhoneField} from './Input/PhoneField/PhoneField';
+export {default as PinPassField} from './Input/PinPassField/PinPassField';
+export {default as DoubleField} from './Input/DoubleField/DoubleField';
+export {CardConsumption} from './Cards/CardConsumption/CardConsumption';
