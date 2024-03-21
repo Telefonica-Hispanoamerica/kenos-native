@@ -72,6 +72,7 @@ const getStories = () => {
     "./src/__stories__/Placeholder.stories.tsx": require("../src/__stories__/Placeholder.stories.tsx"),
     "./src/__stories__/ProgressBar.stories.tsx": require("../src/__stories__/ProgressBar.stories.tsx"),
     "./src/__stories__/Radio.stories.tsx": require("../src/__stories__/Radio.stories.tsx"),
+    "./src/__stories__/SelectedBox.stories.tsx": require("../src/__stories__/SelectedBox.stories.tsx"),
     "./src/__stories__/Sheet.stories.tsx": require("../src/__stories__/Sheet.stories.tsx"),
     "./src/__stories__/SkeletonCircle.stories.tsx": require("../src/__stories__/SkeletonCircle.stories.tsx"),
     "./src/__stories__/SkeletonLine.stories.tsx": require("../src/__stories__/SkeletonLine.stories.tsx"),
