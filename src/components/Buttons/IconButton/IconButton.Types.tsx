@@ -7,6 +7,7 @@ export interface IconButtonProps {
   type?: IconButtonType;
   sizeCircle?:number;
   sizeIcon?:number;
+  iconColor?: string;
   inverse?:boolean;
   onPress?: () => void;
   styles?: StyleProp<ViewStyle>;
