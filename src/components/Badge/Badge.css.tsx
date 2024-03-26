@@ -27,7 +27,7 @@ export const getStylesBadge = (colorBadge:string, colors:any, isBigNumber:boolea
       height: 18,
       top: -8,
       right: -9,
-      backgroundColor: colors.badge,
+      backgroundColor: colorBadge,
       borderRadius: 50,
       borderColor:colors.borderLight,
       borderWidth:1,
@@ -49,7 +49,7 @@ export const getStylesBadge = (colorBadge:string, colors:any, isBigNumber:boolea
     badgeWithChildren: {
       width: isBigNumber ? 24 : !value ? 8 : 18,
       height: !value ? 8 : 18,
-      backgroundColor: colors.badge,
+      backgroundColor:colorBadge,
       borderRadius: 50,
       borderColor:colors.borderLight,
       borderWidth:1,
@@ -64,7 +64,7 @@ export const getStylesBadge = (colorBadge:string, colors:any, isBigNumber:boolea
       borderRadius: 50,
       borderColor:colors.borderLight,
       borderWidth:1,
-      backgroundColor: colors.badge,
+      backgroundColor: colorBadge,
       shadowColor: '#000',
       shadowOffset: {
         width: 0,

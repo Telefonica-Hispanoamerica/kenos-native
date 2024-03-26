@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {useTheme} from '../../utils/ThemeContextProvider';
 import { getStylesBadge } from './Badge.css';
 import {Text1} from '../Text/Text';
@@ -17,8 +17,7 @@ const Badge: React.FC<Props> = ({children, value, right, top, type = 'bagde'}: P
   const {colors} = skin;
   const isBigNumber = value && value > 9;
   
-  console.log(typeof(isBigNumber))
-  const colorBadge = type === 'warning' ? colors.warning : type === 'success' ? colors.success : colors.badge
+  const colorBadge = type === 'warning' ? colors.warning : type === 'success' ? colors.success : type === 'controlActivated' ? colors.controlActivated : colors.badge
   const styles = getStylesBadge(colorBadge,colors,isBigNumber,value)
 
   if (children && value === 0) {
