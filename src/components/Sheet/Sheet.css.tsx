@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
     overlay: {
         ...StyleSheet.absoluteFillObject,
-        //backgroundColor: backgroundOverlay, //TODO: Revisar opacidad del color con Sergio
         justifyContent: "flex-end",
         elevation: 1,
         zIndex: 1,
@@ -23,7 +22,6 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
       },
       draggableHandleContainer: {
-        paddingTop: 8,
         width: '100%',
         alignSelf: "center",
       },
