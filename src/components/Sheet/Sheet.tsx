@@ -11,19 +11,15 @@ import {
 import { useTheme } from "../../utils/ThemeContextProvider";
 import { styles } from "./Sheet.css";
 import { SheetHeader } from "./SheetHeader/SheetHeader";
-
-export interface BottomSheetProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  dismisable?: boolean;
-}
+import { applyAlpha } from "../../utils";
+import { BottomSheetProps } from "./Sheet.Types";
 
 const BottomSheet = ({ 
   isOpen, 
   onClose, 
   children, 
-  dismisable = false 
+  dismisable = false,
+  dragableHead = true
 }: BottomSheetProps) => {
   const { height } = Dimensions.get("window");
   const translateY = useRef(new Animated.Value(isOpen ? 0 : height)).current;
@@ -94,7 +90,7 @@ const BottomSheet = ({
       {isOpen && (
         <View style={[
           styles.overlay,
-          { backgroundColor: backgroundOverlay }
+          { backgroundColor: applyAlpha(backgroundOverlay, .5) }
         ]}>
           <Animated.View style={[
             styles.bottomSheet,
@@ -105,6 +101,7 @@ const BottomSheet = ({
               color={control}
               dismisable={dismisable}
               dismisableAction={handleClose}
+              dragableHead={dragableHead}
             />
             <ScrollView contentContainerStyle={styles.scrollContainer}>
               {children}

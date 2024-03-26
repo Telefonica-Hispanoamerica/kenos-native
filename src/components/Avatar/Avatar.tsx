@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, ImageBackground} from 'react-native';
 import Badge from '../Badge/Badge';
-import { IconUserAccountRegular } from '../../kenos-icons';
+import {IconUserAccountRegular} from '../../kenos-icons';
 import {useTheme} from '../../utils/ThemeContextProvider';
-import { IconProps } from '../../utils';
+import {IconProps} from '../../utils';
 
 const getBadgeDistance = (
   size: number,
@@ -26,6 +26,7 @@ type AvatarProps = {
   Icon?: React.ComponentType<IconProps>;
   badge?: boolean | number;
   border?: boolean;
+  inverse?: boolean;
 };
 
 const Avatar = ({
@@ -37,6 +38,7 @@ const Avatar = ({
   Icon = IconUserAccountRegular,
   badge,
   border,
+  inverse,
 }: AvatarProps) => {
   const {skin} = useTheme();
   const [imgLoadError, setImgLoadError] = useState(false);
@@ -58,7 +60,9 @@ const Avatar = ({
         style={{
           fontSize,
           textTransform: 'uppercase',
-          color: color || skin.colors.textPrimaryInverse,
+          color: inverse
+            ? skin.colors.textPrimaryInverse
+            : skin.colors.textButtonPrimaryInverse,
         }}>
         {text}
       </Text>
@@ -89,7 +93,7 @@ const Avatar = ({
           width: size,
           height: size,
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'center', 
           justifyContent: 'center',
           borderRadius: 500,
           overflow: 'hidden',
@@ -101,7 +105,14 @@ const Avatar = ({
   ) : (
     <>
       {renderText(size, letters, textColor) || (
-        <Icon size={iconSize} color="currentColor" />
+        <Icon
+          size={iconSize}
+          color={
+            inverse
+              ? skin.colors.textPrimaryInverse
+              : skin.colors.textButtonPrimaryInverse
+          }
+        />
       )}
     </>
   );
@@ -115,7 +126,9 @@ const Avatar = ({
           justifyContent: 'center',
           width: size,
           height: size,
-          backgroundColor: backgroundColor || skin.colors.brandHigh,
+          backgroundColor: inverse
+            ? skin.colors.brandHigh
+            : skin.colors.brandLow,
           borderWidth: border ? 1 : 0,
           borderColor: skin.colors.borderLow,
           borderRadius: 500,
@@ -123,7 +136,7 @@ const Avatar = ({
       ]}
       accessibilityRole="image"
       accessibilityLabel={initials}>
-      {badgeComponent}
+      {badge && badgeComponent}
       {content}
     </View>
   );
