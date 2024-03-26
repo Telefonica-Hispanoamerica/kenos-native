@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useTheme } from '../../utils/ThemeContextProvider';
+import { DividerTypes } from './Divider.Types';
 
-const Divider = () => {
+const Divider = ({isInverse}:DividerTypes) => {
   const { skin } = useTheme();
   const { divider, dividerInverse } = skin.colors;
-  const isInverse = false; //TODO: Add an isInverse implementation in the future.
-
+ 
   const styles = StyleSheet.create({
     default: {
       borderBottomWidth: 1,

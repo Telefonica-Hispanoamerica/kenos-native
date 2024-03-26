@@ -1,43 +1,45 @@
-import React from 'react'
-import { GestureResponderHandlers, View } from 'react-native'
-import { styles } from '../Sheet.css';
+import React from 'react';
+import {View} from 'react-native';
+import {styles} from '../Sheet.css';
 import IconCloseRegular from '../../../kenos-icons/IconCloseRegular';
-import { IconButton } from '../../Buttons';
+import {IconButton} from '../../Buttons';
+import {HeaderSheetPanResponderProps} from '../Sheet.Types';
+import { SheetHeaderShared } from '../../shared/SheetHeaderShared/SheetHeaderShared';
 
-interface PanResponderProps {
-    panHandlers: GestureResponderHandlers;
-    color: string;
-    dismisable: boolean;
-    dismisableAction: () => void;
-}
-
-const IconButtonStyles = {
-    height: 28, 
-    width: 28, 
+export const SheetHeader = ({
+  panHandlers,
+  color,
+  dismisable,
+  dismisableAction,
+  dragableHead
+}: HeaderSheetPanResponderProps) => {
+  const IconButtonStyles = {
+    height: 28,
+    width: 28,
     padding: 2,
-    marginTop: -10
-}
+  };
 
-export const SheetHeader = ({ panHandlers, color, dismisableAction }: PanResponderProps) => {
-    return (
-        <View
-            style={styles.draggableHandleContainer}
-            {...panHandlers}
-        >
-            <View
-                style={[
-                    styles.draggableHandle,
-                    { backgroundColor: color }
-                ]}
-            />
-            <View style={styles.dismisableContainer}>
-                <IconButton 
-                    icon={IconCloseRegular} 
-                    type={'light'}
-                    onPress={dismisableAction}
-                    styles={IconButtonStyles}
-                />
-            </View>
+  return (
+    <View
+      style={[
+        styles.draggableHandleContainer,
+        {paddingTop: 8},
+      ]}
+      {...panHandlers}>
+      {dragableHead && (
+        <View style={[styles.draggableHandle, {backgroundColor: color}]} />
+      )}
+
+      {dismisable && (
+        <View style={styles.dismisableContainer}>
+          <IconButton
+            icon={IconCloseRegular}
+            type={'light'}
+            onPress={dismisableAction}
+            styles={IconButtonStyles}
+          />
         </View>
-    )
-}
+      )}
+    </View>
+  );
+};
