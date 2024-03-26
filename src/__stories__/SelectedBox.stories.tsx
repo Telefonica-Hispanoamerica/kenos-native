@@ -18,9 +18,9 @@ storiesOf('Selected Box', module)
       value="some value one"
        onSelect={(selected, value) => {
         if (selected) {
-          console.log('Selected with value:', value);
+          //Selected with value
         } else {
-          console.log('Deselected with value:', value);
+          //Deselected with value
         }
      }}
     />
@@ -31,9 +31,9 @@ storiesOf('Selected Box', module)
       value="some value two"
       onSelect={(selected, value) => {
         if (selected) {
-          console.log('Selected with value:', value);
+          //Selected with value
         } else {
-          console.log('Deselected with value:', value);
+          //Deselected with value
         }
       }}
     />
@@ -44,9 +44,9 @@ storiesOf('Selected Box', module)
       value="some value one"
        onSelect={(selected, value) => {
         if (selected) {
-          console.log('Selected with value:', value);
+          //Selected with value
         } else {
-          console.log('Deselected with value:', value);
+          //Deselected with value
         }
      }}
     />
