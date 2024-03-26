@@ -8,10 +8,14 @@ export default {
   component: Divider,
 } as ComponentMeta<typeof Divider>;
 
-export const Basic: ComponentStory<typeof Divider> = () => (
+export const Basic: ComponentStory<typeof Divider> = args => (
   <View style={{marginTop: 16}}>
-    <Divider />
+    <Divider {...args}/>
   </View>
 );
+
+Basic.args = {
+  isInverse:false,
+};
 
 Basic.storyName = 'Divider';
